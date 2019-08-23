@@ -98,6 +98,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
     <td>Use STL in-contract</td>
     <td>Codify existing exposition-only STL requirements</td>
     <td></td></tr>
+<tr><td><a href="#lib.rtc.preassert">lib.rtc.preassert</a></td>
+    <td></td>
+    <td>Assist run-time bug detection</td>
+    <td>Annotate that some assertions should be treated as preconditions</td>
+    <td></td></tr>
 <tr><td></td>
     <td>C Developer</td>
     <td>Write contracts on my functions</td>
@@ -834,7 +839,16 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
  
 <table> 
 <tr><td><a name="dev.decl.knowl">dev.decl.knowl</a></td>
-    <td>Be able to annotate my understanding of the state of ay variable at any point in the program, such as "upon function entry", "each time this instruction is executed".
+    <td>Be able to annotate my understanding of the state of ay variable at any point in the program, such as
+	"upon function entry", "each time this instruction is executed".
+	</td></tr>
+<tr><td><a name="lib.rtc.preassert">lib.rtc.preassert</a></td>
+    <td>Some function preconditiosn can be expressed as c++ expressions, but are runtime-expensive.
+	However, if expressed inside function body ass assertions after some function logic has already been executed,
+	the check whether the function has everything that is required is cheap. If I use an assertion like this,
+	I want to annotate this assertion as being "precondition-like". The semantics would be that if it fails,
+	it is reported as "caller's bug" rather than callee's bug, and if the build is configured
+	to runtime-check only preconditions, such assertion should also be runitme-checked.
 	</td></tr>
 </table>
 
