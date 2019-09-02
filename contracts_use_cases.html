@@ -34,29 +34,22 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Annotate my program anywhere in the code with my current understanding of its structure or execution</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
   <td>Express a spectrum of confidence in the information in my annotations, from “unsure” and asking for validation, to “sure” and asking for some action based on the information (such as “maybe”, “definitely”, “assume”)</td>
   <td></td></tr>
 
-
-
-
 <tr><td></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of importance of the information in my annotations, from critical (such as might bring the system down) to minor (such as might lead to a slower fallback) </td>
+  <td>Express a spectrum of importance of the information in my annotations, from "critical" (such as might bring the system down) to "minor" (such as might lead to a slower fallback) </td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of expected cost at compile or runtime of my annotations, from unrunnable to expensive to cheap</td>
+  <td>Express a spectrum of expected cost at compile or runtime of my annotations, from "unrunnable" to "expensive" to "cheap"</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -65,20 +58,16 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have annotations affect the execution of my program in accordance with my expectations</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Developer</td>
   <td>Reason about executions</td>
   <td>Ensure annotations do not substantially change the meaning of my program when enabled</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Developer</td>
   <td>Reason about executions</td>
-  <td>Have the effect of annotations on executions be controllable (ie. for “critical (cheap): maybe x is valid” the user may decide whether “cheap” checks or “critical” terminates)</td>
+  <td>Have the effect of annotations on executions be user controllable (ie. decide whether “cheap” checks or “critical” terminates)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -87,15 +76,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have annotations with a succinct and elegant syntax</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Developer</td>
   <td>Have readable annotations</td>
   <td>Have annotation keywords or names with intuitive, clear, and unambiguous meanings</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Developer</td>
@@ -115,8 +100,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>A syntax that can both be parsed and can be reasoned about semantically</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Developer</td>
   <td>Interoperate with tools or persons</td>
@@ -129,8 +112,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have annotations use familiar syntax</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C++ Developer</td>
   <td>Get up to speed</td>
@@ -140,7 +121,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>C++ Developer</td>
   <td>Reuse code</td>
-  <td>Have annotations use any of my custom types or functions</td>
+  <td>Have annotations use my custom types or functions</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -155,23 +136,17 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Minimize use of macros</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C++ Developer</td>
   <td>Support modern features</td>
   <td>Be interoperable with modules</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C++ Developer</td>
   <td>Support modern features</td>
   <td>Be interoperable with coroutines</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>C++ Developer</td>
@@ -194,7 +169,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>C++ Developer</td>
   <td>Use existing build modes</td>
-  <td>Have annotations adapt how they affect executions depending on my existing build modes (such as Debug or Release modes in VS)</td>
+  <td>Have annotations affect executions depending on my existing build modes (such as Debug or Release modes in VS)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -203,15 +178,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Specify contracts in a way standardizable as part of the C language</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C Developer</td>
   <td>Write contracts on my functions</td>
   <td>Use contracts with macro-safe keywords that are reserved C names (i.e., _Pre, _Post, _Assert, etc.)</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>C Developer</td>
@@ -219,15 +190,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have a common violation handler for both violated C and C++ contracts</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C Developer</td>
   <td>Write contracts on my functions</td>
   <td>Expose my contracts to C++ developers through 'extern "C"' declarations of my functions</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>C Developer</td>
@@ -238,7 +205,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Mixed C/C++ Developer</td>
   <td>Maintain mixed code base</td>
-  <td>Standardize contracts jointly with WG14 so contracts aren’t lost when crossing languages</td>
+  <td>Not lose contracts when crossing languages</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -253,15 +220,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have validation inform me which output values are unexpected or invalid</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Have validation inform me which class invariants are violated</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>API Developer</td>
@@ -269,23 +232,17 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have validation inform user which input values are unexpected or invalid</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Have contracts specify their pre-conditions as logical predicates</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Have contracts specify their class invariants as logical predicates</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>API Developer</td>
@@ -299,28 +256,22 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Make reference to either the values of my inputs, or other in-scope identifiers</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Make reference to the before and after values of in-out variables (such as passed by pointer or reference) in post-conditions</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of mutable class members (ie. new_size = old_size+1 after push_back) in post-conditions</td>
+  <td>Make reference to the before and after values of mutable class members (ie. <i>new_size = old_size+1</i> after push_back) in post-conditions</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of global state (i.e., now() >= old(now()) + sleep_time) in post-conditions</td>
+  <td>Make reference to the before and after values of global state (i.e., <i>now() >= old(now()) + sleep_time</i>) in post-conditions</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -329,15 +280,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Annotate operations as being exception safe</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
   <td>Annotate operations as being thread safe</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>API Developer</td>
@@ -345,15 +292,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Annotate operations as being atomic (ie. all or no changes become visible)</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
   <td>Annotate operations as real-time (ie. guaranteed to complete within a time frame)</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>API Developer</td>
@@ -361,23 +304,17 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Annotate operations as being deterministic (ie. same outputs for same inputs)</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
   <td>Annotate operations as functionally pure (ie. no side effects)</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
   <td>Annotate operations as having global side effects (ie. write to singleton, file, network, or database)</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>API Developer</td>
@@ -391,8 +328,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Be able to use a predicate that is not evaluated at runtime, because it might be unsafe to run or have stateful side effects</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Express unrunnable contracts</td>
@@ -404,8 +339,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Express uncheckable contracts</td>
   <td>Be able to use a predicate that is not evaluated, because it is simply a semantic placeholder for a tool</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>API Developer</td>
@@ -431,8 +364,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Be able to access private implementation details of the class so I don’t have to widen public interface to declare predicates</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>API Developer</td>
   <td>Keep my user interfaces clean and narrow</td>
@@ -442,7 +373,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>API Developer</td>
   <td>Move contract violation out of error handling</td>
-  <td>Replace uses of error handling to express contract violation (ie. operator[](size_t n) noexcept [[pre: n < size()]])</td>
+  <td>Replace uses of error handling to express contract violation (ie. <i>operator[](size_t n) noexcept [[pre: n < size()]]</i>)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -451,15 +382,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type’s code</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Express public class invariants</td>
   <td>Check invariants before and after every public method (when called from outside the type, not when one member function calls another)</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>C++ API Developer</td>
@@ -473,15 +400,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and private members, and is checked on entry and exit from this type’s code</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Express base class invariants</td>
   <td>Check invariants on entry and exit of every protected method (when called from the derived type, not when one base member function calls another)</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>C++ API Developer</td>
@@ -495,15 +418,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type’s code</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Express private class invariants</td>
   <td>Check invariants on entry and exit of every public method (when called from outside the type, not when one member function calls another)</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>C++ API Developer</td>
@@ -523,7 +442,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Define and check pre and post conditions as I would a regular function</td>
   <td></td></tr>
 
-
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Use coroutines</td>
@@ -535,8 +453,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Conform to a contract</td>
   <td>Be informed any time an interface’s contract is violated</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Integration Developer</td>
@@ -550,15 +466,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Use contract-enabled header-only libraries</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Integration Developer</td>
   <td>Build multiple libraries</td>
   <td>Use contract-enabled binary libraries</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Integration Developer</td>
@@ -571,8 +483,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Debug multiple libraries</td>
   <td>Enable checks only within a selected library</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Integration Developer</td>
@@ -592,15 +502,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Be informed what check failed, when, where, and how</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Integration Developer</td>
   <td>Correct failed checks</td>
   <td>Transmit check failure information in environment-specific ways (logs, email, special hardware traps, popup windows, blazing sirens, etc).</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Integration Developer</td>
@@ -632,15 +538,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Turn checks on at build time</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Ensure the combined software is correct</td>
   <td>Turn checks on at run time (pre, post, asset, invariant)</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
@@ -648,23 +550,17 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Turn on any subset of individual (call site) checks on at build time </td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Ensure the combined software is correct</td>
   <td>Turn on any subset of individual (call site) checks on at run time</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Ensure the combined software is correct</td>
   <td>Have an understandable way to identify different subsets of checks for various deployments</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
@@ -678,19 +574,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Turn off build time checking to remove checking overhead</td>
   <td></td></tr>
 
-
-
-
-
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Test final deliverable</td>
   <td>Turn off run time checking to remove checking overhead</td>
   <td></td></tr>
-
-
-
-
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
@@ -710,23 +598,17 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Selectively enable checking for a set of functions which could name either an individual function or an overload set</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Define “Code Under Test”</td>
   <td>Selectively enable checking for a set of types and all their members</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Define “Code Under Test”</td>
   <td>Selectively enable checking for a set of types and all their transitively nested types and members</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
@@ -752,15 +634,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Ensure overriding methods have same or wider preconditions (see: Liskov substitution principle)</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C++ Library Developer</td>
   <td>Maintain a class hierarchy</td>
   <td>Ensure overriding functions meet their base class postconditions when their base class preconditions are met (see: Liskov substitution principle)</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>C++ Library Developer</td>
@@ -786,8 +664,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Insulate contract conditions with the function body</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>C++ Library Developer</td>
   <td>Reduce need for client recompilation</td>
@@ -806,8 +682,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Not require extra build steps to be documented</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Library Provider</td>
   <td>Simplify maintenance</td>
@@ -820,11 +694,9 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Not require extra build steps to be learned or performed</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Library Provider</td>
-  <td>Simplify maintenance</td>
+  <td>Support successful integration</td>
   <td>Not have my users accidentally modify my careful annotations</td>
   <td></td></tr>
 
@@ -846,7 +718,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Be able to design new hardware + optimizations, carefully dovetailed into one another, that depend on statically-unprovable facts being annotated in the code</td>
   <td></td></tr>
 
-
 <tr><td></td>
   <td>Senior Developer</td>
   <td>Set an example</td>
@@ -865,8 +736,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Disable continuation on violation of stable and correct individual contracts</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Senior Developer</td>
   <td>Enforce mature, finalized contracts</td>
@@ -878,8 +747,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Understand the API</td>
   <td>A uniform, fluent description of expected input values, expected output values, side effects, and all logical pre and post conditions</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Junior Developer</td>
@@ -893,27 +760,21 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Know why my software is not building</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Junior Developer</td>
-  <td>Understand the API</td>
+  <td>Understand the program</td>
   <td>Know why my software is aborting</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Junior Developer</td>
-  <td>Understand the API</td>
+  <td>Understand the program</td>
   <td>Know why my software is out of contract</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Junior Developer</td>
-  <td>Understand the API</td>
+  <td>Understand the program</td>
   <td>Know that my program or build was halted due to contract violation</td>
   <td></td></tr>
 
@@ -923,11 +784,9 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Be able to build a program with contracts after reasonably short tutorial </td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Junior Developer</td>
-  <td>Understand the API</td>
+  <td>Understand the facility</td>
   <td>Have keywords with precise and unambiguous meanings</td>
   <td></td></tr>
 
@@ -961,16 +820,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Annotate my code with assumptions, likelihoods, or reachability information that a tool might not be able to deduce, but that I would be confident of</td>
   <td></td></tr>
 
-
-
-<tr><td></td>
-  <td>Performance Sensitive Developer</td>
-  <td>Enable better performance</td>
-  <td>Accept responsibility for a malformed program that might result from eventually false information given by my annotations</td>
-  <td></td></tr>
-
-
-
 <tr><td></td>
   <td>Performance Sensitive Developer</td>
   <td>Enable better performance</td>
@@ -979,11 +828,15 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <tr><td></td>
   <td>Performance Sensitive Developer</td>
+  <td>Enable better performance</td>
+  <td>Accept responsibility for a malformed program that might result from eventually false information given by my annotations</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>Performance Sensitive Developer</td>
   <td>Have safety critical paths</td>
   <td>Isolate safety checks from performance annotations</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Performance Sensitive Developer</td>
@@ -1009,15 +862,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Signify subset of individual annotations to be consumed by a specific kind of verification tool</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Quality Sensitive Developer</td>
   <td>Manage multiple tools</td>
   <td>Signify subset of individual annotations to be consumed by a specific instance of verification tool</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Quality Sensitive Developer</td>
@@ -1025,15 +874,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Use predicates that may not be understood by all instances of verification</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Quality Sensitive Developer</td>
   <td>Manage multiple tools</td>
   <td>Use predicates that may not be understood by all kinds of verification</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Quality Sensitive Developer</td>
@@ -1077,15 +922,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have access to a recovery path after contract violation</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Critical Software Developer</td>
   <td>Not have a faulty program lead to catastrophic failure</td>
   <td>Be able to express error handling that may be redundant with contract checking</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Critical Software Developer</td>
@@ -1126,7 +967,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Security Sensitive Developer</td>
   <td>Limit attack vectors</td>
-  <td>Have injectable code paths be unable to be inserted at run time</td>
+  <td>Be unable to be insert code paths (such as violation handlers) at run time (ie. build time only)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1183,15 +1024,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Be able to express defensive programming, programming by contract, and test driven development to introductory students</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Teacher</td>
   <td>Demonstrate best practice</td>
   <td>Not rely on custom libraries or proprietary extensions</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Teacher</td>
@@ -1205,8 +1042,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have examples compilable by a standard compiler on any system</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Teacher</td>
   <td>Manage many students</td>
@@ -1218,8 +1053,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Build layers of understanding</td>
   <td>Have simple explanation of assertions and their use to support simple programming tasks, including debugging erroneous programs.</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Teacher</td>
@@ -1257,8 +1090,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Introduce standardized contracts to replace my macro-based contracts</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Modernize my code base</td>
@@ -1270,8 +1101,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Introduce new contracts into an existing system</td>
   <td>Have failed individual checks from existing code optionally warn instead of hard stop</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Large Codebase Owner</td>
@@ -1290,8 +1119,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Introduce new elements into a contracts based system</td>
   <td>Have failed checks caused by a change in environment optionally warn instead of hard stop</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Large Codebase Owner</td>
@@ -1317,15 +1144,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Optionally disable checking on a subset of individual annotations</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Allow simulation or post-mortem testing of known failure modes</td>
   <td>Optionally allow checking of a subset of individual annotations to fail and access its recovery path</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Large Codebase Owner</td>
@@ -1338,8 +1161,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Manage performance cost</td>
   <td>Constrain the set of built time checks according to their performance overhead</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Large Codebase Owner</td>
@@ -1359,15 +1180,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Remove all checking and diagnostic (such as source location) overhead entirely from the final binary</td>
   <td></td></tr>
 
-
-
 <tr><td></td>
   <td>Small Machine Developer</td>
   <td>Minimize executable footprint</td>
   <td>Remove all logging and diagnostic (but not checking) overhead from the final binary</td>
   <td></td></tr>
-
-
 
 <tr><td></td>
   <td>Small Machine Developer</td>
@@ -1386,8 +1203,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Extend contracts beyond pre/post conditions on functions</td>
   <td>Be able to use contract-like syntax on past or present runtime checkable language features such as switches, pattern matching, etc. or what might happen on signed integer overflow, etc. This might allow configuration of trapping, logging, or assuming in other areas of language UB.</td>
   <td></td></tr>
-
-
 </table>
     
 <h2>Use cases &mdash; descriptions</h2>
