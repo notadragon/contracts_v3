@@ -268,6 +268,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Make reference to the before and after values of mutable class members (ie. <i>new_size = old_size+1</i> after push_back) in post-conditions</td>
   <td></td></tr>
 
+
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
@@ -366,8 +367,15 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <tr><td></td>
   <td>API Developer</td>
-  <td>Keep my user interfaces clean and narrow</td>
-  <td>Isolate users reading my interface from the specific implementations of my contract, because they are expressed using implementation details and my English language contract is more readable</td>
+  <td>Keep my public interfaces clean and concise</td>
+  <td>Place member function contract conditions outside the class definition (e.g., because my English-language contracts are more
+    complete and more readable, or because the conditions might reference implementation details not relevant to readers).</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>API Developer</td>
+  <td>Keep my public interfaces clean and concise</td>
+  <td>Place function contract conditions after the first declaration (e.g., because my English-language contracts are more complete and more readable, and my contract conditions are implementation details).</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -660,14 +668,15 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <tr><td></td>
   <td>C++ Library Developer</td>
-  <td>Reduce need for client recompilation</td>
-  <td>Insulate contract conditions with the function body</td>
+  <td>Control the tradeoff between need for client recompilation and contract condition visibility</td>
+  <td>Insulate contract conditions with the function definition</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>C++ Library Developer</td>
-  <td>Reduce need for client recompilation</td>
-  <td>Support traditional separation of definition and declaration</td>
+  <td>Control the tradeoff between need for client recompilation and contract condition visibility</td>
+  <td>Insulate the function body but not the contract conditions (e.g., so static analysis tools can view the contract conditions without
+    needing to process the function body) but still outside the class definition to avoid cluttering my public interface.
   <td></td></tr>
 
 <tr><td></td>
