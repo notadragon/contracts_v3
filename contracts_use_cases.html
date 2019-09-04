@@ -156,8 +156,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <tr><td></td>
   <td>C++ Developer</td>
-  <td>Use STL in-contract</td>
-  <td>Codify existing exposition-only STL requirements</td>
+  <td>Use the standard library in-contract</td>
+  <td>Codify existing exposition-only standard library requirements</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -350,6 +350,12 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>API Developer</td>
   <td>Establish responsibility boundaries</td>
   <td>Inform users which errors are the responsibility of the caller, and which are the callee</td>
+  <td></td></tr>
+
+<tr><td><a href="#api.resp.preassert">api.resp.preassert</a></td>
+  <td>API Developer</td>
+  <td>Establish responsibility boundaries</td>
+  <td>Annotate that assertions (inside function bodies) that indirectly test preconditions (such as malformed data discovered while performing the algorithm) should be reported to the caller as precondition failures</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1205,12 +1211,12 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <table>
 <tr><td><a name="dev.decl.knowl">dev.decl.knowl</a></td>
-    <td>Be able to annotate my understanding of the state of ay variable at any point in the program, such as
+    <td>Be able to annotate my understanding of the state of any variable at any point in the program, such as
 	"upon function entry", "each time this instruction is executed".
 	</td></tr>
-<tr><td><a name="lib.rtc.preassert">lib.rtc.preassert</a></td>
-    <td>Some function preconditiosn can be expressed as c++ expressions, but are runtime-expensive.
-	However, if expressed inside function body ass assertions after some function logic has already been executed,
+<tr><td><a name="api.resp.preassert">api.resp.preassert</a></td>
+    <td>Some function preconditions can be expressed as c++ expressions, but are runtime-expensive.
+	However, if expressed inside function body as assertions after some function logic has already been executed,
 	the check whether the function has everything that is required is cheap. If I use an assertion like this,
 	I want to annotate this assertion as being "precondition-like". The semantics would be that if it fails,
 	it is reported as "caller's bug" rather than callee's bug, and if the build is configured
