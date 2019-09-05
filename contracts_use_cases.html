@@ -32,7 +32,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of confidence in my annotations, from “unsure” and asking for validation, to “sure” and asking for some action to be taken (eg. “maybe”, “definitely”, “assume” &lt;something&gt;)</td>
+  <td>Express a spectrum of confidence in my annotations, from “unsure” and asking for validation, to “sure” and asking for some effect to be applied (eg. “maybe”, “definitely”, “assume” &lt;something&gt;)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -67,6 +67,12 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <tr><td></td>
   <td>Developer</td>
+  <td>Adapt and progress with my project</td>
+  <td>Be able to easily change my confidence, importance, or other properties of my annotations over time</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>Developer</td>
   <td>Have readable annotations</td>
   <td>Have annotations with a succinct and elegant syntax</td>
   <td></td></tr>
@@ -81,12 +87,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Developer</td>
   <td>Have readable annotations</td>
   <td>Have my contract specification to be visually primary, and secondary information (syntax, hints, roles, levels, etc.) to not be distracting</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>Developer</td>
-  <td>Adapt and progress with my project</td>
-  <td>Be able to easily change my confidence, importance, or other properties of my annotations over time</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -350,7 +350,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td><a href="#api.resp.preassert">api.resp.preassert</a></td>
   <td>API Developer</td>
   <td>Establish responsibility boundaries</td>
-  <td>Annotate that assertions (inside function bodies) that indirectly test preconditions (such as malformed data discovered while performing the algorithm) should be reported to the caller as precondition failures</td>
+  <td>Annotate assertions inside function bodies that indirectly test preconditions (such as malformed data discovered while performing the algorithm) should be reported to the caller as precondition failures</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -376,6 +376,30 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>API Developer</td>
   <td>Move contract violation out of error handling</td>
   <td>Replace uses of error handling to express contract violation (eg. <i>operator[](size_t n) noexcept [[pre: n < size()]]</i> instead of throwing)</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>C++ API Developer</td>
+  <td>Write classes</td>
+  <td>Declare class invariants that all of my public functions need to maintain</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>C++ API Developer</td>
+  <td>Maintain a class hierarchy</td>
+  <td>Ensure overriding methods have same or wider preconditions (see: Liskov substitution principle)</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>C++ API Developer</td>
+  <td>Maintain a class hierarchy</td>
+  <td>Ensure overriding functions meet their base class postconditions when their base class preconditions are met (see: Liskov substitution principle)</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>C++ API Developer</td>
+  <td>Maintain a class hierarchy.</td>
+  <td>Allow overriding functions to have narrower preconditions/wider postconditions if I want to</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -436,6 +460,24 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>C++ API Developer</td>
   <td>Test my classes</td>
   <td>For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type’s code</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>C++ API Developer</td>
+  <td>Enforce contracts in async code</td>
+  <td>Express contracts on callbacks such as std::function, function pointers, or references to functions, lambdas, or function objects</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>C++ API Developer</td>
+  <td>Enforce contracts in exception safe code</td>
+  <td>Express contracts on exceptional exit</td>
+  <td></td></tr>
+
+<tr><td></td>
+  <td>C++ API Developer</td>
+  <td>Use contracts with variadic templates</td>
+  <td>Allow predicate (fold) expansion</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -543,7 +585,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Ensure the combined software is correct</td>
-  <td>Turn checks on at run time (pre, post, asset, invariant)</td>
+  <td>Turn checks on at run time</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -561,31 +603,13 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Ensure the combined software is correct</td>
-  <td>Have an understandable way to identify different subsets of checks for various deployments</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>Integrated Software Provider</td>
-  <td>Ensure the combined software is correct</td>
   <td>Verify all annotations are globally consistent when integrated</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
-  <td>Test final deliverable</td>
-  <td>Turn off build time checking to remove checking overhead</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>Integrated Software Provider</td>
-  <td>Test final deliverable</td>
-  <td>Turn off run time checking to remove checking overhead</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>Integrated Software Provider</td>
-  <td>Test final deliverable</td>
-  <td>Turn on run time optimization to leverage annotation assumptions</td>
+  <td>Ensure individual features are correct</td>
+  <td>Have a way to audit (named or semantic) subsets of checks for various deployments</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -619,58 +643,21 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td></td></tr>
 
 <tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Use templates</td>
-  <td>Be able to ship header only library</td>
+  <td>Integrated Software Provider</td>
+  <td>Test final deliverable</td>
+  <td>Turn off build time checking to remove checking overhead</td>
   <td></td></tr>
 
 <tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Write classes</td>
-  <td>Declare class invariants that all of my public functions need to maintain</td>
+  <td>Integrated Software Provider</td>
+  <td>Test final deliverable</td>
+  <td>Turn off run time checking to remove checking overhead</td>
   <td></td></tr>
 
 <tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Maintain a class hierarchy</td>
-  <td>Ensure overriding methods have same or wider preconditions (see: Liskov substitution principle)</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Maintain a class hierarchy</td>
-  <td>Ensure overriding functions meet their base class postconditions when their base class preconditions are met (see: Liskov substitution principle)</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Maintain a class hierarchy.</td>
-  <td>Allow overriding functions to have narrower preconditions/wider postconditions if I want to</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Enforce contracts in async code</td>
-  <td>Express contracts on callbacks such as std::function, function pointers, or references to functions, lambdas, or function objects</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Enforce contracts in exception safe code</td>
-  <td>Express contracts on exceptional exit</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Control the tradeoff between need for client recompilation and contract condition visibility</td>
-  <td>Insulate contract conditions with the function definition,
-    or insulate only the definition while putting contract conditions on a redeclaration - visible to static analysis tools in all TUs.</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Use contracts with variadic templates</td>
-  <td>Allow predicate (fold) expansion</td>
+  <td>Integrated Software Provider</td>
+  <td>Test final deliverable</td>
+  <td>Turn on run time optimization to leverage annotation assumptions</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -808,7 +795,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Business Developer</td>
   <td>Maintain confidentiality</td>
-  <td>Not expose diagnostic information (source location, expressions, etc.) in the software I deliver to clients, even when I choose to have contracts enforced in the software I deliver</td>
+  <td>Not expose diagnostic information (eg. source location, expressions, etc.) in the software I deliver to clients, even when I choose to have contracts enforced in the software I deliver</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -964,7 +951,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Security Sensitive Developer</td>
   <td>Limit attack vectors</td>
-  <td>Be unable to be insert code paths (eg. as violation handlers) at run time (ie. build time only)</td>
+  <td>Be unable to be insert code paths (eg. violation handlers) at run time (ie. build time only)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1006,7 +993,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>User of Analysis Tools</td>
   <td>Improve the quality of analysis</td>
-  <td>Be able to hint to the analyzer information it may be unable to deduce from source code alone (eg. 5 / opaque_third_party(); [[ opaque_third_party() != 0]])</td>
+  <td>Be able to hint to the analyzer information it may be unable to deduce from source code alone (eg. <i>5 / opaque(); [[ opaque() != 0]]</i>)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1174,7 +1161,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Small Machine Developer</td>
   <td>Minimize executable footprint</td>
-  <td>Remove all checking and diagnostic (eg. as source location) overhead entirely from the final binary</td>
+  <td>Remove all checking and diagnostic (eg. source location) overhead entirely from the final binary</td>
   <td></td></tr>
 
 <tr><td></td>
