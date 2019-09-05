@@ -37,13 +37,13 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of confidence in the information in my annotations, from “unsure” and asking for validation, to “sure” and asking for some action based on the information (such as “maybe”, “definitely”, “assume”)</td>
+  <td>Express a spectrum of confidence in my annotations, from “unsure” and asking for validation, to “sure” and asking for some action to be taken (eg. “maybe”, “definitely”, “assume” &lt;something&gt;)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of importance of the information in my annotations, from "critical" (such as might bring the system down) to "minor" (such as might lead to a slower fallback) </td>
+  <td>Express a spectrum of importance of my annotations, from "critical" (eg. bring the system down) to "minor" (eg. lead to a slower fallback) </td>
   <td></td></tr>
 
 <tr><td></td>
@@ -103,7 +103,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Developer</td>
   <td>Interoperate with tools or persons</td>
-  <td>Expose annotations to tools that might leverage them (such as code linter, static analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer, etc.)</td>
+  <td>Expose annotations to tools that might leverage them (eg. code linter, static analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer, etc.)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -169,7 +169,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>C++ Developer</td>
   <td>Use existing build modes</td>
-  <td>Have annotations affect executions depending on my existing build modes (such as Debug or Release modes in VS)</td>
+  <td>Have annotations affect executions depending on my existing build modes (eg. as Debug or Release modes in VS)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -259,19 +259,19 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of in-out variables (such as passed by pointer or reference) in post-conditions</td>
+  <td>Make reference to the before and after values of in-out variables (ie. as passed by pointer or reference) in post-conditions</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of mutable class members (ie. <i>new_size = old_size+1</i> after push_back) in post-conditions</td>
+  <td>Make reference to the before and after values of mutable class members (eg. <i>new_size = old_size+1</i> after push_back) in post-conditions</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of global state (i.e., <i>now() >= old(now()) + sleep_time</i>) in post-conditions</td>
+  <td>Make reference to the before and after values of global state (eg., <i>now() >= old(now()) + sleep_time</i>) in post-conditions</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -374,7 +374,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>API Developer</td>
   <td>Move contract violation out of error handling</td>
-  <td>Replace uses of error handling to express contract violation (ie. <i>operator[](size_t n) noexcept [[pre: n < size()]]</i>)</td>
+  <td>Replace uses of error handling to express contract violation (eg. <i>operator[](size_t n) noexcept [[pre: n < size()]]</i> instead of throwing)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -963,7 +963,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Security Sensitive Developer</td>
   <td>Limit attack vectors</td>
-  <td>Be unable to be insert code paths (such as violation handlers) at run time (ie. build time only)</td>
+  <td>Be unable to be insert code paths (eg. as violation handlers) at run time (ie. build time only)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1005,7 +1005,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>User of Analysis Tools</td>
   <td>Improve the quality of analysis</td>
-  <td>Be able to hint to the analyzer information it may be unable to deduce from source code alone (ie. 5 / opaque_third_party(); [[ i != 0]])</td>
+  <td>Be able to hint to the analyzer information it may be unable to deduce from source code alone (eg. 5 / opaque_third_party(); [[ opaque_third_party() != 0]])</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1173,7 +1173,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Small Machine Developer</td>
   <td>Minimize executable footprint</td>
-  <td>Remove all checking and diagnostic (such as source location) overhead entirely from the final binary</td>
+  <td>Remove all checking and diagnostic (eg. as source location) overhead entirely from the final binary</td>
   <td></td></tr>
 
 <tr><td></td>
