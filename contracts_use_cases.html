@@ -22,13 +22,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <table>
 <tr><th>Code</th><th>As A</th><th>In Order To</th><th>I Want To</th><th>Priority</th></tr>
-<tr><td><a href="#dev.decl.knowl">dev.decl.knowl</a></td>
-    <td>Developer</td>
-    <td>Make my reasoning explicit</td>
-    <td>Be able to annotate my understanding of the program at any point in the program</td>
-    <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.decl.knowl">dev.decl.knowl</a></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
   <td>Annotate my program anywhere in the code with my current understanding of its structure or execution</td>
@@ -1211,17 +1206,21 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <table>
 <tr><td><a name="dev.decl.knowl">dev.decl.knowl</a></td>
-    <td>Be able to annotate my understanding of the state of any variable at any point in the program, such as
-	"upon function entry", "each time this instruction is executed".
+  <td>This general use case expresses the desire to place information about
+    a program's expected execution state in many different places throughout
+    the program - possibly including "upon function entry", "whenever this
+    line of code is executed", "at all times when a class of this type is not
+    actively executing a member function", or others.
 	</td></tr>
 <tr><td><a name="api.resp.preassert">api.resp.preassert</a></td>
-    <td>Some function preconditions can be expressed as c++ expressions, but are runtime-expensive.
-	However, if expressed inside function body as assertions after some function logic has already been executed,
-	the check whether the function has everything that is required is cheap. If I use an assertion like this,
-	I want to annotate this assertion as being "precondition-like". The semantics would be that if it fails,
-	it is reported as "caller's bug" rather than callee's bug, and if the build is configured
-	to runtime-check only preconditions, such assertion should also be runitme-checked.
-	</td></tr>
+    <td>Some function preconditions can be expressed as c++ expressions, but are
+runtime-expensive.  However, if expressed inside function body as assertions
+after some function logic has already been executed,  the check whether the
+function has everything that is required is cheap. If I use an assertion like
+this,  I want to annotate this assertion as being "precondition-like". The
+semantics would be that if it fails,  it is reported as "caller's bug" rather
+than callee's bug, and if the build is configured  to runtime-check only
+preconditions, such assertion should also be runitme-checked.</td></tr>
 </table>
 
 Rest is TBD...
