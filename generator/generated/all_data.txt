@@ -1,0 +1,2875 @@
+#--<label>
+#<As A> (one line)
+#<In Order To> (one line)
+#<I Want To> (any number of lines
+#
+# For each additional piece of data, ==<key> followed by the key data
+#==<key>
+#<keydata>
+#
+# End with
+#--
+
+--dev.reason.knowl
+Developer
+Reason explicitly
+Annotate my program anywhere in the code with my current understanding of its
+structure or execution
+==categories
+general location
+==descriptionmd
+<p>This general use case expresses the desire to place information about
+a program's expected execution state in many different places throughout
+the program - possibly including "upon function entry", "whenever this
+line of code is executed", "at all times when a class of this type is not
+actively executing a member function", or others.</p>
+==description
+This general use case expresses the desire to place information about
+a program's expected execution state in many different places throughout
+the program - possibly including "upon function entry", "whenever this
+line of code is executed", "at all times when a class of this type is not
+actively executing a member function", or others.
+--
+
+--dev.reason.confidence
+Developer
+Reason explicitly
+Express a spectrum of confidence in my annotations, from “unsure” and asking
+for validation, to “sure” and asking for some effect to be applied (eg.
+“maybe”, “definitely”, “assume” <something>)
+==categories
+general metadata
+==descriptionmd
+<p>This high level use case expresses the need to attach information to contract
+conditions that is beyond the statement of the condition itself, and instead
+has user-provided metadata about both the confidence in the condition and the
+desired behavior of the program in relation to that condition.</p>
+==description
+This high level use case expresses the need to attach information to contract
+conditions that is beyond the statement of the condition itself, and instead
+has user-provided metadata about both the confidence in the condition and the
+desired behavior of the program in relation to that condition.
+--
+
+--dev.reason.importance
+Developer
+Reason explicitly
+Express a spectrum of importance of my annotations, from "critical" (eg. bring
+the system down) to "minor" (eg. lead to a slower fallback)
+==categories
+general metadata
+==descriptionmd
+<p>This high level use case expresses the desire to have metadatda on contract
+conditions associated with what downsides violations might have, perhaps
+indicating that while a certain condition is expected to be met, the library
+does guarantee that the downsides will not be catastrophic.</p>
+==description
+This high level use case expresses the desire to have metadatda on contract
+conditions associated with what downsides violations might have, perhaps
+indicating that while a certain condition is expected to be met, the library
+does guarantee that the downsides will not be catastrophic.
+--
+
+--dev.reason.cost
+Developer
+Reason explicitly
+Express a spectrum of expected cost at compile or runtime of my annotations,
+from "unrunnable" to "expensive" to "cheap"
+==categories
+general metadata
+==descriptionmd
+<p>This use case expresses the desire to have metadata about contract conditions
+that capture at least 3 (if not more) granularities of "cost" to be used as
+input in some way to other decisions about what the contracts might do or how
+they might be interpreted.</p>
+==description
+This use case expresses the desire to have metadata about contract conditions
+that capture at least 3 (if not more) granularities of "cost" to be used as
+input in some way to other decisions about what the contracts might do or how
+they might be interpreted.
+--
+
+--dev.reason.behavior
+Developer
+Reason about executions
+Have annotations affect the execution of my program in accordance with my
+expectations
+==categories
+general behavior
+==descriptionmd
+<p>The desire to have the expected behavior explicitly defined by the standard
+in order to help users reason about what a program will do/has done when a
+contract is violated.  Note that having this in the standard allows for
+leveraging expectations of behavior across all compliant platforms.</p>
+==description
+The desire to have the expected behavior explicitly defined by the standard
+in order to help users reason about what a program will do/has done when a
+contract is violated.  Note that having this in the standard allows for
+leveraging expectations of behavior across all compliant platforms.
+--
+
+--dev.reason.sideeffects
+Developer
+Reason about executions
+Ensure annotations do not substantially change the meaning of my program when
+enabled
+==categories
+general behavior
+==descriptionmd
+<p>There is a tension between allowing side effects in contract conditions and
+disallowing them completely.  In general, writing code with absolutely no side
+effects is very hard, and there are pitfalls if the language is actively
+hostile to accidental side effects.  On the other hand, conditions with side
+effects are also not elidable by the compiler, since the act of checking them
+is observable.</p>
+<ul>
+<li>N4810 contracts made any side effect undefined behavior.</li>
+<li>P1670 suggested allowing side effects but also, when contracts are runtime
+checked, allowing elision of the predicate (along with its side effect) if the
+predicate result can be determined.</li>
+</ul>
+==description
+There is a tension between allowing side effects in contract conditions and
+disallowing them completely.  In general, writing code with absolutely no side
+effects is very hard, and there are pitfalls if the language is actively
+hostile to accidental side effects.  On the other hand, conditions with side
+effects are also not elidable by the compiler, since the act of checking them
+is observable.
+
+* N4810 contracts made any side effect undefined behavior.
+* P1670 suggested allowing side effects but also, when contracts are runtime
+checked, allowing elision of the predicate (along with its side effect) if the
+predicate result can be determined.
+--
+
+--dev.reason.behaviorcontrol
+Developer
+Reason about executions
+Have the effect of annotations on executions be user controllable (ie. decide
+whether “cheap” checks or “critical” terminates)
+==categories
+general control
+==descriptionmd
+<p>This encompasses some specific need to control, either when writing code or
+when building code, what behavior (if any) is associated with a contract
+condition.</p>
+==description
+This encompasses some specific need to control, either when writing code or
+when building code, what behavior (if any) is associated with a contract
+condition.
+--
+
+--dev.adapt
+Developer
+Adapt and progress with my project
+Be able to easily change my confidence, importance, or other properties of my
+annotations over time
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--dev.readable.syntax
+Developer
+Have readable annotations
+Have annotations with a succinct and elegant syntax
+==categories
+general syntax
+==descriptionmd
+
+==description
+
+--
+
+--dev.readable.keywords
+Developer
+Have readable annotations
+Have annotation keywords or names with intuitive, clear, and unambiguous
+meanings
+==categories
+syntax
+==descriptionmd
+<p>Any keywords chosen for use within the feature should be easily distinguishable
+(to avoid name churn such as expects/ensures to pre/post) and be very
+clearly matched to what they will do within the language (unlike, for example,
+axiom).</p>
+==description
+Any keywords chosen for use within the feature should be easily distinguishable
+(to avoid name churn such as expects/ensures to pre/post) and be very
+clearly matched to what they will do within the language (unlike, for example,
+axiom).
+--
+
+--dev.readable.priority
+Developer
+Have readable annotations
+Have my contract specification to be visually primary, and secondary
+information (syntax, hints, roles, levels, etc.) to not be distracting
+==categories
+syntax metadata
+==descriptionmd
+<p>This use case indicates a preference to have any metadata about a contract be
+visually very minimal or come after the predicate itself.</p>
+==description
+This use case indicates a preference to have any metadata about a contract be
+visually very minimal or come after the predicate itself.
+--
+
+--dev.parsable
+Developer
+Interoperate with tools or persons
+A syntax that can both be parsed and can be reasoned about semantically
+==categories
+syntax
+==descriptionmd
+
+==description
+
+--
+
+--dev.tooling
+Developer
+Interoperate with tools or persons
+Expose annotations to tools that might leverage them (eg. code linter, static
+analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer,
+etc.)
+==categories
+syntax
+==descriptionmd
+
+==description
+
+--
+
+--cppdev.syntax.familiar
+C++ Developer
+Get up to speed
+Have annotations use familiar syntax
+==categories
+syntax
+==descriptionmd
+
+==description
+
+--
+
+--cppdev.syntax.cpp
+C++ Developer
+Get up to speed
+Have annotations use C++ syntax
+==categories
+syntax
+==descriptionmd
+
+==description
+
+--
+
+--cppdev.syntax.reuse
+C++ Developer
+Reuse code
+Have annotations use my custom types or functions
+==categories
+syntax contents
+==descriptionmd
+<p>Rather than requiring special functions or types (or some completely new
+thing), contract should be able to leverage any program logic related to their
+statement that is already written/writable in C++.</p>
+==description
+Rather than requiring special functions or types (or some completely new
+thing), contract should be able to leverage any program logic related to their
+statement that is already written/writable in C++.
+--
+
+--cppdev.location
+C++ Developer
+Have a single source of truth
+Use same source file for both code and annotations
+==categories
+location
+==descriptionmd
+<p>This as a preference to needing to specify contracts in a completely separate
+metadata file of some sort.</p>
+==description
+This as a preference to needing to specify contracts in a completely separate
+metadata file of some sort.
+--
+
+--cppdev.syntax.macros
+C++ Developer
+Support modern features
+Minimize use of macros
+==categories
+general syntax
+==descriptionmd
+<p>The desire is to not require use of macros in order to satisfy the majority
+of use cases.</p>
+==description
+The desire is to not require use of macros in order to satisfy the majority
+of use cases.
+--
+
+--cppdev.modules
+C++ Developer
+Support modern features
+Be interoperable with modules
+==categories
+general
+==descriptionmd
+<p>All contract control features and behaviors should be interoperable in a
+reasonable way with any partially or fully modularized C++ program.</p>
+==description
+All contract control features and behaviors should be interoperable in a
+reasonable way with any partially or fully modularized C++ program.
+--
+
+--cppdev.coroutines
+C++ Developer
+Support modern features
+Be interoperable with coroutines
+==categories
+location
+==descriptionmd
+<p>Contracts on coroutines open up a number of new situations to consider because
+there might be requirements on what the state of the program is whenever a
+coroutine resumes execution, and there might be promises a coroutine</p>
+==description
+Contracts on coroutines open up a number of new situations to consider because
+there might be requirements on what the state of the program is whenever a
+coroutine resumes execution, and there might be promises a coroutine
+--
+
+--cppdev.concepts
+C++ Developer
+Support modern features
+Be interoperable with concepts
+==categories
+location
+==descriptionmd
+
+==description
+
+--
+
+--cppdev.existing.std
+C++ Developer
+Use the standard library in-contract
+Codify existing exposition-only standard library requirements
+==categories
+contents
+==descriptionmd
+<p>In some shape or form, anything documented in the contracts of the standard
+library's functions (preconditions, postconditions, other behaviors) is a
+candidate for something that should be codifiable as a contract condition.</p>
+==description
+In some shape or form, anything documented in the contracts of the standard
+library's functions (preconditions, postconditions, other behaviors) is a
+candidate for something that should be codifiable as a contract condition.
+--
+
+--cppdev.debugger
+C++ Developer
+Use Debugger
+Have runtime able to launch a debugger from an annotation if necessary
+==categories
+behavior violations
+==descriptionmd
+<p>When handling a contract violation, the ability to trigger a debugger when
+possible is currently not standardized but should be available.</p>
+==description
+When handling a contract violation, the ability to trigger a debugger when
+possible is currently not standardized but should be available.
+--
+
+--cppdev.build.legacy
+C++ Developer
+Use existing build modes
+Have annotations affect executions depending on my existing build modes (eg.
+Debug or Release modes in VS)
+==categories
+control
+==descriptionmd
+<p>Note that "debug" and "release" are not standardized things, but nothing
+specified in the standard should preclude those from having some impact on
+what behaviors contracts take on in those two modes.</p>
+==description
+Note that "debug" and "release" are not standardized things, but nothing
+specified in the standard should preclude those from having some impact on
+what behaviors contracts take on in those two modes.
+--
+
+--cdev.contracts
+C Developer
+Write contracts on my functions
+Specify contracts in a way standardizable as part of the C language
+==categories
+syntax
+==descriptionmd
+<p>Important considerations for C are related to any contracts that can go on a
+normal C function.  C does have attributes, but it also explicitly calls out
+that a conforming implementation can ignore all attributes, as opposed to C++
+which has made that a commonly held assumption but has not actually put wording
+in the standard to that effect.</p>
+==description
+Important considerations for C are related to any contracts that can go on a
+normal C function.  C does have attributes, but it also explicitly calls out
+that a conforming implementation can ignore all attributes, as opposed to C++
+which has made that a commonly held assumption but has not actually put wording
+in the standard to that effect.
+--
+
+--cdev.identifiers
+C Developer
+Write contracts on my functions
+Use contracts with macro-safe keywords that are reserved C names (i.e., _Pre,
+_Post, _Assert, etc.)
+==categories
+syntax
+==descriptionmd
+<p>Adding new identifiers with meaing in C is generally not acceptable for
+standardization, so compatible contracts would either need to use no contracts
+or support alternate reserved words for use with contracts.</p>
+==description
+Adding new identifiers with meaing in C is generally not acceptable for
+standardization, so compatible contracts would either need to use no contracts
+or support alternate reserved words for use with contracts.
+--
+
+--cdev.violationhandler
+C Developer
+Write contracts on my functions
+Have a common violation handler for both violated C and C++ contracts
+==categories
+violations
+==descriptionmd
+<p>Importantly, satisfying this requirement would mean making the the argument
+to a violation handler meaningful in both C and C++, or requiring platform
+vendors to shim between the two (in the case of a C violation handler receiving
+a violation from C++ code).</p>
+==description
+Importantly, satisfying this requirement would mean making the the argument
+to a violation handler meaningful in both C and C++, or requiring platform
+vendors to shim between the two (in the case of a C violation handler receiving
+a violation from C++ code).
+--
+
+--cdev.cppinterop
+C Developer
+Write contracts on my functions
+Expose my contracts to C++ developers through 'extern "C"' declarations of my
+functions
+==categories
+syntax
+==descriptionmd
+
+==description
+
+--
+
+--cdev.ignorable
+C Developer
+Write contracts on my functions
+Make all contract semantics optional (so as not to change WG14-N2385 6.7.11 p2)
+==categories
+behavior
+==descriptionmd
+<p>Assuming contracts continue to be rendered as attributes, C standardization
+would require they be semantically optional.</p>
+<p>Note that, just as with C++, the ':' in the preivous contract syntax does not
+match the grammar for attributes in either language, so by a strict reading of
+the standards there is no obligation to be ignorable.  ('[[a:b]]' is not a
+valid attribute and shoudl be diagnosed as invalid on any current C or C++
+compiler).   Many have expressed the view that this opinion is pedantic and
+that the spirit of the law is that anything between [[]]s should be ignorable.</p>
+==description
+Assuming contracts continue to be rendered as attributes, C standardization
+would require they be semantically optional.
+
+Note that, just as with C++, the ':' in the preivous contract syntax does not
+match the grammar for attributes in either language, so by a strict reading of
+the standards there is no obligation to be ignorable.  ('[[a:b]]' is not a
+valid attribute and shoudl be diagnosed as invalid on any current C or C++
+compiler).   Many have expressed the view that this opinion is pedantic and
+that the spirit of the law is that anything between [[]]s should be ignorable.
+--
+
+--ccppdev.interop
+Mixed C/C++ Developer
+Maintain mixed code base
+Not lose contracts when crossing languages
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--api.communicate.inputsoutputs
+API Developer
+Communicate my interface to users
+Document the expected inputs and expected outputs on my interface
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--api.establish.check
+API Developer
+Establish a contract
+Have validation inform me which output values are unexpected or invalid
+==categories
+general behavior
+==descriptionmd
+
+==description
+
+--
+
+--api.establish.validate_invariants
+API Developer
+Establish a contract
+Have validation inform me which class invariants are violated
+==categories
+general location
+==descriptionmd
+<p>Class invariants have historically been considered of general use, but the
+performance impact of checking them can be surprisingly huge.  Previously
+these have bene left out of proposals for C++ to be added in at a later
+date.</p>
+==description
+Class invariants have historically been considered of general use, but the
+performance impact of checking them can be surprisingly huge.  Previously
+these have bene left out of proposals for C++ to be added in at a later
+date.
+--
+
+--api.establish.values
+API Developer
+Establish a contract
+Have validation inform user which input values are unexpected or invalid
+==categories
+general behavior
+==descriptionmd
+<p>The more detail available to users about how a contract condition has been
+violated the more useful they become.  This means each specific condition
+is benefitted by being separate (eg. 'x != 0' and 'y != 0' as distinct
+conditions instead of requiring that users use 'x != 0 &amp;&amp; y != 0').</p>
+<p>In addition to that, anything that might be able to capture those values
+and expose them to violation handlers for logging would again help benefit
+problem diagnosis.</p>
+==description
+The more detail available to users about how a contract condition has been
+violated the more useful they become.  This means each specific condition
+is benefitted by being separate (eg. 'x != 0' and 'y != 0' as distinct
+conditions instead of requiring that users use 'x != 0 && y != 0').
+
+In addition to that, anything that might be able to capture those values
+and expose them to violation handlers for logging would again help benefit
+problem diagnosis.
+--
+
+--api.establish.preconditions
+API Developer
+Establish a contract
+Have contracts specify their pre-conditions as logical predicates
+==categories
+location contents
+==descriptionmd
+
+==description
+
+--
+
+--api.establish.invariants
+API Developer
+Establish a contract
+Have contracts specify their class invariants as logical predicates
+==categories
+location contents
+==descriptionmd
+
+==description
+
+--
+
+--api.establish.postconditions
+API Developer
+Establish a contract
+Have contracts specify their post-conditions as logical predicates
+==categories
+location contents
+==descriptionmd
+
+==description
+
+--
+
+--api.express.values
+API Developer
+Express predicates
+Make reference to either the values of my inputs, or other in-scope identifiers
+==categories
+contents
+==descriptionmd
+<p>Predicates could be limitted to being "completely pure" and referencing no
+global state, but in general reference to both inputs and other identifiers
+beyond the scope of a single function call become needed to fully specify
+contracts.</p>
+==description
+Predicates could be limitted to being "completely pure" and referencing no
+global state, but in general reference to both inputs and other identifiers
+beyond the scope of a single function call become needed to fully specify
+contracts.
+--
+
+--api.establish.changedvalues
+API Developer
+Establish a contract
+Make reference to the before and after values of in-out variables (ie. passed
+by pointer or reference) in post-conditions
+==categories
+contents
+==descriptionmd
+<p>Postconditions often need to state things about how values of output parameters
+have changed, or how the values of other global state might have changed
+as a result of a function call.  The ability to store copies of state from
+before the function call and reference that in a postcondition predicate will
+enable a wieder variety of conditions to be formulatable.</p>
+<p>Ada has this funcitonality builtin by providing ways to reference expicitly
+the original value of a function parameter. C++ makes this more complicated
+with the need to consider the handling of move-only or generally non-copyable
+types.  More importantly, such copying should absolutely not happen if a
+contract is not being evaluated at runtime.</p>
+==description
+Postconditions often need to state things about how values of output parameters
+have changed, or how the values of other global state might have changed
+as a result of a function call.  The ability to store copies of state from
+before the function call and reference that in a postcondition predicate will
+enable a wieder variety of conditions to be formulatable.
+
+Ada has this funcitonality builtin by providing ways to reference expicitly
+the original value of a function parameter. C++ makes this more complicated
+with the need to consider the handling of move-only or generally non-copyable
+types.  More importantly, such copying should absolutely not happen if a
+contract is not being evaluated at runtime.
+--
+
+--api.establish.changedmembers
+API Developer
+Establish a contract
+Make reference to the before and after values of mutable class members (eg.
+<i>new_size = old_size+1</i> after push_back) in post-conditions
+==categories
+contents
+==descriptionmd
+<p>Capturing the pre-function state of member variables might also be needed
+to state the contracts on many member functions.</p>
+==description
+Capturing the pre-function state of member variables might also be needed
+to state the contracts on many member functions.
+--
+
+--api.establish.changedstate
+API Developer
+Establish a contract
+Make reference to the before and after values of global state (eg., <i>now()
+&gt;= old(now()) + sleep_time</i>) in post-conditions
+==categories
+contents
+==descriptionmd
+<p>Capturing arbitrary other state for use in a postcondition might prove useful.
+The example given is potentially a way to specify the postcondition on a
+typical 'sleep' function.</p>
+==description
+Capturing arbitrary other state for use in a postcondition might prove useful.
+The example given is potentially a way to specify the postcondition on a
+typical 'sleep' function.
+--
+
+--api.extend.exceptionsafety
+API Developer
+Extend contractual aspects
+Annotate operations as being exception safe
+==categories
+contents
+==descriptionmd
+<p>Exception safety guarantees are often part of the english language contract of
+a function, and being able to state that (in a way that tools might be able
+to then pick up on and verify) would be useful.</p>
+==description
+Exception safety guarantees are often part of the english language contract of
+a function, and being able to state that (in a way that tools might be able
+to then pick up on and verify) would be useful.
+--
+
+--api.extend.threadsafety
+API Developer
+Extend contractual aspects
+Annotate operations as being thread safe
+==categories
+contents
+==descriptionmd
+<p>The proper use of a type in a multithreaded environment can benefit greatly
+from being documented in a way that can then be checked and verified.</p>
+==description
+The proper use of a type in a multithreaded environment can benefit greatly
+from being documented in a way that can then be checked and verified.
+--
+
+--api.extend.atomicity
+API Developer
+Extend contractual aspects
+Annotate operations as being atomic (ie. all or no changes become visible)
+==categories
+contents
+==descriptionmd
+<p>Establishing more details about what might happen on failure, such as what
+external state might be changed in a remote database, is another useful
+condition to state.</p>
+==description
+Establishing more details about what might happen on failure, such as what
+external state might be changed in a remote database, is another useful
+condition to state.
+--
+
+--api.extend.realtime
+API Developer
+Extend contractual aspects
+Annotate operations as real-time (ie. guaranteed to complete within a time
+frame)
+==categories
+contents
+==descriptionmd
+
+==description
+
+--
+
+--api.extend.determinism
+API Developer
+Extend contractual aspects
+Annotate operations as being deterministic (ie. same outputs for same inputs)
+==categories
+contents
+==descriptionmd
+
+==description
+
+--
+
+--api.extend.purity
+API Developer
+Extend contractual aspects
+Annotate operations as functionally pure (ie. no side effects)
+==categories
+contents
+==descriptionmd
+
+==description
+
+--
+
+--api.extend.sideeffects
+API Developer
+Extend contractual aspects
+Annotate operations as having global side effects (ie. write to singleton,
+file, network, or database)
+==categories
+contents
+==descriptionmd
+
+==description
+
+--
+
+--api.extend.complexity
+API Developer
+Extend contractual aspects
+Annotate algorithmic complexity
+==categories
+contents
+==descriptionmd
+
+==description
+
+--
+
+--api.express.runnability
+API Developer
+Express unrunnable contracts
+Be able to use a predicate that is not evaluated at runtime, because it might
+be unsafe to run or have stateful side effects
+==categories
+contents metadata
+==descriptionmd
+<p>Numerous predicates that might be useful to state also might change the
+state of a program in a pardoxical way if checked.  The common example
+(originally put forward in P0380) is validating available items on an input
+iterator.  Other important examples include checks that might require accessing
+special hardware, or doing extensive computations that would invalidate the
+results just by taking the time to do them.</p>
+<p>These predicates are still useful for those reading the code, still might
+benefit from being validated against postconditions of other functions, and
+might provide some identifiable code improvements when analyzed by hte compiler
+without actually executing them at runtime.</p>
+==description
+Numerous predicates that might be useful to state also might change the
+state of a program in a pardoxical way if checked.  The common example
+(originally put forward in P0380) is validating available items on an input
+iterator.  Other important examples include checks that might require accessing
+special hardware, or doing extensive computations that would invalidate the
+results just by taking the time to do them.
+
+These predicates are still useful for those reading the code, still might
+benefit from being validated against postconditions of other functions, and
+might provide some identifiable code improvements when analyzed by hte compiler
+without actually executing them at runtime.
+--
+
+--api.express.undefined
+API Developer
+Express unrunnable contracts
+Be able to use a predicate that doesn’t have a definition, because it hasn’t
+been written yet, or is infeasible to run
+==categories
+contents metadata
+==descriptionmd
+<p>Often during developement it helps to write contracts first, and that might
+even predate having enough of an implementation to fully define the conditions.
+Having them in code ensures that the placeholder api to check them is
+maintained.  Some functions may never be implementable due to time constraints,
+while others will eventually be filled in as time allows.</p>
+==description
+Often during developement it helps to write contracts first, and that might
+even predate having enough of an implementation to fully define the conditions.
+Having them in code ensures that the placeholder api to check them is
+maintained.  Some functions may never be implementable due to time constraints,
+while others will eventually be filled in as time allows.
+--
+
+--api.express.uncheckable
+API Developer
+Express uncheckable contracts
+Be able to use a predicate that is not evaluated, because it is simply a
+semantic placeholder for a tool
+==categories
+contents metadata
+==descriptionmd
+<p>Some predicates might even have no meaning within the language itself, but
+benefite other tools by being placed into the same contract framework as other
+predicates, with meaning to those external tools.</p>
+==description
+Some predicates might even have no meaning within the language itself, but
+benefite other tools by being placed into the same contract framework as other
+predicates, with meaning to those external tools.
+--
+
+--api.express.unimplementable
+API Developer
+Express uncheckable contracts
+Be able to use a predicate that cannot have a complete definition, because it
+is inexpressible in the language
+==categories
+contents metadata
+==descriptionmd
+<p>Many external static analysis tools, and even compilers, can check that
+some state is being handled properly which cannot be properly validated within
+the language itself.  Consider functions such as "is_deletable" or
+"is_reachable".</p>
+==description
+Many external static analysis tools, and even compilers, can check that
+some state is being handled properly which cannot be properly validated within
+the language itself.  Consider functions such as "is_deletable" or
+"is_reachable".
+--
+
+--api.establish.responsibility
+API Developer
+Establish responsibility boundaries
+Inform users which errors are the responsibility of the caller, and which are
+the callee
+==categories
+violations
+==descriptionmd
+<p>One common realization with having checked contracts in the language is that 
+they will then identify bugs that exist in programs.  Identifying the source
+of those bugs swiftly is important, and for any contract that is dependant on
+a function being called properly that responsibility does not usually lie with
+the line of code where the contract is written, but with the place where
+the function has been called.</p>
+==description
+One common realization with having checked contracts in the language is that 
+they will then identify bugs that exist in programs.  Identifying the source
+of those bugs swiftly is important, and for any contract that is dependant on
+a function being called properly that responsibility does not usually lie with
+the line of code where the contract is written, but with the place where
+the function has been called.
+--
+
+--api.resp.preassert
+API Developer
+Establish responsibility boundaries
+Annotate assertions inside function bodies that indirectly test preconditions
+(such as malformed data discovered while performing the algorithm) should be
+reported to the caller as precondition failures
+==descriptionmd
+<p>Some function preconditions can be expressed as c++ expressions, but are
+runtime-expensive.  However, if expressed inside function body as assertions
+after some function logic has already been executed,  the check whether the
+function has everything that is required is cheap. If I use an assertion like
+this,  I want to annotate this assertion as being "precondition-like". The
+semantics would be that if it fails,  it is reported as "caller's bug" rather
+than callee's bug, and if the build is configured  to runtime-check only
+preconditions, such assertion should also be runitme-checked.</p>
+<p>As an example, consider a binary search that wishes to check that the input
+list is sorted.  There is an expensive check (O(n)) that can be done to verify
+that the whole list is sorted on each call, but this would negate the
+performance benefits of doing a binary search to begin with.  Another option
+is to check just that the elements adjacent to those that are visitted are in
+properly sorted order.  This will provide some chance of identify unsorted
+inputs without making performance unusable, but is also most cleanly done
+during the execution of the search algorithm.  Unlike a normal in-body
+assertion, a violation identified by this kind of check should be reported to
+the caller, as it is a failure on the callinig code's part to provide a
+properly sorted input list.</p>
+==description
+Some function preconditions can be expressed as c++ expressions, but are
+runtime-expensive.  However, if expressed inside function body as assertions
+after some function logic has already been executed,  the check whether the
+function has everything that is required is cheap. If I use an assertion like
+this,  I want to annotate this assertion as being "precondition-like". The
+semantics would be that if it fails,  it is reported as "caller's bug" rather
+than callee's bug, and if the build is configured  to runtime-check only
+preconditions, such assertion should also be runitme-checked.
+
+As an example, consider a binary search that wishes to check that the input
+list is sorted.  There is an expensive check (O(n)) that can be done to verify
+that the whole list is sorted on each call, but this would negate the
+performance benefits of doing a binary search to begin with.  Another option
+is to check just that the elements adjacent to those that are visitted are in
+properly sorted order.  This will provide some chance of identify unsorted
+inputs without making performance unusable, but is also most cleanly done
+during the execution of the search algorithm.  Unlike a normal in-body
+assertion, a violation identified by this kind of check should be reported to
+the caller, as it is a failure on the callinig code's part to provide a
+properly sorted input list.
+--
+
+--api.contract.interface
+API Developer
+Have contract as part of my interface
+Declare contract when I declare the function
+==categories
+general location
+==descriptionmd
+<p>Putting contracts on the first function declaration makes them easily visible
+to anyone looking at a header file for understanding an API.</p>
+==description
+Putting contracts on the first function declaration makes them easily visible
+to anyone looking at a header file for understanding an API.
+--
+
+--api.contract.private
+API Developer
+Keep my user interfaces clean and narrow
+Be able to access private implementation details of the class so I don’t have
+to widen public interface to declare predicates
+==categories
+contents
+==descriptionmd
+<p>Often, an interface might be very narrow - consider the interface on an
+iterator, which generally just has a few operators and no other functions -
+yet there  might be ways to check parts of a narrow contract that depend on
+internal state.  Exposing this state so that it can be checked publicly would
+require wideninig the API interface, which is counter to the desire to keep
+the use of a type as simple as possible.</p>
+<p>On a similar note, sometimes the internal state only approximates the actual
+contract, and while better than no checking there is a desire to not expose
+that data publicly so that there is no assumption that the data represents
+the complete set of requirements on calling code.</p>
+==description
+Often, an interface might be very narrow - consider the interface on an
+iterator, which generally just has a few operators and no other functions -
+yet there  might be ways to check parts of a narrow contract that depend on
+internal state.  Exposing this state so that it can be checked publicly would
+require wideninig the API interface, which is counter to the desire to keep
+the use of a type as simple as possible.
+
+On a similar note, sometimes the internal state only approximates the actual
+contract, and while better than no checking there is a desire to not expose
+that data publicly so that there is no assumption that the data represents
+the complete set of requirements on calling code.
+--
+
+--api.contract.redeclaration
+API Developer
+Keep my public interfaces clean and concise
+Place function contract conditions on any declaration (e.g., on redeclarations
+at the bottom of the header, or on the definition in an implementation file,
+where they are less distracting).
+==categories
+location
+==descriptionmd
+<p>Many development methodologies revolve around making readable, well-documented
+header files to provide a way to understand API usage. Some contracts might
+be simple and readable, but others might involve complex conditions that
+distract from readability, and match very simple to read and understand prose
+contracts in the documentation.</p>
+<p>The benefits (checkability, analysis, etc.) of having the encoded contracts
+should not come at the cost of making the primary visible public interface
+(the header file) more unreadable.</p>
+==description
+Many development methodologies revolve around making readable, well-documented
+header files to provide a way to understand API usage. Some contracts might
+be simple and readable, but others might involve complex conditions that
+distract from readability, and match very simple to read and understand prose
+contracts in the documentation.
+
+The benefits (checkability, analysis, etc.) of having the encoded contracts
+should not come at the cost of making the primary visible public interface
+(the header file) more unreadable.
+--
+
+--api.contract.errorhandling
+API Developer
+Move contract violation out of error handling
+Replace uses of error handling to express contract violation (eg.
+<i>operator[](size_t n) noexcept [[pre: n &lt; size()]]</i> instead of
+throwing)
+==categories
+general
+==descriptionmd
+<p>Historically, rather than providing functions with narrow contracts, software
+might have been written to report misuse through exceptions.  Contracts should
+provide a better alternative than giving all functions a fully wide contract.</p>
+==description
+Historically, rather than providing functions with narrow contracts, software
+might have been written to report misuse through exceptions.  Contracts should
+provide a better alternative than giving all functions a fully wide contract.
+--
+
+--cpplib.invariants
+C++ API Developer
+Write classes
+Declare class invariants that all of my public functions need to maintain
+==categories
+location
+==descriptionmd
+
+==description
+
+--
+
+--cpplib.class.preconditions
+C++ API Developer
+Maintain a class hierarchy
+Ensure overriding methods have same or wider preconditions (see: Liskov
+substitution principle)
+==categories
+location contents
+==descriptionmd
+
+==description
+
+--
+
+--cpplib.class.postconditions
+C++ API Developer
+Maintain a class hierarchy
+Ensure overriding functions meet their base class postconditions when their
+base class preconditions are met (see: Liskov substitution principle)
+==categories
+location contents
+==descriptionmd
+
+==description
+
+--
+
+--cpplib.class.variability
+C++ API Developer
+Maintain a class hierarchy.
+Allow overriding functions to have narrower preconditions/wider postconditions
+if I want to
+==categories
+contents
+==descriptionmd
+<p>P4810 did not allow any varaition in contract conditions through overrids of
+a virtual function, though this could be roughly accomplished with assertions
+in function bodies instead.</p>
+<p>In general, the pre and postconditions of the interface you call through should
+be checked to be sure you're meeting the requirements you want to meet.
+Similalrly, the concrete type's conditions should be checked to be sure it is
+behaving properly.  Doing both checks if they are different might be an
+acceptable solution to allow flexibility without any increase in risk, at the
+possible cost of some perormance in checked builds.</p>
+==description
+P4810 did not allow any varaition in contract conditions through overrids of
+a virtual function, though this could be roughly accomplished with assertions
+in function bodies instead.
+
+In general, the pre and postconditions of the interface you call through should
+be checked to be sure you're meeting the requirements you want to meet.
+Similalrly, the concrete type's conditions should be checked to be sure it is
+behaving properly.  Doing both checks if they are different might be an
+acceptable solution to allow flexibility without any increase in risk, at the
+possible cost of some perormance in checked builds.
+--
+
+--api.class.publicinterface
+C++ API Developer
+Express public class invariants
+Express a restriction on the public interface of a type that all callers of the
+type can depend upon: can mention only public members, and is checked on entry
+and exit from this type’s code
+==categories
+contents
+==descriptionmd
+<p>Requirements on an interface to a function should be imposible when entering
+into a type's functions, but there might be a desire to distinguish that
+so that checking is done differently when a type calls its own functions.</p>
+==description
+Requirements on an interface to a function should be imposible when entering
+into a type's functions, but there might be a desire to distinguish that
+so that checking is done differently when a type calls its own functions.
+--
+
+--api.class.publicinvariants
+C++ API Developer
+Express public class invariants
+Check invariants before and after every public method (when called from outside
+the type, not when one member function calls another)
+==categories
+behavior contents
+==descriptionmd
+<p>General class invariants should be checked for vaidity before and after any
+call to a public member function of a class.  Calls to friend functions need
+to be considered as well, as they might benefit from invalidating/validating
+invariants.  Similarly, invariants might be checked for all objects of the
+type that are being touched whenever a public function is starting or
+finishing.</p>
+==description
+General class invariants should be checked for vaidity before and after any
+call to a public member function of a class.  Calls to friend functions need
+to be considered as well, as they might benefit from invalidating/validating
+invariants.  Similarly, invariants might be checked for all objects of the
+type that are being touched whenever a public function is starting or
+finishing.
+--
+
+--api.class.publiccalls
+C++ API Developer
+Express public class invariants
+Check invariants before and after calling functions that are not part of this
+type (including virtual calls)
+==categories
+behavior
+==descriptionmd
+<p>Calling from a member function to a function of another type (or a possible
+subtype) might require verifying that the object's invariants hold prior to
+calling the function and that they still hold when the other function returns.</p>
+==description
+Calling from a member function to a function of another type (or a possible
+subtype) might require verifying that the object's invariants hold prior to
+calling the function and that they still hold when the other function returns.
+--
+
+--api.class.baseinterface
+C++ API Developer
+Express base class invariants
+Express a restriction on the protected interface of a type that derived types
+can depend upon: can mention only protected and public members, and is checked
+on entry and exit from this type’s code
+==categories
+location
+==descriptionmd
+<p>Similar to the public API of a class, the protected API is exposed to
+subclasses and invariants of that API should be checked whenever the boundary
+might be crossed.</p>
+==description
+Similar to the public API of a class, the protected API is exposed to
+subclasses and invariants of that API should be checked whenever the boundary
+might be crossed.
+--
+
+--api.class.baseinvariants
+C++ API Developer
+Express base class invariants
+Check invariants on entry and exit of every protected method (when called from
+the derived type, not when one base member function calls another)
+==categories
+behavior contents
+==descriptionmd
+
+==description
+
+--
+
+--api.class.basecalls
+C++ API Developer
+Express base class invariants
+Check invariants before and after every call to a virtual function (when
+calling to the derived type)
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--api.class.privateinterface
+C++ API Developer
+Express private class invariants
+Express an internal restriction on the private implementation of a type, can
+mention any member, and is checked on entry and exit from this type’s code
+==categories
+location
+==descriptionmd
+
+==description
+
+--
+
+--api.class.privateinvariants
+C++ API Developer
+Express private class invariants
+Check invariants on entry and exit of every public method (when called from
+outside the type, not when one member function calls another)
+==categories
+behavior contents
+==descriptionmd
+
+==description
+
+--
+
+--api.class.privatecalls
+C++ API Developer
+Express private class invariants
+Check invariants before and after calling functions that are not part of this
+type (including virtual calls)
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--api.class.testing
+C++ API Developer
+Test my classes
+For every member or friend function in my class, run my unit test framework
+with checking enabled for every assertion at the point where it is written, and
+check every postcondition at every non-exceptional exit, and test my class
+invariants on entry and exit from this type’s code
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--cpplib.contracts.async
+C++ API Developer
+Enforce contracts in async code
+Express contracts on callbacks such as std::function, function pointers, or
+references to functions, lambdas, or function objects
+==categories
+location
+==descriptionmd
+<p>In general, any callback based solution exposes functions that will be called
+that might benefit from having information about their contracts also
+transmitted.</p>
+<p>This might be implemented by incorporating contracts deeply into the type
+system, or in a more limitted way by just facilitating library types like
+a function with contracts.</p>
+==description
+In general, any callback based solution exposes functions that will be called
+that might benefit from having information about their contracts also
+transmitted.
+
+This might be implemented by incorporating contracts deeply into the type
+system, or in a more limitted way by just facilitating library types like
+a function with contracts.
+--
+
+--cpplib.contracts.exception
+C++ API Developer
+Enforce contracts in exception safe code
+Express contracts on exceptional exit
+==categories
+location contents
+==descriptionmd
+<p>Generally, postconditions have been assumed to hold when a function returns
+normally.  Expressing conditions that will hold if a function returns through
+an exception, or both, could also be useful.</p>
+==description
+Generally, postconditions have been assumed to hold when a function returns
+normally.  Expressing conditions that will hold if a function returns through
+an exception, or both, could also be useful.
+--
+
+--cpplib.variadic
+C++ API Developer
+Use contracts with variadic templates
+Allow predicate (fold) expansion
+==categories
+syntax location
+==descriptionmd
+<p>Fold expressions using &amp;&amp; might be useful for a predicate, but they then lose
+any information about which particular argument might have violated the
+condition.  Enabling more useful information to narrow that down would be
+helpful.</p>
+==description
+Fold expressions using && might be useful for a predicate, but they then lose
+any information about which particular argument might have violated the
+condition.  Enabling more useful information to narrow that down would be
+helpful.
+--
+
+--api.coroutines
+C++ API Developer
+Use coroutines
+Define and check pre and post conditions as I would a regular function
+==categories
+location
+==descriptionmd
+<p>Like regular functions, pre and postconditions on coroutines should have
+similar semantics.</p>
+==description
+Like regular functions, pre and postconditions on coroutines should have
+similar semantics.
+--
+
+--api.coroutines.invariants
+C++ API Developer
+Use coroutines
+Define and check invariants over all entry and exit points from a coroutine (to
+its awaiter or promise)
+==categories
+behavior
+==descriptionmd
+<p>Similar to a class, the state of a coroutine, or what it expects of the state
+of the world as it suspends and resumes, might be stated as expected invariants
+that could be checked whenever entering and exiting.</p>
+==description
+Similar to a class, the state of a coroutine, or what it expects of the state
+of the world as it suspends and resumes, might be stated as expected invariants
+that could be checked whenever entering and exiting.
+--
+
+--int.conform.violation
+Integration Developer
+Conform to a contract
+Be informed any time an interface’s contract is violated
+==categories
+behavior violations
+==descriptionmd
+
+==description
+
+--
+
+--int.conform.postconditions
+Integration Developer
+Conform to a contract
+Verify results from a call are expected output values
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--int.build.headeronly
+Integration Developer
+Build multiple libraries
+Use contract-enabled header-only libraries
+==categories
+general control
+==descriptionmd
+
+==description
+
+--
+
+--int.build.binaries
+Integration Developer
+Build multiple libraries
+Use contract-enabled binary libraries
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.build.binarycounts
+Integration Developer
+Build multiple libraries
+Only be required to manage a small, common set of build/link configurations
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.build.control
+Integration Developer
+Debug multiple libraries
+Enable checks only within a selected library
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.build.control2
+Integration Developer
+Debug multiple libraries
+Enable checks on multiple libraries simultaneously
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.debug.callsites
+Integration Developer
+Debug multiple call sites
+Enable checks only on selected call sites
+==categories
+control
+==descriptionmd
+<p>Often it is helpful to limit what gets enabled to functions called from
+some subset of a program, and the rest of the program might not perform
+acceptably enough to test if hose same functions are always checked.</p>
+==description
+Often it is helpful to limit what gets enabled to functions called from
+some subset of a program, and the rest of the program might not perform
+acceptably enough to test if hose same functions are always checked.
+--
+
+--int.violations.information
+Integration Developer
+Correct failed checks
+Be informed what check failed, when, where, and how
+==categories
+violations behavior
+==descriptionmd
+
+==description
+
+--
+
+--int.violations.transmit
+Integration Developer
+Correct failed checks
+Transmit check failure information in environment-specific ways (logs, email,
+special hardware traps, popup windows, blazing sirens, etc).
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--int.violations.custom
+Integration Developer
+Correct failed checks
+Install custom violation handler where I can inject custom logic to trap errors
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--int.violations.common
+Integration Developer
+Unify violation handling
+Be able to override how library violations are handled in the combined software
+to point into my handling code
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--int.violations.override
+Integration Developer
+Be independent of build environment
+Be able to define and override violation handler via source code
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--int.build.minimize
+Integration Developer
+Minimize checking overhead
+Disable library postconditions, asserts, and invariants, without disabling
+library preconditions (assuming the library is tested and stable and my code is
+not)
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.control.build
+Integrated Software Provider
+Ensure the combined software is correct
+Turn checks on at build time
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.control.runtime
+Integrated Software Provider
+Ensure the combined software is correct
+Turn checks on at run time
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.conrol.subsets.build
+Integrated Software Provider
+Ensure the combined software is correct
+Turn on any subset of individual (call site) checks on at build time
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.control.subsets.runtime
+Integrated Software Provider
+Ensure the combined software is correct
+Turn on any subset of individual (call site) checks on at run time
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.consistency
+Integrated Software Provider
+Ensure the combined software is correct
+Verify all annotations are globally consistent when integrated
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--int.control.subsets
+Integrated Software Provider
+Ensure individual features are correct
+Have a way to audit (named or semantic) subsets of checks for various
+deployments
+==categories
+control metadata
+==descriptionmd
+
+==description
+
+--
+
+--int.build.common
+Integrated Software Provider
+Manage binary delivery
+Be able to use the same executable regardless of contract enforcement mode
+==categories
+general control
+==descriptionmd
+
+==description
+
+--
+
+--int.testing.control
+Integrated Software Provider
+Define “Code Under Test”
+Selectively enable checking for a set of functions which could name either an
+individual function or an overload set
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.testing.controltypes
+Integrated Software Provider
+Define “Code Under Test”
+Selectively enable checking for a set of types and all their members
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.testing.transitivity
+Integrated Software Provider
+Define “Code Under Test”
+Selectively enable checking for a set of types and all their transitively
+nested types and members
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.testing.modules
+Integrated Software Provider
+Define “Code Under Test”
+Selectively enable checking for a translation unit or module and all (non
+transitive) types and functions within
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.build.unchecked
+Integrated Software Provider
+Test final deliverable
+Turn off build time checking to remove checking overhead
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.runtime.unchecked
+Integrated Software Provider
+Test final deliverable
+Turn off run time checking to remove checking overhead
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--int.build.optimize
+Integrated Software Provider
+Test final deliverable
+Turn on run time optimization to leverage annotation assumptions
+==categories
+behavior control
+==descriptionmd
+
+==description
+
+--
+
+--cpplib.headeronly
+C++ Library Developer
+Use templates
+Be able to ship header only library
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--cpplib.insulation
+C++ Library Developer
+Control the tradeoff between need for client recompilation and contract condition visibility
+Insulate contract conditions with the function definition, or insulate only the
+definition while putting contract conditions on a redeclaration - visible to
+static analysis tools in all TUs.
+==categories
+location
+==descriptionmd
+<p>Contract conditions on only the first declaration (as proposed by P4810) mean
+that the condition clutters the readable interface and changes in a contract
+condition force client recompilation.  Contract conditions not in the header
+file are not going to be visible to tools that are attempting to limit what
+they consume to a single translation unit.  Combined, these result in a desire
+to sometimes put the contracts with the implementating definition (in a .cpp
+file) and sometimes put them in a redeclaration in a header file (where one
+might also put inilne function definitions).</p>
+<p>For free functions this would just require relaxing the requirements on where
+contracts are.  For member functions, allowing member function redeclaration
+would be needed to put the contracts in a less obtrusive place that is still
+visible outside of the defining TU.  See P1320 for more discussio of this.</p>
+==description
+Contract conditions on only the first declaration (as proposed by P4810) mean
+that the condition clutters the readable interface and changes in a contract
+condition force client recompilation.  Contract conditions not in the header
+file are not going to be visible to tools that are attempting to limit what
+they consume to a single translation unit.  Combined, these result in a desire
+to sometimes put the contracts with the implementating definition (in a .cpp
+file) and sometimes put them in a redeclaration in a header file (where one
+might also put inilne function definitions).
+
+For free functions this would just require relaxing the requirements on where
+contracts are.  For member functions, allowing member function redeclaration
+would be needed to put the contracts in a less obtrusive place that is still
+visible outside of the defining TU.  See P1320 for more discussio of this.
+--
+
+--lib.maintenance.noconfig
+Library Provider
+Simplify maintenance
+Not require extra build steps to be documented
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--lib.maintenance.nowhining
+Library Provider
+Simplify maintenance
+Not have users complain about my product due to modifications of annotations
+resulting from their build configuration
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--lib.integration.noconfig
+Library Provider
+Support successful integration
+Not require extra build steps to be learned or performed
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--lib.integration.nowhining
+Library Provider
+Support successful integration
+Not have my users accidentally modify my careful annotations
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--arch.nomacros
+Technical Architect
+Maintain quality of code base
+Express assertions in a way that does not rely on C macros (i.e., there is no
+valid technical reason for a programmer not to use the new way, including
+space, time, tooling, and usability/complexity reasons, compared to C’s assert
+macro)
+==categories
+syntax
+==descriptionmd
+
+==description
+
+--
+
+--arch.complete
+Technical Architect
+Have a consistent and holistic contracts facility
+Specify preconditions/postconditions/assertions/invariants that express my
+expectations about the expected valid state of my program in the form of
+compilable boolean expressions, that can be checked statically or dynamically
+(as opposed to disjointed state where these features are factored into bits)
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--hardware.performance
+Hardware Architect
+Improve system-level performance
+Be able to design new hardware + optimizations, carefully dovetailed into one
+another, that depend on statically-unprovable facts being annotated in the code
+==categories
+general behavior
+==descriptionmd
+
+==description
+
+--
+
+--sdev.bestpractices
+Senior Developer
+Set an example
+Demonstrate best practice in defensive programming
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--sdev.quality
+Senior Developer
+Enforce code quality
+Discourage reliance on observable out-of-contract behavior by causing check
+failure to hard stop program or build
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--sdev.maturity
+Senior Developer
+Enforce mature, finalized contracts
+Disable continuation on violation of stable and correct individual contracts
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--sdev.control
+Senior Developer
+Enforce mature, finalized contracts
+Disable remapping of semantics on stable and correct individual contracts
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--jdev.understand.contracts
+Junior Developer
+Understand the API
+A uniform, fluent description of expected input values, expected output values,
+side effects, and all logical pre and post conditions
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--jdev.understand.violations
+Junior Developer
+Understand the API
+Be informed when my usage is out of contract
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--jdev.understand.buildfailures
+Junior Developer
+Understand the program
+Know why my software is not building
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--jdev.understand.aborting
+Junior Developer
+Understand the program
+Know why my software is aborting
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--jdev.understand.omniscience
+Junior Developer
+Understand the program
+Know why my software is out of contract
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--jdev.understand.buildviolation
+Junior Developer
+Understand the program
+Know that my program or build was halted due to contract violation
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--jdev.understand.all
+Junior Developer
+Understand the facility
+Be able to build a program with contracts after reasonably short tutorial
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--jdev.understand.keywords
+Junior Developer
+Understand the facility
+Have keywords with precise and unambiguous meanings
+==categories
+syntax
+==descriptionmd
+
+==description
+
+--
+
+--jdev.bestpractices
+Junior Developer
+Improve my code
+Learn about software best practices by example
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--adev.fast
+Agile Developer
+Iterate quickly
+Be able to write and modify contracts quickly without heavy boiler plate or up
+front cost
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--adev.evolve
+Agile Developer
+Safeguard evolving code
+Assert against conditions I am aware of but not finished handling fully
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--bdev.confidentiality
+Business Developer
+Maintain confidentiality
+Not expose diagnostic information (source location, expressions, etc.) in the
+software I deliver to clients, even when I choose to have contracts enforced in
+the software I deliver
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--pdev.speed
+Performance Sensitive Developer
+Enable better performance
+Annotate my code with assumptions, likelihoods, or reachability information
+that a tool might not be able to deduce, but that I would be confident of
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--pdev.morespeed
+Performance Sensitive Developer
+Enable better performance
+Be able to give statically-unprovable facts to current and novel optimizers in
+terms of semantics my program does not depend-on but optimizers can’t figure
+out
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--pdev.footgun
+Performance Sensitive Developer
+Enable better performance
+Accept responsibility for a malformed program that might result from eventually
+false information given by my annotations
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--pdev.safety.isolation
+Performance Sensitive Developer
+Have safety critical paths
+Isolate safety checks from performance annotations
+==categories
+control metadata
+==descriptionmd
+
+==description
+
+--
+
+--pdev.safety.critical
+Performance Sensitive Developer
+Have safety critical paths
+Retain checking even when optimizing with performance annotations
+==categories
+control metadata
+==descriptionmd
+
+==description
+
+--
+
+--qdev.checkall
+Quality Sensitive Developer
+Enable full checking
+Ensure all checks (pre, post, assert, invariant) are enabled
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--qdev.correctness
+Quality Sensitive Developer
+Validate correctness
+Signify the predicates that should be verified by an analysis tool
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--qdev.tooling
+Quality Sensitive Developer
+Manage multiple tools
+Signify subset of individual annotations to be consumed by a specific kind of
+verification tool
+==categories
+metadata
+==descriptionmd
+
+==description
+
+--
+
+--qdev.tooling.control
+Quality Sensitive Developer
+Manage multiple tools
+Signify subset of individual annotations to be consumed by a specific instance
+of verification tool
+==categories
+metadata control
+==descriptionmd
+
+==description
+
+--
+
+--qdev.tooling.undefined
+Quality Sensitive Developer
+Manage multiple tools
+Use predicates that may not be understood by all instances of verification
+==categories
+contents
+==descriptionmd
+
+==description
+
+--
+
+--qdev.tooling.undefinedkinds
+Quality Sensitive Developer
+Manage multiple tools
+Use predicates that may not be understood by all kinds of verification
+==categories
+contents
+==descriptionmd
+
+==description
+
+--
+
+--qdev.tooling.behavior
+Quality Sensitive Developer
+Manage multiple tools
+Integrate the results of that static checker into how my program behaves in
+different ways: assume proven predicates, make unprovable predicates ill-
+formed, etc.
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--qdev.testing
+Quality Sensitive Developer
+Unit test predicates
+Override failure handler to trigger test failure instead of termination
+==categories
+control violations
+==descriptionmd
+
+==description
+
+--
+
+--qdev.handler.testing
+Quality Sensitive Developer
+Unit test violation handlers
+Have a way to run handler on all combinations of available build modes
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--qdev.fuzz.testing
+Quality Sensitive Developer
+Catch unexpected failure modes
+Log all predicate failure during fuzz testing
+==categories
+control behavior
+==descriptionmd
+
+==description
+
+--
+
+--crit.control
+Critical Software Developer
+Have a verifiable release system
+Be able to control the configuration of contracts from a central point
+==categories
+general control
+==descriptionmd
+
+==description
+
+--
+
+--crit.noundef
+Critical Software Developer
+Avoid undefined behavior
+Have contract violation at run-time always have well-defined behavior
+==categories
+behavior control
+==descriptionmd
+
+==description
+
+--
+
+--crit.recovery
+Critical Software Developer
+Not have a faulty program lead to catastrophic failure
+Have access to a recovery path after contract violation
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--crit.redundancy
+Critical Software Developer
+Not have a faulty program lead to catastrophic failure
+Be able to express error handling that may be redundant with contract checking
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--crit.interaction
+Critical Software Developer
+Not have a faulty program lead to catastrophic failure
+Not have contract build or run modes possibly be able to change or disable
+related error handling in any way
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--crit.locality
+Critical Software Developer
+Be assured a critical violation uses a critical recovery path
+Couple recovery path to a specific contract within the source
+==categories
+contents behavior
+==descriptionmd
+
+==description
+
+--
+
+--crit.testing
+Critical Software Developer
+Meet code coverage requirements
+Be able to run both success and failure branches in my test environment
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--crit.production.checking
+Critical Software Developer
+Have redundant layering
+Be able to continue to run checks in a production environment (even after
+formal testing is complete)
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--crit.more.coverage
+Critical Software Developer
+Maximize coverage
+Be able to run checks in a production environment that are considered “cheap”
+compared to the expected cost of entering an invalid state
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--crit.noassume
+Critical Software Developer
+Avoid unexpected or undefined behavior
+Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if
+they were facts injected into the program (otherwise, if such an assumption
+ever failed, I would be running a different program that is not equivalent to
+the one I wrote; assumptions can expand the set of possible executions by
+injecting facts not otherwise knowable to the compiler)
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--sec.noattacks
+Security Sensitive Developer
+Limit attack vectors
+Be unable to insert code paths (eg. violation handlers) at run time (eg. build
+time only)
+==categories
+behavior violations
+==descriptionmd
+
+==description
+
+--
+
+--sec.certify
+Security Sensitive Developer
+Deliver a certified product
+Have build tool only link to a preapproved violation handler
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--anal.runtime
+User of Analysis Tools
+Improve runtime correctness
+Have runtime checks generated by the tool
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--anal.optimization
+User of Analysis Tools
+Improve runtime performance
+Have runtime optimizations generated by the tool
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--anal.symbolic
+User of Analysis Tools
+Allow symbolic analysis
+Have symbolic proofs for soundness and consistency performed before compile
+time
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--anal.compiletime
+User of Analysis Tools
+Allow code analysis
+Have code source, AST, or instruction inspection during compile time
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--anal.binaries
+User of Analysis Tools
+Allow binary analysis
+Have binary inspection after compile time
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--anal.information
+User of Analysis Tools
+Improve the quality of analysis
+Be able to hint to the analyzer information it may be unable to deduce from
+source code alone (eg. <i>5 / opaque(); [[ opaque() != 0]]</i>)
+==categories
+contents
+==descriptionmd
+
+==description
+
+--
+
+--anal.legacy
+Provider of Analysis Tools
+Extend my existing engine
+Be able to map pre-existing contract features in tools to a standardized
+language syntax
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--teach.bestpractices
+Teacher
+Demonstrate best practice
+Be able to express defensive programming, programming by contract, and test
+driven development to introductory students
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--test.standardized
+Teacher
+Demonstrate best practice
+Not rely on custom libraries or proprietary extensions
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--teach.lifecycle
+Teacher
+Demonstrate best practice
+Demonstrate mock lifecycle by switching simple compiler flags to control which
+checks are enabled
+==categories
+general control
+==descriptionmd
+
+==description
+
+--
+
+--teach.portable
+Teacher
+Manage many students
+Have examples compilable by a standard compiler on any system
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--teach.dumbstudents
+Teacher
+Manage many students
+Have examples that are easy to build without digression into build systems
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--teach.teachable
+Teacher
+Build layers of understanding
+Have simple explanation of assertions and their use to support simple
+programming tasks, including debugging erroneous programs.
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--teach.layering
+Teacher
+Build layers of understanding
+Support the ability for advanced uses of contracts to be distributed across
+many different courses in a C++-focused computer science curriculum.
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--compiler.benice
+Compiler Developer
+Deliver best experience to my customers
+Maximize implementation freedom by limiting what is strictly required by the
+standard
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--compiler.best
+Compiler Developer
+Deliver the best implementation
+Have a clear and simple specification that meets clear need
+==categories
+general
+==descriptionmd
+
+==description
+
+--
+
+--large.complex
+Large Codebase Developer
+Debug complex issues
+Have composible and fine grained control over which checks are run, without
+requiring source code changes. Specifically the checks for only one function or
+some grouping of functions
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--large.critical
+Large Codebase Developer
+Enable/Disable checking on critical/hot paths
+Control whether checks are run based on where they are being called from
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--large.modernize
+Large Codebase Owner
+Modernize my code base
+Introduce standardized contracts to replace my macro-based contracts
+==categories
+control behavior
+==descriptionmd
+
+==description
+
+--
+
+--large.stillmacros
+Large Codebase Owner
+Modernize my code base
+Have my existing macro-based facilities interoperate smoothly with standardized
+contracts so I can do the migration gradually
+==categories
+syntax control
+==descriptionmd
+
+==description
+
+--
+
+--large.observation
+Large Codebase Owner
+Introduce new contracts into an existing system
+Have failed individual checks from existing code optionally warn instead of
+hard stop
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--large.introduction
+Large Codebase Owner
+Introduce new contracts into an existing system
+Have failed checks from a new library optionally warn instead of hard stop
+==categories
+behavior
+==descriptionmd
+
+==description
+
+--
+
+--large.separability
+Large Codebase Owner
+Introduce new parameters or invariants into a contracts based system
+Be able to include distinct clauses for each parameter or invariant with their
+own individual failure or build controls
+==categories
+location control
+==descriptionmd
+
+==description
+
+--
+
+--large.newenvironment
+Large Codebase Owner
+Introduce new elements into a contracts based system
+Have failed checks caused by a change in environment optionally warn instead of
+hard stop
+==categories
+control behavior
+==descriptionmd
+
+==description
+
+--
+
+--large.newcompiler
+Large Codebase Owner
+Introduce new elements into a contracts based system
+Have failed checks caused by a change in compiler optionally warn instead of
+hard stop
+==categories
+control behavior
+==descriptionmd
+
+==description
+
+--
+
+--large.nogoingback
+Large Codebase Owner
+Prevent regressions
+Have trusted contracts fail fast and hard stop
+==categories
+control behavior metadata
+==descriptionmd
+
+==description
+
+--
+
+--large.scalability
+Large Codebase Owner
+Scale violation handling
+Be able to log violations in my organization specific format
+==categories
+violations
+==descriptionmd
+
+==description
+
+--
+
+--large.simulation.disable
+Large Codebase Owner
+Allow simulation or post-mortem testing of known failure modes
+Optionally disable checking on a subset of individual annotations
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--large.simulation.enable
+Large Codebase Owner
+Allow simulation or post-mortem testing of known failure modes
+Optionally allow checking of a subset of individual annotations to fail and
+access its recovery path
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--large.simulation.ignore
+Large Codebase Owner
+Allow simulation or post-mortem testing of known failure modes
+Optionally allow checking of a subset of individual annotations to fail and
+continue failing
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--large.perfcontrol.build
+Large Codebase Owner
+Manage performance cost
+Constrain the set of built time checks according to their performance overhead
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--large.perfcontrol.runtime
+Large Codebase Owner
+Manage performance cost
+Constrain the set of runtime checks according to their performance overhead
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--large.narrowing
+Large Codebase Owner
+Tune contract width in complex system
+Be able to narrow individual contract so it fails in testing not in production
+==categories
+control behavior
+==descriptionmd
+
+==description
+
+--
+
+--embedded.nochecking
+Small Machine Developer
+Minimize executable footprint
+Remove all checking and diagnostic (eg. source location) overhead entirely from
+the final binary
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--embedded.nologging
+Small Machine Developer
+Minimize executable footprint
+Remove all logging and diagnostic (but not checking) overhead from the final
+binary
+==categories
+control violations
+==descriptionmd
+
+==description
+
+--
+
+--embedded.minimize
+Small Machine Developer
+Minimize executable footprint
+Remove all but the most important diagnostic overhead from the final binary
+==categories
+control
+==descriptionmd
+
+==description
+
+--
+
+--wg21.everythingelse
+Language Developer
+Interoperate with Contracts
+Have a clear way to understand how contracts will interact with the standard
+library
+==categories
+general behavior
+==descriptionmd
+
+==description
+
+--
+
+--wg21.otherfeatures
+Language Developer
+Extend contracts beyond pre/post conditions on functions
+Be able to use contract-like syntax on past or present runtime checkable
+language features such as switches, pattern matching, etc. or what might happen
+on signed integer overflow, etc. This might allow configuration of trapping,
+logging, or assuming in other areas of language UB.
+==categories
+location
+==descriptionmd
+
+==description
+
+--
+
