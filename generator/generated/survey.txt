@@ -1,0 +1,1096 @@
+Your name:
+
+As a Developer, in order to Reason explicitly, I want to Annotate my program anywhere in the code with my current understanding of its
+structure or execution 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Reason explicitly, I want to Express a spectrum of confidence in my annotations, from “unsure” and asking
+for validation, to “sure” and asking for some effect to be applied (eg.
+“maybe”, “definitely”, “assume” 'something') 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Reason explicitly, I want to Express a spectrum of importance of my annotations, from "critical" (eg. bring
+the system down) to "minor" (eg. lead to a slower fallback) 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Reason explicitly, I want to Express a spectrum of expected cost at compile or runtime of my annotations,
+from "unrunnable" to "expensive" to "cheap" 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Reason about executions, I want to Have annotations affect the execution of my program in accordance with my
+expectations 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Reason about executions, I want to Ensure annotations do not substantially change the meaning of my program when
+enabled 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Reason about executions, I want to Have the effect of annotations on executions be user controllable (ie. decide
+whether “cheap” checks or “critical” terminates) 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Adapt and progress with my project, I want to Be able to easily change my confidence, importance, or other properties of my
+annotations over time 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Have readable annotations, I want to Have annotations with a succinct and elegant syntax 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Have readable annotations, I want to Have annotation keywords or names with intuitive, clear, and unambiguous
+meanings 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Have readable annotations, I want to Have my contract specification to be visually primary, and secondary
+information (syntax, hints, roles, levels, etc.) to not be distracting 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Interoperate with tools or persons, I want to A syntax that can both be parsed and can be reasoned about semantically 
+Not important
+Nice to have
+Must have
+
+As a Developer, in order to Interoperate with tools or persons, I want to Expose annotations to tools that might leverage them (eg. code linter, static
+analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer,
+etc.) 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Get up to speed, I want to Have annotations use familiar syntax 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Get up to speed, I want to Have annotations use C++ syntax 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Reuse code, I want to Have annotations use my custom types or functions 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Have a single source of truth, I want to Use same source file for both code and annotations 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Support modern features, I want to Minimize use of macros 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Support modern features, I want to Be interoperable with modules 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Support modern features, I want to Be interoperable with coroutines 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Support modern features, I want to Be interoperable with concepts 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Use the standard library in-contract, I want to Codify existing exposition-only standard library requirements 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Use Debugger, I want to Have runtime able to launch a debugger from an annotation if necessary 
+Not important
+Nice to have
+Must have
+
+As a C++ Developer, in order to Use existing build modes, I want to Have annotations affect executions depending on my existing build modes (eg.
+Debug or Release modes in VS) 
+Not important
+Nice to have
+Must have
+
+As a C Developer, in order to Write contracts on my functions, I want to Specify contracts in a way standardizable as part of the C language 
+Not important
+Nice to have
+Must have
+
+As a C Developer, in order to Write contracts on my functions, I want to Use contracts with macro-safe keywords that are reserved C names (i.e., _Pre,
+_Post, _Assert, etc.) 
+Not important
+Nice to have
+Must have
+
+As a C Developer, in order to Write contracts on my functions, I want to Have a common violation handler for both violated C and C++ contracts 
+Not important
+Nice to have
+Must have
+
+As a C Developer, in order to Write contracts on my functions, I want to Expose my contracts to C++ developers through 'extern "C"' declarations of my
+functions 
+Not important
+Nice to have
+Must have
+
+As a C Developer, in order to Write contracts on my functions, I want to Make all contract semantics optional (so as not to change WG14-N2385 6.7.11 p2) 
+Not important
+Nice to have
+Must have
+
+As a Mixed C/C++ Developer, in order to Maintain mixed code base, I want to Not lose contracts when crossing languages 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Communicate my interface to users, I want to Document the expected inputs and expected outputs on my interface 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Have validation inform me which output values are unexpected or invalid 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Have validation inform me which class invariants are violated 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Have validation inform user which input values are unexpected or invalid 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Have contracts specify their pre-conditions as logical predicates 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Have contracts specify their class invariants as logical predicates 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Have contracts specify their post-conditions as logical predicates 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Express predicates, I want to Make reference to either the values of my inputs, or other in-scope identifiers 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Make reference to the before and after values of in-out variables (ie. passed
+by pointer or reference) in post-conditions 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Make reference to the before and after values of mutable class members (eg.
+<i>new_size = old_size+1</i> after push_back) in post-conditions 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish a contract, I want to Make reference to the before and after values of global state (eg., <i>now()
+&gt;= old(now()) + sleep_time</i>) in post-conditions 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Extend contractual aspects, I want to Annotate operations as being exception safe 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Extend contractual aspects, I want to Annotate operations as being thread safe 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Extend contractual aspects, I want to Annotate operations as being atomic (ie. all or no changes become visible) 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Extend contractual aspects, I want to Annotate operations as real-time (ie. guaranteed to complete within a time
+frame) 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Extend contractual aspects, I want to Annotate operations as being deterministic (ie. same outputs for same inputs) 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Extend contractual aspects, I want to Annotate operations as functionally pure (ie. no side effects) 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Extend contractual aspects, I want to Annotate operations as having global side effects (ie. write to singleton,
+file, network, or database) 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Extend contractual aspects, I want to Annotate algorithmic complexity 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Express unrunnable contracts, I want to Be able to use a predicate that is not evaluated at runtime, because it might
+be unsafe to run or have stateful side effects 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Express unrunnable contracts, I want to Be able to use a predicate that doesn’t have a definition, because it hasn’t
+been written yet, or is infeasible to run 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Express uncheckable contracts, I want to Be able to use a predicate that is not evaluated, because it is simply a
+semantic placeholder for a tool 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Express uncheckable contracts, I want to Be able to use a predicate that cannot have a complete definition, because it
+is inexpressible in the language 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish responsibility boundaries, I want to Inform users which errors are the responsibility of the caller, and which are
+the callee 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Establish responsibility boundaries, I want to Annotate assertions inside function bodies that indirectly test preconditions
+(such as malformed data discovered while performing the algorithm) should be
+reported to the caller as precondition failures 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Have contract as part of my interface, I want to Declare contract when I declare the function 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Keep my user interfaces clean and narrow, I want to Be able to access private implementation details of the class so I don’t have
+to widen public interface to declare predicates 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Keep my public interfaces clean and concise, I want to Place function contract conditions on any declaration (e.g., on redeclarations
+at the bottom of the header, or on the definition in an implementation file,
+where they are less distracting). 
+Not important
+Nice to have
+Must have
+
+As a API Developer, in order to Move contract violation out of error handling, I want to Replace uses of error handling to express contract violation (eg.
+<i>operator[](size_t n) noexcept [[pre: n &lt; size()]]</i> instead of
+throwing) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Write classes, I want to Declare class invariants that all of my public functions need to maintain 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Maintain a class hierarchy, I want to Ensure overriding methods have same or wider preconditions (see: Liskov
+substitution principle) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Maintain a class hierarchy, I want to Ensure overriding functions meet their base class postconditions when their
+base class preconditions are met (see: Liskov substitution principle) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Maintain a class hierarchy., I want to Allow overriding functions to have narrower preconditions/wider postconditions
+if I want to 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express public class invariants, I want to Express a restriction on the public interface of a type that all callers of the
+type can depend upon: can mention only public members, and is checked on entry
+and exit from this type’s code 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express public class invariants, I want to Check invariants before and after every public method (when called from outside
+the type, not when one member function calls another) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express public class invariants, I want to Check invariants before and after calling functions that are not part of this
+type (including virtual calls) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express base class invariants, I want to Express a restriction on the protected interface of a type that derived types
+can depend upon: can mention only protected and public members, and is checked
+on entry and exit from this type’s code 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express base class invariants, I want to Check invariants on entry and exit of every protected method (when called from
+the derived type, not when one base member function calls another) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express base class invariants, I want to Check invariants before and after every call to a virtual function (when
+calling to the derived type) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express private class invariants, I want to Express an internal restriction on the private implementation of a type, can
+mention any member, and is checked on entry and exit from this type’s code 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express private class invariants, I want to Check invariants on entry and exit of every public method (when called from
+outside the type, not when one member function calls another) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Express private class invariants, I want to Check invariants before and after calling functions that are not part of this
+type (including virtual calls) 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Test my classes, I want to For every member or friend function in my class, run my unit test framework
+with checking enabled for every assertion at the point where it is written, and
+check every postcondition at every non-exceptional exit, and test my class
+invariants on entry and exit from this type’s code 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Enforce contracts in async code, I want to Express contracts on callbacks such as std::function, function pointers, or
+references to functions, lambdas, or function objects 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Enforce contracts in exception safe code, I want to Express contracts on exceptional exit 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Use contracts with variadic templates, I want to Allow predicate (fold) expansion 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Use coroutines, I want to Define and check pre and post conditions as I would a regular function 
+Not important
+Nice to have
+Must have
+
+As a C++ API Developer, in order to Use coroutines, I want to Define and check invariants over all entry and exit points from a coroutine (to
+its awaiter or promise) 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Conform to a contract, I want to Be informed any time an interface’s contract is violated 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Conform to a contract, I want to Verify results from a call are expected output values 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Build multiple libraries, I want to Use contract-enabled header-only libraries 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Build multiple libraries, I want to Use contract-enabled binary libraries 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Build multiple libraries, I want to Only be required to manage a small, common set of build/link configurations 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Debug multiple libraries, I want to Enable checks only within a selected library 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Debug multiple libraries, I want to Enable checks on multiple libraries simultaneously 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Debug multiple call sites, I want to Enable checks only on selected call sites 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Correct failed checks, I want to Be informed what check failed, when, where, and how 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Correct failed checks, I want to Transmit check failure information in environment-specific ways (logs, email,
+special hardware traps, popup windows, blazing sirens, etc). 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Correct failed checks, I want to Install custom violation handler where I can inject custom logic to trap errors 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Unify violation handling, I want to Be able to override how library violations are handled in the combined software
+to point into my handling code 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Be independent of build environment, I want to Be able to define and override violation handler via source code 
+Not important
+Nice to have
+Must have
+
+As a Integration Developer, in order to Minimize checking overhead, I want to Disable library postconditions, asserts, and invariants, without disabling
+library preconditions (assuming the library is tested and stable and my code is
+not) 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Ensure the combined software is correct, I want to Turn checks on at build time 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Ensure the combined software is correct, I want to Turn checks on at run time 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Ensure the combined software is correct, I want to Turn on any subset of individual (call site) checks on at build time 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Ensure the combined software is correct, I want to Turn on any subset of individual (call site) checks on at run time 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Ensure the combined software is correct, I want to Verify all annotations are globally consistent when integrated 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Ensure individual features are correct, I want to Have a way to audit (named or semantic) subsets of checks for various
+deployments 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Manage binary delivery, I want to Be able to use the same executable regardless of contract enforcement mode 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Define “Code Under Test”, I want to Selectively enable checking for a set of functions which could name either an
+individual function or an overload set 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Define “Code Under Test”, I want to Selectively enable checking for a set of types and all their members 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Define “Code Under Test”, I want to Selectively enable checking for a set of types and all their transitively
+nested types and members 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Define “Code Under Test”, I want to Selectively enable checking for a translation unit or module and all (non
+transitive) types and functions within 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Test final deliverable, I want to Turn off build time checking to remove checking overhead 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Test final deliverable, I want to Turn off run time checking to remove checking overhead 
+Not important
+Nice to have
+Must have
+
+As a Integrated Software Provider, in order to Test final deliverable, I want to Turn on run time optimization to leverage annotation assumptions 
+Not important
+Nice to have
+Must have
+
+As a C++ Library Developer, in order to Use templates, I want to Be able to ship header only library 
+Not important
+Nice to have
+Must have
+
+As a C++ Library Developer, in order to Control the tradeoff between need for client recompilation and contract condition visibility, I want to Insulate contract conditions with the function definition, or insulate only the
+definition while putting contract conditions on a redeclaration - visible to
+static analysis tools in all TUs. 
+Not important
+Nice to have
+Must have
+
+As a Library Provider, in order to Simplify maintenance, I want to Not require extra build steps to be documented 
+Not important
+Nice to have
+Must have
+
+As a Library Provider, in order to Simplify maintenance, I want to Not have users complain about my product due to modifications of annotations
+resulting from their build configuration 
+Not important
+Nice to have
+Must have
+
+As a Library Provider, in order to Support successful integration, I want to Not require extra build steps to be learned or performed 
+Not important
+Nice to have
+Must have
+
+As a Library Provider, in order to Support successful integration, I want to Not have my users accidentally modify my careful annotations 
+Not important
+Nice to have
+Must have
+
+As a Technical Architect, in order to Maintain quality of code base, I want to Express assertions in a way that does not rely on C macros (i.e., there is no
+valid technical reason for a programmer not to use the new way, including
+space, time, tooling, and usability/complexity reasons, compared to C’s assert
+macro) 
+Not important
+Nice to have
+Must have
+
+As a Technical Architect, in order to Have a consistent and holistic contracts facility, I want to Specify preconditions/postconditions/assertions/invariants that express my
+expectations about the expected valid state of my program in the form of
+compilable boolean expressions, that can be checked statically or dynamically
+(as opposed to disjointed state where these features are factored into bits) 
+Not important
+Nice to have
+Must have
+
+As a Hardware Architect, in order to Improve system-level performance, I want to Be able to design new hardware + optimizations, carefully dovetailed into one
+another, that depend on statically-unprovable facts being annotated in the code 
+Not important
+Nice to have
+Must have
+
+As a Senior Developer, in order to Set an example, I want to Demonstrate best practice in defensive programming 
+Not important
+Nice to have
+Must have
+
+As a Senior Developer, in order to Enforce code quality, I want to Discourage reliance on observable out-of-contract behavior by causing check
+failure to hard stop program or build 
+Not important
+Nice to have
+Must have
+
+As a Senior Developer, in order to Enforce mature, finalized contracts, I want to Disable continuation on violation of stable and correct individual contracts 
+Not important
+Nice to have
+Must have
+
+As a Senior Developer, in order to Enforce mature, finalized contracts, I want to Disable remapping of semantics on stable and correct individual contracts 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Understand the API, I want to A uniform, fluent description of expected input values, expected output values,
+side effects, and all logical pre and post conditions 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Understand the API, I want to Be informed when my usage is out of contract 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Understand the program, I want to Know why my software is not building 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Understand the program, I want to Know why my software is aborting 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Understand the program, I want to Know why my software is out of contract 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Understand the program, I want to Know that my program or build was halted due to contract violation 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Understand the facility, I want to Be able to build a program with contracts after reasonably short tutorial 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Understand the facility, I want to Have keywords with precise and unambiguous meanings 
+Not important
+Nice to have
+Must have
+
+As a Junior Developer, in order to Improve my code, I want to Learn about software best practices by example 
+Not important
+Nice to have
+Must have
+
+As a Agile Developer, in order to Iterate quickly, I want to Be able to write and modify contracts quickly without heavy boiler plate or up
+front cost 
+Not important
+Nice to have
+Must have
+
+As a Agile Developer, in order to Safeguard evolving code, I want to Assert against conditions I am aware of but not finished handling fully 
+Not important
+Nice to have
+Must have
+
+As a Business Developer, in order to Maintain confidentiality, I want to Not expose diagnostic information (source location, expressions, etc.) in the
+software I deliver to clients, even when I choose to have contracts enforced in
+the software I deliver 
+Not important
+Nice to have
+Must have
+
+As a Performance Sensitive Developer, in order to Enable better performance, I want to Annotate my code with assumptions, likelihoods, or reachability information
+that a tool might not be able to deduce, but that I would be confident of 
+Not important
+Nice to have
+Must have
+
+As a Performance Sensitive Developer, in order to Enable better performance, I want to Be able to give statically-unprovable facts to current and novel optimizers in
+terms of semantics my program does not depend-on but optimizers can’t figure
+out 
+Not important
+Nice to have
+Must have
+
+As a Performance Sensitive Developer, in order to Enable better performance, I want to Accept responsibility for a malformed program that might result from eventually
+false information given by my annotations 
+Not important
+Nice to have
+Must have
+
+As a Performance Sensitive Developer, in order to Have safety critical paths, I want to Isolate safety checks from performance annotations 
+Not important
+Nice to have
+Must have
+
+As a Performance Sensitive Developer, in order to Have safety critical paths, I want to Retain checking even when optimizing with performance annotations 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Enable full checking, I want to Ensure all checks (pre, post, assert, invariant) are enabled 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Validate correctness, I want to Signify the predicates that should be verified by an analysis tool 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Manage multiple tools, I want to Signify subset of individual annotations to be consumed by a specific kind of
+verification tool 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Manage multiple tools, I want to Signify subset of individual annotations to be consumed by a specific instance
+of verification tool 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Manage multiple tools, I want to Use predicates that may not be understood by all instances of verification 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Manage multiple tools, I want to Use predicates that may not be understood by all kinds of verification 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Manage multiple tools, I want to Integrate the results of that static checker into how my program behaves in
+different ways: assume proven predicates, make unprovable predicates ill-
+formed, etc. 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Unit test predicates, I want to Override failure handler to trigger test failure instead of termination 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Unit test violation handlers, I want to Have a way to run handler on all combinations of available build modes 
+Not important
+Nice to have
+Must have
+
+As a Quality Sensitive Developer, in order to Catch unexpected failure modes, I want to Log all predicate failure during fuzz testing 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Have a verifiable release system, I want to Be able to control the configuration of contracts from a central point 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Avoid undefined behavior, I want to Have contract violation at run-time always have well-defined behavior 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Not have a faulty program lead to catastrophic failure, I want to Have access to a recovery path after contract violation 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Not have a faulty program lead to catastrophic failure, I want to Be able to express error handling that may be redundant with contract checking 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Not have a faulty program lead to catastrophic failure, I want to Not have contract build or run modes possibly be able to change or disable
+related error handling in any way 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Be assured a critical violation uses a critical recovery path, I want to Couple recovery path to a specific contract within the source 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Meet code coverage requirements, I want to Be able to run both success and failure branches in my test environment 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Have redundant layering, I want to Be able to continue to run checks in a production environment (even after
+formal testing is complete) 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Maximize coverage, I want to Be able to run checks in a production environment that are considered “cheap”
+compared to the expected cost of entering an invalid state 
+Not important
+Nice to have
+Must have
+
+As a Critical Software Developer, in order to Avoid unexpected or undefined behavior, I want to Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if
+they were facts injected into the program (otherwise, if such an assumption
+ever failed, I would be running a different program that is not equivalent to
+the one I wrote; assumptions can expand the set of possible executions by
+injecting facts not otherwise knowable to the compiler) 
+Not important
+Nice to have
+Must have
+
+As a Security Sensitive Developer, in order to Limit attack vectors, I want to Be unable to insert code paths (eg. violation handlers) at run time (eg. build
+time only) 
+Not important
+Nice to have
+Must have
+
+As a Security Sensitive Developer, in order to Deliver a certified product, I want to Have build tool only link to a preapproved violation handler 
+Not important
+Nice to have
+Must have
+
+As a User of Analysis Tools, in order to Improve runtime correctness, I want to Have runtime checks generated by the tool 
+Not important
+Nice to have
+Must have
+
+As a User of Analysis Tools, in order to Improve runtime performance, I want to Have runtime optimizations generated by the tool 
+Not important
+Nice to have
+Must have
+
+As a User of Analysis Tools, in order to Allow symbolic analysis, I want to Have symbolic proofs for soundness and consistency performed before compile
+time 
+Not important
+Nice to have
+Must have
+
+As a User of Analysis Tools, in order to Allow code analysis, I want to Have code source, AST, or instruction inspection during compile time 
+Not important
+Nice to have
+Must have
+
+As a User of Analysis Tools, in order to Allow binary analysis, I want to Have binary inspection after compile time 
+Not important
+Nice to have
+Must have
+
+As a User of Analysis Tools, in order to Improve the quality of analysis, I want to Be able to hint to the analyzer information it may be unable to deduce from
+source code alone (eg. <i>5 / opaque(); [[ opaque() != 0]]</i>) 
+Not important
+Nice to have
+Must have
+
+As a Provider of Analysis Tools, in order to Extend my existing engine, I want to Be able to map pre-existing contract features in tools to a standardized
+language syntax 
+Not important
+Nice to have
+Must have
+
+As a Teacher, in order to Demonstrate best practice, I want to Be able to express defensive programming, programming by contract, and test
+driven development to introductory students 
+Not important
+Nice to have
+Must have
+
+As a Teacher, in order to Demonstrate best practice, I want to Not rely on custom libraries or proprietary extensions 
+Not important
+Nice to have
+Must have
+
+As a Teacher, in order to Demonstrate best practice, I want to Demonstrate mock lifecycle by switching simple compiler flags to control which
+checks are enabled 
+Not important
+Nice to have
+Must have
+
+As a Teacher, in order to Manage many students, I want to Have examples compilable by a standard compiler on any system 
+Not important
+Nice to have
+Must have
+
+As a Teacher, in order to Manage many students, I want to Have examples that are easy to build without digression into build systems 
+Not important
+Nice to have
+Must have
+
+As a Teacher, in order to Build layers of understanding, I want to Have simple explanation of assertions and their use to support simple
+programming tasks, including debugging erroneous programs. 
+Not important
+Nice to have
+Must have
+
+As a Teacher, in order to Build layers of understanding, I want to Support the ability for advanced uses of contracts to be distributed across
+many different courses in a C++-focused computer science curriculum. 
+Not important
+Nice to have
+Must have
+
+As a Compiler Developer, in order to Deliver best experience to my customers, I want to Maximize implementation freedom by limiting what is strictly required by the
+standard 
+Not important
+Nice to have
+Must have
+
+As a Compiler Developer, in order to Deliver the best implementation, I want to Have a clear and simple specification that meets clear need 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Developer, in order to Debug complex issues, I want to Have composible and fine grained control over which checks are run, without
+requiring source code changes. Specifically the checks for only one function or
+some grouping of functions 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Developer, in order to Enable/Disable checking on critical/hot paths, I want to Control whether checks are run based on where they are being called from 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Modernize my code base, I want to Introduce standardized contracts to replace my macro-based contracts 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Modernize my code base, I want to Have my existing macro-based facilities interoperate smoothly with standardized
+contracts so I can do the migration gradually 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Introduce new contracts into an existing system, I want to Have failed individual checks from existing code optionally warn instead of
+hard stop 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Introduce new contracts into an existing system, I want to Have failed checks from a new library optionally warn instead of hard stop 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Introduce new parameters or invariants into a contracts based system, I want to Be able to include distinct clauses for each parameter or invariant with their
+own individual failure or build controls 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Introduce new elements into a contracts based system, I want to Have failed checks caused by a change in environment optionally warn instead of
+hard stop 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Introduce new elements into a contracts based system, I want to Have failed checks caused by a change in compiler optionally warn instead of
+hard stop 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Prevent regressions, I want to Have trusted contracts fail fast and hard stop 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Scale violation handling, I want to Be able to log violations in my organization specific format 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Allow simulation or post-mortem testing of known failure modes, I want to Optionally disable checking on a subset of individual annotations 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Allow simulation or post-mortem testing of known failure modes, I want to Optionally allow checking of a subset of individual annotations to fail and
+access its recovery path 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Allow simulation or post-mortem testing of known failure modes, I want to Optionally allow checking of a subset of individual annotations to fail and
+continue failing 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Manage performance cost, I want to Constrain the set of built time checks according to their performance overhead 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Manage performance cost, I want to Constrain the set of runtime checks according to their performance overhead 
+Not important
+Nice to have
+Must have
+
+As a Large Codebase Owner, in order to Tune contract width in complex system, I want to Be able to narrow individual contract so it fails in testing not in production 
+Not important
+Nice to have
+Must have
+
+As a Small Machine Developer, in order to Minimize executable footprint, I want to Remove all checking and diagnostic (eg. source location) overhead entirely from
+the final binary 
+Not important
+Nice to have
+Must have
+
+As a Small Machine Developer, in order to Minimize executable footprint, I want to Remove all logging and diagnostic (but not checking) overhead from the final
+binary 
+Not important
+Nice to have
+Must have
+
+As a Small Machine Developer, in order to Minimize executable footprint, I want to Remove all but the most important diagnostic overhead from the final binary 
+Not important
+Nice to have
+Must have
+
+As a Language Developer, in order to Interoperate with Contracts, I want to Have a clear way to understand how contracts will interact with the standard
+library 
+Not important
+Nice to have
+Must have
+
+As a Language Developer, in order to Extend contracts beyond pre/post conditions on functions, I want to Be able to use contract-like syntax on past or present runtime checkable
+language features such as switches, pattern matching, etc. or what might happen
+on signed integer overflow, etc. This might allow configuration of trapping,
+logging, or assuming in other areas of language UB. 
+Not important
+Nice to have
+Must have
+
