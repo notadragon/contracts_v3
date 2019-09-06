@@ -23,7 +23,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <table>
 <tr><th>Code</th><th>As A</th><th>In Order To</th><th>I Want To</th></tr>
 
-% for udict in parsed:
+% for udict in all_data:
 <tr><td>\
 % if "description" in udict:
 <a href="#${udict["label"]}">${udict["label"]}</a>\
@@ -39,7 +39,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <h2>Use cases &mdash; descriptions</h2>
 
-% for udict in parsed:
+% for udict in all_data:
 % if "description" in udict:
 <h1><a name="${udict["label"]}">${udict["label"]}</a></h1>
 <i>As a</i> ${udict["asa"]} <br/>

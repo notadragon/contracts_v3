@@ -35,7 +35,7 @@ structure or execution</td>
   <td>Reason explicitly</td>
   <td>Express a spectrum of confidence in my annotations, from “unsure” and asking
 for validation, to “sure” and asking for some effect to be applied (eg.
-“maybe”, “definitely”, “assume” <something>)</td>
+“maybe”, “definitely”, “assume” 'something')</td>
   </tr>
 
 <tr><td><a href="#dev.reason.importance">dev.reason.importance</a></td>
@@ -410,27 +410,27 @@ where they are less distracting).</td>
 throwing)</td>
   </tr>
 
-<tr><td><a href="#cpplib.invariants">cpplib.invariants</a></td>
+<tr><td><a href="#cppapi.invariants">cppapi.invariants</a></td>
   <td>C++ API Developer</td>
   <td>Write classes</td>
   <td>Declare class invariants that all of my public functions need to maintain</td>
   </tr>
 
-<tr><td><a href="#cpplib.class.preconditions">cpplib.class.preconditions</a></td>
+<tr><td><a href="#cppapi.class.preconditions">cppapi.class.preconditions</a></td>
   <td>C++ API Developer</td>
   <td>Maintain a class hierarchy</td>
   <td>Ensure overriding methods have same or wider preconditions (see: Liskov
 substitution principle)</td>
   </tr>
 
-<tr><td><a href="#cpplib.class.postconditions">cpplib.class.postconditions</a></td>
+<tr><td><a href="#cppapi.class.postconditions">cppapi.class.postconditions</a></td>
   <td>C++ API Developer</td>
   <td>Maintain a class hierarchy</td>
   <td>Ensure overriding functions meet their base class postconditions when their
 base class preconditions are met (see: Liskov substitution principle)</td>
   </tr>
 
-<tr><td><a href="#cpplib.class.variability">cpplib.class.variability</a></td>
+<tr><td><a href="#cppapi.class.variability">cppapi.class.variability</a></td>
   <td>C++ API Developer</td>
   <td>Maintain a class hierarchy.</td>
   <td>Allow overriding functions to have narrower preconditions/wider postconditions
@@ -511,20 +511,20 @@ check every postcondition at every non-exceptional exit, and test my class
 invariants on entry and exit from this type’s code</td>
   </tr>
 
-<tr><td><a href="#cpplib.contracts.async">cpplib.contracts.async</a></td>
+<tr><td><a href="#cppapi.contracts.async">cppapi.contracts.async</a></td>
   <td>C++ API Developer</td>
   <td>Enforce contracts in async code</td>
   <td>Express contracts on callbacks such as std::function, function pointers, or
 references to functions, lambdas, or function objects</td>
   </tr>
 
-<tr><td><a href="#cpplib.contracts.exception">cpplib.contracts.exception</a></td>
+<tr><td><a href="#cppapi.contracts.exception">cppapi.contracts.exception</a></td>
   <td>C++ API Developer</td>
   <td>Enforce contracts in exception safe code</td>
   <td>Express contracts on exceptional exit</td>
   </tr>
 
-<tr><td><a href="#cpplib.variadic">cpplib.variadic</a></td>
+<tr><td><a href="#cppapi.variadic">cppapi.variadic</a></td>
   <td>C++ API Developer</td>
   <td>Use contracts with variadic templates</td>
   <td>Allow predicate (fold) expansion</td>
@@ -1333,7 +1333,7 @@ actively executing a member function", or others.</p>
 <i>In order to</i> Reason explicitly <br/>
 <i>I want to</i> Express a spectrum of confidence in my annotations, from “unsure” and asking
 for validation, to “sure” and asking for some effect to be applied (eg.
-“maybe”, “definitely”, “assume” <something>) <p/>
+“maybe”, “definitely”, “assume” 'something') <p/>
 <p>This high level use case expresses the need to attach information to contract
 conditions that is beyond the statement of the condition itself, and instead
 has user-provided metadata about both the confidence in the condition and the
@@ -1854,27 +1854,27 @@ throwing) <p/>
 might have been written to report misuse through exceptions.  Contracts should
 provide a better alternative than giving all functions a fully wide contract.</p>
 <br/>
-<h1><a name="cpplib.invariants">cpplib.invariants</a></h1>
+<h1><a name="cppapi.invariants">cppapi.invariants</a></h1>
 <i>As a</i> C++ API Developer <br/>
 <i>In order to</i> Write classes <br/>
 <i>I want to</i> Declare class invariants that all of my public functions need to maintain <p/>
 
 <br/>
-<h1><a name="cpplib.class.preconditions">cpplib.class.preconditions</a></h1>
+<h1><a name="cppapi.class.preconditions">cppapi.class.preconditions</a></h1>
 <i>As a</i> C++ API Developer <br/>
 <i>In order to</i> Maintain a class hierarchy <br/>
 <i>I want to</i> Ensure overriding methods have same or wider preconditions (see: Liskov
 substitution principle) <p/>
 
 <br/>
-<h1><a name="cpplib.class.postconditions">cpplib.class.postconditions</a></h1>
+<h1><a name="cppapi.class.postconditions">cppapi.class.postconditions</a></h1>
 <i>As a</i> C++ API Developer <br/>
 <i>In order to</i> Maintain a class hierarchy <br/>
 <i>I want to</i> Ensure overriding functions meet their base class postconditions when their
 base class preconditions are met (see: Liskov substitution principle) <p/>
 
 <br/>
-<h1><a name="cpplib.class.variability">cpplib.class.variability</a></h1>
+<h1><a name="cppapi.class.variability">cppapi.class.variability</a></h1>
 <i>As a</i> C++ API Developer <br/>
 <i>In order to</i> Maintain a class hierarchy. <br/>
 <i>I want to</i> Allow overriding functions to have narrower preconditions/wider postconditions
@@ -1974,7 +1974,7 @@ check every postcondition at every non-exceptional exit, and test my class
 invariants on entry and exit from this type’s code <p/>
 
 <br/>
-<h1><a name="cpplib.contracts.async">cpplib.contracts.async</a></h1>
+<h1><a name="cppapi.contracts.async">cppapi.contracts.async</a></h1>
 <i>As a</i> C++ API Developer <br/>
 <i>In order to</i> Enforce contracts in async code <br/>
 <i>I want to</i> Express contracts on callbacks such as std::function, function pointers, or
@@ -1986,7 +1986,7 @@ transmitted.</p>
 system, or in a more limitted way by just facilitating library types like
 a function with contracts.</p>
 <br/>
-<h1><a name="cpplib.contracts.exception">cpplib.contracts.exception</a></h1>
+<h1><a name="cppapi.contracts.exception">cppapi.contracts.exception</a></h1>
 <i>As a</i> C++ API Developer <br/>
 <i>In order to</i> Enforce contracts in exception safe code <br/>
 <i>I want to</i> Express contracts on exceptional exit <p/>
@@ -1994,7 +1994,7 @@ a function with contracts.</p>
 normally.  Expressing conditions that will hold if a function returns through
 an exception, or both, could also be useful.</p>
 <br/>
-<h1><a name="cpplib.variadic">cpplib.variadic</a></h1>
+<h1><a name="cppapi.variadic">cppapi.variadic</a></h1>
 <i>As a</i> C++ API Developer <br/>
 <i>In order to</i> Use contracts with variadic templates <br/>
 <i>I want to</i> Allow predicate (fold) expansion <p/>
@@ -2220,7 +2220,7 @@ might also put inilne function definitions).</p>
 <p>For free functions this would just require relaxing the requirements on where
 contracts are.  For member functions, allowing member function redeclaration
 would be needed to put the contracts in a less obtrusive place that is still
-visible outside of the defining TU.  See P1320 for more discussio of this.</p>
+visible outside of the defining TU.  See P1320 for more discussion of this.</p>
 <br/>
 <h1><a name="lib.maintenance.noconfig">lib.maintenance.noconfig</a></h1>
 <i>As a</i> Library Provider <br/>

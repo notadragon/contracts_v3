@@ -28,8 +28,7 @@ def parse_orightml(f):
         blank,asa,todo,want,blank2 = row.find_all("td")
         udict = {"asa":asa.text,
                  "todo":todo.text,
-                 "want":"".join([ str(x) for x in want.contents] ),
-                 "label":"case-%s" % n,}
+                 "want":"".join([ str(x) for x in want.contents] )}
 
         for a in row.find_all("a"):
             udict["label"] = a.text
@@ -54,7 +53,8 @@ def parse_orightml(f):
     return output
 
 def parse_data(f):
-    output = []
+    output_categories = {}
+    output_data = []
     alllabels = set()
 
     caseRe = re.compile("^--(?P<label>[^\n]*?)$\n^(?P<asa>[^\n]*?)$\n^(?P<todo>.*?)$\n(?P<want>.*?)\n(?P<rest>^==.*?)?^--$",re.MULTILINE|re.DOTALL)
@@ -74,22 +74,18 @@ def parse_data(f):
             print("Duplicate Label: %s" % (label,))
         alllabels.add(label)
         
-        output.append(udict)
+        output_data.append(udict)
 
-    return output
+    return (output_categories,output_data)
 
-if useorig:
-    parsed = parse_orightml("../contracts_use_cases.html")
-    parsed2 = parse_data("all_data.txt")
-else:
-    parsed2 = parse_orightml("../contracts_use_cases.html")
-    parsed = parse_data("all_data.txt")
+all_categories,all_data = parse_data("all_data.txt")
 
 wsRe = re.compile("\s+")
 categories = set()
 keys = set()
 
-for udict in parsed:
+# process markdown to html, do some other cleanup, check some invariants
+for udict in all_data:
     udict["want"] = "\n".join(textwrap.wrap(wsRe.sub(" ",udict["want"]).strip(),79))
 
     if "description" in udict:
@@ -103,27 +99,34 @@ for udict in parsed:
 
     keys.update(udict.keys())
 
+# spitting these out helps identify any typos in the keys or categories
 print("All keys: %s" % (sorted(keys),))
 print("All categories: %s" % (sorted(categories),))
         
-# merge anything in all_data that isn't in 'official' html file
-for udict2 in parsed2:
-    for udict in parsed:
-        if udict["label"] == udict2["label"]:
-            for k,v in udict2.items():
-                if k not in udict:
-                    udict[k] = v
+for template in glob.glob("*.mako"):
+    basename = template.replace(".mako","")
 
-for f in glob.glob("*.mako"):
-    t = mako.template.Template(open("%s" % (f,)).read())
-    r = t.render(parsed=parsed)
-    open(os.path.join("generated",f.replace(".mako","")),"w").write(r)
+    if os.path.exists(os.path.join("..",basename)):
+        outfile = os.path.join("..",basename)
+    else:
+        outfile = os.path.join("generated",basename)
 
+    t = mako.template.Template(open("%s" % (template,)).read())
+    r = t.render(all_categories=all_categories,all_data=all_data)
 
-#for p1,p2 in zip(parsed,parsed2):
-#    for k,v in p1.items():
-#        if k in p2:
-#            v2 = p2[k]
-#            if v != v2:
-#                print("Diff (key %s): %s != %s" % (k,p1,p2,))
+    if os.path.exists(outfile):
+        currentdata = open(outfile).read()
+    else:
+        currentdata = None
+    if r != currentdata:
+        print("Updating generated file: %s" % (outfile,))
+        open(outfile,"w").write(r)
+    
 
+html_data = parse_orightml("../contracts_use_cases.html")
+for adata,hdata in zip(all_data,html_data):
+    for key,value in hdata.items():
+        if key not in adata or value != adata[key]:
+            print("Key (%s) mismatch in html data for label %s" % (key,adata["label"]))
+            print("  all value: %s" % (adata[key],))
+            print("  html value: %s" % (value,))
