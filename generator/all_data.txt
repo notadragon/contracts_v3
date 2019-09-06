@@ -39,7 +39,7 @@ Developer
 Reason explicitly
 Express a spectrum of confidence in my annotations, from “unsure” and asking
 for validation, to “sure” and asking for some effect to be applied (eg. “maybe”,
-“definitely”, “assume” <something>)
+“definitely”, “assume” 'something')
 ==categories
 general metadata
 ==description
@@ -779,7 +779,7 @@ might have been written to report misuse through exceptions.  Contracts should
 provide a better alternative than giving all functions a fully wide contract.
 --
 
---cpplib.invariants
+--cppapi.invariants
 C++ API Developer
 Write classes
 Declare class invariants that all of my public functions need to maintain
@@ -788,7 +788,7 @@ location
 ==description
 --
 
---cpplib.class.preconditions
+--cppapi.class.preconditions
 C++ API Developer
 Maintain a class hierarchy
 Ensure overriding methods have same or wider preconditions (see: Liskov
@@ -798,7 +798,7 @@ location contents
 ==description
 --
 
---cpplib.class.postconditions
+--cppapi.class.postconditions
 C++ API Developer
 Maintain a class hierarchy
 Ensure overriding functions meet their base class postconditions when their
@@ -808,7 +808,7 @@ location contents
 ==description
 --
 
---cpplib.class.variability
+--cppapi.class.variability
 C++ API Developer
 Maintain a class hierarchy.
 Allow overriding functions to have narrower preconditions/wider postconditions
@@ -947,7 +947,7 @@ control
 ==description
 --
 
---cpplib.contracts.async
+--cppapi.contracts.async
 C++ API Developer
 Enforce contracts in async code
 Express contracts on callbacks such as std::function, function pointers, or
@@ -964,7 +964,7 @@ system, or in a more limitted way by just facilitating library types like
 a function with contracts.
 --
 
---cpplib.contracts.exception
+--cppapi.contracts.exception
 C++ API Developer
 Enforce contracts in exception safe code
 Express contracts on exceptional exit
@@ -976,7 +976,7 @@ normally.  Expressing conditions that will hold if a function returns through
 an exception, or both, could also be useful.
 --
 
---cpplib.variadic
+--cppapi.variadic
 C++ API Developer
 Use contracts with variadic templates
 Allow predicate (fold) expansion
@@ -1307,7 +1307,7 @@ might also put inilne function definitions).
 For free functions this would just require relaxing the requirements on where
 contracts are.  For member functions, allowing member function redeclaration
 would be needed to put the contracts in a less obtrusive place that is still
-visible outside of the defining TU.  See P1320 for more discussio of this.
+visible outside of the defining TU.  See P1320 for more discussion of this.
 --
 
 --lib.maintenance.noconfig

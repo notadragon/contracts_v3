@@ -23,9 +23,9 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <table>
 <tr><th>Code</th><th>As A</th><th>In Order To</th><th>I Want To</th><th>Priority</th></tr>
 
-% for udict in parsed:
+% for udict in all_data:
 <tr><td>\
-% if "description" in udict:
+% if "description" in udict and udict["description"]:
 <a href="#${udict["label"]}">${udict["label"]}</a>\
 % endif
 </td>
@@ -41,8 +41,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 
 <table>
 
-% for udict in parsed:
-% if "label" in udict and "description" in udict:
+% for udict in all_data:
+% if "description" in udict and udict["description"]:
 <tr><td><a name="${udict["label"]}">${udict["label"]}</a></td>
     <td>${udict["description"]}\
 </td></tr>
@@ -50,8 +50,6 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   % endif
 % endfor
 </table>
-
-Rest is TBD...
 
 </body>
 </html>

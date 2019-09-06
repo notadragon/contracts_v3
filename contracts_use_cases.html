@@ -23,52 +23,61 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <table>
 <tr><th>Code</th><th>As A</th><th>In Order To</th><th>I Want To</th><th>Priority</th></tr>
 
-<tr><td><a href="#dev.decl.knowl">dev.decl.knowl</a></td>
+<tr><td><a href="#dev.reason.knowl">dev.reason.knowl</a></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Annotate my program anywhere in the code with my current understanding of its structure or execution</td>
+  <td>Annotate my program anywhere in the code with my current understanding of its
+structure or execution</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.reason.confidence">dev.reason.confidence</a></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of confidence in my annotations, from “unsure” and asking for validation, to “sure” and asking for some effect to be applied (eg. “maybe”, “definitely”, “assume” &lt;something&gt;)</td>
+  <td>Express a spectrum of confidence in my annotations, from “unsure” and asking
+for validation, to “sure” and asking for some effect to be applied (eg.
+“maybe”, “definitely”, “assume” 'something')</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.reason.importance">dev.reason.importance</a></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of importance of my annotations, from "critical" (eg. bring the system down) to "minor" (eg. lead to a slower fallback) </td>
+  <td>Express a spectrum of importance of my annotations, from "critical" (eg. bring
+the system down) to "minor" (eg. lead to a slower fallback)</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.reason.cost">dev.reason.cost</a></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of expected cost at compile or runtime of my annotations, from "unrunnable" to "expensive" to "cheap"</td>
+  <td>Express a spectrum of expected cost at compile or runtime of my annotations,
+from "unrunnable" to "expensive" to "cheap"</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.reason.behavior">dev.reason.behavior</a></td>
   <td>Developer</td>
   <td>Reason about executions</td>
-  <td>Have annotations affect the execution of my program in accordance with my expectations</td>
+  <td>Have annotations affect the execution of my program in accordance with my
+expectations</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.reason.sideeffects">dev.reason.sideeffects</a></td>
   <td>Developer</td>
   <td>Reason about executions</td>
-  <td>Ensure annotations do not substantially change the meaning of my program when enabled</td>
+  <td>Ensure annotations do not substantially change the meaning of my program when
+enabled</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.reason.behaviorcontrol">dev.reason.behaviorcontrol</a></td>
   <td>Developer</td>
   <td>Reason about executions</td>
-  <td>Have the effect of annotations on executions be user controllable (ie. decide whether “cheap” checks or “critical” terminates)</td>
+  <td>Have the effect of annotations on executions be user controllable (ie. decide
+whether “cheap” checks or “critical” terminates)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Developer</td>
   <td>Adapt and progress with my project</td>
-  <td>Be able to easily change my confidence, importance, or other properties of my annotations over time</td>
+  <td>Be able to easily change my confidence, importance, or other properties of my
+annotations over time</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -77,16 +86,18 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have annotations with a succinct and elegant syntax</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.readable.keywords">dev.readable.keywords</a></td>
   <td>Developer</td>
   <td>Have readable annotations</td>
-  <td>Have annotation keywords or names with intuitive, clear, and unambiguous meanings</td>
+  <td>Have annotation keywords or names with intuitive, clear, and unambiguous
+meanings</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#dev.readable.priority">dev.readable.priority</a></td>
   <td>Developer</td>
   <td>Have readable annotations</td>
-  <td>Have my contract specification to be visually primary, and secondary information (syntax, hints, roles, levels, etc.) to not be distracting</td>
+  <td>Have my contract specification to be visually primary, and secondary
+information (syntax, hints, roles, levels, etc.) to not be distracting</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -98,7 +109,9 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Developer</td>
   <td>Interoperate with tools or persons</td>
-  <td>Expose annotations to tools that might leverage them (eg. code linter, static analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer, etc.)</td>
+  <td>Expose annotations to tools that might leverage them (eg. code linter, static
+analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer,
+etc.)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -113,31 +126,31 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have annotations use C++ syntax</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppdev.syntax.reuse">cppdev.syntax.reuse</a></td>
   <td>C++ Developer</td>
   <td>Reuse code</td>
   <td>Have annotations use my custom types or functions</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppdev.location">cppdev.location</a></td>
   <td>C++ Developer</td>
   <td>Have a single source of truth</td>
   <td>Use same source file for both code and annotations</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppdev.syntax.macros">cppdev.syntax.macros</a></td>
   <td>C++ Developer</td>
   <td>Support modern features</td>
   <td>Minimize use of macros</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppdev.modules">cppdev.modules</a></td>
   <td>C++ Developer</td>
   <td>Support modern features</td>
   <td>Be interoperable with modules</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppdev.coroutines">cppdev.coroutines</a></td>
   <td>C++ Developer</td>
   <td>Support modern features</td>
   <td>Be interoperable with coroutines</td>
@@ -149,37 +162,39 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Be interoperable with concepts</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppdev.existing.std">cppdev.existing.std</a></td>
   <td>C++ Developer</td>
   <td>Use the standard library in-contract</td>
   <td>Codify existing exposition-only standard library requirements</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppdev.debugger">cppdev.debugger</a></td>
   <td>C++ Developer</td>
   <td>Use Debugger</td>
   <td>Have runtime able to launch a debugger from an annotation if necessary</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppdev.build.legacy">cppdev.build.legacy</a></td>
   <td>C++ Developer</td>
   <td>Use existing build modes</td>
-  <td>Have annotations affect executions depending on my existing build modes (eg. as Debug or Release modes in VS)</td>
+  <td>Have annotations affect executions depending on my existing build modes (eg.
+Debug or Release modes in VS)</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cdev.contracts">cdev.contracts</a></td>
   <td>C Developer</td>
   <td>Write contracts on my functions</td>
   <td>Specify contracts in a way standardizable as part of the C language</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cdev.identifiers">cdev.identifiers</a></td>
   <td>C Developer</td>
   <td>Write contracts on my functions</td>
-  <td>Use contracts with macro-safe keywords that are reserved C names (i.e., _Pre, _Post, _Assert, etc.)</td>
+  <td>Use contracts with macro-safe keywords that are reserved C names (i.e., _Pre,
+_Post, _Assert, etc.)</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cdev.violationhandler">cdev.violationhandler</a></td>
   <td>C Developer</td>
   <td>Write contracts on my functions</td>
   <td>Have a common violation handler for both violated C and C++ contracts</td>
@@ -188,10 +203,11 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>C Developer</td>
   <td>Write contracts on my functions</td>
-  <td>Expose my contracts to C++ developers through 'extern "C"' declarations of my functions</td>
+  <td>Expose my contracts to C++ developers through 'extern "C"' declarations of my
+functions</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cdev.ignorable">cdev.ignorable</a></td>
   <td>C Developer</td>
   <td>Write contracts on my functions</td>
   <td>Make all contract semantics optional (so as not to change WG14-N2385 6.7.11 p2)</td>
@@ -215,13 +231,13 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have validation inform me which output values are unexpected or invalid</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.validate_invariants">api.establish.validate_invariants</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Have validation inform me which class invariants are violated</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.values">api.establish.values</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Have validation inform user which input values are unexpected or invalid</td>
@@ -245,43 +261,46 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Have contracts specify their post-conditions as logical predicates</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.express.values">api.express.values</a></td>
   <td>API Developer</td>
   <td>Express predicates</td>
   <td>Make reference to either the values of my inputs, or other in-scope identifiers</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.changedvalues">api.establish.changedvalues</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of in-out variables (ie. as passed by pointer or reference) in post-conditions</td>
+  <td>Make reference to the before and after values of in-out variables (ie. passed
+by pointer or reference) in post-conditions</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.changedmembers">api.establish.changedmembers</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of mutable class members (eg. <i>new_size = old_size+1</i> after push_back) in post-conditions</td>
+  <td>Make reference to the before and after values of mutable class members (eg.
+<i>new_size = old_size+1</i> after push_back) in post-conditions</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.changedstate">api.establish.changedstate</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of global state (eg., <i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions</td>
+  <td>Make reference to the before and after values of global state (eg., <i>now()
+&gt;= old(now()) + sleep_time</i>) in post-conditions</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.extend.exceptionsafety">api.extend.exceptionsafety</a></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
   <td>Annotate operations as being exception safe</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.extend.threadsafety">api.extend.threadsafety</a></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
   <td>Annotate operations as being thread safe</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.extend.atomicity">api.extend.atomicity</a></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
   <td>Annotate operations as being atomic (ie. all or no changes become visible)</td>
@@ -290,7 +309,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
-  <td>Annotate operations as real-time (ie. guaranteed to complete within a time frame)</td>
+  <td>Annotate operations as real-time (ie. guaranteed to complete within a time
+frame)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -308,7 +328,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>API Developer</td>
   <td>Extend contractual aspects</td>
-  <td>Annotate operations as having global side effects (ie. write to singleton, file, network, or database)</td>
+  <td>Annotate operations as having global side effects (ie. write to singleton,
+file, network, or database)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -317,65 +338,76 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Annotate algorithmic complexity</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.express.runnability">api.express.runnability</a></td>
   <td>API Developer</td>
   <td>Express unrunnable contracts</td>
-  <td>Be able to use a predicate that is not evaluated at runtime, because it might be unsafe to run or have stateful side effects</td>
+  <td>Be able to use a predicate that is not evaluated at runtime, because it might
+be unsafe to run or have stateful side effects</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.express.undefined">api.express.undefined</a></td>
   <td>API Developer</td>
   <td>Express unrunnable contracts</td>
-  <td>Be able to use a predicate that doesn’t have a definition, because it hasn’t been written yet, or is infeasible to run</td>
+  <td>Be able to use a predicate that doesn’t have a definition, because it hasn’t
+been written yet, or is infeasible to run</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.express.uncheckable">api.express.uncheckable</a></td>
   <td>API Developer</td>
   <td>Express uncheckable contracts</td>
-  <td>Be able to use a predicate that is not evaluated, because it is simply a semantic placeholder for a tool</td>
+  <td>Be able to use a predicate that is not evaluated, because it is simply a
+semantic placeholder for a tool</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.express.unimplementable">api.express.unimplementable</a></td>
   <td>API Developer</td>
   <td>Express uncheckable contracts</td>
-  <td>Be able to use a predicate that cannot have a complete definition, because it is inexpressible in the language</td>
+  <td>Be able to use a predicate that cannot have a complete definition, because it
+is inexpressible in the language</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.responsibility">api.establish.responsibility</a></td>
   <td>API Developer</td>
   <td>Establish responsibility boundaries</td>
-  <td>Inform users which errors are the responsibility of the caller, and which are the callee</td>
+  <td>Inform users which errors are the responsibility of the caller, and which are
+the callee</td>
   <td></td></tr>
 
 <tr><td><a href="#api.resp.preassert">api.resp.preassert</a></td>
   <td>API Developer</td>
   <td>Establish responsibility boundaries</td>
-  <td>Annotate assertions inside function bodies that indirectly test preconditions (such as malformed data discovered while performing the algorithm) should be reported to the caller as precondition failures</td>
+  <td>Annotate assertions inside function bodies that indirectly test preconditions
+(such as malformed data discovered while performing the algorithm) should be
+reported to the caller as precondition failures</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.contract.interface">api.contract.interface</a></td>
   <td>API Developer</td>
   <td>Have contract as part of my interface</td>
   <td>Declare contract when I declare the function</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.contract.private">api.contract.private</a></td>
   <td>API Developer</td>
   <td>Keep my user interfaces clean and narrow</td>
-  <td>Be able to access private implementation details of the class so I don’t have to widen public interface to declare predicates</td>
+  <td>Be able to access private implementation details of the class so I don’t have
+to widen public interface to declare predicates</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.contract.redeclaration">api.contract.redeclaration</a></td>
   <td>API Developer</td>
   <td>Keep my public interfaces clean and concise</td>
-  <td>Place function contract conditions on any declaration (e.g., on redeclarations at the bottom of the header, or on
-    the definition in an implementation file, where they are less distracting). </td>
+  <td>Place function contract conditions on any declaration (e.g., on redeclarations
+at the bottom of the header, or on the definition in an implementation file,
+where they are less distracting).</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.contract.errorhandling">api.contract.errorhandling</a></td>
   <td>API Developer</td>
   <td>Move contract violation out of error handling</td>
-  <td>Replace uses of error handling to express contract violation (eg. <i>operator[](size_t n) noexcept [[pre: n < size()]]</i> instead of throwing)</td>
+  <td>Replace uses of error handling to express contract violation (eg.
+<i>operator[](size_t n) noexcept [[pre: n &lt; size()]]</i> instead of
+throwing)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -387,121 +419,128 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Maintain a class hierarchy</td>
-  <td>Ensure overriding methods have same or wider preconditions (see: Liskov substitution principle)</td>
+  <td>Ensure overriding methods have same or wider preconditions (see: Liskov
+substitution principle)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Maintain a class hierarchy</td>
-  <td>Ensure overriding functions meet their base class postconditions when their base class preconditions are met (see: Liskov substitution principle)</td>
+  <td>Ensure overriding functions meet their base class postconditions when their
+base class preconditions are met (see: Liskov substitution principle)</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppapi.class.variability">cppapi.class.variability</a></td>
   <td>C++ API Developer</td>
   <td>Maintain a class hierarchy.</td>
-  <td>Allow overriding functions to have narrower preconditions/wider postconditions if I want to</td>
+  <td>Allow overriding functions to have narrower preconditions/wider postconditions
+if I want to</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.class.publicinterface">api.class.publicinterface</a></td>
   <td>C++ API Developer</td>
   <td>Express public class invariants</td>
-  <td>Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type’s code</td>
+  <td>Express a restriction on the public interface of a type that all callers of the
+type can depend upon: can mention only public members, and is checked on entry
+and exit from this type’s code</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.class.publicinvariants">api.class.publicinvariants</a></td>
   <td>C++ API Developer</td>
   <td>Express public class invariants</td>
-  <td>Check invariants before and after every public method (when called from outside the type, not when one member function calls another)</td>
+  <td>Check invariants before and after every public method (when called from outside
+the type, not when one member function calls another)</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.class.publiccalls">api.class.publiccalls</a></td>
   <td>C++ API Developer</td>
   <td>Express public class invariants</td>
-  <td>Check invariants before and after calling functions that are not part of this type (including virtual calls)</td>
+  <td>Check invariants before and after calling functions that are not part of this
+type (including virtual calls)</td>
+  <td></td></tr>
+
+<tr><td><a href="#api.class.baseinterface">api.class.baseinterface</a></td>
+  <td>C++ API Developer</td>
+  <td>Express base class invariants</td>
+  <td>Express a restriction on the protected interface of a type that derived types
+can depend upon: can mention only protected and public members, and is checked
+on entry and exit from this type’s code</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Express base class invariants</td>
-  <td>Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and private members, and is checked on entry and exit from this type’s code</td>
+  <td>Check invariants on entry and exit of every protected method (when called from
+the derived type, not when one base member function calls another)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Express base class invariants</td>
-  <td>Check invariants on entry and exit of every protected method (when called from the derived type, not when one base member function calls another)</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ API Developer</td>
-  <td>Express base class invariants</td>
-  <td>Check invariants before and after every call to a virtual function (when calling to the derived type)</td>
+  <td>Check invariants before and after every call to a virtual function (when
+calling to the derived type)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Express private class invariants</td>
-  <td>Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type’s code</td>
+  <td>Express an internal restriction on the private implementation of a type, can
+mention any member, and is checked on entry and exit from this type’s code</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Express private class invariants</td>
-  <td>Check invariants on entry and exit of every public method (when called from outside the type, not when one member function calls another)</td>
+  <td>Check invariants on entry and exit of every public method (when called from
+outside the type, not when one member function calls another)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Express private class invariants</td>
-  <td>Check invariants before and after calling functions that are not part of this type (including virtual calls)</td>
+  <td>Check invariants before and after calling functions that are not part of this
+type (including virtual calls)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>C++ API Developer</td>
   <td>Test my classes</td>
-  <td>For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type’s code</td>
+  <td>For every member or friend function in my class, run my unit test framework
+with checking enabled for every assertion at the point where it is written, and
+check every postcondition at every non-exceptional exit, and test my class
+invariants on entry and exit from this type’s code</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppapi.contracts.async">cppapi.contracts.async</a></td>
   <td>C++ API Developer</td>
   <td>Enforce contracts in async code</td>
-  <td>Express contracts on callbacks such as std::function, function pointers, or references to functions, lambdas, or function objects</td>
+  <td>Express contracts on callbacks such as std::function, function pointers, or
+references to functions, lambdas, or function objects</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppapi.contracts.exception">cppapi.contracts.exception</a></td>
   <td>C++ API Developer</td>
   <td>Enforce contracts in exception safe code</td>
   <td>Express contracts on exceptional exit</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#cppapi.variadic">cppapi.variadic</a></td>
   <td>C++ API Developer</td>
   <td>Use contracts with variadic templates</td>
   <td>Allow predicate (fold) expansion</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.coroutines">api.coroutines</a></td>
   <td>C++ API Developer</td>
   <td>Use coroutines</td>
   <td>Define and check pre and post conditions as I would a regular function</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.coroutines.invariants">api.coroutines.invariants</a></td>
   <td>C++ API Developer</td>
   <td>Use coroutines</td>
-  <td>Define and check invariants over all entry and exit points from a coroutine (to its awaiter or promise)</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Use templates</td>
-  <td>Be able to ship header only library</td>
-  <td></td></tr>
-
-<tr><td></td>
-  <td>C++ Library Developer</td>
-  <td>Control the tradeoff between need for client recompilation and contract condition visibility</td>
-  <td>Insulate contract conditions with the function definition, or insulate only the definition while putting contract conditions on a redeclaration - visible to static analysis tools in all TUs.</td>
+  <td>Define and check invariants over all entry and exit points from a coroutine (to
+its awaiter or promise)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -546,7 +585,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>Enable checks on multiple libraries simultaneously</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#int.debug.callsites">int.debug.callsites</a></td>
   <td>Integration Developer</td>
   <td>Debug multiple call sites</td>
   <td>Enable checks only on selected call sites</td>
@@ -561,7 +600,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integration Developer</td>
   <td>Correct failed checks</td>
-  <td>Transmit check failure information in environment-specific ways (logs, email, special hardware traps, popup windows, blazing sirens, etc).</td>
+  <td>Transmit check failure information in environment-specific ways (logs, email,
+special hardware traps, popup windows, blazing sirens, etc).</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -573,7 +613,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integration Developer</td>
   <td>Unify violation handling</td>
-  <td>Be able to override how library violations are handled in the combined software to point into my handling code</td>
+  <td>Be able to override how library violations are handled in the combined software
+to point into my handling code</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -585,7 +626,9 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integration Developer</td>
   <td>Minimize checking overhead</td>
-  <td>Disable library postconditions, asserts, and invariants, without disabling library preconditions (assuming the library is tested and stable and my code is not)</td>
+  <td>Disable library postconditions, asserts, and invariants, without disabling
+library preconditions (assuming the library is tested and stable and my code is
+not)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -603,7 +646,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Ensure the combined software is correct</td>
-  <td>Turn on any subset of individual (call site) checks on at build time </td>
+  <td>Turn on any subset of individual (call site) checks on at build time</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -621,7 +664,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Ensure individual features are correct</td>
-  <td>Have a way to audit (named or semantic) subsets of checks for various deployments</td>
+  <td>Have a way to audit (named or semantic) subsets of checks for various
+deployments</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -633,7 +677,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Define “Code Under Test”</td>
-  <td>Selectively enable checking for a set of functions which could name either an individual function or an overload set</td>
+  <td>Selectively enable checking for a set of functions which could name either an
+individual function or an overload set</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -645,13 +690,15 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Define “Code Under Test”</td>
-  <td>Selectively enable checking for a set of types and all their transitively nested types and members</td>
+  <td>Selectively enable checking for a set of types and all their transitively
+nested types and members</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
   <td>Define “Code Under Test”</td>
-  <td>Selectively enable checking for a translation unit or module and all (non transitive) types and functions within</td>
+  <td>Selectively enable checking for a translation unit or module and all (non
+transitive) types and functions within</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -673,6 +720,20 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td></td></tr>
 
 <tr><td></td>
+  <td>C++ Library Developer</td>
+  <td>Use templates</td>
+  <td>Be able to ship header only library</td>
+  <td></td></tr>
+
+<tr><td><a href="#cpplib.insulation">cpplib.insulation</a></td>
+  <td>C++ Library Developer</td>
+  <td>Control the tradeoff between need for client recompilation and contract condition visibility</td>
+  <td>Insulate contract conditions with the function definition, or insulate only the
+definition while putting contract conditions on a redeclaration - visible to
+static analysis tools in all TUs.</td>
+  <td></td></tr>
+
+<tr><td></td>
   <td>Library Provider</td>
   <td>Simplify maintenance</td>
   <td>Not require extra build steps to be documented</td>
@@ -681,7 +742,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Library Provider</td>
   <td>Simplify maintenance</td>
-  <td>Not have users complain about my product due to modifications of annotations resulting from their build configuration</td>
+  <td>Not have users complain about my product due to modifications of annotations
+resulting from their build configuration</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -699,19 +761,26 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Technical Architect</td>
   <td>Maintain quality of code base</td>
-  <td>Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C’s assert macro)</td>
+  <td>Express assertions in a way that does not rely on C macros (i.e., there is no
+valid technical reason for a programmer not to use the new way, including
+space, time, tooling, and usability/complexity reasons, compared to C’s assert
+macro)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Technical Architect</td>
   <td>Have a consistent and holistic contracts facility</td>
-  <td>Specify preconditions/postconditions/assertions/invariants that express my expectations about the expected valid state of my program in the form of compilable boolean expressions, that can be checked statically or dynamically (as opposed to disjointed state where these features are factored into bits)</td>
+  <td>Specify preconditions/postconditions/assertions/invariants that express my
+expectations about the expected valid state of my program in the form of
+compilable boolean expressions, that can be checked statically or dynamically
+(as opposed to disjointed state where these features are factored into bits)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Hardware Architect</td>
   <td>Improve system-level performance</td>
-  <td>Be able to design new hardware + optimizations, carefully dovetailed into one another, that depend on statically-unprovable facts being annotated in the code</td>
+  <td>Be able to design new hardware + optimizations, carefully dovetailed into one
+another, that depend on statically-unprovable facts being annotated in the code</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -723,7 +792,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Senior Developer</td>
   <td>Enforce code quality</td>
-  <td>Discourage reliance on observable out-of-contract behavior by causing check failure to hard stop program or build</td>
+  <td>Discourage reliance on observable out-of-contract behavior by causing check
+failure to hard stop program or build</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -741,7 +811,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Junior Developer</td>
   <td>Understand the API</td>
-  <td>A uniform, fluent description of expected input values, expected output values, side effects, and all logical pre and post conditions</td>
+  <td>A uniform, fluent description of expected input values, expected output values,
+side effects, and all logical pre and post conditions</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -777,7 +848,7 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Junior Developer</td>
   <td>Understand the facility</td>
-  <td>Be able to build a program with contracts after reasonably short tutorial </td>
+  <td>Be able to build a program with contracts after reasonably short tutorial</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -795,7 +866,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Agile Developer</td>
   <td>Iterate quickly</td>
-  <td>Be able to write and modify contracts quickly without heavy boiler plate or up front cost</td>
+  <td>Be able to write and modify contracts quickly without heavy boiler plate or up
+front cost</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -807,25 +879,31 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Business Developer</td>
   <td>Maintain confidentiality</td>
-  <td>Not expose diagnostic information (eg. source location, expressions, etc.) in the software I deliver to clients, even when I choose to have contracts enforced in the software I deliver</td>
+  <td>Not expose diagnostic information (source location, expressions, etc.) in the
+software I deliver to clients, even when I choose to have contracts enforced in
+the software I deliver</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Performance Sensitive Developer</td>
   <td>Enable better performance</td>
-  <td>Annotate my code with assumptions, likelihoods, or reachability information that a tool might not be able to deduce, but that I would be confident of</td>
+  <td>Annotate my code with assumptions, likelihoods, or reachability information
+that a tool might not be able to deduce, but that I would be confident of</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Performance Sensitive Developer</td>
   <td>Enable better performance</td>
-  <td>Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can’t figure out</td>
+  <td>Be able to give statically-unprovable facts to current and novel optimizers in
+terms of semantics my program does not depend-on but optimizers can’t figure
+out</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Performance Sensitive Developer</td>
   <td>Enable better performance</td>
-  <td>Accept responsibility for a malformed program that might result from eventually false information given by my annotations</td>
+  <td>Accept responsibility for a malformed program that might result from eventually
+false information given by my annotations</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -855,13 +933,15 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Quality Sensitive Developer</td>
   <td>Manage multiple tools</td>
-  <td>Signify subset of individual annotations to be consumed by a specific kind of verification tool</td>
+  <td>Signify subset of individual annotations to be consumed by a specific kind of
+verification tool</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Quality Sensitive Developer</td>
   <td>Manage multiple tools</td>
-  <td>Signify subset of individual annotations to be consumed by a specific instance of verification tool</td>
+  <td>Signify subset of individual annotations to be consumed by a specific instance
+of verification tool</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -879,7 +959,9 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Quality Sensitive Developer</td>
   <td>Manage multiple tools</td>
-  <td>Integrate the results of that static checker into how my program behaves in different ways: assume proven predicates, make unprovable predicates ill-formed, etc.</td>
+  <td>Integrate the results of that static checker into how my program behaves in
+different ways: assume proven predicates, make unprovable predicates ill-
+formed, etc.</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -927,7 +1009,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Critical Software Developer</td>
   <td>Not have a faulty program lead to catastrophic failure</td>
-  <td>Not have contract build or run modes possibly be able to change or disable related error handling in any way</td>
+  <td>Not have contract build or run modes possibly be able to change or disable
+related error handling in any way</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -945,25 +1028,32 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Critical Software Developer</td>
   <td>Have redundant layering</td>
-  <td>Be able to continue to run checks in a production environment (even after formal testing is complete)</td>
+  <td>Be able to continue to run checks in a production environment (even after
+formal testing is complete)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Critical Software Developer</td>
   <td>Maximize coverage</td>
-  <td>Be able to run checks in a production environment that are considered “cheap” compared to the expected cost of entering an invalid state</td>
+  <td>Be able to run checks in a production environment that are considered “cheap”
+compared to the expected cost of entering an invalid state</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Critical Software Developer</td>
   <td>Avoid unexpected or undefined behavior</td>
-  <td>Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler)</td>
+  <td>Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if
+they were facts injected into the program (otherwise, if such an assumption
+ever failed, I would be running a different program that is not equivalent to
+the one I wrote; assumptions can expand the set of possible executions by
+injecting facts not otherwise knowable to the compiler)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Security Sensitive Developer</td>
   <td>Limit attack vectors</td>
-  <td>Be unable to be insert code paths (eg. violation handlers) at run time (ie. build time only)</td>
+  <td>Be unable to insert code paths (eg. violation handlers) at run time (eg. build
+time only)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -987,13 +1077,14 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>User of Analysis Tools</td>
   <td>Allow symbolic analysis</td>
-  <td>Have symbolic proofs for soundness and consistency performed before compile time</td>
+  <td>Have symbolic proofs for soundness and consistency performed before compile
+time</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>User of Analysis Tools</td>
   <td>Allow code analysis</td>
-  <td>Have code source, AST, or instruction inspection during compile time </td>
+  <td>Have code source, AST, or instruction inspection during compile time</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1005,19 +1096,22 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>User of Analysis Tools</td>
   <td>Improve the quality of analysis</td>
-  <td>Be able to hint to the analyzer information it may be unable to deduce from source code alone (eg. <i>5 / opaque(); [[ opaque() != 0]]</i>)</td>
+  <td>Be able to hint to the analyzer information it may be unable to deduce from
+source code alone (eg. <i>5 / opaque(); [[ opaque() != 0]]</i>)</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Provider of Analysis Tools</td>
   <td>Extend my existing engine</td>
-  <td>Be able to map pre-existing contract features in tools to a standardized language syntax</td>
+  <td>Be able to map pre-existing contract features in tools to a standardized
+language syntax</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Teacher</td>
   <td>Demonstrate best practice</td>
-  <td>Be able to express defensive programming, programming by contract, and test driven development to introductory students</td>
+  <td>Be able to express defensive programming, programming by contract, and test
+driven development to introductory students</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1029,7 +1123,8 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Teacher</td>
   <td>Demonstrate best practice</td>
-  <td>Demonstrate mock lifecycle by switching simple compiler flags to control which checks are enabled</td>
+  <td>Demonstrate mock lifecycle by switching simple compiler flags to control which
+checks are enabled</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1047,19 +1142,22 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Teacher</td>
   <td>Build layers of understanding</td>
-  <td>Have simple explanation of assertions and their use to support simple programming tasks, including debugging erroneous programs.</td>
+  <td>Have simple explanation of assertions and their use to support simple
+programming tasks, including debugging erroneous programs.</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Teacher</td>
   <td>Build layers of understanding</td>
-  <td>Support the ability for advanced uses of contracts to be distributed across many different courses in a C++-focused computer science curriculum.</td>
+  <td>Support the ability for advanced uses of contracts to be distributed across
+many different courses in a C++-focused computer science curriculum.</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Compiler Developer</td>
   <td>Deliver best experience to my customers</td>
-  <td>Maximize implementation freedom by limiting what is strictly required by the standard</td>
+  <td>Maximize implementation freedom by limiting what is strictly required by the
+standard</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1071,7 +1169,9 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Large Codebase Developer</td>
   <td>Debug complex issues</td>
-  <td>Have composible and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions</td>
+  <td>Have composible and fine grained control over which checks are run, without
+requiring source code changes. Specifically the checks for only one function or
+some grouping of functions</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1089,13 +1189,15 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Modernize my code base</td>
-  <td>Have my existing macro-based facilities interoperate smoothly with standardized contracts so I can do the migration gradually</td>
+  <td>Have my existing macro-based facilities interoperate smoothly with standardized
+contracts so I can do the migration gradually</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Introduce new contracts into an existing system</td>
-  <td>Have failed individual checks from existing code optionally warn instead of hard stop</td>
+  <td>Have failed individual checks from existing code optionally warn instead of
+hard stop</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1107,19 +1209,22 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Introduce new parameters or invariants into a contracts based system</td>
-  <td>Be able to include distinct clauses for each parameter or invariant with their own individual failure or build controls</td>
+  <td>Be able to include distinct clauses for each parameter or invariant with their
+own individual failure or build controls</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Introduce new elements into a contracts based system</td>
-  <td>Have failed checks caused by a change in environment optionally warn instead of hard stop</td>
+  <td>Have failed checks caused by a change in environment optionally warn instead of
+hard stop</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Introduce new elements into a contracts based system</td>
-  <td>Have failed checks caused by a change in compiler optionally warn instead of hard stop</td>
+  <td>Have failed checks caused by a change in compiler optionally warn instead of
+hard stop</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1143,13 +1248,15 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Allow simulation or post-mortem testing of known failure modes</td>
-  <td>Optionally allow checking of a subset of individual annotations to fail and access its recovery path</td>
+  <td>Optionally allow checking of a subset of individual annotations to fail and
+access its recovery path</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Large Codebase Owner</td>
   <td>Allow simulation or post-mortem testing of known failure modes</td>
-  <td>Optionally allow checking of a subset of individual annotations to fail and continue failing</td>
+  <td>Optionally allow checking of a subset of individual annotations to fail and
+continue failing</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1173,13 +1280,15 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Small Machine Developer</td>
   <td>Minimize executable footprint</td>
-  <td>Remove all checking and diagnostic (eg. source location) overhead entirely from the final binary</td>
+  <td>Remove all checking and diagnostic (eg. source location) overhead entirely from
+the final binary</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Small Machine Developer</td>
   <td>Minimize executable footprint</td>
-  <td>Remove all logging and diagnostic (but not checking) overhead from the final binary</td>
+  <td>Remove all logging and diagnostic (but not checking) overhead from the final
+binary</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -1191,26 +1300,246 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <tr><td></td>
   <td>Language Developer</td>
   <td>Interoperate with Contracts</td>
-  <td>Have a clear way to understand how contracts will interact with the standard library</td>
+  <td>Have a clear way to understand how contracts will interact with the standard
+library</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Language Developer</td>
   <td>Extend contracts beyond pre/post conditions on functions</td>
-  <td>Be able to use contract-like syntax on past or present runtime checkable language features such as switches, pattern matching, etc. or what might happen on signed integer overflow, etc. This might allow configuration of trapping, logging, or assuming in other areas of language UB.</td>
+  <td>Be able to use contract-like syntax on past or present runtime checkable
+language features such as switches, pattern matching, etc. or what might happen
+on signed integer overflow, etc. This might allow configuration of trapping,
+logging, or assuming in other areas of language UB.</td>
   <td></td></tr>
+
 </table>
 
 <h2>Use cases &mdash; descriptions</h2>
 
 <table>
-<tr><td><a name="dev.decl.knowl">dev.decl.knowl</a></td>
-  <td>This general use case expresses the desire to place information about
-    a program's expected execution state in many different places throughout
-    the program - possibly including "upon function entry", "whenever this
-    line of code is executed", "at all times when a class of this type is not
-    actively executing a member function", or others.
-	</td></tr>
+
+<tr><td><a name="dev.reason.knowl">dev.reason.knowl</a></td>
+    <td>This general use case expresses the desire to place information about
+a program's expected execution state in many different places throughout
+the program - possibly including "upon function entry", "whenever this
+line of code is executed", "at all times when a class of this type is not
+actively executing a member function", or others.</td></tr>
+
+<tr><td><a name="dev.reason.confidence">dev.reason.confidence</a></td>
+    <td>This high level use case expresses the need to attach information to contract
+conditions that is beyond the statement of the condition itself, and instead
+has user-provided metadata about both the confidence in the condition and the
+desired behavior of the program in relation to that condition.</td></tr>
+
+<tr><td><a name="dev.reason.importance">dev.reason.importance</a></td>
+    <td>This high level use case expresses the desire to have metadatda on contract
+conditions associated with what downsides violations might have, perhaps
+indicating that while a certain condition is expected to be met, the library
+does guarantee that the downsides will not be catastrophic.</td></tr>
+
+<tr><td><a name="dev.reason.cost">dev.reason.cost</a></td>
+    <td>This use case expresses the desire to have metadata about contract conditions
+that capture at least 3 (if not more) granularities of "cost" to be used as
+input in some way to other decisions about what the contracts might do or how
+they might be interpreted.</td></tr>
+
+<tr><td><a name="dev.reason.behavior">dev.reason.behavior</a></td>
+    <td>The desire to have the expected behavior explicitly defined by the standard
+in order to help users reason about what a program will do/has done when a
+contract is violated.  Note that having this in the standard allows for
+leveraging expectations of behavior across all compliant platforms.</td></tr>
+
+<tr><td><a name="dev.reason.sideeffects">dev.reason.sideeffects</a></td>
+    <td>There is a tension between allowing side effects in contract conditions and
+disallowing them completely.  In general, writing code with absolutely no side
+effects is very hard, and there are pitfalls if the language is actively
+hostile to accidental side effects.  On the other hand, conditions with side
+effects are also not elidable by the compiler, since the act of checking them
+is observable.
+
+* N4810 contracts made any side effect undefined behavior.
+* P1670 suggested allowing side effects but also, when contracts are runtime
+checked, allowing elision of the predicate (along with its side effect) if the
+predicate result can be determined.</td></tr>
+
+<tr><td><a name="dev.reason.behaviorcontrol">dev.reason.behaviorcontrol</a></td>
+    <td>This encompasses some specific need to control, either when writing code or
+when building code, what behavior (if any) is associated with a contract
+condition.</td></tr>
+
+<tr><td><a name="dev.readable.keywords">dev.readable.keywords</a></td>
+    <td>Any keywords chosen for use within the feature should be easily distinguishable
+(to avoid name churn such as expects/ensures to pre/post) and be very
+clearly matched to what they will do within the language (unlike, for example,
+axiom).</td></tr>
+
+<tr><td><a name="dev.readable.priority">dev.readable.priority</a></td>
+    <td>This use case indicates a preference to have any metadata about a contract be
+visually very minimal or come after the predicate itself.</td></tr>
+
+<tr><td><a name="cppdev.syntax.reuse">cppdev.syntax.reuse</a></td>
+    <td>Rather than requiring special functions or types (or some completely new
+thing), contract should be able to leverage any program logic related to their
+statement that is already written/writable in C++.</td></tr>
+
+<tr><td><a name="cppdev.location">cppdev.location</a></td>
+    <td>This as a preference to needing to specify contracts in a completely separate
+metadata file of some sort.</td></tr>
+
+<tr><td><a name="cppdev.syntax.macros">cppdev.syntax.macros</a></td>
+    <td>The desire is to not require use of macros in order to satisfy the majority
+of use cases.</td></tr>
+
+<tr><td><a name="cppdev.modules">cppdev.modules</a></td>
+    <td>All contract control features and behaviors should be interoperable in a
+reasonable way with any partially or fully modularized C++ program.</td></tr>
+
+<tr><td><a name="cppdev.coroutines">cppdev.coroutines</a></td>
+    <td>Contracts on coroutines open up a number of new situations to consider because
+there might be requirements on what the state of the program is whenever a
+coroutine resumes execution, and there might be promises a coroutine</td></tr>
+
+<tr><td><a name="cppdev.existing.std">cppdev.existing.std</a></td>
+    <td>In some shape or form, anything documented in the contracts of the standard
+library's functions (preconditions, postconditions, other behaviors) is a
+candidate for something that should be codifiable as a contract condition.</td></tr>
+
+<tr><td><a name="cppdev.debugger">cppdev.debugger</a></td>
+    <td>When handling a contract violation, the ability to trigger a debugger when
+possible is currently not standardized but should be available.</td></tr>
+
+<tr><td><a name="cppdev.build.legacy">cppdev.build.legacy</a></td>
+    <td>Note that "debug" and "release" are not standardized things, but nothing
+specified in the standard should preclude those from having some impact on
+what behaviors contracts take on in those two modes.</td></tr>
+
+<tr><td><a name="cdev.contracts">cdev.contracts</a></td>
+    <td>Important considerations for C are related to any contracts that can go on a
+normal C function.  C does have attributes, but it also explicitly calls out
+that a conforming implementation can ignore all attributes, as opposed to C++
+which has made that a commonly held assumption but has not actually put wording
+in the standard to that effect.</td></tr>
+
+<tr><td><a name="cdev.identifiers">cdev.identifiers</a></td>
+    <td>Adding new identifiers with meaing in C is generally not acceptable for
+standardization, so compatible contracts would either need to use no contracts
+or support alternate reserved words for use with contracts.</td></tr>
+
+<tr><td><a name="cdev.violationhandler">cdev.violationhandler</a></td>
+    <td>Importantly, satisfying this requirement would mean making the the argument
+to a violation handler meaningful in both C and C++, or requiring platform
+vendors to shim between the two (in the case of a C violation handler receiving
+a violation from C++ code).</td></tr>
+
+<tr><td><a name="cdev.ignorable">cdev.ignorable</a></td>
+    <td>Assuming contracts continue to be rendered as attributes, C standardization
+would require they be semantically optional.
+
+Note that, just as with C++, the ':' in the preivous contract syntax does not
+match the grammar for attributes in either language, so by a strict reading of
+the standards there is no obligation to be ignorable.  ('[[a:b]]' is not a
+valid attribute and shoudl be diagnosed as invalid on any current C or C++
+compiler).   Many have expressed the view that this opinion is pedantic and
+that the spirit of the law is that anything between [[]]s should be ignorable.</td></tr>
+
+<tr><td><a name="api.establish.validate_invariants">api.establish.validate_invariants</a></td>
+    <td>Class invariants have historically been considered of general use, but the
+performance impact of checking them can be surprisingly huge.  Previously
+these have bene left out of proposals for C++ to be added in at a later
+date.</td></tr>
+
+<tr><td><a name="api.establish.values">api.establish.values</a></td>
+    <td>The more detail available to users about how a contract condition has been
+violated the more useful they become.  This means each specific condition
+is benefitted by being separate (eg. 'x != 0' and 'y != 0' as distinct
+conditions instead of requiring that users use 'x != 0 && y != 0').
+
+In addition to that, anything that might be able to capture those values
+and expose them to violation handlers for logging would again help benefit
+problem diagnosis.</td></tr>
+
+<tr><td><a name="api.express.values">api.express.values</a></td>
+    <td>Predicates could be limitted to being "completely pure" and referencing no
+global state, but in general reference to both inputs and other identifiers
+beyond the scope of a single function call become needed to fully specify
+contracts.</td></tr>
+
+<tr><td><a name="api.establish.changedvalues">api.establish.changedvalues</a></td>
+    <td>Postconditions often need to state things about how values of output parameters
+have changed, or how the values of other global state might have changed
+as a result of a function call.  The ability to store copies of state from
+before the function call and reference that in a postcondition predicate will
+enable a wieder variety of conditions to be formulatable.
+
+Ada has this funcitonality builtin by providing ways to reference expicitly
+the original value of a function parameter. C++ makes this more complicated
+with the need to consider the handling of move-only or generally non-copyable
+types.  More importantly, such copying should absolutely not happen if a
+contract is not being evaluated at runtime.</td></tr>
+
+<tr><td><a name="api.establish.changedmembers">api.establish.changedmembers</a></td>
+    <td>Capturing the pre-function state of member variables might also be needed
+to state the contracts on many member functions.</td></tr>
+
+<tr><td><a name="api.establish.changedstate">api.establish.changedstate</a></td>
+    <td>Capturing arbitrary other state for use in a postcondition might prove useful.
+The example given is potentially a way to specify the postcondition on a
+typical 'sleep' function.</td></tr>
+
+<tr><td><a name="api.extend.exceptionsafety">api.extend.exceptionsafety</a></td>
+    <td>Exception safety guarantees are often part of the english language contract of
+a function, and being able to state that (in a way that tools might be able
+to then pick up on and verify) would be useful.</td></tr>
+
+<tr><td><a name="api.extend.threadsafety">api.extend.threadsafety</a></td>
+    <td>The proper use of a type in a multithreaded environment can benefit greatly
+from being documented in a way that can then be checked and verified.</td></tr>
+
+<tr><td><a name="api.extend.atomicity">api.extend.atomicity</a></td>
+    <td>Establishing more details about what might happen on failure, such as what
+external state might be changed in a remote database, is another useful
+condition to state.</td></tr>
+
+<tr><td><a name="api.express.runnability">api.express.runnability</a></td>
+    <td>Numerous predicates that might be useful to state also might change the
+state of a program in a pardoxical way if checked.  The common example
+(originally put forward in P0380) is validating available items on an input
+iterator.  Other important examples include checks that might require accessing
+special hardware, or doing extensive computations that would invalidate the
+results just by taking the time to do them.
+
+These predicates are still useful for those reading the code, still might
+benefit from being validated against postconditions of other functions, and
+might provide some identifiable code improvements when analyzed by hte compiler
+without actually executing them at runtime.</td></tr>
+
+<tr><td><a name="api.express.undefined">api.express.undefined</a></td>
+    <td>Often during developement it helps to write contracts first, and that might
+even predate having enough of an implementation to fully define the conditions.
+Having them in code ensures that the placeholder api to check them is
+maintained.  Some functions may never be implementable due to time constraints,
+while others will eventually be filled in as time allows.</td></tr>
+
+<tr><td><a name="api.express.uncheckable">api.express.uncheckable</a></td>
+    <td>Some predicates might even have no meaning within the language itself, but
+benefite other tools by being placed into the same contract framework as other
+predicates, with meaning to those external tools.</td></tr>
+
+<tr><td><a name="api.express.unimplementable">api.express.unimplementable</a></td>
+    <td>Many external static analysis tools, and even compilers, can check that
+some state is being handled properly which cannot be properly validated within
+the language itself.  Consider functions such as "is_deletable" or
+"is_reachable".</td></tr>
+
+<tr><td><a name="api.establish.responsibility">api.establish.responsibility</a></td>
+    <td>One common realization with having checked contracts in the language is that 
+they will then identify bugs that exist in programs.  Identifying the source
+of those bugs swiftly is important, and for any contract that is dependant on
+a function being called properly that responsibility does not usually lie with
+the line of code where the contract is written, but with the place where
+the function has been called.</td></tr>
+
 <tr><td><a name="api.resp.preassert">api.resp.preassert</a></td>
     <td>Some function preconditions can be expressed as c++ expressions, but are
 runtime-expensive.  However, if expressed inside function body as assertions
@@ -1219,10 +1548,139 @@ function has everything that is required is cheap. If I use an assertion like
 this,  I want to annotate this assertion as being "precondition-like". The
 semantics would be that if it fails,  it is reported as "caller's bug" rather
 than callee's bug, and if the build is configured  to runtime-check only
-preconditions, such assertion should also be runitme-checked.</td></tr>
-</table>
+preconditions, such assertion should also be runitme-checked.
 
-Rest is TBD...
+As an example, consider a binary search that wishes to check that the input
+list is sorted.  There is an expensive check (O(n)) that can be done to verify
+that the whole list is sorted on each call, but this would negate the
+performance benefits of doing a binary search to begin with.  Another option
+is to check just that the elements adjacent to those that are visitted are in
+properly sorted order.  This will provide some chance of identify unsorted
+inputs without making performance unusable, but is also most cleanly done
+during the execution of the search algorithm.  Unlike a normal in-body
+assertion, a violation identified by this kind of check should be reported to
+the caller, as it is a failure on the callinig code's part to provide a
+properly sorted input list.</td></tr>
+
+<tr><td><a name="api.contract.interface">api.contract.interface</a></td>
+    <td>Putting contracts on the first function declaration makes them easily visible
+to anyone looking at a header file for understanding an API.</td></tr>
+
+<tr><td><a name="api.contract.private">api.contract.private</a></td>
+    <td>Often, an interface might be very narrow - consider the interface on an
+iterator, which generally just has a few operators and no other functions -
+yet there  might be ways to check parts of a narrow contract that depend on
+internal state.  Exposing this state so that it can be checked publicly would
+require wideninig the API interface, which is counter to the desire to keep
+the use of a type as simple as possible.
+
+On a similar note, sometimes the internal state only approximates the actual
+contract, and while better than no checking there is a desire to not expose
+that data publicly so that there is no assumption that the data represents
+the complete set of requirements on calling code.</td></tr>
+
+<tr><td><a name="api.contract.redeclaration">api.contract.redeclaration</a></td>
+    <td>Many development methodologies revolve around making readable, well-documented
+header files to provide a way to understand API usage. Some contracts might
+be simple and readable, but others might involve complex conditions that
+distract from readability, and match very simple to read and understand prose
+contracts in the documentation.
+
+The benefits (checkability, analysis, etc.) of having the encoded contracts
+should not come at the cost of making the primary visible public interface
+(the header file) more unreadable.</td></tr>
+
+<tr><td><a name="api.contract.errorhandling">api.contract.errorhandling</a></td>
+    <td>Historically, rather than providing functions with narrow contracts, software
+might have been written to report misuse through exceptions.  Contracts should
+provide a better alternative than giving all functions a fully wide contract.</td></tr>
+
+<tr><td><a name="cppapi.class.variability">cppapi.class.variability</a></td>
+    <td>P4810 did not allow any varaition in contract conditions through overrids of
+a virtual function, though this could be roughly accomplished with assertions
+in function bodies instead.
+
+In general, the pre and postconditions of the interface you call through should
+be checked to be sure you're meeting the requirements you want to meet.
+Similalrly, the concrete type's conditions should be checked to be sure it is
+behaving properly.  Doing both checks if they are different might be an
+acceptable solution to allow flexibility without any increase in risk, at the
+possible cost of some perormance in checked builds.</td></tr>
+
+<tr><td><a name="api.class.publicinterface">api.class.publicinterface</a></td>
+    <td>Requirements on an interface to a function should be imposible when entering
+into a type's functions, but there might be a desire to distinguish that
+so that checking is done differently when a type calls its own functions.</td></tr>
+
+<tr><td><a name="api.class.publicinvariants">api.class.publicinvariants</a></td>
+    <td>General class invariants should be checked for vaidity before and after any
+call to a public member function of a class.  Calls to friend functions need
+to be considered as well, as they might benefit from invalidating/validating
+invariants.  Similarly, invariants might be checked for all objects of the
+type that are being touched whenever a public function is starting or
+finishing.</td></tr>
+
+<tr><td><a name="api.class.publiccalls">api.class.publiccalls</a></td>
+    <td>Calling from a member function to a function of another type (or a possible
+subtype) might require verifying that the object's invariants hold prior to
+calling the function and that they still hold when the other function returns.</td></tr>
+
+<tr><td><a name="api.class.baseinterface">api.class.baseinterface</a></td>
+    <td>Similar to the public API of a class, the protected API is exposed to
+subclasses and invariants of that API should be checked whenever the boundary
+might be crossed.</td></tr>
+
+<tr><td><a name="cppapi.contracts.async">cppapi.contracts.async</a></td>
+    <td>In general, any callback based solution exposes functions that will be called
+that might benefit from having information about their contracts also
+transmitted.
+
+This might be implemented by incorporating contracts deeply into the type
+system, or in a more limitted way by just facilitating library types like
+a function with contracts.</td></tr>
+
+<tr><td><a name="cppapi.contracts.exception">cppapi.contracts.exception</a></td>
+    <td>Generally, postconditions have been assumed to hold when a function returns
+normally.  Expressing conditions that will hold if a function returns through
+an exception, or both, could also be useful.</td></tr>
+
+<tr><td><a name="cppapi.variadic">cppapi.variadic</a></td>
+    <td>Fold expressions using && might be useful for a predicate, but they then lose
+any information about which particular argument might have violated the
+condition.  Enabling more useful information to narrow that down would be
+helpful.</td></tr>
+
+<tr><td><a name="api.coroutines">api.coroutines</a></td>
+    <td>Like regular functions, pre and postconditions on coroutines should have
+similar semantics.</td></tr>
+
+<tr><td><a name="api.coroutines.invariants">api.coroutines.invariants</a></td>
+    <td>Similar to a class, the state of a coroutine, or what it expects of the state
+of the world as it suspends and resumes, might be stated as expected invariants
+that could be checked whenever entering and exiting.</td></tr>
+
+<tr><td><a name="int.debug.callsites">int.debug.callsites</a></td>
+    <td>Often it is helpful to limit what gets enabled to functions called from
+some subset of a program, and the rest of the program might not perform
+acceptably enough to test if hose same functions are always checked.</td></tr>
+
+<tr><td><a name="cpplib.insulation">cpplib.insulation</a></td>
+    <td>Contract conditions on only the first declaration (as proposed by P4810) mean
+that the condition clutters the readable interface and changes in a contract
+condition force client recompilation.  Contract conditions not in the header
+file are not going to be visible to tools that are attempting to limit what
+they consume to a single translation unit.  Combined, these result in a desire
+to sometimes put the contracts with the implementating definition (in a .cpp
+file) and sometimes put them in a redeclaration in a header file (where one
+might also put inilne function definitions).
+
+For free functions this would just require relaxing the requirements on where
+contracts are.  For member functions, allowing member function redeclaration
+would be needed to put the contracts in a less obtrusive place that is still
+visible outside of the defining TU.  See P1320 for more discussion of this.</td></tr>
+
+</table>
 
 </body>
 </html>
+
