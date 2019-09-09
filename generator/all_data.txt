@@ -351,16 +351,6 @@ vendors to shim between the two (in the case of a C violation handler receiving
 a violation from C++ code).
 --
 
---cdev.cppinterop
-C Developer
-Write contracts on my functions
-Expose my contracts to C++ developers through 'extern "C"' declarations of my
-functions
-==categories
-syntax
-==description
---
-
 --cdev.ignorable
 C Developer
 Write contracts on my functions
@@ -385,6 +375,16 @@ Maintain mixed code base
 Not lose contracts when crossing languages
 ==categories
 general
+==description
+--
+
+--cdev.cppinterop
+Mixed C/C++ Developer
+Write contracts on my functions
+Expose my contracts to C++ developers through 'extern "C"' declarations of my
+functions
+==categories
+syntax
 ==description
 --
 
@@ -513,7 +513,7 @@ to state the contracts on many member functions.
 API Developer
 Establish a contract
 Make reference to the before and after values of global state (eg.,
-<i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions
+<i>global &gt;= old(global) + 1</i>) in post-conditions
 ==categories
 contents
 ==description
