@@ -513,8 +513,8 @@ to state the contracts on many member functions.
 --api.establish.changedstate
 API Developer
 Establish a contract
-Make reference to the before and after values of global state (eg., <i>now()
-&gt;= old(now()) + sleep_time</i>) in post-conditions
+Make reference to the before and after values of global state (eg., <i>global_counter
+&gt;= old(global_counter) + 1</i>) in post-conditions
 ==categories
 contents
 ==description
