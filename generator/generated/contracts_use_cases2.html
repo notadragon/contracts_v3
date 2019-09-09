@@ -284,8 +284,8 @@ by pointer or reference) in post-conditions</td>
 <tr><td><a href="#api.establish.changedstate">api.establish.changedstate</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of global state (eg., <i>now()
-&gt;= old(now()) + sleep_time</i>) in post-conditions</td>
+  <td>Make reference to the before and after values of global state (eg.,
+<i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions</td>
   </tr>
 
 <tr><td><a href="#api.extend.exceptionsafety">api.extend.exceptionsafety</a></td>
@@ -1488,7 +1488,8 @@ reasonable way with any partially or fully modularized C++ program.</p>
 <i>I want to</i> Be interoperable with coroutines <p/>
 <p>Contracts on coroutines open up a number of new situations to consider because
 there might be requirements on what the state of the program is whenever a
-coroutine resumes execution, and there might be promises a coroutine</p>
+coroutine resumes execution, and there might be promises a coroutine makes
+prior to each time it suspends.</p>
 <br/>
 <h1><a name="cppdev.concepts">cppdev.concepts</a></h1>
 <i>As a</i> C++ Developer <br/>
@@ -1661,11 +1662,13 @@ to state the contracts on many member functions.</p>
 <h1><a name="api.establish.changedstate">api.establish.changedstate</a></h1>
 <i>As a</i> API Developer <br/>
 <i>In order to</i> Establish a contract <br/>
-<i>I want to</i> Make reference to the before and after values of global state (eg., <i>now()
-&gt;= old(now()) + sleep_time</i>) in post-conditions <p/>
-<p>Capturing arbitrary other state for use in a postcondition might prove useful.
-The example given is potentially a way to specify the postcondition on a
-typical 'sleep' function.</p>
+<i>I want to</i> Make reference to the before and after values of global state (eg.,
+<i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions <p/>
+<p>Capturing arbitrary global state for use in a postcondition might prove useful.</p>
+<p>This extends to the state of arbitrary other expressions and how that might change
+due to the invocatino of a function.  Consider this example of what might
+be a postcondition of a typical <code>sleep</code> function:</p>
+<p><code>old(now()) &lt;= now() + sleep_time</code></p>
 <br/>
 <h1><a name="api.extend.exceptionsafety">api.extend.exceptionsafety</a></h1>
 <i>As a</i> API Developer <br/>

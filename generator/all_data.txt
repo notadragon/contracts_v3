@@ -38,8 +38,8 @@ actively executing a member function", or others.
 Developer
 Reason explicitly
 Express a spectrum of confidence in my annotations, from “unsure” and asking
-for validation, to “sure” and asking for some effect to be applied (eg. “maybe”,
-“definitely”, “assume” 'something')
+for validation, to “sure” and asking for some effect to be applied (eg.
+“maybe”, “definitely”, “assume” 'something')
 ==categories
 general metadata
 ==description
@@ -197,7 +197,6 @@ Have annotations use familiar syntax
 ==categories
 syntax
 ==description
-
 --
 
 --cppdev.syntax.cpp
@@ -263,7 +262,8 @@ location
 ==description
 Contracts on coroutines open up a number of new situations to consider because
 there might be requirements on what the state of the program is whenever a
-coroutine resumes execution, and there might be promises a coroutine 
+coroutine resumes execution, and there might be promises a coroutine makes
+prior to each time it suspends.
 --
 
 --cppdev.concepts
@@ -433,7 +433,7 @@ conditions instead of requiring that users use 'x != 0 && y != 0').
 
 In addition to that, anything that might be able to capture those values
 and expose them to violation handlers for logging would again help benefit
-problem diagnosis.   
+problem diagnosis.
 --
 
 --api.establish.preconditions
@@ -443,7 +443,6 @@ Have contracts specify their pre-conditions as logical predicates
 ==categories
 location contents
 ==description
-
 --
 
 --api.establish.invariants
@@ -480,8 +479,8 @@ contracts.
 --api.establish.changedvalues
 API Developer
 Establish a contract
-Make reference to the before and after values of in-out variables (ie.
-passed by pointer or reference) in post-conditions
+Make reference to the before and after values of in-out variables (ie. passed
+by pointer or reference) in post-conditions
 ==categories
 contents
 ==description
@@ -513,14 +512,20 @@ to state the contracts on many member functions.
 --api.establish.changedstate
 API Developer
 Establish a contract
-Make reference to the before and after values of global state (eg., <i>global_counter
-&gt;= old(global_counter) + 1</i>) in post-conditions
+Make reference to the before and after values of global state (eg.,
+<i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions
 ==categories
 contents
 ==description
-Capturing arbitrary other state for use in a postcondition might prove useful.
-The example given is potentially a way to specify the postcondition on a
-typical 'sleep' function.
+Capturing arbitrary global state for use in a postcondition might prove useful.
+
+This extends to the state of arbitrary other expressions and how that might change
+due to the invocatino of a function.  Consider this example of what might
+be a postcondition of a typical `sleep` function:
+
+```
+old(now()) <= now() + sleep_time
+```
 --
 
 --api.extend.exceptionsafety
@@ -864,7 +869,7 @@ Express public class invariants
 Check invariants before and after calling functions that are not part of this
 type (including virtual calls)
 ==categories
-behavior 
+behavior
 ==description
 Calling from a member function to a function of another type (or a possible
 subtype) might require verifying that the object's invariants hold prior to
@@ -1047,7 +1052,6 @@ Use contract-enabled binary libraries
 ==categories
 control
 ==description
-
 --
 
 --int.build.binarycounts
@@ -1480,7 +1484,6 @@ Be able to build a program with contracts after reasonably short tutorial
 ==categories
 general
 ==description
-
 --
 
 --jdev.understand.keywords
@@ -1774,8 +1777,8 @@ control
 --sec.noattacks
 Security Sensitive Developer
 Limit attack vectors
-Be unable to insert code paths (eg. violation handlers) at run time (eg.
-build time only)
+Be unable to insert code paths (eg. violation handlers) at run time (eg. build
+time only)
 ==categories
 behavior violations
 ==description
@@ -2107,8 +2110,8 @@ control behavior
 --embedded.nochecking
 Small Machine Developer
 Minimize executable footprint
-Remove all checking and diagnostic (eg. source location) overhead entirely
-from the final binary
+Remove all checking and diagnostic (eg. source location) overhead entirely from
+the final binary
 ==categories
 control
 ==description
