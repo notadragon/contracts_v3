@@ -9,6 +9,15 @@
 #
 # End with
 #--
+#
+# CATEGORIES
+# general - The most abstract/conceptual features of contracts
+# metadata - needs for specifying information ABOUT a contract condition
+# control - needs related to controlling contract behavior
+# location - needs related to where contract conditions can go
+# syntax - needs related to general contract syntax
+# contents - needs related to what can go into a contract condition
+# violations - requirements for what happens on general contract violation
 
 --dev.reason.knowl
 Developer
@@ -17,12 +26,6 @@ Annotate my program anywhere in the code with my current understanding of its
 structure or execution
 ==categories
 general location
-==descriptionmd
-<p>This general use case expresses the desire to place information about
-a program's expected execution state in many different places throughout
-the program - possibly including "upon function entry", "whenever this
-line of code is executed", "at all times when a class of this type is not
-actively executing a member function", or others.</p>
 ==description
 This general use case expresses the desire to place information about
 a program's expected execution state in many different places throughout
@@ -39,11 +42,6 @@ for validation, to “sure” and asking for some effect to be applied (eg.
 “maybe”, “definitely”, “assume” 'something')
 ==categories
 general metadata
-==descriptionmd
-<p>This high level use case expresses the need to attach information to contract
-conditions that is beyond the statement of the condition itself, and instead
-has user-provided metadata about both the confidence in the condition and the
-desired behavior of the program in relation to that condition.</p>
 ==description
 This high level use case expresses the need to attach information to contract
 conditions that is beyond the statement of the condition itself, and instead
@@ -58,11 +56,6 @@ Express a spectrum of importance of my annotations, from "critical" (eg. bring
 the system down) to "minor" (eg. lead to a slower fallback)
 ==categories
 general metadata
-==descriptionmd
-<p>This high level use case expresses the desire to have metadatda on contract
-conditions associated with what downsides violations might have, perhaps
-indicating that while a certain condition is expected to be met, the library
-does guarantee that the downsides will not be catastrophic.</p>
 ==description
 This high level use case expresses the desire to have metadatda on contract
 conditions associated with what downsides violations might have, perhaps
@@ -77,11 +70,6 @@ Express a spectrum of expected cost at compile or runtime of my annotations,
 from "unrunnable" to "expensive" to "cheap"
 ==categories
 general metadata
-==descriptionmd
-<p>This use case expresses the desire to have metadata about contract conditions
-that capture at least 3 (if not more) granularities of "cost" to be used as
-input in some way to other decisions about what the contracts might do or how
-they might be interpreted.</p>
 ==description
 This use case expresses the desire to have metadata about contract conditions
 that capture at least 3 (if not more) granularities of "cost" to be used as
@@ -96,11 +84,6 @@ Have annotations affect the execution of my program in accordance with my
 expectations
 ==categories
 general behavior
-==descriptionmd
-<p>The desire to have the expected behavior explicitly defined by the standard
-in order to help users reason about what a program will do/has done when a
-contract is violated.  Note that having this in the standard allows for
-leveraging expectations of behavior across all compliant platforms.</p>
 ==description
 The desire to have the expected behavior explicitly defined by the standard
 in order to help users reason about what a program will do/has done when a
@@ -115,19 +98,6 @@ Ensure annotations do not substantially change the meaning of my program when
 enabled
 ==categories
 general behavior
-==descriptionmd
-<p>There is a tension between allowing side effects in contract conditions and
-disallowing them completely.  In general, writing code with absolutely no side
-effects is very hard, and there are pitfalls if the language is actively
-hostile to accidental side effects.  On the other hand, conditions with side
-effects are also not elidable by the compiler, since the act of checking them
-is observable.</p>
-<ul>
-<li>N4810 contracts made any side effect undefined behavior.</li>
-<li>P1670 suggested allowing side effects but also, when contracts are runtime
-checked, allowing elision of the predicate (along with its side effect) if the
-predicate result can be determined.</li>
-</ul>
 ==description
 There is a tension between allowing side effects in contract conditions and
 disallowing them completely.  In general, writing code with absolutely no side
@@ -149,10 +119,6 @@ Have the effect of annotations on executions be user controllable (ie. decide
 whether “cheap” checks or “critical” terminates)
 ==categories
 general control
-==descriptionmd
-<p>This encompasses some specific need to control, either when writing code or
-when building code, what behavior (if any) is associated with a contract
-condition.</p>
 ==description
 This encompasses some specific need to control, either when writing code or
 when building code, what behavior (if any) is associated with a contract
@@ -166,10 +132,7 @@ Be able to easily change my confidence, importance, or other properties of my
 annotations over time
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --dev.readable.syntax
@@ -178,10 +141,7 @@ Have readable annotations
 Have annotations with a succinct and elegant syntax
 ==categories
 general syntax
-==descriptionmd
-
 ==description
-
 --
 
 --dev.readable.keywords
@@ -191,11 +151,6 @@ Have annotation keywords or names with intuitive, clear, and unambiguous
 meanings
 ==categories
 syntax
-==descriptionmd
-<p>Any keywords chosen for use within the feature should be easily distinguishable
-(to avoid name churn such as expects/ensures to pre/post) and be very
-clearly matched to what they will do within the language (unlike, for example,
-axiom).</p>
 ==description
 Any keywords chosen for use within the feature should be easily distinguishable
 (to avoid name churn such as expects/ensures to pre/post) and be very
@@ -210,9 +165,6 @@ Have my contract specification to be visually primary, and secondary
 information (syntax, hints, roles, levels, etc.) to not be distracting
 ==categories
 syntax metadata
-==descriptionmd
-<p>This use case indicates a preference to have any metadata about a contract be
-visually very minimal or come after the predicate itself.</p>
 ==description
 This use case indicates a preference to have any metadata about a contract be
 visually very minimal or come after the predicate itself.
@@ -224,10 +176,7 @@ Interoperate with tools or persons
 A syntax that can both be parsed and can be reasoned about semantically
 ==categories
 syntax
-==descriptionmd
-
 ==description
-
 --
 
 --dev.tooling
@@ -238,10 +187,7 @@ analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer,
 etc.)
 ==categories
 syntax
-==descriptionmd
-
 ==description
-
 --
 
 --cppdev.syntax.familiar
@@ -250,10 +196,7 @@ Get up to speed
 Have annotations use familiar syntax
 ==categories
 syntax
-==descriptionmd
-
 ==description
-
 --
 
 --cppdev.syntax.cpp
@@ -262,10 +205,7 @@ Get up to speed
 Have annotations use C++ syntax
 ==categories
 syntax
-==descriptionmd
-
 ==description
-
 --
 
 --cppdev.syntax.reuse
@@ -274,10 +214,6 @@ Reuse code
 Have annotations use my custom types or functions
 ==categories
 syntax contents
-==descriptionmd
-<p>Rather than requiring special functions or types (or some completely new
-thing), contract should be able to leverage any program logic related to their
-statement that is already written/writable in C++.</p>
 ==description
 Rather than requiring special functions or types (or some completely new
 thing), contract should be able to leverage any program logic related to their
@@ -290,9 +226,6 @@ Have a single source of truth
 Use same source file for both code and annotations
 ==categories
 location
-==descriptionmd
-<p>This as a preference to needing to specify contracts in a completely separate
-metadata file of some sort.</p>
 ==description
 This as a preference to needing to specify contracts in a completely separate
 metadata file of some sort.
@@ -304,9 +237,6 @@ Support modern features
 Minimize use of macros
 ==categories
 general syntax
-==descriptionmd
-<p>The desire is to not require use of macros in order to satisfy the majority
-of use cases.</p>
 ==description
 The desire is to not require use of macros in order to satisfy the majority
 of use cases.
@@ -318,9 +248,6 @@ Support modern features
 Be interoperable with modules
 ==categories
 general
-==descriptionmd
-<p>All contract control features and behaviors should be interoperable in a
-reasonable way with any partially or fully modularized C++ program.</p>
 ==description
 All contract control features and behaviors should be interoperable in a
 reasonable way with any partially or fully modularized C++ program.
@@ -332,14 +259,11 @@ Support modern features
 Be interoperable with coroutines
 ==categories
 location
-==descriptionmd
-<p>Contracts on coroutines open up a number of new situations to consider because
-there might be requirements on what the state of the program is whenever a
-coroutine resumes execution, and there might be promises a coroutine</p>
 ==description
 Contracts on coroutines open up a number of new situations to consider because
 there might be requirements on what the state of the program is whenever a
-coroutine resumes execution, and there might be promises a coroutine
+coroutine resumes execution, and there might be promises a coroutine makes
+prior to each time it suspends.
 --
 
 --cppdev.concepts
@@ -348,10 +272,7 @@ Support modern features
 Be interoperable with concepts
 ==categories
 location
-==descriptionmd
-
 ==description
-
 --
 
 --cppdev.existing.std
@@ -360,10 +281,6 @@ Use the standard library in-contract
 Codify existing exposition-only standard library requirements
 ==categories
 contents
-==descriptionmd
-<p>In some shape or form, anything documented in the contracts of the standard
-library's functions (preconditions, postconditions, other behaviors) is a
-candidate for something that should be codifiable as a contract condition.</p>
 ==description
 In some shape or form, anything documented in the contracts of the standard
 library's functions (preconditions, postconditions, other behaviors) is a
@@ -376,9 +293,6 @@ Use Debugger
 Have runtime able to launch a debugger from an annotation if necessary
 ==categories
 behavior violations
-==descriptionmd
-<p>When handling a contract violation, the ability to trigger a debugger when
-possible is currently not standardized but should be available.</p>
 ==description
 When handling a contract violation, the ability to trigger a debugger when
 possible is currently not standardized but should be available.
@@ -391,10 +305,6 @@ Have annotations affect executions depending on my existing build modes (eg.
 Debug or Release modes in VS)
 ==categories
 control
-==descriptionmd
-<p>Note that "debug" and "release" are not standardized things, but nothing
-specified in the standard should preclude those from having some impact on
-what behaviors contracts take on in those two modes.</p>
 ==description
 Note that "debug" and "release" are not standardized things, but nothing
 specified in the standard should preclude those from having some impact on
@@ -407,12 +317,6 @@ Write contracts on my functions
 Specify contracts in a way standardizable as part of the C language
 ==categories
 syntax
-==descriptionmd
-<p>Important considerations for C are related to any contracts that can go on a
-normal C function.  C does have attributes, but it also explicitly calls out
-that a conforming implementation can ignore all attributes, as opposed to C++
-which has made that a commonly held assumption but has not actually put wording
-in the standard to that effect.</p>
 ==description
 Important considerations for C are related to any contracts that can go on a
 normal C function.  C does have attributes, but it also explicitly calls out
@@ -428,10 +332,6 @@ Use contracts with macro-safe keywords that are reserved C names (i.e., _Pre,
 _Post, _Assert, etc.)
 ==categories
 syntax
-==descriptionmd
-<p>Adding new identifiers with meaing in C is generally not acceptable for
-standardization, so compatible contracts would either need to use no contracts
-or support alternate reserved words for use with contracts.</p>
 ==description
 Adding new identifiers with meaing in C is generally not acceptable for
 standardization, so compatible contracts would either need to use no contracts
@@ -444,11 +344,6 @@ Write contracts on my functions
 Have a common violation handler for both violated C and C++ contracts
 ==categories
 violations
-==descriptionmd
-<p>Importantly, satisfying this requirement would mean making the the argument
-to a violation handler meaningful in both C and C++, or requiring platform
-vendors to shim between the two (in the case of a C violation handler receiving
-a violation from C++ code).</p>
 ==description
 Importantly, satisfying this requirement would mean making the the argument
 to a violation handler meaningful in both C and C++, or requiring platform
@@ -463,10 +358,7 @@ Expose my contracts to C++ developers through 'extern "C"' declarations of my
 functions
 ==categories
 syntax
-==descriptionmd
-
 ==description
-
 --
 
 --cdev.ignorable
@@ -475,15 +367,6 @@ Write contracts on my functions
 Make all contract semantics optional (so as not to change WG14-N2385 6.7.11 p2)
 ==categories
 behavior
-==descriptionmd
-<p>Assuming contracts continue to be rendered as attributes, C standardization
-would require they be semantically optional.</p>
-<p>Note that, just as with C++, the ':' in the preivous contract syntax does not
-match the grammar for attributes in either language, so by a strict reading of
-the standards there is no obligation to be ignorable.  ('[[a:b]]' is not a
-valid attribute and shoudl be diagnosed as invalid on any current C or C++
-compiler).   Many have expressed the view that this opinion is pedantic and
-that the spirit of the law is that anything between [[]]s should be ignorable.</p>
 ==description
 Assuming contracts continue to be rendered as attributes, C standardization
 would require they be semantically optional.
@@ -502,10 +385,7 @@ Maintain mixed code base
 Not lose contracts when crossing languages
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --api.communicate.inputsoutputs
@@ -514,10 +394,7 @@ Communicate my interface to users
 Document the expected inputs and expected outputs on my interface
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --api.establish.check
@@ -526,10 +403,7 @@ Establish a contract
 Have validation inform me which output values are unexpected or invalid
 ==categories
 general behavior
-==descriptionmd
-
 ==description
-
 --
 
 --api.establish.validate_invariants
@@ -538,11 +412,6 @@ Establish a contract
 Have validation inform me which class invariants are violated
 ==categories
 general location
-==descriptionmd
-<p>Class invariants have historically been considered of general use, but the
-performance impact of checking them can be surprisingly huge.  Previously
-these have bene left out of proposals for C++ to be added in at a later
-date.</p>
 ==description
 Class invariants have historically been considered of general use, but the
 performance impact of checking them can be surprisingly huge.  Previously
@@ -556,14 +425,6 @@ Establish a contract
 Have validation inform user which input values are unexpected or invalid
 ==categories
 general behavior
-==descriptionmd
-<p>The more detail available to users about how a contract condition has been
-violated the more useful they become.  This means each specific condition
-is benefitted by being separate (eg. 'x != 0' and 'y != 0' as distinct
-conditions instead of requiring that users use 'x != 0 &amp;&amp; y != 0').</p>
-<p>In addition to that, anything that might be able to capture those values
-and expose them to violation handlers for logging would again help benefit
-problem diagnosis.</p>
 ==description
 The more detail available to users about how a contract condition has been
 violated the more useful they become.  This means each specific condition
@@ -581,10 +442,7 @@ Establish a contract
 Have contracts specify their pre-conditions as logical predicates
 ==categories
 location contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.establish.invariants
@@ -593,10 +451,7 @@ Establish a contract
 Have contracts specify their class invariants as logical predicates
 ==categories
 location contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.establish.postconditions
@@ -605,10 +460,7 @@ Establish a contract
 Have contracts specify their post-conditions as logical predicates
 ==categories
 location contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.express.values
@@ -617,11 +469,6 @@ Express predicates
 Make reference to either the values of my inputs, or other in-scope identifiers
 ==categories
 contents
-==descriptionmd
-<p>Predicates could be limitted to being "completely pure" and referencing no
-global state, but in general reference to both inputs and other identifiers
-beyond the scope of a single function call become needed to fully specify
-contracts.</p>
 ==description
 Predicates could be limitted to being "completely pure" and referencing no
 global state, but in general reference to both inputs and other identifiers
@@ -636,17 +483,6 @@ Make reference to the before and after values of in-out variables (ie. passed
 by pointer or reference) in post-conditions
 ==categories
 contents
-==descriptionmd
-<p>Postconditions often need to state things about how values of output parameters
-have changed, or how the values of other global state might have changed
-as a result of a function call.  The ability to store copies of state from
-before the function call and reference that in a postcondition predicate will
-enable a wieder variety of conditions to be formulatable.</p>
-<p>Ada has this funcitonality builtin by providing ways to reference expicitly
-the original value of a function parameter. C++ makes this more complicated
-with the need to consider the handling of move-only or generally non-copyable
-types.  More importantly, such copying should absolutely not happen if a
-contract is not being evaluated at runtime.</p>
 ==description
 Postconditions often need to state things about how values of output parameters
 have changed, or how the values of other global state might have changed
@@ -668,9 +504,6 @@ Make reference to the before and after values of mutable class members (eg.
 <i>new_size = old_size+1</i> after push_back) in post-conditions
 ==categories
 contents
-==descriptionmd
-<p>Capturing the pre-function state of member variables might also be needed
-to state the contracts on many member functions.</p>
 ==description
 Capturing the pre-function state of member variables might also be needed
 to state the contracts on many member functions.
@@ -679,18 +512,20 @@ to state the contracts on many member functions.
 --api.establish.changedstate
 API Developer
 Establish a contract
-Make reference to the before and after values of global state (eg., <i>now()
-&gt;= old(now()) + sleep_time</i>) in post-conditions
+Make reference to the before and after values of global state (eg.,
+<i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions
 ==categories
 contents
-==descriptionmd
-<p>Capturing arbitrary other state for use in a postcondition might prove useful.
-The example given is potentially a way to specify the postcondition on a
-typical 'sleep' function.</p>
 ==description
-Capturing arbitrary other state for use in a postcondition might prove useful.
-The example given is potentially a way to specify the postcondition on a
-typical 'sleep' function.
+Capturing arbitrary global state for use in a postcondition might prove useful.
+
+This extends to the state of arbitrary other expressions and how that might change
+due to the invocatino of a function.  Consider this example of what might
+be a postcondition of a typical `sleep` function:
+
+```
+old(now()) <= now() + sleep_time
+```
 --
 
 --api.extend.exceptionsafety
@@ -699,10 +534,6 @@ Extend contractual aspects
 Annotate operations as being exception safe
 ==categories
 contents
-==descriptionmd
-<p>Exception safety guarantees are often part of the english language contract of
-a function, and being able to state that (in a way that tools might be able
-to then pick up on and verify) would be useful.</p>
 ==description
 Exception safety guarantees are often part of the english language contract of
 a function, and being able to state that (in a way that tools might be able
@@ -715,9 +546,6 @@ Extend contractual aspects
 Annotate operations as being thread safe
 ==categories
 contents
-==descriptionmd
-<p>The proper use of a type in a multithreaded environment can benefit greatly
-from being documented in a way that can then be checked and verified.</p>
 ==description
 The proper use of a type in a multithreaded environment can benefit greatly
 from being documented in a way that can then be checked and verified.
@@ -729,10 +557,6 @@ Extend contractual aspects
 Annotate operations as being atomic (ie. all or no changes become visible)
 ==categories
 contents
-==descriptionmd
-<p>Establishing more details about what might happen on failure, such as what
-external state might be changed in a remote database, is another useful
-condition to state.</p>
 ==description
 Establishing more details about what might happen on failure, such as what
 external state might be changed in a remote database, is another useful
@@ -746,10 +570,7 @@ Annotate operations as real-time (ie. guaranteed to complete within a time
 frame)
 ==categories
 contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.extend.determinism
@@ -758,10 +579,7 @@ Extend contractual aspects
 Annotate operations as being deterministic (ie. same outputs for same inputs)
 ==categories
 contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.extend.purity
@@ -770,10 +588,7 @@ Extend contractual aspects
 Annotate operations as functionally pure (ie. no side effects)
 ==categories
 contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.extend.sideeffects
@@ -783,10 +598,7 @@ Annotate operations as having global side effects (ie. write to singleton,
 file, network, or database)
 ==categories
 contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.extend.complexity
@@ -795,10 +607,7 @@ Extend contractual aspects
 Annotate algorithmic complexity
 ==categories
 contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.express.runnability
@@ -808,17 +617,6 @@ Be able to use a predicate that is not evaluated at runtime, because it might
 be unsafe to run or have stateful side effects
 ==categories
 contents metadata
-==descriptionmd
-<p>Numerous predicates that might be useful to state also might change the
-state of a program in a pardoxical way if checked.  The common example
-(originally put forward in P0380) is validating available items on an input
-iterator.  Other important examples include checks that might require accessing
-special hardware, or doing extensive computations that would invalidate the
-results just by taking the time to do them.</p>
-<p>These predicates are still useful for those reading the code, still might
-benefit from being validated against postconditions of other functions, and
-might provide some identifiable code improvements when analyzed by hte compiler
-without actually executing them at runtime.</p>
 ==description
 Numerous predicates that might be useful to state also might change the
 state of a program in a pardoxical way if checked.  The common example
@@ -840,12 +638,6 @@ Be able to use a predicate that doesn’t have a definition, because it hasn’t
 been written yet, or is infeasible to run
 ==categories
 contents metadata
-==descriptionmd
-<p>Often during developement it helps to write contracts first, and that might
-even predate having enough of an implementation to fully define the conditions.
-Having them in code ensures that the placeholder api to check them is
-maintained.  Some functions may never be implementable due to time constraints,
-while others will eventually be filled in as time allows.</p>
 ==description
 Often during developement it helps to write contracts first, and that might
 even predate having enough of an implementation to fully define the conditions.
@@ -861,10 +653,6 @@ Be able to use a predicate that is not evaluated, because it is simply a
 semantic placeholder for a tool
 ==categories
 contents metadata
-==descriptionmd
-<p>Some predicates might even have no meaning within the language itself, but
-benefite other tools by being placed into the same contract framework as other
-predicates, with meaning to those external tools.</p>
 ==description
 Some predicates might even have no meaning within the language itself, but
 benefite other tools by being placed into the same contract framework as other
@@ -878,11 +666,6 @@ Be able to use a predicate that cannot have a complete definition, because it
 is inexpressible in the language
 ==categories
 contents metadata
-==descriptionmd
-<p>Many external static analysis tools, and even compilers, can check that
-some state is being handled properly which cannot be properly validated within
-the language itself.  Consider functions such as "is_deletable" or
-"is_reachable".</p>
 ==description
 Many external static analysis tools, and even compilers, can check that
 some state is being handled properly which cannot be properly validated within
@@ -897,13 +680,6 @@ Inform users which errors are the responsibility of the caller, and which are
 the callee
 ==categories
 violations
-==descriptionmd
-<p>One common realization with having checked contracts in the language is that 
-they will then identify bugs that exist in programs.  Identifying the source
-of those bugs swiftly is important, and for any contract that is dependant on
-a function being called properly that responsibility does not usually lie with
-the line of code where the contract is written, but with the place where
-the function has been called.</p>
 ==description
 One common realization with having checked contracts in the language is that 
 they will then identify bugs that exist in programs.  Identifying the source
@@ -919,26 +695,6 @@ Establish responsibility boundaries
 Annotate assertions inside function bodies that indirectly test preconditions
 (such as malformed data discovered while performing the algorithm) should be
 reported to the caller as precondition failures
-==descriptionmd
-<p>Some function preconditions can be expressed as c++ expressions, but are
-runtime-expensive.  However, if expressed inside function body as assertions
-after some function logic has already been executed,  the check whether the
-function has everything that is required is cheap. If I use an assertion like
-this,  I want to annotate this assertion as being "precondition-like". The
-semantics would be that if it fails,  it is reported as "caller's bug" rather
-than callee's bug, and if the build is configured  to runtime-check only
-preconditions, such assertion should also be runitme-checked.</p>
-<p>As an example, consider a binary search that wishes to check that the input
-list is sorted.  There is an expensive check (O(n)) that can be done to verify
-that the whole list is sorted on each call, but this would negate the
-performance benefits of doing a binary search to begin with.  Another option
-is to check just that the elements adjacent to those that are visitted are in
-properly sorted order.  This will provide some chance of identify unsorted
-inputs without making performance unusable, but is also most cleanly done
-during the execution of the search algorithm.  Unlike a normal in-body
-assertion, a violation identified by this kind of check should be reported to
-the caller, as it is a failure on the callinig code's part to provide a
-properly sorted input list.</p>
 ==description
 Some function preconditions can be expressed as c++ expressions, but are
 runtime-expensive.  However, if expressed inside function body as assertions
@@ -968,9 +724,6 @@ Have contract as part of my interface
 Declare contract when I declare the function
 ==categories
 general location
-==descriptionmd
-<p>Putting contracts on the first function declaration makes them easily visible
-to anyone looking at a header file for understanding an API.</p>
 ==description
 Putting contracts on the first function declaration makes them easily visible
 to anyone looking at a header file for understanding an API.
@@ -983,17 +736,6 @@ Be able to access private implementation details of the class so I don’t have
 to widen public interface to declare predicates
 ==categories
 contents
-==descriptionmd
-<p>Often, an interface might be very narrow - consider the interface on an
-iterator, which generally just has a few operators and no other functions -
-yet there  might be ways to check parts of a narrow contract that depend on
-internal state.  Exposing this state so that it can be checked publicly would
-require wideninig the API interface, which is counter to the desire to keep
-the use of a type as simple as possible.</p>
-<p>On a similar note, sometimes the internal state only approximates the actual
-contract, and while better than no checking there is a desire to not expose
-that data publicly so that there is no assumption that the data represents
-the complete set of requirements on calling code.</p>
 ==description
 Often, an interface might be very narrow - consider the interface on an
 iterator, which generally just has a few operators and no other functions -
@@ -1016,15 +758,6 @@ at the bottom of the header, or on the definition in an implementation file,
 where they are less distracting).
 ==categories
 location
-==descriptionmd
-<p>Many development methodologies revolve around making readable, well-documented
-header files to provide a way to understand API usage. Some contracts might
-be simple and readable, but others might involve complex conditions that
-distract from readability, and match very simple to read and understand prose
-contracts in the documentation.</p>
-<p>The benefits (checkability, analysis, etc.) of having the encoded contracts
-should not come at the cost of making the primary visible public interface
-(the header file) more unreadable.</p>
 ==description
 Many development methodologies revolve around making readable, well-documented
 header files to provide a way to understand API usage. Some contracts might
@@ -1045,10 +778,6 @@ Replace uses of error handling to express contract violation (eg.
 throwing)
 ==categories
 general
-==descriptionmd
-<p>Historically, rather than providing functions with narrow contracts, software
-might have been written to report misuse through exceptions.  Contracts should
-provide a better alternative than giving all functions a fully wide contract.</p>
 ==description
 Historically, rather than providing functions with narrow contracts, software
 might have been written to report misuse through exceptions.  Contracts should
@@ -1061,10 +790,7 @@ Write classes
 Declare class invariants that all of my public functions need to maintain
 ==categories
 location
-==descriptionmd
-
 ==description
-
 --
 
 --cppapi.class.preconditions
@@ -1074,10 +800,7 @@ Ensure overriding methods have same or wider preconditions (see: Liskov
 substitution principle)
 ==categories
 location contents
-==descriptionmd
-
 ==description
-
 --
 
 --cppapi.class.postconditions
@@ -1087,10 +810,7 @@ Ensure overriding functions meet their base class postconditions when their
 base class preconditions are met (see: Liskov substitution principle)
 ==categories
 location contents
-==descriptionmd
-
 ==description
-
 --
 
 --cppapi.class.variability
@@ -1100,16 +820,6 @@ Allow overriding functions to have narrower preconditions/wider postconditions
 if I want to
 ==categories
 contents
-==descriptionmd
-<p>P4810 did not allow any varaition in contract conditions through overrids of
-a virtual function, though this could be roughly accomplished with assertions
-in function bodies instead.</p>
-<p>In general, the pre and postconditions of the interface you call through should
-be checked to be sure you're meeting the requirements you want to meet.
-Similalrly, the concrete type's conditions should be checked to be sure it is
-behaving properly.  Doing both checks if they are different might be an
-acceptable solution to allow flexibility without any increase in risk, at the
-possible cost of some perormance in checked builds.</p>
 ==description
 P4810 did not allow any varaition in contract conditions through overrids of
 a virtual function, though this could be roughly accomplished with assertions
@@ -1131,10 +841,6 @@ type can depend upon: can mention only public members, and is checked on entry
 and exit from this type’s code
 ==categories
 contents
-==descriptionmd
-<p>Requirements on an interface to a function should be imposible when entering
-into a type's functions, but there might be a desire to distinguish that
-so that checking is done differently when a type calls its own functions.</p>
 ==description
 Requirements on an interface to a function should be imposible when entering
 into a type's functions, but there might be a desire to distinguish that
@@ -1148,13 +854,6 @@ Check invariants before and after every public method (when called from outside
 the type, not when one member function calls another)
 ==categories
 behavior contents
-==descriptionmd
-<p>General class invariants should be checked for vaidity before and after any
-call to a public member function of a class.  Calls to friend functions need
-to be considered as well, as they might benefit from invalidating/validating
-invariants.  Similarly, invariants might be checked for all objects of the
-type that are being touched whenever a public function is starting or
-finishing.</p>
 ==description
 General class invariants should be checked for vaidity before and after any
 call to a public member function of a class.  Calls to friend functions need
@@ -1171,10 +870,6 @@ Check invariants before and after calling functions that are not part of this
 type (including virtual calls)
 ==categories
 behavior
-==descriptionmd
-<p>Calling from a member function to a function of another type (or a possible
-subtype) might require verifying that the object's invariants hold prior to
-calling the function and that they still hold when the other function returns.</p>
 ==description
 Calling from a member function to a function of another type (or a possible
 subtype) might require verifying that the object's invariants hold prior to
@@ -1189,10 +884,6 @@ can depend upon: can mention only protected and public members, and is checked
 on entry and exit from this type’s code
 ==categories
 location
-==descriptionmd
-<p>Similar to the public API of a class, the protected API is exposed to
-subclasses and invariants of that API should be checked whenever the boundary
-might be crossed.</p>
 ==description
 Similar to the public API of a class, the protected API is exposed to
 subclasses and invariants of that API should be checked whenever the boundary
@@ -1206,10 +897,7 @@ Check invariants on entry and exit of every protected method (when called from
 the derived type, not when one base member function calls another)
 ==categories
 behavior contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.class.basecalls
@@ -1219,10 +907,7 @@ Check invariants before and after every call to a virtual function (when
 calling to the derived type)
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --api.class.privateinterface
@@ -1232,10 +917,7 @@ Express an internal restriction on the private implementation of a type, can
 mention any member, and is checked on entry and exit from this type’s code
 ==categories
 location
-==descriptionmd
-
 ==description
-
 --
 
 --api.class.privateinvariants
@@ -1245,10 +927,7 @@ Check invariants on entry and exit of every public method (when called from
 outside the type, not when one member function calls another)
 ==categories
 behavior contents
-==descriptionmd
-
 ==description
-
 --
 
 --api.class.privatecalls
@@ -1258,10 +937,7 @@ Check invariants before and after calling functions that are not part of this
 type (including virtual calls)
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --api.class.testing
@@ -1273,10 +949,7 @@ check every postcondition at every non-exceptional exit, and test my class
 invariants on entry and exit from this type’s code
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --cppapi.contracts.async
@@ -1286,13 +959,6 @@ Express contracts on callbacks such as std::function, function pointers, or
 references to functions, lambdas, or function objects
 ==categories
 location
-==descriptionmd
-<p>In general, any callback based solution exposes functions that will be called
-that might benefit from having information about their contracts also
-transmitted.</p>
-<p>This might be implemented by incorporating contracts deeply into the type
-system, or in a more limitted way by just facilitating library types like
-a function with contracts.</p>
 ==description
 In general, any callback based solution exposes functions that will be called
 that might benefit from having information about their contracts also
@@ -1309,10 +975,6 @@ Enforce contracts in exception safe code
 Express contracts on exceptional exit
 ==categories
 location contents
-==descriptionmd
-<p>Generally, postconditions have been assumed to hold when a function returns
-normally.  Expressing conditions that will hold if a function returns through
-an exception, or both, could also be useful.</p>
 ==description
 Generally, postconditions have been assumed to hold when a function returns
 normally.  Expressing conditions that will hold if a function returns through
@@ -1325,11 +987,6 @@ Use contracts with variadic templates
 Allow predicate (fold) expansion
 ==categories
 syntax location
-==descriptionmd
-<p>Fold expressions using &amp;&amp; might be useful for a predicate, but they then lose
-any information about which particular argument might have violated the
-condition.  Enabling more useful information to narrow that down would be
-helpful.</p>
 ==description
 Fold expressions using && might be useful for a predicate, but they then lose
 any information about which particular argument might have violated the
@@ -1343,9 +1000,6 @@ Use coroutines
 Define and check pre and post conditions as I would a regular function
 ==categories
 location
-==descriptionmd
-<p>Like regular functions, pre and postconditions on coroutines should have
-similar semantics.</p>
 ==description
 Like regular functions, pre and postconditions on coroutines should have
 similar semantics.
@@ -1358,10 +1012,6 @@ Define and check invariants over all entry and exit points from a coroutine (to
 its awaiter or promise)
 ==categories
 behavior
-==descriptionmd
-<p>Similar to a class, the state of a coroutine, or what it expects of the state
-of the world as it suspends and resumes, might be stated as expected invariants
-that could be checked whenever entering and exiting.</p>
 ==description
 Similar to a class, the state of a coroutine, or what it expects of the state
 of the world as it suspends and resumes, might be stated as expected invariants
@@ -1374,10 +1024,7 @@ Conform to a contract
 Be informed any time an interface’s contract is violated
 ==categories
 behavior violations
-==descriptionmd
-
 ==description
-
 --
 
 --int.conform.postconditions
@@ -1386,10 +1033,7 @@ Conform to a contract
 Verify results from a call are expected output values
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.headeronly
@@ -1398,10 +1042,7 @@ Build multiple libraries
 Use contract-enabled header-only libraries
 ==categories
 general control
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.binaries
@@ -1410,10 +1051,7 @@ Build multiple libraries
 Use contract-enabled binary libraries
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.binarycounts
@@ -1422,10 +1060,7 @@ Build multiple libraries
 Only be required to manage a small, common set of build/link configurations
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.control
@@ -1434,10 +1069,7 @@ Debug multiple libraries
 Enable checks only within a selected library
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.control2
@@ -1446,10 +1078,7 @@ Debug multiple libraries
 Enable checks on multiple libraries simultaneously
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.debug.callsites
@@ -1458,10 +1087,6 @@ Debug multiple call sites
 Enable checks only on selected call sites
 ==categories
 control
-==descriptionmd
-<p>Often it is helpful to limit what gets enabled to functions called from
-some subset of a program, and the rest of the program might not perform
-acceptably enough to test if hose same functions are always checked.</p>
 ==description
 Often it is helpful to limit what gets enabled to functions called from
 some subset of a program, and the rest of the program might not perform
@@ -1474,10 +1099,7 @@ Correct failed checks
 Be informed what check failed, when, where, and how
 ==categories
 violations behavior
-==descriptionmd
-
 ==description
-
 --
 
 --int.violations.transmit
@@ -1487,10 +1109,7 @@ Transmit check failure information in environment-specific ways (logs, email,
 special hardware traps, popup windows, blazing sirens, etc).
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --int.violations.custom
@@ -1499,10 +1118,7 @@ Correct failed checks
 Install custom violation handler where I can inject custom logic to trap errors
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --int.violations.common
@@ -1512,10 +1128,7 @@ Be able to override how library violations are handled in the combined software
 to point into my handling code
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --int.violations.override
@@ -1524,10 +1137,7 @@ Be independent of build environment
 Be able to define and override violation handler via source code
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.minimize
@@ -1538,10 +1148,7 @@ library preconditions (assuming the library is tested and stable and my code is
 not)
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.control.build
@@ -1550,10 +1157,7 @@ Ensure the combined software is correct
 Turn checks on at build time
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.control.runtime
@@ -1562,10 +1166,7 @@ Ensure the combined software is correct
 Turn checks on at run time
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.conrol.subsets.build
@@ -1574,10 +1175,7 @@ Ensure the combined software is correct
 Turn on any subset of individual (call site) checks on at build time
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.control.subsets.runtime
@@ -1586,10 +1184,7 @@ Ensure the combined software is correct
 Turn on any subset of individual (call site) checks on at run time
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.consistency
@@ -1598,10 +1193,7 @@ Ensure the combined software is correct
 Verify all annotations are globally consistent when integrated
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --int.control.subsets
@@ -1611,10 +1203,7 @@ Have a way to audit (named or semantic) subsets of checks for various
 deployments
 ==categories
 control metadata
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.common
@@ -1623,10 +1212,7 @@ Manage binary delivery
 Be able to use the same executable regardless of contract enforcement mode
 ==categories
 general control
-==descriptionmd
-
 ==description
-
 --
 
 --int.testing.control
@@ -1636,10 +1222,7 @@ Selectively enable checking for a set of functions which could name either an
 individual function or an overload set
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.testing.controltypes
@@ -1648,10 +1231,7 @@ Define “Code Under Test”
 Selectively enable checking for a set of types and all their members
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.testing.transitivity
@@ -1661,10 +1241,7 @@ Selectively enable checking for a set of types and all their transitively
 nested types and members
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.testing.modules
@@ -1674,10 +1251,7 @@ Selectively enable checking for a translation unit or module and all (non
 transitive) types and functions within
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.unchecked
@@ -1686,10 +1260,7 @@ Test final deliverable
 Turn off build time checking to remove checking overhead
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.runtime.unchecked
@@ -1698,10 +1269,7 @@ Test final deliverable
 Turn off run time checking to remove checking overhead
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --int.build.optimize
@@ -1710,10 +1278,7 @@ Test final deliverable
 Turn on run time optimization to leverage annotation assumptions
 ==categories
 behavior control
-==descriptionmd
-
 ==description
-
 --
 
 --cpplib.headeronly
@@ -1722,10 +1287,7 @@ Use templates
 Be able to ship header only library
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --cpplib.insulation
@@ -1736,19 +1298,6 @@ definition while putting contract conditions on a redeclaration - visible to
 static analysis tools in all TUs.
 ==categories
 location
-==descriptionmd
-<p>Contract conditions on only the first declaration (as proposed by P4810) mean
-that the condition clutters the readable interface and changes in a contract
-condition force client recompilation.  Contract conditions not in the header
-file are not going to be visible to tools that are attempting to limit what
-they consume to a single translation unit.  Combined, these result in a desire
-to sometimes put the contracts with the implementating definition (in a .cpp
-file) and sometimes put them in a redeclaration in a header file (where one
-might also put inilne function definitions).</p>
-<p>For free functions this would just require relaxing the requirements on where
-contracts are.  For member functions, allowing member function redeclaration
-would be needed to put the contracts in a less obtrusive place that is still
-visible outside of the defining TU.  See P1320 for more discussion of this.</p>
 ==description
 Contract conditions on only the first declaration (as proposed by P4810) mean
 that the condition clutters the readable interface and changes in a contract
@@ -1771,10 +1320,7 @@ Simplify maintenance
 Not require extra build steps to be documented
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --lib.maintenance.nowhining
@@ -1784,10 +1330,7 @@ Not have users complain about my product due to modifications of annotations
 resulting from their build configuration
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --lib.integration.noconfig
@@ -1796,10 +1339,7 @@ Support successful integration
 Not require extra build steps to be learned or performed
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --lib.integration.nowhining
@@ -1808,10 +1348,7 @@ Support successful integration
 Not have my users accidentally modify my careful annotations
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --arch.nomacros
@@ -1823,10 +1360,7 @@ space, time, tooling, and usability/complexity reasons, compared to C’s assert
 macro)
 ==categories
 syntax
-==descriptionmd
-
 ==description
-
 --
 
 --arch.complete
@@ -1838,10 +1372,7 @@ compilable boolean expressions, that can be checked statically or dynamically
 (as opposed to disjointed state where these features are factored into bits)
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --hardware.performance
@@ -1851,10 +1382,7 @@ Be able to design new hardware + optimizations, carefully dovetailed into one
 another, that depend on statically-unprovable facts being annotated in the code
 ==categories
 general behavior
-==descriptionmd
-
 ==description
-
 --
 
 --sdev.bestpractices
@@ -1863,10 +1391,7 @@ Set an example
 Demonstrate best practice in defensive programming
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --sdev.quality
@@ -1876,10 +1401,7 @@ Discourage reliance on observable out-of-contract behavior by causing check
 failure to hard stop program or build
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --sdev.maturity
@@ -1888,10 +1410,7 @@ Enforce mature, finalized contracts
 Disable continuation on violation of stable and correct individual contracts
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --sdev.control
@@ -1900,10 +1419,7 @@ Enforce mature, finalized contracts
 Disable remapping of semantics on stable and correct individual contracts
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.understand.contracts
@@ -1913,10 +1429,7 @@ A uniform, fluent description of expected input values, expected output values,
 side effects, and all logical pre and post conditions
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.understand.violations
@@ -1925,10 +1438,7 @@ Understand the API
 Be informed when my usage is out of contract
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.understand.buildfailures
@@ -1937,10 +1447,7 @@ Understand the program
 Know why my software is not building
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.understand.aborting
@@ -1949,10 +1456,7 @@ Understand the program
 Know why my software is aborting
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.understand.omniscience
@@ -1961,10 +1465,7 @@ Understand the program
 Know why my software is out of contract
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.understand.buildviolation
@@ -1973,10 +1474,7 @@ Understand the program
 Know that my program or build was halted due to contract violation
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.understand.all
@@ -1985,10 +1483,7 @@ Understand the facility
 Be able to build a program with contracts after reasonably short tutorial
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.understand.keywords
@@ -1997,10 +1492,7 @@ Understand the facility
 Have keywords with precise and unambiguous meanings
 ==categories
 syntax
-==descriptionmd
-
 ==description
-
 --
 
 --jdev.bestpractices
@@ -2009,10 +1501,7 @@ Improve my code
 Learn about software best practices by example
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --adev.fast
@@ -2022,10 +1511,7 @@ Be able to write and modify contracts quickly without heavy boiler plate or up
 front cost
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --adev.evolve
@@ -2034,10 +1520,7 @@ Safeguard evolving code
 Assert against conditions I am aware of but not finished handling fully
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --bdev.confidentiality
@@ -2048,10 +1531,7 @@ software I deliver to clients, even when I choose to have contracts enforced in
 the software I deliver
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --pdev.speed
@@ -2061,10 +1541,7 @@ Annotate my code with assumptions, likelihoods, or reachability information
 that a tool might not be able to deduce, but that I would be confident of
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --pdev.morespeed
@@ -2075,10 +1552,7 @@ terms of semantics my program does not depend-on but optimizers can’t figure
 out
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --pdev.footgun
@@ -2088,10 +1562,7 @@ Accept responsibility for a malformed program that might result from eventually
 false information given by my annotations
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --pdev.safety.isolation
@@ -2100,10 +1571,7 @@ Have safety critical paths
 Isolate safety checks from performance annotations
 ==categories
 control metadata
-==descriptionmd
-
 ==description
-
 --
 
 --pdev.safety.critical
@@ -2112,10 +1580,7 @@ Have safety critical paths
 Retain checking even when optimizing with performance annotations
 ==categories
 control metadata
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.checkall
@@ -2124,10 +1589,7 @@ Enable full checking
 Ensure all checks (pre, post, assert, invariant) are enabled
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.correctness
@@ -2136,10 +1598,7 @@ Validate correctness
 Signify the predicates that should be verified by an analysis tool
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.tooling
@@ -2149,10 +1608,7 @@ Signify subset of individual annotations to be consumed by a specific kind of
 verification tool
 ==categories
 metadata
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.tooling.control
@@ -2162,10 +1618,7 @@ Signify subset of individual annotations to be consumed by a specific instance
 of verification tool
 ==categories
 metadata control
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.tooling.undefined
@@ -2174,10 +1627,7 @@ Manage multiple tools
 Use predicates that may not be understood by all instances of verification
 ==categories
 contents
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.tooling.undefinedkinds
@@ -2186,10 +1636,7 @@ Manage multiple tools
 Use predicates that may not be understood by all kinds of verification
 ==categories
 contents
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.tooling.behavior
@@ -2200,10 +1647,7 @@ different ways: assume proven predicates, make unprovable predicates ill-
 formed, etc.
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.testing
@@ -2212,10 +1656,7 @@ Unit test predicates
 Override failure handler to trigger test failure instead of termination
 ==categories
 control violations
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.handler.testing
@@ -2224,10 +1665,7 @@ Unit test violation handlers
 Have a way to run handler on all combinations of available build modes
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --qdev.fuzz.testing
@@ -2236,10 +1674,7 @@ Catch unexpected failure modes
 Log all predicate failure during fuzz testing
 ==categories
 control behavior
-==descriptionmd
-
 ==description
-
 --
 
 --crit.control
@@ -2248,10 +1683,7 @@ Have a verifiable release system
 Be able to control the configuration of contracts from a central point
 ==categories
 general control
-==descriptionmd
-
 ==description
-
 --
 
 --crit.noundef
@@ -2260,10 +1692,7 @@ Avoid undefined behavior
 Have contract violation at run-time always have well-defined behavior
 ==categories
 behavior control
-==descriptionmd
-
 ==description
-
 --
 
 --crit.recovery
@@ -2272,10 +1701,7 @@ Not have a faulty program lead to catastrophic failure
 Have access to a recovery path after contract violation
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --crit.redundancy
@@ -2284,10 +1710,7 @@ Not have a faulty program lead to catastrophic failure
 Be able to express error handling that may be redundant with contract checking
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --crit.interaction
@@ -2297,10 +1720,7 @@ Not have contract build or run modes possibly be able to change or disable
 related error handling in any way
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --crit.locality
@@ -2309,10 +1729,7 @@ Be assured a critical violation uses a critical recovery path
 Couple recovery path to a specific contract within the source
 ==categories
 contents behavior
-==descriptionmd
-
 ==description
-
 --
 
 --crit.testing
@@ -2321,10 +1738,7 @@ Meet code coverage requirements
 Be able to run both success and failure branches in my test environment
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --crit.production.checking
@@ -2334,10 +1748,7 @@ Be able to continue to run checks in a production environment (even after
 formal testing is complete)
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --crit.more.coverage
@@ -2347,10 +1758,7 @@ Be able to run checks in a production environment that are considered “cheap�
 compared to the expected cost of entering an invalid state
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --crit.noassume
@@ -2363,10 +1771,7 @@ the one I wrote; assumptions can expand the set of possible executions by
 injecting facts not otherwise knowable to the compiler)
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --sec.noattacks
@@ -2376,10 +1781,7 @@ Be unable to insert code paths (eg. violation handlers) at run time (eg. build
 time only)
 ==categories
 behavior violations
-==descriptionmd
-
 ==description
-
 --
 
 --sec.certify
@@ -2388,10 +1790,7 @@ Deliver a certified product
 Have build tool only link to a preapproved violation handler
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --anal.runtime
@@ -2400,10 +1799,7 @@ Improve runtime correctness
 Have runtime checks generated by the tool
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --anal.optimization
@@ -2412,10 +1808,7 @@ Improve runtime performance
 Have runtime optimizations generated by the tool
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --anal.symbolic
@@ -2425,10 +1818,7 @@ Have symbolic proofs for soundness and consistency performed before compile
 time
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --anal.compiletime
@@ -2437,10 +1827,7 @@ Allow code analysis
 Have code source, AST, or instruction inspection during compile time
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --anal.binaries
@@ -2449,10 +1836,7 @@ Allow binary analysis
 Have binary inspection after compile time
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --anal.information
@@ -2462,10 +1846,7 @@ Be able to hint to the analyzer information it may be unable to deduce from
 source code alone (eg. <i>5 / opaque(); [[ opaque() != 0]]</i>)
 ==categories
 contents
-==descriptionmd
-
 ==description
-
 --
 
 --anal.legacy
@@ -2475,10 +1856,7 @@ Be able to map pre-existing contract features in tools to a standardized
 language syntax
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --teach.bestpractices
@@ -2488,10 +1866,7 @@ Be able to express defensive programming, programming by contract, and test
 driven development to introductory students
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --test.standardized
@@ -2500,10 +1875,7 @@ Demonstrate best practice
 Not rely on custom libraries or proprietary extensions
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --teach.lifecycle
@@ -2513,10 +1885,7 @@ Demonstrate mock lifecycle by switching simple compiler flags to control which
 checks are enabled
 ==categories
 general control
-==descriptionmd
-
 ==description
-
 --
 
 --teach.portable
@@ -2525,10 +1894,7 @@ Manage many students
 Have examples compilable by a standard compiler on any system
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --teach.dumbstudents
@@ -2537,10 +1903,7 @@ Manage many students
 Have examples that are easy to build without digression into build systems
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --teach.teachable
@@ -2550,10 +1913,7 @@ Have simple explanation of assertions and their use to support simple
 programming tasks, including debugging erroneous programs.
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --teach.layering
@@ -2563,10 +1923,7 @@ Support the ability for advanced uses of contracts to be distributed across
 many different courses in a C++-focused computer science curriculum.
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --compiler.benice
@@ -2576,10 +1933,7 @@ Maximize implementation freedom by limiting what is strictly required by the
 standard
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --compiler.best
@@ -2588,10 +1942,7 @@ Deliver the best implementation
 Have a clear and simple specification that meets clear need
 ==categories
 general
-==descriptionmd
-
 ==description
-
 --
 
 --large.complex
@@ -2602,10 +1953,7 @@ requiring source code changes. Specifically the checks for only one function or
 some grouping of functions
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --large.critical
@@ -2614,10 +1962,7 @@ Enable/Disable checking on critical/hot paths
 Control whether checks are run based on where they are being called from
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --large.modernize
@@ -2626,10 +1971,7 @@ Modernize my code base
 Introduce standardized contracts to replace my macro-based contracts
 ==categories
 control behavior
-==descriptionmd
-
 ==description
-
 --
 
 --large.stillmacros
@@ -2639,10 +1981,7 @@ Have my existing macro-based facilities interoperate smoothly with standardized
 contracts so I can do the migration gradually
 ==categories
 syntax control
-==descriptionmd
-
 ==description
-
 --
 
 --large.observation
@@ -2652,10 +1991,7 @@ Have failed individual checks from existing code optionally warn instead of
 hard stop
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --large.introduction
@@ -2664,10 +2000,7 @@ Introduce new contracts into an existing system
 Have failed checks from a new library optionally warn instead of hard stop
 ==categories
 behavior
-==descriptionmd
-
 ==description
-
 --
 
 --large.separability
@@ -2677,10 +2010,7 @@ Be able to include distinct clauses for each parameter or invariant with their
 own individual failure or build controls
 ==categories
 location control
-==descriptionmd
-
 ==description
-
 --
 
 --large.newenvironment
@@ -2690,10 +2020,7 @@ Have failed checks caused by a change in environment optionally warn instead of
 hard stop
 ==categories
 control behavior
-==descriptionmd
-
 ==description
-
 --
 
 --large.newcompiler
@@ -2703,10 +2030,7 @@ Have failed checks caused by a change in compiler optionally warn instead of
 hard stop
 ==categories
 control behavior
-==descriptionmd
-
 ==description
-
 --
 
 --large.nogoingback
@@ -2715,10 +2039,7 @@ Prevent regressions
 Have trusted contracts fail fast and hard stop
 ==categories
 control behavior metadata
-==descriptionmd
-
 ==description
-
 --
 
 --large.scalability
@@ -2727,10 +2048,7 @@ Scale violation handling
 Be able to log violations in my organization specific format
 ==categories
 violations
-==descriptionmd
-
 ==description
-
 --
 
 --large.simulation.disable
@@ -2739,10 +2057,7 @@ Allow simulation or post-mortem testing of known failure modes
 Optionally disable checking on a subset of individual annotations
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --large.simulation.enable
@@ -2752,10 +2067,7 @@ Optionally allow checking of a subset of individual annotations to fail and
 access its recovery path
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --large.simulation.ignore
@@ -2765,10 +2077,7 @@ Optionally allow checking of a subset of individual annotations to fail and
 continue failing
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --large.perfcontrol.build
@@ -2777,10 +2086,7 @@ Manage performance cost
 Constrain the set of built time checks according to their performance overhead
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --large.perfcontrol.runtime
@@ -2789,10 +2095,7 @@ Manage performance cost
 Constrain the set of runtime checks according to their performance overhead
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --large.narrowing
@@ -2801,10 +2104,7 @@ Tune contract width in complex system
 Be able to narrow individual contract so it fails in testing not in production
 ==categories
 control behavior
-==descriptionmd
-
 ==description
-
 --
 
 --embedded.nochecking
@@ -2814,10 +2114,7 @@ Remove all checking and diagnostic (eg. source location) overhead entirely from
 the final binary
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --embedded.nologging
@@ -2827,10 +2124,7 @@ Remove all logging and diagnostic (but not checking) overhead from the final
 binary
 ==categories
 control violations
-==descriptionmd
-
 ==description
-
 --
 
 --embedded.minimize
@@ -2839,10 +2133,7 @@ Minimize executable footprint
 Remove all but the most important diagnostic overhead from the final binary
 ==categories
 control
-==descriptionmd
-
 ==description
-
 --
 
 --wg21.everythingelse
@@ -2852,10 +2143,7 @@ Have a clear way to understand how contracts will interact with the standard
 library
 ==categories
 general behavior
-==descriptionmd
-
 ==description
-
 --
 
 --wg21.otherfeatures
@@ -2867,9 +2155,6 @@ on signed integer overflow, etc. This might allow configuration of trapping,
 logging, or assuming in other areas of language UB.
 ==categories
 location
-==descriptionmd
-
 ==description
-
 --
 

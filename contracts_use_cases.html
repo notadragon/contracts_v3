@@ -284,8 +284,8 @@ by pointer or reference) in post-conditions</td>
 <tr><td><a href="#api.establish.changedstate">api.establish.changedstate</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of global state (eg., <i>now()
-&gt;= old(now()) + sleep_time</i>) in post-conditions</td>
+  <td>Make reference to the before and after values of global state (eg.,
+<i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions</td>
   <td></td></tr>
 
 <tr><td><a href="#api.extend.exceptionsafety">api.extend.exceptionsafety</a></td>
@@ -1398,7 +1398,8 @@ reasonable way with any partially or fully modularized C++ program.</td></tr>
 <tr><td><a name="cppdev.coroutines">cppdev.coroutines</a></td>
     <td>Contracts on coroutines open up a number of new situations to consider because
 there might be requirements on what the state of the program is whenever a
-coroutine resumes execution, and there might be promises a coroutine</td></tr>
+coroutine resumes execution, and there might be promises a coroutine makes
+prior to each time it suspends.</td></tr>
 
 <tr><td><a name="cppdev.existing.std">cppdev.existing.std</a></td>
     <td>In some shape or form, anything documented in the contracts of the standard
@@ -1483,9 +1484,15 @@ contract is not being evaluated at runtime.</td></tr>
 to state the contracts on many member functions.</td></tr>
 
 <tr><td><a name="api.establish.changedstate">api.establish.changedstate</a></td>
-    <td>Capturing arbitrary other state for use in a postcondition might prove useful.
-The example given is potentially a way to specify the postcondition on a
-typical 'sleep' function.</td></tr>
+    <td>Capturing arbitrary global state for use in a postcondition might prove useful.
+
+This extends to the state of arbitrary other expressions and how that might change
+due to the invocatino of a function.  Consider this example of what might
+be a postcondition of a typical `sleep` function:
+
+```
+old(now()) <= now() + sleep_time
+```</td></tr>
 
 <tr><td><a name="api.extend.exceptionsafety">api.extend.exceptionsafety</a></td>
     <td>Exception safety guarantees are often part of the english language contract of
