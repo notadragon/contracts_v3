@@ -150,18 +150,18 @@ Not important
 Nice to have
 Must have
 
-As a C Developer, in order to Write contracts on my functions, I want to Expose my contracts to C++ developers through 'extern "C"' declarations of my
-functions 
-Not important
-Nice to have
-Must have
-
 As a C Developer, in order to Write contracts on my functions, I want to Make all contract semantics optional (so as not to change WG14-N2385 6.7.11 p2) 
 Not important
 Nice to have
 Must have
 
 As a Mixed C/C++ Developer, in order to Maintain mixed code base, I want to Not lose contracts when crossing languages 
+Not important
+Nice to have
+Must have
+
+As a Mixed C/C++ Developer, in order to Write contracts on my functions, I want to Expose my contracts to C++ developers through 'extern "C"' declarations of my
+functions 
 Not important
 Nice to have
 Must have
@@ -218,8 +218,8 @@ Not important
 Nice to have
 Must have
 
-As a API Developer, in order to Establish a contract, I want to Make reference to the before and after values of global state (eg., <i>now()
-&gt;= old(now()) + sleep_time</i>) in post-conditions 
+As a API Developer, in order to Establish a contract, I want to Make reference to the before and after values of global state (eg., <i>global
+&gt;= old(global) + 1</i>) in post-conditions 
 Not important
 Nice to have
 Must have

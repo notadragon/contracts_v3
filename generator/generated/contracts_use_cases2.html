@@ -200,13 +200,6 @@ _Post, _Assert, etc.)</td>
   <td>Have a common violation handler for both violated C and C++ contracts</td>
   </tr>
 
-<tr><td><a href="#cdev.cppinterop">cdev.cppinterop</a></td>
-  <td>C Developer</td>
-  <td>Write contracts on my functions</td>
-  <td>Expose my contracts to C++ developers through 'extern "C"' declarations of my
-functions</td>
-  </tr>
-
 <tr><td><a href="#cdev.ignorable">cdev.ignorable</a></td>
   <td>C Developer</td>
   <td>Write contracts on my functions</td>
@@ -217,6 +210,13 @@ functions</td>
   <td>Mixed C/C++ Developer</td>
   <td>Maintain mixed code base</td>
   <td>Not lose contracts when crossing languages</td>
+  </tr>
+
+<tr><td><a href="#cdev.cppinterop">cdev.cppinterop</a></td>
+  <td>Mixed C/C++ Developer</td>
+  <td>Write contracts on my functions</td>
+  <td>Expose my contracts to C++ developers through 'extern "C"' declarations of my
+functions</td>
   </tr>
 
 <tr><td><a href="#api.communicate.inputsoutputs">api.communicate.inputsoutputs</a></td>
@@ -284,8 +284,8 @@ by pointer or reference) in post-conditions</td>
 <tr><td><a href="#api.establish.changedstate">api.establish.changedstate</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
-  <td>Make reference to the before and after values of global state (eg.,
-<i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions</td>
+  <td>Make reference to the before and after values of global state (eg., <i>global
+&gt;= old(global) + 1</i>) in post-conditions</td>
   </tr>
 
 <tr><td><a href="#api.extend.exceptionsafety">api.extend.exceptionsafety</a></td>
@@ -1549,13 +1549,6 @@ to a violation handler meaningful in both C and C++, or requiring platform
 vendors to shim between the two (in the case of a C violation handler receiving
 a violation from C++ code).</p>
 <br/>
-<h1><a name="cdev.cppinterop">cdev.cppinterop</a></h1>
-<i>As a</i> C Developer <br/>
-<i>In order to</i> Write contracts on my functions <br/>
-<i>I want to</i> Expose my contracts to C++ developers through 'extern "C"' declarations of my
-functions <p/>
-
-<br/>
 <h1><a name="cdev.ignorable">cdev.ignorable</a></h1>
 <i>As a</i> C Developer <br/>
 <i>In order to</i> Write contracts on my functions <br/>
@@ -1573,6 +1566,13 @@ that the spirit of the law is that anything between [[]]s should be ignorable.</
 <i>As a</i> Mixed C/C++ Developer <br/>
 <i>In order to</i> Maintain mixed code base <br/>
 <i>I want to</i> Not lose contracts when crossing languages <p/>
+
+<br/>
+<h1><a name="cdev.cppinterop">cdev.cppinterop</a></h1>
+<i>As a</i> Mixed C/C++ Developer <br/>
+<i>In order to</i> Write contracts on my functions <br/>
+<i>I want to</i> Expose my contracts to C++ developers through 'extern "C"' declarations of my
+functions <p/>
 
 <br/>
 <h1><a name="api.communicate.inputsoutputs">api.communicate.inputsoutputs</a></h1>
@@ -1662,8 +1662,8 @@ to state the contracts on many member functions.</p>
 <h1><a name="api.establish.changedstate">api.establish.changedstate</a></h1>
 <i>As a</i> API Developer <br/>
 <i>In order to</i> Establish a contract <br/>
-<i>I want to</i> Make reference to the before and after values of global state (eg.,
-<i>global_counter &gt;= old(global_counter) + 1</i>) in post-conditions <p/>
+<i>I want to</i> Make reference to the before and after values of global state (eg., <i>global
+&gt;= old(global) + 1</i>) in post-conditions <p/>
 <p>Capturing arbitrary global state for use in a postcondition might prove useful.</p>
 <p>This extends to the state of arbitrary other expressions and how that might change
 due to the invocatino of a function.  Consider this example of what might
