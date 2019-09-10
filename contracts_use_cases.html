@@ -243,19 +243,19 @@ functions</td>
   <td>Have validation inform user which input values are unexpected or invalid</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.preconditions">api.establish.preconditions</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Have contracts specify their pre-conditions as logical predicates</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.invariants">api.establish.invariants</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Have contracts specify their class invariants as logical predicates</td>
   <td></td></tr>
 
-<tr><td></td>
+<tr><td><a href="#api.establish.postconditions">api.establish.postconditions</a></td>
   <td>API Developer</td>
   <td>Establish a contract</td>
   <td>Have contracts specify their post-conditions as logical predicates</td>
@@ -1345,13 +1345,18 @@ input in some way to other decisions about what the contracts might do or how
 they might be interpreted.</td></tr>
 
 <tr><td><a name="dev.reason.behavior">dev.reason.behavior</a></td>
-    <td>The desire to have the expected behavior explicitly defined by the standard
-in order to help users reason about what a program will do/has done when a
-contract is violated.  Note that having this in the standard allows for
+    <td>The desire to have behaviors (such as generating runtime checks or
+optimizations) and the expected behavior explicitly defined by the standard in
+order to help users reason about what a program will do/has done when a
+contract is violated. Note that having this in the standard allows for
 leveraging expectations of behavior across all compliant platforms.</td></tr>
 
 <tr><td><a name="dev.reason.sideeffects">dev.reason.sideeffects</a></td>
-    <td>There is a tension between allowing side effects in contract conditions and
+    <td>This high-level use case expresses a desire that any execution effective
+transformations an annotation might apply be "reasonable", ie. not surprising
+or counter intuitive (such as time-travel optimizations).
+
+There is a tension between allowing side effects in contract conditions and
 disallowing them completely.  In general, writing code with absolutely no side
 effects is very hard, and there are pitfalls if the language is actively
 hostile to accidental side effects.  On the other hand, conditions with side
@@ -1413,7 +1418,8 @@ possible is currently not standardized but should be available.</td></tr>
 <tr><td><a name="cppdev.build.legacy">cppdev.build.legacy</a></td>
     <td>Note that "debug" and "release" are not standardized things, but nothing
 specified in the standard should preclude those from having some impact on
-what behaviors contracts take on in those two modes.</td></tr>
+what behaviors contracts take on in those two modes. It should be possible for
+a vendor to map contract modes to their existing native modes.</td></tr>
 
 <tr><td><a name="cdev.contracts">cdev.contracts</a></td>
     <td>Important considerations for C are related to any contracts that can go on a
@@ -1451,7 +1457,9 @@ these have bene left out of proposals for C++ to be added in at a later
 date.</td></tr>
 
 <tr><td><a name="api.establish.values">api.establish.values</a></td>
-    <td>The more detail available to users about how a contract condition has been
+    <td>This establishes the basic requirement on preconditions in terms of input values.
+
+The more detail available to users about how a contract condition has been
 violated the more useful they become.  This means each specific condition
 is benefitted by being separate (eg. 'x != 0' and 'y != 0' as distinct
 conditions instead of requiring that users use 'x != 0 && y != 0').
@@ -1460,11 +1468,17 @@ In addition to that, anything that might be able to capture those values
 and expose them to violation handlers for logging would again help benefit
 problem diagnosis.</td></tr>
 
+<tr><td><a name="api.establish.preconditions">api.establish.preconditions</a></td>
+    <td>This establishes the basic requirement to use predicates to evaluate input values.</td></tr>
+
+<tr><td><a name="api.establish.invariants">api.establish.invariants</a></td>
+    <td>This establishes the basic requirement for invariants in terms of predicates on class members.</td></tr>
+
+<tr><td><a name="api.establish.postconditions">api.establish.postconditions</a></td>
+    <td>This establishes the basic requirement to use predicates to evaluate return values.</td></tr>
+
 <tr><td><a name="api.express.values">api.express.values</a></td>
-    <td>Predicates could be limitted to being "completely pure" and referencing no
-global state, but in general reference to both inputs and other identifiers
-beyond the scope of a single function call become needed to fully specify
-contracts.</td></tr>
+    <td>This establishes the basic requirement to reference in-scope variables in order capture values and compute predicates.</td></tr>
 
 <tr><td><a name="api.establish.changedvalues">api.establish.changedvalues</a></td>
     <td>Postconditions often need to state things about how values of output parameters

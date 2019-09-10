@@ -1364,9 +1364,10 @@ they might be interpreted.</p>
 <i>In order to</i> Reason about executions <br/>
 <i>I want to</i> Have annotations affect the execution of my program in accordance with my
 expectations <p/>
-<p>The desire to have the expected behavior explicitly defined by the standard
-in order to help users reason about what a program will do/has done when a
-contract is violated.  Note that having this in the standard allows for
+<p>The desire to have behaviors (such as generating runtime checks or
+optimizations) and the expected behavior explicitly defined by the standard in
+order to help users reason about what a program will do/has done when a
+contract is violated. Note that having this in the standard allows for
 leveraging expectations of behavior across all compliant platforms.</p>
 <br/>
 <h1><a name="dev.reason.sideeffects">dev.reason.sideeffects</a></h1>
@@ -1374,6 +1375,9 @@ leveraging expectations of behavior across all compliant platforms.</p>
 <i>In order to</i> Reason about executions <br/>
 <i>I want to</i> Ensure annotations do not substantially change the meaning of my program
 whether enabled or disabled <p/>
+<p>This high-level use case expresses a desire that any execution effective
+transformations an annotation might apply be "reasonable", ie. not surprising
+or counter intuitive (such as time-travel optimizations).</p>
 <p>There is a tension between allowing side effects in contract conditions and
 disallowing them completely.  In general, writing code with absolutely no side
 effects is very hard, and there are pitfalls if the language is actively
@@ -1519,7 +1523,8 @@ possible is currently not standardized but should be available.</p>
 Debug or Release modes in VS) <p/>
 <p>Note that "debug" and "release" are not standardized things, but nothing
 specified in the standard should preclude those from having some impact on
-what behaviors contracts take on in those two modes.</p>
+what behaviors contracts take on in those two modes. It should be possible for
+a vendor to map contract modes to their existing native modes.</p>
 <br/>
 <h1><a name="cdev.contracts">cdev.contracts</a></h1>
 <i>As a</i> C Developer <br/>
@@ -1600,6 +1605,7 @@ date.</p>
 <i>As a</i> API Developer <br/>
 <i>In order to</i> Establish a contract <br/>
 <i>I want to</i> Have validation inform user which input values are unexpected or invalid <p/>
+<p>This establishes the basic requirement on preconditions in terms of input values.</p>
 <p>The more detail available to users about how a contract condition has been
 violated the more useful they become.  This means each specific condition
 is benefitted by being separate (eg. 'x != 0' and 'y != 0' as distinct
@@ -1612,28 +1618,25 @@ problem diagnosis.</p>
 <i>As a</i> API Developer <br/>
 <i>In order to</i> Establish a contract <br/>
 <i>I want to</i> Have contracts specify their pre-conditions as logical predicates <p/>
-
+<p>This establishes the basic requirement to use predicates to evaluate input values.</p>
 <br/>
 <h1><a name="api.establish.invariants">api.establish.invariants</a></h1>
 <i>As a</i> API Developer <br/>
 <i>In order to</i> Establish a contract <br/>
 <i>I want to</i> Have contracts specify their class invariants as logical predicates <p/>
-
+<p>This establishes the basic requirement for invariants in terms of predicates on class members.</p>
 <br/>
 <h1><a name="api.establish.postconditions">api.establish.postconditions</a></h1>
 <i>As a</i> API Developer <br/>
 <i>In order to</i> Establish a contract <br/>
 <i>I want to</i> Have contracts specify their post-conditions as logical predicates <p/>
-
+<p>This establishes the basic requirement to use predicates to evaluate return values.</p>
 <br/>
 <h1><a name="api.express.values">api.express.values</a></h1>
 <i>As a</i> API Developer <br/>
 <i>In order to</i> Express predicates <br/>
 <i>I want to</i> Make reference to either the values of my inputs, or other in-scope identifiers <p/>
-<p>Predicates could be limitted to being "completely pure" and referencing no
-global state, but in general reference to both inputs and other identifiers
-beyond the scope of a single function call become needed to fully specify
-contracts.</p>
+<p>This establishes the basic requirement to reference in-scope variables in order capture values and compute predicates.</p>
 <br/>
 <h1><a name="api.establish.changedvalues">api.establish.changedvalues</a></h1>
 <i>As a</i> API Developer <br/>
