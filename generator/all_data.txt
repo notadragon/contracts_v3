@@ -94,8 +94,8 @@ leveraging expectations of behavior across all compliant platforms.
 --dev.reason.sideeffects
 Developer
 Reason about executions
-Ensure annotations do not substantially change the meaning of my program when
-enabled
+Ensure annotations do not substantially change the meaning of my program whether
+enabled or disabled
 ==categories
 general behavior
 ==description

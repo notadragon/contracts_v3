@@ -31,8 +31,8 @@ Not important
 Nice to have
 Must have
 
-As a Developer, in order to Reason about executions, I want to Ensure annotations do not substantially change the meaning of my program when
-enabled 
+As a Developer, in order to Reason about executions, I want to Ensure annotations do not substantially change the meaning of my program
+whether enabled or disabled 
 Not important
 Nice to have
 Must have
