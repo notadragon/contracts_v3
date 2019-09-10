@@ -85,9 +85,10 @@ expectations
 ==categories
 general behavior
 ==description
-The desire to have the expected behavior explicitly defined by the standard
-in order to help users reason about what a program will do/has done when a
-contract is violated.  Note that having this in the standard allows for
+The desire to have behaviors (such as generating runtime checks or
+optimizations) and the expected behavior explicitly defined by the standard in
+order to help users reason about what a program will do/has done when a
+contract is violated. Note that having this in the standard allows for
 leveraging expectations of behavior across all compliant platforms.
 --
 
@@ -99,6 +100,10 @@ enabled or disabled
 ==categories
 general behavior
 ==description
+This high-level use case expresses a desire that any execution effective
+transformations an annotation might apply be "reasonable", ie. not surprising
+or counter intuitive (such as time-travel optimizations).
+
 There is a tension between allowing side effects in contract conditions and
 disallowing them completely.  In general, writing code with absolutely no side
 effects is very hard, and there are pitfalls if the language is actively
@@ -308,7 +313,8 @@ control
 ==description
 Note that "debug" and "release" are not standardized things, but nothing
 specified in the standard should preclude those from having some impact on
-what behaviors contracts take on in those two modes.
+what behaviors contracts take on in those two modes. It should be possible for
+a vendor to map contract modes to their existing native modes.
 --
 
 --cdev.contracts
@@ -426,6 +432,8 @@ Have validation inform user which input values are unexpected or invalid
 ==categories
 general behavior
 ==description
+This establishes the basic requirement on preconditions in terms of input values.
+
 The more detail available to users about how a contract condition has been
 violated the more useful they become.  This means each specific condition
 is benefitted by being separate (eg. 'x != 0' and 'y != 0' as distinct
@@ -443,6 +451,7 @@ Have contracts specify their pre-conditions as logical predicates
 ==categories
 location contents
 ==description
+This establishes the basic requirement to use predicates to evaluate input values.
 --
 
 --api.establish.invariants
@@ -452,6 +461,7 @@ Have contracts specify their class invariants as logical predicates
 ==categories
 location contents
 ==description
+This establishes the basic requirement for invariants in terms of predicates on class members.
 --
 
 --api.establish.postconditions
@@ -461,6 +471,7 @@ Have contracts specify their post-conditions as logical predicates
 ==categories
 location contents
 ==description
+This establishes the basic requirement to use predicates to evaluate return values.
 --
 
 --api.express.values
@@ -470,10 +481,7 @@ Make reference to either the values of my inputs, or other in-scope identifiers
 ==categories
 contents
 ==description
-Predicates could be limitted to being "completely pure" and referencing no
-global state, but in general reference to both inputs and other identifiers
-beyond the scope of a single function call become needed to fully specify
-contracts.
+This establishes the basic requirement to reference in-scope variables in order capture values and compute predicates.
 --
 
 --api.establish.changedvalues
