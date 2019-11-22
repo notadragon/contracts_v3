@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>P????R0 &mdash; Contract Use Cases</title>
+  <title>P1995R0 &mdash; Contract Use Cases</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
@@ -365,9 +365,15 @@ pre {
 <body>
 
 <%block filter="markdown">
-Document no: P????R0 <br/>
+Document no: P1995R0 <br/>
 Date: 2019-11-22 <br/>
-Authors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler <br/>
+Authors:
+Joshua Berne,
+Timur Doumler,
+Andrzej Krzemie&#324;ski,
+Ryan McDougall,
+Herb Sutter
+<br/>
 Reply-to: jberne4@bloomberg.net <br/>
 Audience: SG21
 
@@ -410,6 +416,16 @@ Participants were also able to not answer at all for a given question (N/A),
 and this happened for a small number of cases.  The table of use cases below
 lists 4 columns with the total number of each response chosen.  The score column
 is the average value of the responses amongst those who provided a response.
+
+Acknowledgements
+----------------
+
+Thanks to everyone who has participated in the SG21 reflector, telecon, and
+our first meeting in Belfast.   Herb Sutter contributed greatly by taking the
+vast raw data that made up our use cases and painfully populated the online
+survey that everyone participated in.  Thanks also to all 30 respondents who
+took a significant portion of their personal time to read, understand, and
+express their opinions on the 195 use cases presented here.
 
 </%block>
   

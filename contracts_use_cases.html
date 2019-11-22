@@ -33,9 +33,9 @@ structure or execution</td>
 <tr><td><a href="#dev.reason.confidence">dev.reason.confidence</a></td>
   <td>Developer</td>
   <td>Reason explicitly</td>
-  <td>Express a spectrum of confidence in my annotations, from “unsure” and asking
-for validation, to “sure” and asking for some effect to be applied (eg.
-“maybe”, “definitely”, “assume” 'something')</td>
+  <td>Express a spectrum of confidence in my annotations, from "unsure" and asking
+for validation, to "sure" and asking for some effect to be applied (eg.
+"maybe", "definitely", "assume" 'something')</td>
   <td></td></tr>
 
 <tr><td><a href="#dev.reason.importance">dev.reason.importance</a></td>
@@ -70,7 +70,7 @@ whether enabled or disabled</td>
   <td>Developer</td>
   <td>Reason about executions</td>
   <td>Have the effect of annotations on executions be user controllable (ie. decide
-whether “cheap” checks or “critical” terminates)</td>
+whether "cheap" checks or "critical" terminates)</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -348,7 +348,7 @@ be unsafe to run or have stateful side effects</td>
 <tr><td><a href="#api.express.undefined">api.express.undefined</a></td>
   <td>API Developer</td>
   <td>Express unrunnable contracts</td>
-  <td>Be able to use a predicate that doesn’t have a definition, because it hasn’t
+  <td>Be able to use a predicate that doesn't have a definition, because it hasn't
 been written yet, or is infeasible to run</td>
   <td></td></tr>
 
@@ -390,7 +390,7 @@ reported to the caller as precondition failures</td>
 <tr><td><a href="#api.contract.private">api.contract.private</a></td>
   <td>API Developer</td>
   <td>Keep my user interfaces clean and narrow</td>
-  <td>Be able to access private implementation details of the class so I don’t have
+  <td>Be able to access private implementation details of the class so I don't have
 to widen public interface to declare predicates</td>
   <td></td></tr>
 
@@ -442,7 +442,7 @@ if I want to</td>
   <td>Express public class invariants</td>
   <td>Express a restriction on the public interface of a type that all callers of the
 type can depend upon: can mention only public members, and is checked on entry
-and exit from this type’s code</td>
+and exit from this type's code</td>
   <td></td></tr>
 
 <tr><td><a href="#api.class.publicinvariants">api.class.publicinvariants</a></td>
@@ -464,7 +464,7 @@ type (including virtual calls)</td>
   <td>Express base class invariants</td>
   <td>Express a restriction on the protected interface of a type that derived types
 can depend upon: can mention only protected and public members, and is checked
-on entry and exit from this type’s code</td>
+on entry and exit from this type's code</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -485,7 +485,7 @@ calling to the derived type)</td>
   <td>C++ API Developer</td>
   <td>Express private class invariants</td>
   <td>Express an internal restriction on the private implementation of a type, can
-mention any member, and is checked on entry and exit from this type’s code</td>
+mention any member, and is checked on entry and exit from this type's code</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -508,7 +508,7 @@ type (including virtual calls)</td>
   <td>For every member or friend function in my class, run my unit test framework
 with checking enabled for every assertion at the point where it is written, and
 check every postcondition at every non-exceptional exit, and test my class
-invariants on entry and exit from this type’s code</td>
+invariants on entry and exit from this type's code</td>
   <td></td></tr>
 
 <tr><td><a href="#cppapi.contracts.async">cppapi.contracts.async</a></td>
@@ -546,7 +546,7 @@ its awaiter or promise)</td>
 <tr><td></td>
   <td>Integration Developer</td>
   <td>Conform to a contract</td>
-  <td>Be informed any time an interface’s contract is violated</td>
+  <td>Be informed any time an interface's contract is violated</td>
   <td></td></tr>
 
 <tr><td></td>
@@ -676,27 +676,27 @@ deployments</td>
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
-  <td>Define “Code Under Test”</td>
+  <td>Define "Code Under Test"</td>
   <td>Selectively enable checking for a set of functions which could name either an
 individual function or an overload set</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
-  <td>Define “Code Under Test”</td>
+  <td>Define "Code Under Test"</td>
   <td>Selectively enable checking for a set of types and all their members</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
-  <td>Define “Code Under Test”</td>
+  <td>Define "Code Under Test"</td>
   <td>Selectively enable checking for a set of types and all their transitively
 nested types and members</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Integrated Software Provider</td>
-  <td>Define “Code Under Test”</td>
+  <td>Define "Code Under Test"</td>
   <td>Selectively enable checking for a translation unit or module and all (non
 transitive) types and functions within</td>
   <td></td></tr>
@@ -763,7 +763,7 @@ resulting from their build configuration</td>
   <td>Maintain quality of code base</td>
   <td>Express assertions in a way that does not rely on C macros (i.e., there is no
 valid technical reason for a programmer not to use the new way, including
-space, time, tooling, and usability/complexity reasons, compared to C’s assert
+space, time, tooling, and usability/complexity reasons, compared to C's assert
 macro)</td>
   <td></td></tr>
 
@@ -895,7 +895,7 @@ that a tool might not be able to deduce, but that I would be confident of</td>
   <td>Performance Sensitive Developer</td>
   <td>Enable better performance</td>
   <td>Be able to give statically-unprovable facts to current and novel optimizers in
-terms of semantics my program does not depend-on but optimizers can’t figure
+terms of semantics my program does not depend-on but optimizers can't figure
 out</td>
   <td></td></tr>
 
@@ -1035,14 +1035,14 @@ formal testing is complete)</td>
 <tr><td></td>
   <td>Critical Software Developer</td>
   <td>Maximize coverage</td>
-  <td>Be able to run checks in a production environment that are considered “cheap”
+  <td>Be able to run checks in a production environment that are considered "cheap"
 compared to the expected cost of entering an invalid state</td>
   <td></td></tr>
 
 <tr><td></td>
   <td>Critical Software Developer</td>
   <td>Avoid unexpected or undefined behavior</td>
-  <td>Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if
+  <td>Ensure checks will never be __assume'd/__builtin_assume'd by the compiler as if
 they were facts injected into the program (otherwise, if such an assumption
 ever failed, I would be running a different program that is not equivalent to
 the one I wrote; assumptions can expand the set of possible executions by
@@ -1169,7 +1169,7 @@ standard</td>
 <tr><td></td>
   <td>Large Codebase Developer</td>
   <td>Debug complex issues</td>
-  <td>Have composible and fine grained control over which checks are run, without
+  <td>Have composable and fine grained control over which checks are run, without
 requiring source code changes. Specifically the checks for only one function or
 some grouping of functions</td>
   <td></td></tr>
@@ -1333,7 +1333,7 @@ has user-provided metadata about both the confidence in the condition and the
 desired behavior of the program in relation to that condition.</td></tr>
 
 <tr><td><a name="dev.reason.importance">dev.reason.importance</a></td>
-    <td>This high level use case expresses the desire to have metadatda on contract
+    <td>This high level use case expresses the desire to have metadata on contract
 conditions associated with what downsides violations might have, perhaps
 indicating that while a certain condition is expected to be met, the library
 does guarantee that the downsides will not be catastrophic.</td></tr>
@@ -1429,7 +1429,7 @@ which has made that a commonly held assumption but has not actually put wording
 in the standard to that effect.</td></tr>
 
 <tr><td><a name="cdev.identifiers">cdev.identifiers</a></td>
-    <td>Adding new identifiers with meaing in C is generally not acceptable for
+    <td>Adding new identifiers with meaning in C is generally not acceptable for
 standardization, so compatible contracts would either need to use no contracts
 or support alternate reserved words for use with contracts.</td></tr>
 
@@ -1443,17 +1443,22 @@ a violation from C++ code).</td></tr>
     <td>Assuming contracts continue to be rendered as attributes, C standardization
 would require they be semantically optional.
 
-Note that, just as with C++, the ':' in the preivous contract syntax does not
+Note that, just as with C++, the ':' in the previous contract syntax does not
 match the grammar for attributes in either language, so by a strict reading of
 the standards there is no obligation to be ignorable.  ('[[a:b]]' is not a
-valid attribute and shoudl be diagnosed as invalid on any current C or C++
+valid attribute and should be diagnosed as invalid on any current C or C++
 compiler).   Many have expressed the view that this opinion is pedantic and
-that the spirit of the law is that anything between [[]]s should be ignorable.</td></tr>
+that the spirit of the law is that anything between [[]]s should be ignorable.
+
+Additionally, it is currently a conforming extension to throw away all tokens
+between a pair of [[]]s, and there exist numerous compilers that take advantage
+of that fact which would be broken by requiring behavior of any constructs that
+look like an attribute.</td></tr>
 
 <tr><td><a name="api.establish.validate_invariants">api.establish.validate_invariants</a></td>
     <td>Class invariants have historically been considered of general use, but the
 performance impact of checking them can be surprisingly huge.  Previously
-these have bene left out of proposals for C++ to be added in at a later
+these have been left out of proposals for C++ to be added in at a later
 date.</td></tr>
 
 <tr><td><a name="api.establish.values">api.establish.values</a></td>
@@ -1461,7 +1466,7 @@ date.</td></tr>
 
 The more detail available to users about how a contract condition has been
 violated the more useful they become.  This means each specific condition
-is benefitted by being separate (eg. 'x != 0' and 'y != 0' as distinct
+is benefited by being separate (eg. 'x != 0' and 'y != 0' as distinct
 conditions instead of requiring that users use 'x != 0 && y != 0').
 
 In addition to that, anything that might be able to capture those values
@@ -1485,9 +1490,9 @@ problem diagnosis.</td></tr>
 have changed, or how the values of other global state might have changed
 as a result of a function call.  The ability to store copies of state from
 before the function call and reference that in a postcondition predicate will
-enable a wieder variety of conditions to be formulatable.
+enable a wider variety of conditions to be formulatable.
 
-Ada has this funcitonality builtin by providing ways to reference expicitly
+Ada has this functionality builtin by providing ways to reference explicitly
 the original value of a function parameter. C++ makes this more complicated
 with the need to consider the handling of move-only or generally non-copyable
 types.  More importantly, such copying should absolutely not happen if a
@@ -1501,7 +1506,7 @@ to state the contracts on many member functions.</td></tr>
     <td>Capturing arbitrary global state for use in a postcondition might prove useful.
 
 This extends to the state of arbitrary other expressions and how that might change
-due to the invocatino of a function.  Consider this example of what might
+due to the invocation of a function.  Consider this example of what might
 be a postcondition of a typical `sleep` function:
 
 ```
@@ -1509,7 +1514,7 @@ old(now()) <= now() + sleep_time
 ```</td></tr>
 
 <tr><td><a name="api.extend.exceptionsafety">api.extend.exceptionsafety</a></td>
-    <td>Exception safety guarantees are often part of the english language contract of
+    <td>Exception safety guarantees are often part of the English language contract of
 a function, and being able to state that (in a way that tools might be able
 to then pick up on and verify) would be useful.</td></tr>
 
@@ -1524,7 +1529,7 @@ condition to state.</td></tr>
 
 <tr><td><a name="api.express.runnability">api.express.runnability</a></td>
     <td>Numerous predicates that might be useful to state also might change the
-state of a program in a pardoxical way if checked.  The common example
+state of a program in a paradoxical way if checked.  The common example
 (originally put forward in P0380) is validating available items on an input
 iterator.  Other important examples include checks that might require accessing
 special hardware, or doing extensive computations that would invalidate the
@@ -1532,19 +1537,19 @@ results just by taking the time to do them.
 
 These predicates are still useful for those reading the code, still might
 benefit from being validated against postconditions of other functions, and
-might provide some identifiable code improvements when analyzed by hte compiler
+might provide some identifiable code improvements when analyzed by the compiler
 without actually executing them at runtime.</td></tr>
 
 <tr><td><a name="api.express.undefined">api.express.undefined</a></td>
-    <td>Often during developement it helps to write contracts first, and that might
+    <td>Often during development it helps to write contracts first, and that might
 even predate having enough of an implementation to fully define the conditions.
-Having them in code ensures that the placeholder api to check them is
+Having them in code ensures that the placeholder API to check them is
 maintained.  Some functions may never be implementable due to time constraints,
 while others will eventually be filled in as time allows.</td></tr>
 
 <tr><td><a name="api.express.uncheckable">api.express.uncheckable</a></td>
     <td>Some predicates might even have no meaning within the language itself, but
-benefite other tools by being placed into the same contract framework as other
+benefit other tools by being placed into the same contract framework as other
 predicates, with meaning to those external tools.</td></tr>
 
 <tr><td><a name="api.express.unimplementable">api.express.unimplementable</a></td>
@@ -1556,7 +1561,7 @@ the language itself.  Consider functions such as "is_deletable" or
 <tr><td><a name="api.establish.responsibility">api.establish.responsibility</a></td>
     <td>One common realization with having checked contracts in the language is that 
 they will then identify bugs that exist in programs.  Identifying the source
-of those bugs swiftly is important, and for any contract that is dependant on
+of those bugs swiftly is important, and for any contract that is dependent on
 a function being called properly that responsibility does not usually lie with
 the line of code where the contract is written, but with the place where
 the function has been called.</td></tr>
@@ -1569,18 +1574,18 @@ function has everything that is required is cheap. If I use an assertion like
 this,  I want to annotate this assertion as being "precondition-like". The
 semantics would be that if it fails,  it is reported as "caller's bug" rather
 than callee's bug, and if the build is configured  to runtime-check only
-preconditions, such assertion should also be runitme-checked.
+preconditions, such assertion should also be runtime-checked.
 
 As an example, consider a binary search that wishes to check that the input
 list is sorted.  There is an expensive check (O(n)) that can be done to verify
 that the whole list is sorted on each call, but this would negate the
 performance benefits of doing a binary search to begin with.  Another option
-is to check just that the elements adjacent to those that are visitted are in
+is to check just that the elements adjacent to those that are visited are in
 properly sorted order.  This will provide some chance of identify unsorted
 inputs without making performance unusable, but is also most cleanly done
 during the execution of the search algorithm.  Unlike a normal in-body
 assertion, a violation identified by this kind of check should be reported to
-the caller, as it is a failure on the callinig code's part to provide a
+the caller, as it is a failure on the calling code's part to provide a
 properly sorted input list.</td></tr>
 
 <tr><td><a name="api.contract.interface">api.contract.interface</a></td>
@@ -1592,7 +1597,7 @@ to anyone looking at a header file for understanding an API.</td></tr>
 iterator, which generally just has a few operators and no other functions -
 yet there  might be ways to check parts of a narrow contract that depend on
 internal state.  Exposing this state so that it can be checked publicly would
-require wideninig the API interface, which is counter to the desire to keep
+require widening the API interface, which is counter to the desire to keep
 the use of a type as simple as possible.
 
 On a similar note, sometimes the internal state only approximates the actual
@@ -1617,24 +1622,24 @@ might have been written to report misuse through exceptions.  Contracts should
 provide a better alternative than giving all functions a fully wide contract.</td></tr>
 
 <tr><td><a name="cppapi.class.variability">cppapi.class.variability</a></td>
-    <td>P4810 did not allow any varaition in contract conditions through overrids of
+    <td>P4810 did not allow any variation in contract conditions through overrides of
 a virtual function, though this could be roughly accomplished with assertions
 in function bodies instead.
 
 In general, the pre and postconditions of the interface you call through should
 be checked to be sure you're meeting the requirements you want to meet.
-Similalrly, the concrete type's conditions should be checked to be sure it is
+Similarly, the concrete type's conditions should be checked to be sure it is
 behaving properly.  Doing both checks if they are different might be an
 acceptable solution to allow flexibility without any increase in risk, at the
-possible cost of some perormance in checked builds.</td></tr>
+possible cost of some performance in checked builds.</td></tr>
 
 <tr><td><a name="api.class.publicinterface">api.class.publicinterface</a></td>
-    <td>Requirements on an interface to a function should be imposible when entering
+    <td>Requirements on an interface to a function should be impossible when entering
 into a type's functions, but there might be a desire to distinguish that
 so that checking is done differently when a type calls its own functions.</td></tr>
 
 <tr><td><a name="api.class.publicinvariants">api.class.publicinvariants</a></td>
-    <td>General class invariants should be checked for vaidity before and after any
+    <td>General class invariants should be checked for validity before and after any
 call to a public member function of a class.  Calls to friend functions need
 to be considered as well, as they might benefit from invalidating/validating
 invariants.  Similarly, invariants might be checked for all objects of the
@@ -1691,9 +1696,9 @@ that the condition clutters the readable interface and changes in a contract
 condition force client recompilation.  Contract conditions not in the header
 file are not going to be visible to tools that are attempting to limit what
 they consume to a single translation unit.  Combined, these result in a desire
-to sometimes put the contracts with the implementating definition (in a .cpp
+to sometimes put the contracts with the implementing definition (in a .cpp
 file) and sometimes put them in a redeclaration in a header file (where one
-might also put inilne function definitions).
+might also put inline function definitions).
 
 For free functions this would just require relaxing the requirements on where
 contracts are.  For member functions, allowing member function redeclaration
