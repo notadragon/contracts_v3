@@ -15,19 +15,19 @@ In order to: Reason explicitly
 I want to: Annotate my program anywhere in the code with my current understanding of its structure or execution Must have
 As a: Developer
 In order to: Reason explicitly
-I want to: Express a spectrum of confidence in my annotations, from “unsure” and asking for validation, to “sure” and asking for some effect to be applied (eg. “maybe”, “definitely”, “assume” 'something')
+I want to: Express a spectrum of confidence in my annotations, from "unsure" and asking for validation, to "sure" and asking for some effect to be applied (eg. "maybe", "definitely", "assume" 'something')
 
 As a: Developer
 In order to: Reason explicitly
-I want to: Express a spectrum of confidence in my annotations, from “unsure” and asking for validation, to “sure” and asking for some effect to be applied (eg. “maybe”, “definitely”, “assume” 'something') Not important
+I want to: Express a spectrum of confidence in my annotations, from "unsure" and asking for validation, to "sure" and asking for some effect to be applied (eg. "maybe", "definitely", "assume" 'something') Not important
 
 As a: Developer
 In order to: Reason explicitly
-I want to: Express a spectrum of confidence in my annotations, from “unsure” and asking for validation, to “sure” and asking for some effect to be applied (eg. “maybe”, “definitely”, “assume” 'something') Nice to have
+I want to: Express a spectrum of confidence in my annotations, from "unsure" and asking for validation, to "sure" and asking for some effect to be applied (eg. "maybe", "definitely", "assume" 'something') Nice to have
 
 As a: Developer
 In order to: Reason explicitly
-I want to: Express a spectrum of confidence in my annotations, from “unsure” and asking for validation, to “sure” and asking for some effect to be applied (eg. “maybe”, “definitely”, “assume” 'something') Must have
+I want to: Express a spectrum of confidence in my annotations, from "unsure" and asking for validation, to "sure" and asking for some effect to be applied (eg. "maybe", "definitely", "assume" 'something') Must have
 As a: Developer
 In order to: Reason explicitly
 I want to: Express a spectrum of importance of my annotations, from "critical" (eg. bring the system down) to "minor" (eg. lead to a slower fallback)
@@ -90,19 +90,19 @@ In order to: Reason about executions
 I want to: Ensure annotations do not substantially change the meaning of my program whether enabled or disabled Must have
 As a: Developer
 In order to: Reason about executions
-I want to: Have the effect of annotations on executions be user controllable (ie. decide whether “cheap” checks or “critical” terminates)
+I want to: Have the effect of annotations on executions be user controllable (ie. decide whether "cheap" checks or "critical" terminates)
 
 As a: Developer
 In order to: Reason about executions
-I want to: Have the effect of annotations on executions be user controllable (ie. decide whether “cheap” checks or “critical” terminates) Not important
+I want to: Have the effect of annotations on executions be user controllable (ie. decide whether "cheap" checks or "critical" terminates) Not important
 
 As a: Developer
 In order to: Reason about executions
-I want to: Have the effect of annotations on executions be user controllable (ie. decide whether “cheap” checks or “critical” terminates) Nice to have
+I want to: Have the effect of annotations on executions be user controllable (ie. decide whether "cheap" checks or "critical" terminates) Nice to have
 
 As a: Developer
 In order to: Reason about executions
-I want to: Have the effect of annotations on executions be user controllable (ie. decide whether “cheap” checks or “critical” terminates) Must have
+I want to: Have the effect of annotations on executions be user controllable (ie. decide whether "cheap" checks or "critical" terminates) Must have
 As a: Developer
 In order to: Adapt and progress with my project
 I want to: Be able to easily change my confidence, importance, or other properties of my annotations over time
@@ -750,19 +750,19 @@ In order to: Express unrunnable contracts
 I want to: Be able to use a predicate that is not evaluated at runtime, because it might be unsafe to run or have stateful side effects Must have
 As an: API Developer
 In order to: Express unrunnable contracts
-I want to: Be able to use a predicate that doesn’t have a definition, because it hasn’t been written yet, or is infeasible to run
+I want to: Be able to use a predicate that doesn't have a definition, because it hasn't been written yet, or is infeasible to run
 
 As an: API Developer
 In order to: Express unrunnable contracts
-I want to: Be able to use a predicate that doesn’t have a definition, because it hasn’t been written yet, or is infeasible to run Not important
+I want to: Be able to use a predicate that doesn't have a definition, because it hasn't been written yet, or is infeasible to run Not important
 
 As an: API Developer
 In order to: Express unrunnable contracts
-I want to: Be able to use a predicate that doesn’t have a definition, because it hasn’t been written yet, or is infeasible to run Nice to have
+I want to: Be able to use a predicate that doesn't have a definition, because it hasn't been written yet, or is infeasible to run Nice to have
 
 As an: API Developer
 In order to: Express unrunnable contracts
-I want to: Be able to use a predicate that doesn’t have a definition, because it hasn’t been written yet, or is infeasible to run Must have
+I want to: Be able to use a predicate that doesn't have a definition, because it hasn't been written yet, or is infeasible to run Must have
 As an: API Developer
 In order to: Express uncheckable contracts
 I want to: Be able to use a predicate that is not evaluated, because it is simply a semantic placeholder for a tool
@@ -840,19 +840,19 @@ In order to: Have contract as part of my interface
 I want to: Declare contract when I declare the function Must have
 As an: API Developer
 In order to: Keep my user interfaces clean and narrow
-I want to: Be able to access private implementation details of the class so I don’t have to widen public interface to declare predicates
+I want to: Be able to access private implementation details of the class so I don't have to widen public interface to declare predicates
 
 As an: API Developer
 In order to: Keep my user interfaces clean and narrow
-I want to: Be able to access private implementation details of the class so I don’t have to widen public interface to declare predicates Not important
+I want to: Be able to access private implementation details of the class so I don't have to widen public interface to declare predicates Not important
 
 As an: API Developer
 In order to: Keep my user interfaces clean and narrow
-I want to: Be able to access private implementation details of the class so I don’t have to widen public interface to declare predicates Nice to have
+I want to: Be able to access private implementation details of the class so I don't have to widen public interface to declare predicates Nice to have
 
 As an: API Developer
 In order to: Keep my user interfaces clean and narrow
-I want to: Be able to access private implementation details of the class so I don’t have to widen public interface to declare predicates Must have
+I want to: Be able to access private implementation details of the class so I don't have to widen public interface to declare predicates Must have
 As an: API Developer
 In order to: Keep my public interfaces clean and concise
 I want to: Place function contract conditions on any declaration (e.g., on redeclarations at the bottom of the header, or on the definition in an implementation file, where they are less distracting).
@@ -945,19 +945,19 @@ In order to: Maintain a class hierarchy.
 I want to: Allow overriding functions to have narrower preconditions/wider postconditions if I want to Must have
 As a: C++ API Developer
 In order to: Express public class invariants
-I want to: Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type’s code
+I want to: Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type's code
 
 As a: C++ API Developer
 In order to: Express public class invariants
-I want to: Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type’s code Not important
+I want to: Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type's code Not important
 
 As a: C++ API Developer
 In order to: Express public class invariants
-I want to: Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type’s code Nice to have
+I want to: Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type's code Nice to have
 
 As a: C++ API Developer
 In order to: Express public class invariants
-I want to: Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type’s code Must have
+I want to: Express a restriction on the public interface of a type that all callers of the type can depend upon: can mention only public members, and is checked on entry and exit from this type's code Must have
 As a: C++ API Developer
 In order to: Express public class invariants
 I want to: Check invariants before and after every public method (when called from outside the type, not when one member function calls another)
@@ -990,19 +990,19 @@ In order to: Express public class invariants
 I want to: Check invariants before and after calling functions that are not part of this type (including virtual calls) Must have
 As a: C++ API Developer
 In order to: Express base class invariants
-I want to: Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and public members, and is checked on entry and exit from this type’s code
+I want to: Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and public members, and is checked on entry and exit from this type's code
 
 As a: C++ API Developer
 In order to: Express base class invariants
-I want to: Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and public members, and is checked on entry and exit from this type’s code Not important
+I want to: Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and public members, and is checked on entry and exit from this type's code Not important
 
 As a: C++ API Developer
 In order to: Express base class invariants
-I want to: Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and public members, and is checked on entry and exit from this type’s code Nice to have
+I want to: Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and public members, and is checked on entry and exit from this type's code Nice to have
 
 As a: C++ API Developer
 In order to: Express base class invariants
-I want to: Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and public members, and is checked on entry and exit from this type’s code Must have
+I want to: Express a restriction on the protected interface of a type that derived types can depend upon: can mention only protected and public members, and is checked on entry and exit from this type's code Must have
 As a: C++ API Developer
 In order to: Express base class invariants
 I want to: Check invariants on entry and exit of every protected method (when called from the derived type, not when one base member function calls another)
@@ -1035,19 +1035,19 @@ In order to: Express base class invariants
 I want to: Check invariants before and after every call to a virtual function (when calling to the derived type) Must have
 As a: C++ API Developer
 In order to: Express private class invariants
-I want to: Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type’s code
+I want to: Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type's code
 
 As a: C++ API Developer
 In order to: Express private class invariants
-I want to: Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type’s code Not important
+I want to: Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type's code Not important
 
 As a: C++ API Developer
 In order to: Express private class invariants
-I want to: Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type’s code Nice to have
+I want to: Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type's code Nice to have
 
 As a: C++ API Developer
 In order to: Express private class invariants
-I want to: Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type’s code Must have
+I want to: Express an internal restriction on the private implementation of a type, can mention any member, and is checked on entry and exit from this type's code Must have
 As a: C++ API Developer
 In order to: Express private class invariants
 I want to: Check invariants on entry and exit of every public method (when called from outside the type, not when one member function calls another)
@@ -1080,19 +1080,19 @@ In order to: Express private class invariants
 I want to: Check invariants before and after calling functions that are not part of this type (including virtual calls) Must have
 As a: C++ API Developer
 In order to: Test my classes
-I want to: For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type’s code
+I want to: For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type's code
 
 As a: C++ API Developer
 In order to: Test my classes
-I want to: For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type’s code Not important
+I want to: For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type's code Not important
 
 As a: C++ API Developer
 In order to: Test my classes
-I want to: For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type’s code Nice to have
+I want to: For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type's code Nice to have
 
 As a: C++ API Developer
 In order to: Test my classes
-I want to: For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type’s code Must have
+I want to: For every member or friend function in my class, run my unit test framework with checking enabled for every assertion at the point where it is written, and check every postcondition at every non-exceptional exit, and test my class invariants on entry and exit from this type's code Must have
 As a: C++ API Developer
 In order to: Enforce contracts in async code
 I want to: Express contracts on callbacks such as std::function, function pointers, or references to functions, lambdas, or function objects
@@ -1170,19 +1170,19 @@ In order to: Use coroutines
 I want to: Define and check invariants over all entry and exit points from a coroutine (to its awaiter or promise) Must have
 As an: Integration Developer
 In order to: Conform to a contract
-I want to: Be informed any time an interface’s contract is violated
+I want to: Be informed any time an interface's contract is violated
 
 As an: Integration Developer
 In order to: Conform to a contract
-I want to: Be informed any time an interface’s contract is violated Not important
+I want to: Be informed any time an interface's contract is violated Not important
 
 As an: Integration Developer
 In order to: Conform to a contract
-I want to: Be informed any time an interface’s contract is violated Nice to have
+I want to: Be informed any time an interface's contract is violated Nice to have
 
 As an: Integration Developer
 In order to: Conform to a contract
-I want to: Be informed any time an interface’s contract is violated Must have
+I want to: Be informed any time an interface's contract is violated Must have
 As an: Integration Developer
 In order to: Conform to a contract
 I want to: Verify results from a call are expected output values
@@ -1484,64 +1484,64 @@ As an: Integrated Software Provider
 In order to: Manage binary delivery
 I want to: Be able to use the same executable regardless of contract enforcement mode Must have
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of functions which could name either an individual function or an overload set
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of functions which could name either an individual function or an overload set Not important
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of functions which could name either an individual function or an overload set Nice to have
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of functions which could name either an individual function or an overload set Must have
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of types and all their members
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of types and all their members Not important
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of types and all their members Nice to have
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of types and all their members Must have
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of types and all their transitively nested types and members
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of types and all their transitively nested types and members Not important
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of types and all their transitively nested types and members Nice to have
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a set of types and all their transitively nested types and members Must have
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a translation unit or module and all (non transitive) types and functions within
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a translation unit or module and all (non transitive) types and functions within Not important
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a translation unit or module and all (non transitive) types and functions within Nice to have
 
 As an: Integrated Software Provider
-In order to: Define “Code Under Test”
+In order to: Define "Code Under Test"
 I want to: Selectively enable checking for a translation unit or module and all (non transitive) types and functions within Must have
 As an: Integrated Software Provider
 In order to: Test final deliverable
@@ -1680,19 +1680,19 @@ In order to: Support successful integration
 I want to: Not have my users accidentally modify my careful annotations Must have
 As a: Technical Architect
 In order to: Maintain quality of code base
-I want to: Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C’s assert macro)
+I want to: Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C's assert macro)
 
 As a: Technical Architect
 In order to: Maintain quality of code base
-I want to: Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C’s assert macro) Not important
+I want to: Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C's assert macro) Not important
 
 As a: Technical Architect
 In order to: Maintain quality of code base
-I want to: Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C’s assert macro) Nice to have
+I want to: Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C's assert macro) Nice to have
 
 As a: Technical Architect
 In order to: Maintain quality of code base
-I want to: Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C’s assert macro) Must have
+I want to: Express assertions in a way that does not rely on C macros (i.e., there is no valid technical reason for a programmer not to use the new way, including space, time, tooling, and usability/complexity reasons, compared to C's assert macro) Must have
 As a: Technical Architect
 In order to: Have a consistent and holistic contracts facility
 I want to: Specify preconditions/postconditions/assertions/invariants that express my expectations about the expected valid state of my program in the form of compilable boolean expressions, that can be checked statically or dynamically (as opposed to disjointed state where these features are factored into bits)
@@ -1980,19 +1980,19 @@ In order to: Enable better performance
 I want to: Annotate my code with assumptions, likelihoods, or reachability information that a tool might not be able to deduce, but that I would be confident of Must have
 As a: Performance Sensitive Developer
 In order to: Enable better performance
-I want to: Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can’t figure out
+I want to: Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can't figure out
 
 As a: Performance Sensitive Developer
 In order to: Enable better performance
-I want to: Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can’t figure out Not important
+I want to: Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can't figure out Not important
 
 As a: Performance Sensitive Developer
 In order to: Enable better performance
-I want to: Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can’t figure out Nice to have
+I want to: Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can't figure out Nice to have
 
 As a: Performance Sensitive Developer
 In order to: Enable better performance
-I want to: Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can’t figure out Must have
+I want to: Be able to give statically-unprovable facts to current and novel optimizers in terms of semantics my program does not depend-on but optimizers can't figure out Must have
 As a: Performance Sensitive Developer
 In order to: Enable better performance
 I want to: Accept responsibility for a malformed program that might result from eventually false information given by my annotations
@@ -2310,34 +2310,34 @@ In order to: Have redundant layering
 I want to: Be able to continue to run checks in a production environment (even after formal testing is complete) Must have
 As a: Critical Software Developer
 In order to: Maximize coverage
-I want to: Be able to run checks in a production environment that are considered “cheap” compared to the expected cost of entering an invalid state
+I want to: Be able to run checks in a production environment that are considered "cheap" compared to the expected cost of entering an invalid state
 
 As a: Critical Software Developer
 In order to: Maximize coverage
-I want to: Be able to run checks in a production environment that are considered “cheap” compared to the expected cost of entering an invalid state Not important
+I want to: Be able to run checks in a production environment that are considered "cheap" compared to the expected cost of entering an invalid state Not important
 
 As a: Critical Software Developer
 In order to: Maximize coverage
-I want to: Be able to run checks in a production environment that are considered “cheap” compared to the expected cost of entering an invalid state Nice to have
+I want to: Be able to run checks in a production environment that are considered "cheap" compared to the expected cost of entering an invalid state Nice to have
 
 As a: Critical Software Developer
 In order to: Maximize coverage
-I want to: Be able to run checks in a production environment that are considered “cheap” compared to the expected cost of entering an invalid state Must have
+I want to: Be able to run checks in a production environment that are considered "cheap" compared to the expected cost of entering an invalid state Must have
 As a: Critical Software Developer
 In order to: Avoid unexpected or undefined behavior
-I want to: Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler)
+I want to: Ensure checks will never be __assume'd/__builtin_assume'd by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler)
 
 As a: Critical Software Developer
 In order to: Avoid unexpected or undefined behavior
-I want to: Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler) Not important
+I want to: Ensure checks will never be __assume'd/__builtin_assume'd by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler) Not important
 
 As a: Critical Software Developer
 In order to: Avoid unexpected or undefined behavior
-I want to: Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler) Nice to have
+I want to: Ensure checks will never be __assume'd/__builtin_assume'd by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler) Nice to have
 
 As a: Critical Software Developer
 In order to: Avoid unexpected or undefined behavior
-I want to: Ensure checks will never be __assume’d/__builtin_assume’d by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler) Must have
+I want to: Ensure checks will never be __assume'd/__builtin_assume'd by the compiler as if they were facts injected into the program (otherwise, if such an assumption ever failed, I would be running a different program that is not equivalent to the one I wrote; assumptions can expand the set of possible executions by injecting facts not otherwise knowable to the compiler) Must have
 As a: Security Sensitive Developer
 In order to: Limit attack vectors
 I want to: Be unable to insert code paths (eg. violation handlers) at run time (eg. build time only)
@@ -2610,19 +2610,19 @@ In order to: Deliver the best implementation
 I want to: Have a clear and simple specification that meets clear need Must have
 As a: Large Codebase Developer
 In order to: Debug complex issues
-I want to: Have composible and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions
+I want to: Have composable and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions
 
 As a: Large Codebase Developer
 In order to: Debug complex issues
-I want to: Have composible and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions Not important
+I want to: Have composable and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions Not important
 
 As a: Large Codebase Developer
 In order to: Debug complex issues
-I want to: Have composible and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions Nice to have
+I want to: Have composable and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions Nice to have
 
 As a: Large Codebase Developer
 In order to: Debug complex issues
-I want to: Have composible and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions Must have
+I want to: Have composable and fine grained control over which checks are run, without requiring source code changes. Specifically the checks for only one function or some grouping of functions Must have
 As a: Large Codebase Developer
 In order to: Enable/Disable checking on critical/hot paths
 I want to: Control whether checks are run based on where they are being called from

@@ -21,7 +21,10 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <h2>Use cases &mdash; table</h2>
 
 <table>
-<tr><th>Code</th><th>As A</th><th>In Order To</th><th>I Want To</th></tr>
+  <tr>
+    <th>Code</th><th>As A</th><th>In Order To</th><th>I Want To</th>
+    <th>N/A</th><th>Not</th><th>Nice</th><th>Must</th><th>Score</th>
+  </tr>
 
 % for udict in all_data:
 <tr><td>\
@@ -32,6 +35,14 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
   <td>${udict["asa"]}</td>
   <td>${udict["todo"]}</td>
   <td>${udict["want"]}</td>
+  <td>${len(udict["responses:0"])}</td>
+  <td>${len(udict["responses:1"])}</td>
+  <td>${len(udict["responses:2"])}</td>
+  <td>${len(udict["responses:3"])}</td>
+  <td>
+    ${"%02f" % ((len(udict["responses:3"])*2 + len(udict["responses:2"])) /
+    (len(udict["responses:3"]) + len(udict["responses:2"]) + len(udict["responses:1"])),)}
+    </td>
   </tr>
 
 % endfor
@@ -45,7 +56,14 @@ Editors: Ryan McDougall, Joshua Berne, Andrzej Krzemie&#324;ski, Timur Doumler
 <i>As a</i> ${udict["asa"]} <br/>
 <i>In order to</i> ${udict["todo"]} <br/>
 <i>I want to</i> ${udict["want"]} <p/>
-${udict["descriptionmd"]}
+<i>Must Have:</i> ${len(udict["responses:3"])},
+<i>Nice to Have:</i> ${len(udict["responses:2"])},
+<i>Not Important:</i> ${len(udict["responses:1"])}
+% if len(udict["responses:0"]) > 0:
+, <i>No Answer:</i> ${len(udict["responses:0"])}
+% endif
+<p/>
+${udict["description:md"]}
 <br/>
 % endif
 % endfor

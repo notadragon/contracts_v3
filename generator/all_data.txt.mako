@@ -25,7 +25,7 @@ ${udict["asa"]}
 ${udict["todo"]}
 ${udict["want"]}
 % for key,data in udict.items():
-% if key not in ["label","asa","todo","want","description","descriptionmd"]:
+% if key not in ["label","asa","todo","want","description"] and ":" not in key:
 ==${key}
 ${data}
 %endif
