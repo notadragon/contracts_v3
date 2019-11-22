@@ -417,20 +417,10 @@ and this happened for a small number of cases.  The table of use cases below
 lists 4 columns with the total number of each response chosen.  The score column
 is the average value of the responses amongst those who provided a response.
 
-Acknowledgements
-----------------
-
-Thanks to everyone who has participated in the SG21 reflector, telecon, and
-our first meeting in Belfast.   Herb Sutter contributed greatly by taking the
-vast raw data that made up our use cases and painfully populated the online
-survey that everyone participated in.  Thanks also to all 30 respondents who
-took a significant portion of their personal time to read, understand, and
-express their opinions on the 195 use cases presented here.
-
 </%block>
   
 
-<h2>Use cases &mdash; table</h2>
+<h2>All Use Cases and Poll Results</h2>
 
 <table>
   <tr>
@@ -460,7 +450,7 @@ express their opinions on the 195 use cases presented here.
 % endfor
 </table>
 
-<h2>Use cases &mdash; descriptions</h2>
+<h2>Detailed Descriptions</h2>
 
 % for udict in all_data:
 % if "description" in udict:
@@ -481,6 +471,20 @@ ${udict["description:md"]}
 % endfor
 
 <br/>
+
+<%block filter="markdown">
+
+Acknowledgements
+----------------
+
+Thanks to everyone who has participated in the SG21 reflector, telecon, and
+our first meeting in Belfast.   Herb Sutter contributed greatly by taking the
+vast raw data that made up our use cases and painfully populated the online
+survey that everyone participated in.  Thanks also to all 30 respondents who
+took a significant portion of their personal time to read, understand, and
+express their opinions on the 195 use cases presented here.
+
+</%block>
 
 </body>
 </html>
