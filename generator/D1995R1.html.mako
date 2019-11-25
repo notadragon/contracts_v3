@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>P1995R0 &mdash; Contract Use Cases</title>
+  <title>D1995R1 &mdash; Contract Use Cases</title>
   <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
@@ -365,7 +365,7 @@ pre {
 <body>
 
 <%block filter="markdown">
-Document no: P1995R0 <br/>
+Document no: D1995R1 <br/>
 Date: 2019-11-22 <br/>
 Authors:
 Joshua Berne,
