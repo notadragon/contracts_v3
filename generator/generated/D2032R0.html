@@ -1,0 +1,3838 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>D2032R0 &mdash; Contract Use Cases</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="github.css">
+  <!-- Style for Markdown -->
+  <style>
+  .md2html-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .md2html-container > h1:first-child {
+    margin-top: 0;
+  }
+  body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url("../../images/modules/styleguide/para.png") no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url("../../images/modules/pulls/dirty-shade.png") repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0; }
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+ul :last-child, ol :last-child {
+  margin-bottom: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  border-collapse: collapse;
+  padding: 0; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      text-align: left;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+
+<p>Document no: D2032R0 <br/>
+Date: 2019-11-22 <br/>
+Authors:
+Joshua Berne
+<br/>
+Reply-to: jberne4@bloomberg.net <br/>
+Audience: SG21</p>
+<h1>Contracts &mdash; What Came Before</h1>
+<h2>Introduction</h2>
+<h2>Methodology</h2>
+<h2>Use Cases</h2>
+
+<table>
+  <tr>
+    <th colspan="2">Code</th><th>As A</th><th>In Order To</th><th>I Want To</th>
+  </tr>
+
+<tr><td colspan="2"><a href="#dev.reason.knowl">dev.reason.knowl</a></td>
+  <td>Developer</td>
+  <td>Reason explicitly</td>
+  <td>Annotate my program anywhere in the code with my current understanding of its
+structure or execution</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.reason.confidence">dev.reason.confidence</a></td>
+  <td>Developer</td>
+  <td>Reason explicitly</td>
+  <td>Express a spectrum of confidence in my annotations, from "unsure" and asking
+for validation, to "sure" and asking for some effect to be applied (eg.
+"maybe", "definitely", "assume" 'something')</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.reason.importance">dev.reason.importance</a></td>
+  <td>Developer</td>
+  <td>Reason explicitly</td>
+  <td>Express a spectrum of importance of my annotations, from "critical" (eg. bring
+the system down) to "minor" (eg. lead to a slower fallback)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.reason.cost">dev.reason.cost</a></td>
+  <td>Developer</td>
+  <td>Reason explicitly</td>
+  <td>Express a spectrum of expected cost at compile or runtime of my annotations,
+from "unrunnable" to "expensive" to "cheap"</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.reason.behavior">dev.reason.behavior</a></td>
+  <td>Developer</td>
+  <td>Reason about executions</td>
+  <td>Have annotations affect the execution of my program in accordance with my
+expectations</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.reason.sideeffects">dev.reason.sideeffects</a></td>
+  <td>Developer</td>
+  <td>Reason about executions</td>
+  <td>Ensure annotations do not substantially change the meaning of my program
+whether enabled or disabled</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.reason.behaviorcontrol">dev.reason.behaviorcontrol</a></td>
+  <td>Developer</td>
+  <td>Reason about executions</td>
+  <td>Have the effect of annotations on executions be user controllable (ie. decide
+whether "cheap" checks or "critical" terminates)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.adapt">dev.adapt</a></td>
+  <td>Developer</td>
+  <td>Adapt and progress with my project</td>
+  <td>Be able to easily change my confidence, importance, or other properties of my
+annotations over time</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.readable.syntax">dev.readable.syntax</a></td>
+  <td>Developer</td>
+  <td>Have readable annotations</td>
+  <td>Have annotations with a succinct and elegant syntax</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.readable.keywords">dev.readable.keywords</a></td>
+  <td>Developer</td>
+  <td>Have readable annotations</td>
+  <td>Have annotation keywords or names with intuitive, clear, and unambiguous
+meanings</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.readable.priority">dev.readable.priority</a></td>
+  <td>Developer</td>
+  <td>Have readable annotations</td>
+  <td>Have my contract specification to be visually primary, and secondary
+information (syntax, hints, roles, levels, etc.) to not be distracting</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.parsable">dev.parsable</a></td>
+  <td>Developer</td>
+  <td>Interoperate with tools or persons</td>
+  <td>A syntax that can both be parsed and can be reasoned about semantically</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#dev.tooling">dev.tooling</a></td>
+  <td>Developer</td>
+  <td>Interoperate with tools or persons</td>
+  <td>Expose annotations to tools that might leverage them (eg. code linter, static
+analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer,
+etc.)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.syntax.familiar">cppdev.syntax.familiar</a></td>
+  <td>C++ Developer</td>
+  <td>Get up to speed</td>
+  <td>Have annotations use familiar syntax</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.syntax.cpp">cppdev.syntax.cpp</a></td>
+  <td>C++ Developer</td>
+  <td>Get up to speed</td>
+  <td>Have annotations use C++ syntax</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.syntax.reuse">cppdev.syntax.reuse</a></td>
+  <td>C++ Developer</td>
+  <td>Reuse code</td>
+  <td>Have annotations use my custom types or functions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.location">cppdev.location</a></td>
+  <td>C++ Developer</td>
+  <td>Have a single source of truth</td>
+  <td>Use same source file for both code and annotations</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.syntax.macros">cppdev.syntax.macros</a></td>
+  <td>C++ Developer</td>
+  <td>Support modern features</td>
+  <td>Minimize use of macros</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.modules">cppdev.modules</a></td>
+  <td>C++ Developer</td>
+  <td>Support modern features</td>
+  <td>Be interoperable with modules</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.coroutines">cppdev.coroutines</a></td>
+  <td>C++ Developer</td>
+  <td>Support modern features</td>
+  <td>Be interoperable with coroutines</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.concepts">cppdev.concepts</a></td>
+  <td>C++ Developer</td>
+  <td>Support modern features</td>
+  <td>Be interoperable with concepts</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.existing.std">cppdev.existing.std</a></td>
+  <td>C++ Developer</td>
+  <td>Use the standard library in-contract</td>
+  <td>Codify existing exposition-only standard library requirements</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.debugger">cppdev.debugger</a></td>
+  <td>C++ Developer</td>
+  <td>Use Debugger</td>
+  <td>Have runtime able to launch a debugger from an annotation if necessary</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppdev.build.legacy">cppdev.build.legacy</a></td>
+  <td>C++ Developer</td>
+  <td>Use existing build modes</td>
+  <td>Have annotations affect executions depending on my existing build modes (eg.
+Debug or Release modes in VS)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cdev.contracts">cdev.contracts</a></td>
+  <td>C Developer</td>
+  <td>Write contracts on my functions</td>
+  <td>Specify contracts in a way standardizable as part of the C language</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cdev.identifiers">cdev.identifiers</a></td>
+  <td>C Developer</td>
+  <td>Write contracts on my functions</td>
+  <td>Use contracts with macro-safe keywords that are reserved C names (i.e., _Pre,
+_Post, _Assert, etc.)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cdev.violationhandler">cdev.violationhandler</a></td>
+  <td>C Developer</td>
+  <td>Write contracts on my functions</td>
+  <td>Have a common violation handler for both violated C and C++ contracts</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cdev.ignorable">cdev.ignorable</a></td>
+  <td>C Developer</td>
+  <td>Write contracts on my functions</td>
+  <td>Make all contract semantics optional (so as not to change WG14-N2385 6.7.11 p2)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#ccppdev.interop">ccppdev.interop</a></td>
+  <td>Mixed C/C++ Developer</td>
+  <td>Maintain mixed code base</td>
+  <td>Not lose contracts when crossing languages</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cdev.cppinterop">cdev.cppinterop</a></td>
+  <td>Mixed C/C++ Developer</td>
+  <td>Write contracts on my functions</td>
+  <td>Expose my contracts to C++ developers through 'extern "C"' declarations of my
+functions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.communicate.inputsoutputs">api.communicate.inputsoutputs</a></td>
+  <td>API Developer</td>
+  <td>Communicate my interface to users</td>
+  <td>Document the expected inputs and expected outputs on my interface</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.check">api.establish.check</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Have validation inform me which output values are unexpected or invalid</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.validate_invariants">api.establish.validate_invariants</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Have validation inform me which class invariants are violated</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.values">api.establish.values</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Have validation inform user which input values are unexpected or invalid</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.preconditions">api.establish.preconditions</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Have contracts specify their pre-conditions as logical predicates</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.invariants">api.establish.invariants</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Have contracts specify their class invariants as logical predicates</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.postconditions">api.establish.postconditions</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Have contracts specify their post-conditions as logical predicates</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.express.values">api.express.values</a></td>
+  <td>API Developer</td>
+  <td>Express predicates</td>
+  <td>Make reference to either the values of my inputs, or other in-scope identifiers</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.changedvalues">api.establish.changedvalues</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Make reference to the before and after values of in-out variables (ie. passed
+by pointer or reference) in post-conditions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.changedmembers">api.establish.changedmembers</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Make reference to the before and after values of mutable class members (eg.
+<i>new_size = old_size+1</i> after push_back) in post-conditions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.changedstate">api.establish.changedstate</a></td>
+  <td>API Developer</td>
+  <td>Establish a contract</td>
+  <td>Make reference to the before and after values of global state (eg., <i>global
+&gt;= old(global) + 1</i>) in post-conditions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.extend.exceptionsafety">api.extend.exceptionsafety</a></td>
+  <td>API Developer</td>
+  <td>Extend contractual aspects</td>
+  <td>Annotate operations as being exception safe</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.extend.threadsafety">api.extend.threadsafety</a></td>
+  <td>API Developer</td>
+  <td>Extend contractual aspects</td>
+  <td>Annotate operations as being thread safe</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.extend.atomicity">api.extend.atomicity</a></td>
+  <td>API Developer</td>
+  <td>Extend contractual aspects</td>
+  <td>Annotate operations as being atomic (ie. all or no changes become visible)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.extend.realtime">api.extend.realtime</a></td>
+  <td>API Developer</td>
+  <td>Extend contractual aspects</td>
+  <td>Annotate operations as real-time (ie. guaranteed to complete within a time
+frame)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.extend.determinism">api.extend.determinism</a></td>
+  <td>API Developer</td>
+  <td>Extend contractual aspects</td>
+  <td>Annotate operations as being deterministic (ie. same outputs for same inputs)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.extend.purity">api.extend.purity</a></td>
+  <td>API Developer</td>
+  <td>Extend contractual aspects</td>
+  <td>Annotate operations as functionally pure (ie. no side effects)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.extend.sideeffects">api.extend.sideeffects</a></td>
+  <td>API Developer</td>
+  <td>Extend contractual aspects</td>
+  <td>Annotate operations as having global side effects (ie. write to singleton,
+file, network, or database)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.extend.complexity">api.extend.complexity</a></td>
+  <td>API Developer</td>
+  <td>Extend contractual aspects</td>
+  <td>Annotate algorithmic complexity</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.express.runnability">api.express.runnability</a></td>
+  <td>API Developer</td>
+  <td>Express unrunnable contracts</td>
+  <td>Be able to use a predicate that is not evaluated at runtime, because it might
+be unsafe to run or have stateful side effects</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.express.undefined">api.express.undefined</a></td>
+  <td>API Developer</td>
+  <td>Express unrunnable contracts</td>
+  <td>Be able to use a predicate that doesn't have a definition, because it hasn't
+been written yet, or is infeasible to run</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.express.uncheckable">api.express.uncheckable</a></td>
+  <td>API Developer</td>
+  <td>Express uncheckable contracts</td>
+  <td>Be able to use a predicate that is not evaluated, because it is simply a
+semantic placeholder for a tool</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.express.unimplementable">api.express.unimplementable</a></td>
+  <td>API Developer</td>
+  <td>Express uncheckable contracts</td>
+  <td>Be able to use a predicate that cannot have a complete definition, because it
+is inexpressible in the language</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.establish.responsibility">api.establish.responsibility</a></td>
+  <td>API Developer</td>
+  <td>Establish responsibility boundaries</td>
+  <td>Inform users which errors are the responsibility of the caller, and which are
+the callee</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.resp.preassert">api.resp.preassert</a></td>
+  <td>API Developer</td>
+  <td>Establish responsibility boundaries</td>
+  <td>Annotate assertions inside function bodies that indirectly test preconditions
+(such as malformed data discovered while performing the algorithm) should be
+reported to the caller as precondition failures</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.contract.interface">api.contract.interface</a></td>
+  <td>API Developer</td>
+  <td>Have contract as part of my interface</td>
+  <td>Declare contract when I declare the function</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.contract.private">api.contract.private</a></td>
+  <td>API Developer</td>
+  <td>Keep my user interfaces clean and narrow</td>
+  <td>Be able to access private implementation details of the class so I don't have
+to widen public interface to declare predicates</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.contract.redeclaration">api.contract.redeclaration</a></td>
+  <td>API Developer</td>
+  <td>Keep my public interfaces clean and concise</td>
+  <td>Place function contract conditions on any declaration (e.g., on redeclarations
+at the bottom of the header, or on the definition in an implementation file,
+where they are less distracting).</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.contract.errorhandling">api.contract.errorhandling</a></td>
+  <td>API Developer</td>
+  <td>Move contract violation out of error handling</td>
+  <td>Replace uses of error handling to express contract violation (eg.
+<i>operator[](size_t n) noexcept [[pre: n &lt; size()]]</i> instead of
+throwing)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppapi.invariants">cppapi.invariants</a></td>
+  <td>C++ API Developer</td>
+  <td>Write classes</td>
+  <td>Declare class invariants that all of my public functions need to maintain</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppapi.class.preconditions">cppapi.class.preconditions</a></td>
+  <td>C++ API Developer</td>
+  <td>Maintain a class hierarchy</td>
+  <td>Ensure overriding methods have same or wider preconditions (see: Liskov
+substitution principle)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppapi.class.postconditions">cppapi.class.postconditions</a></td>
+  <td>C++ API Developer</td>
+  <td>Maintain a class hierarchy</td>
+  <td>Ensure overriding functions meet their base class postconditions when their
+base class preconditions are met (see: Liskov substitution principle)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppapi.class.variability">cppapi.class.variability</a></td>
+  <td>C++ API Developer</td>
+  <td>Maintain a class hierarchy.</td>
+  <td>Allow overriding functions to have narrower preconditions/wider postconditions
+if I want to</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.publicinterface">api.class.publicinterface</a></td>
+  <td>C++ API Developer</td>
+  <td>Express public class invariants</td>
+  <td>Express a restriction on the public interface of a type that all callers of the
+type can depend upon: can mention only public members, and is checked on entry
+and exit from this type's code</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.publicinvariants">api.class.publicinvariants</a></td>
+  <td>C++ API Developer</td>
+  <td>Express public class invariants</td>
+  <td>Check invariants before and after every public method (when called from outside
+the type, not when one member function calls another)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.publiccalls">api.class.publiccalls</a></td>
+  <td>C++ API Developer</td>
+  <td>Express public class invariants</td>
+  <td>Check invariants before and after calling functions that are not part of this
+type (including virtual calls)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.baseinterface">api.class.baseinterface</a></td>
+  <td>C++ API Developer</td>
+  <td>Express base class invariants</td>
+  <td>Express a restriction on the protected interface of a type that derived types
+can depend upon: can mention only protected and public members, and is checked
+on entry and exit from this type's code</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.baseinvariants">api.class.baseinvariants</a></td>
+  <td>C++ API Developer</td>
+  <td>Express base class invariants</td>
+  <td>Check invariants on entry and exit of every protected method (when called from
+the derived type, not when one base member function calls another)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.basecalls">api.class.basecalls</a></td>
+  <td>C++ API Developer</td>
+  <td>Express base class invariants</td>
+  <td>Check invariants before and after every call to a virtual function (when
+calling to the derived type)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.privateinterface">api.class.privateinterface</a></td>
+  <td>C++ API Developer</td>
+  <td>Express private class invariants</td>
+  <td>Express an internal restriction on the private implementation of a type, can
+mention any member, and is checked on entry and exit from this type's code</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.privateinvariants">api.class.privateinvariants</a></td>
+  <td>C++ API Developer</td>
+  <td>Express private class invariants</td>
+  <td>Check invariants on entry and exit of every public method (when called from
+outside the type, not when one member function calls another)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.privatecalls">api.class.privatecalls</a></td>
+  <td>C++ API Developer</td>
+  <td>Express private class invariants</td>
+  <td>Check invariants before and after calling functions that are not part of this
+type (including virtual calls)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.class.testing">api.class.testing</a></td>
+  <td>C++ API Developer</td>
+  <td>Test my classes</td>
+  <td>For every member or friend function in my class, run my unit test framework
+with checking enabled for every assertion at the point where it is written, and
+check every postcondition at every non-exceptional exit, and test my class
+invariants on entry and exit from this type's code</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppapi.contracts.async">cppapi.contracts.async</a></td>
+  <td>C++ API Developer</td>
+  <td>Enforce contracts in async code</td>
+  <td>Express contracts on callbacks such as std::function, function pointers, or
+references to functions, lambdas, or function objects</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppapi.contracts.exception">cppapi.contracts.exception</a></td>
+  <td>C++ API Developer</td>
+  <td>Enforce contracts in exception safe code</td>
+  <td>Express contracts on exceptional exit</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cppapi.variadic">cppapi.variadic</a></td>
+  <td>C++ API Developer</td>
+  <td>Use contracts with variadic templates</td>
+  <td>Allow predicate (fold) expansion</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.coroutines">api.coroutines</a></td>
+  <td>C++ API Developer</td>
+  <td>Use coroutines</td>
+  <td>Define and check pre and post conditions as I would a regular function</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#api.coroutines.invariants">api.coroutines.invariants</a></td>
+  <td>C++ API Developer</td>
+  <td>Use coroutines</td>
+  <td>Define and check invariants over all entry and exit points from a coroutine (to
+its awaiter or promise)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.conform.violation">int.conform.violation</a></td>
+  <td>Integration Developer</td>
+  <td>Conform to a contract</td>
+  <td>Be informed any time an interface's contract is violated</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.conform.postconditions">int.conform.postconditions</a></td>
+  <td>Integration Developer</td>
+  <td>Conform to a contract</td>
+  <td>Verify results from a call are expected output values</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.headeronly">int.build.headeronly</a></td>
+  <td>Integration Developer</td>
+  <td>Build multiple libraries</td>
+  <td>Use contract-enabled header-only libraries</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.binaries">int.build.binaries</a></td>
+  <td>Integration Developer</td>
+  <td>Build multiple libraries</td>
+  <td>Use contract-enabled binary libraries</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.binarycounts">int.build.binarycounts</a></td>
+  <td>Integration Developer</td>
+  <td>Build multiple libraries</td>
+  <td>Only be required to manage a small, common set of build/link configurations</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.control">int.build.control</a></td>
+  <td>Integration Developer</td>
+  <td>Debug multiple libraries</td>
+  <td>Enable checks only within a selected library</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.control2">int.build.control2</a></td>
+  <td>Integration Developer</td>
+  <td>Debug multiple libraries</td>
+  <td>Enable checks on multiple libraries simultaneously</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.debug.callsites">int.debug.callsites</a></td>
+  <td>Integration Developer</td>
+  <td>Debug multiple call sites</td>
+  <td>Enable checks only on selected call sites</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.violations.information">int.violations.information</a></td>
+  <td>Integration Developer</td>
+  <td>Correct failed checks</td>
+  <td>Be informed what check failed, when, where, and how</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.violations.transmit">int.violations.transmit</a></td>
+  <td>Integration Developer</td>
+  <td>Correct failed checks</td>
+  <td>Transmit check failure information in environment-specific ways (logs, email,
+special hardware traps, popup windows, blazing sirens, etc).</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.violations.custom">int.violations.custom</a></td>
+  <td>Integration Developer</td>
+  <td>Correct failed checks</td>
+  <td>Install custom violation handler where I can inject custom logic to trap errors</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.violations.common">int.violations.common</a></td>
+  <td>Integration Developer</td>
+  <td>Unify violation handling</td>
+  <td>Be able to override how library violations are handled in the combined software
+to point into my handling code</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.violations.override">int.violations.override</a></td>
+  <td>Integration Developer</td>
+  <td>Be independent of build environment</td>
+  <td>Be able to define and override violation handler via source code</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.minimize">int.build.minimize</a></td>
+  <td>Integration Developer</td>
+  <td>Minimize checking overhead</td>
+  <td>Disable library postconditions, asserts, and invariants, without disabling
+library preconditions (assuming the library is tested and stable and my code is
+not)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.control.build">int.control.build</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Ensure the combined software is correct</td>
+  <td>Turn checks on at build time</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.control.runtime">int.control.runtime</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Ensure the combined software is correct</td>
+  <td>Turn checks on at run time</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.conrol.subsets.build">int.conrol.subsets.build</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Ensure the combined software is correct</td>
+  <td>Turn on any subset of individual (call site) checks on at build time</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.control.subsets.runtime">int.control.subsets.runtime</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Ensure the combined software is correct</td>
+  <td>Turn on any subset of individual (call site) checks on at run time</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.consistency">int.consistency</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Ensure the combined software is correct</td>
+  <td>Verify all annotations are globally consistent when integrated</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.control.subsets">int.control.subsets</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Ensure individual features are correct</td>
+  <td>Have a way to audit (named or semantic) subsets of checks for various
+deployments</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.common">int.build.common</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Manage binary delivery</td>
+  <td>Be able to use the same executable regardless of contract enforcement mode</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.testing.control">int.testing.control</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Define "Code Under Test"</td>
+  <td>Selectively enable checking for a set of functions which could name either an
+individual function or an overload set</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.testing.controltypes">int.testing.controltypes</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Define "Code Under Test"</td>
+  <td>Selectively enable checking for a set of types and all their members</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.testing.transitivity">int.testing.transitivity</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Define "Code Under Test"</td>
+  <td>Selectively enable checking for a set of types and all their transitively
+nested types and members</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.testing.modules">int.testing.modules</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Define "Code Under Test"</td>
+  <td>Selectively enable checking for a translation unit or module and all (non
+transitive) types and functions within</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.unchecked">int.build.unchecked</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Test final deliverable</td>
+  <td>Turn off build time checking to remove checking overhead</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.runtime.unchecked">int.runtime.unchecked</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Test final deliverable</td>
+  <td>Turn off run time checking to remove checking overhead</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#int.build.optimize">int.build.optimize</a></td>
+  <td>Integrated Software Provider</td>
+  <td>Test final deliverable</td>
+  <td>Turn on run time optimization to leverage annotation assumptions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cpplib.headeronly">cpplib.headeronly</a></td>
+  <td>C++ Library Developer</td>
+  <td>Use templates</td>
+  <td>Be able to ship header only library</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#cpplib.insulation">cpplib.insulation</a></td>
+  <td>C++ Library Developer</td>
+  <td>Control the tradeoff between need for client recompilation and contract condition visibility</td>
+  <td>Insulate contract conditions with the function definition, or insulate only the
+definition while putting contract conditions on a redeclaration - visible to
+static analysis tools in all TUs.</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#lib.maintenance.noconfig">lib.maintenance.noconfig</a></td>
+  <td>Library Provider</td>
+  <td>Simplify maintenance</td>
+  <td>Not require extra build steps to be documented</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#lib.maintenance.nowhining">lib.maintenance.nowhining</a></td>
+  <td>Library Provider</td>
+  <td>Simplify maintenance</td>
+  <td>Not have users complain about my product due to modifications of annotations
+resulting from their build configuration</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#lib.integration.noconfig">lib.integration.noconfig</a></td>
+  <td>Library Provider</td>
+  <td>Support successful integration</td>
+  <td>Not require extra build steps to be learned or performed</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#lib.integration.nowhining">lib.integration.nowhining</a></td>
+  <td>Library Provider</td>
+  <td>Support successful integration</td>
+  <td>Not have my users accidentally modify my careful annotations</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#arch.nomacros">arch.nomacros</a></td>
+  <td>Technical Architect</td>
+  <td>Maintain quality of code base</td>
+  <td>Express assertions in a way that does not rely on C macros (i.e., there is no
+valid technical reason for a programmer not to use the new way, including
+space, time, tooling, and usability/complexity reasons, compared to C's assert
+macro)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#arch.complete">arch.complete</a></td>
+  <td>Technical Architect</td>
+  <td>Have a consistent and holistic contracts facility</td>
+  <td>Specify preconditions/postconditions/assertions/invariants that express my
+expectations about the expected valid state of my program in the form of
+compilable boolean expressions, that can be checked statically or dynamically
+(as opposed to disjointed state where these features are factored into bits)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#hardware.performance">hardware.performance</a></td>
+  <td>Hardware Architect</td>
+  <td>Improve system-level performance</td>
+  <td>Be able to design new hardware + optimizations, carefully dovetailed into one
+another, that depend on statically-unprovable facts being annotated in the code</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#sdev.bestpractices">sdev.bestpractices</a></td>
+  <td>Senior Developer</td>
+  <td>Set an example</td>
+  <td>Demonstrate best practice in defensive programming</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#sdev.quality">sdev.quality</a></td>
+  <td>Senior Developer</td>
+  <td>Enforce code quality</td>
+  <td>Discourage reliance on observable out-of-contract behavior by causing check
+failure to hard stop program or build</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#sdev.maturity">sdev.maturity</a></td>
+  <td>Senior Developer</td>
+  <td>Enforce mature, finalized contracts</td>
+  <td>Disable continuation on violation of stable and correct individual contracts</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#sdev.control">sdev.control</a></td>
+  <td>Senior Developer</td>
+  <td>Enforce mature, finalized contracts</td>
+  <td>Disable remapping of semantics on stable and correct individual contracts</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.understand.contracts">jdev.understand.contracts</a></td>
+  <td>Junior Developer</td>
+  <td>Understand the API</td>
+  <td>A uniform, fluent description of expected input values, expected output values,
+side effects, and all logical pre and post conditions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.understand.violations">jdev.understand.violations</a></td>
+  <td>Junior Developer</td>
+  <td>Understand the API</td>
+  <td>Be informed when my usage is out of contract</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.understand.buildfailures">jdev.understand.buildfailures</a></td>
+  <td>Junior Developer</td>
+  <td>Understand the program</td>
+  <td>Know why my software is not building</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.understand.aborting">jdev.understand.aborting</a></td>
+  <td>Junior Developer</td>
+  <td>Understand the program</td>
+  <td>Know why my software is aborting</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.understand.omniscience">jdev.understand.omniscience</a></td>
+  <td>Junior Developer</td>
+  <td>Understand the program</td>
+  <td>Know why my software is out of contract</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.understand.buildviolation">jdev.understand.buildviolation</a></td>
+  <td>Junior Developer</td>
+  <td>Understand the program</td>
+  <td>Know that my program or build was halted due to contract violation</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.understand.all">jdev.understand.all</a></td>
+  <td>Junior Developer</td>
+  <td>Understand the facility</td>
+  <td>Be able to build a program with contracts after reasonably short tutorial</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.understand.keywords">jdev.understand.keywords</a></td>
+  <td>Junior Developer</td>
+  <td>Understand the facility</td>
+  <td>Have keywords with precise and unambiguous meanings</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#jdev.bestpractices">jdev.bestpractices</a></td>
+  <td>Junior Developer</td>
+  <td>Improve my code</td>
+  <td>Learn about software best practices by example</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#adev.fast">adev.fast</a></td>
+  <td>Agile Developer</td>
+  <td>Iterate quickly</td>
+  <td>Be able to write and modify contracts quickly without heavy boiler plate or up
+front cost</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#adev.evolve">adev.evolve</a></td>
+  <td>Agile Developer</td>
+  <td>Safeguard evolving code</td>
+  <td>Assert against conditions I am aware of but not finished handling fully</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#bdev.confidentiality">bdev.confidentiality</a></td>
+  <td>Business Developer</td>
+  <td>Maintain confidentiality</td>
+  <td>Not expose diagnostic information (source location, expressions, etc.) in the
+software I deliver to clients, even when I choose to have contracts enforced in
+the software I deliver</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#pdev.speed">pdev.speed</a></td>
+  <td>Performance Sensitive Developer</td>
+  <td>Enable better performance</td>
+  <td>Annotate my code with assumptions, likelihoods, or reachability information
+that a tool might not be able to deduce, but that I would be confident of</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#pdev.morespeed">pdev.morespeed</a></td>
+  <td>Performance Sensitive Developer</td>
+  <td>Enable better performance</td>
+  <td>Be able to give statically-unprovable facts to current and novel optimizers in
+terms of semantics my program does not depend-on but optimizers can't figure
+out</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#pdev.footgun">pdev.footgun</a></td>
+  <td>Performance Sensitive Developer</td>
+  <td>Enable better performance</td>
+  <td>Accept responsibility for a malformed program that might result from eventually
+false information given by my annotations</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#pdev.safety.isolation">pdev.safety.isolation</a></td>
+  <td>Performance Sensitive Developer</td>
+  <td>Have safety critical paths</td>
+  <td>Isolate safety checks from performance annotations</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#pdev.safety.critical">pdev.safety.critical</a></td>
+  <td>Performance Sensitive Developer</td>
+  <td>Have safety critical paths</td>
+  <td>Retain checking even when optimizing with performance annotations</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.checkall">qdev.checkall</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Enable full checking</td>
+  <td>Ensure all checks (pre, post, assert, invariant) are enabled</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.correctness">qdev.correctness</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Validate correctness</td>
+  <td>Signify the predicates that should be verified by an analysis tool</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.tooling">qdev.tooling</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Manage multiple tools</td>
+  <td>Signify subset of individual annotations to be consumed by a specific kind of
+verification tool</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.tooling.control">qdev.tooling.control</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Manage multiple tools</td>
+  <td>Signify subset of individual annotations to be consumed by a specific instance
+of verification tool</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.tooling.undefined">qdev.tooling.undefined</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Manage multiple tools</td>
+  <td>Use predicates that may not be understood by all instances of verification</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.tooling.undefinedkinds">qdev.tooling.undefinedkinds</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Manage multiple tools</td>
+  <td>Use predicates that may not be understood by all kinds of verification</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.tooling.behavior">qdev.tooling.behavior</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Manage multiple tools</td>
+  <td>Integrate the results of that static checker into how my program behaves in
+different ways: assume proven predicates, make unprovable predicates ill-
+formed, etc.</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.testing">qdev.testing</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Unit test predicates</td>
+  <td>Override failure handler to trigger test failure instead of termination</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.handler.testing">qdev.handler.testing</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Unit test violation handlers</td>
+  <td>Have a way to run handler on all combinations of available build modes</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#qdev.fuzz.testing">qdev.fuzz.testing</a></td>
+  <td>Quality Sensitive Developer</td>
+  <td>Catch unexpected failure modes</td>
+  <td>Log all predicate failure during fuzz testing</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.control">crit.control</a></td>
+  <td>Critical Software Developer</td>
+  <td>Have a verifiable release system</td>
+  <td>Be able to control the configuration of contracts from a central point</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.noundef">crit.noundef</a></td>
+  <td>Critical Software Developer</td>
+  <td>Avoid undefined behavior</td>
+  <td>Have contract violation at run-time always have well-defined behavior</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.recovery">crit.recovery</a></td>
+  <td>Critical Software Developer</td>
+  <td>Not have a faulty program lead to catastrophic failure</td>
+  <td>Have access to a recovery path after contract violation</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.redundancy">crit.redundancy</a></td>
+  <td>Critical Software Developer</td>
+  <td>Not have a faulty program lead to catastrophic failure</td>
+  <td>Be able to express error handling that may be redundant with contract checking</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.interaction">crit.interaction</a></td>
+  <td>Critical Software Developer</td>
+  <td>Not have a faulty program lead to catastrophic failure</td>
+  <td>Not have contract build or run modes possibly be able to change or disable
+related error handling in any way</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.locality">crit.locality</a></td>
+  <td>Critical Software Developer</td>
+  <td>Be assured a critical violation uses a critical recovery path</td>
+  <td>Couple recovery path to a specific contract within the source</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.testing">crit.testing</a></td>
+  <td>Critical Software Developer</td>
+  <td>Meet code coverage requirements</td>
+  <td>Be able to run both success and failure branches in my test environment</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.production.checking">crit.production.checking</a></td>
+  <td>Critical Software Developer</td>
+  <td>Have redundant layering</td>
+  <td>Be able to continue to run checks in a production environment (even after
+formal testing is complete)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.more.coverage">crit.more.coverage</a></td>
+  <td>Critical Software Developer</td>
+  <td>Maximize coverage</td>
+  <td>Be able to run checks in a production environment that are considered "cheap"
+compared to the expected cost of entering an invalid state</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#crit.noassume">crit.noassume</a></td>
+  <td>Critical Software Developer</td>
+  <td>Avoid unexpected or undefined behavior</td>
+  <td>Ensure checks will never be __assume'd/__builtin_assume'd by the compiler as if
+they were facts injected into the program (otherwise, if such an assumption
+ever failed, I would be running a different program that is not equivalent to
+the one I wrote; assumptions can expand the set of possible executions by
+injecting facts not otherwise knowable to the compiler)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#sec.noattacks">sec.noattacks</a></td>
+  <td>Security Sensitive Developer</td>
+  <td>Limit attack vectors</td>
+  <td>Be unable to insert code paths (eg. violation handlers) at run time (eg. build
+time only)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#sec.certify">sec.certify</a></td>
+  <td>Security Sensitive Developer</td>
+  <td>Deliver a certified product</td>
+  <td>Have build tool only link to a preapproved violation handler</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#analysis.runtime">analysis.runtime</a></td>
+  <td>User of Analysis Tools</td>
+  <td>Improve runtime correctness</td>
+  <td>Have runtime checks generated by the tool</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#analysis.optimization">analysis.optimization</a></td>
+  <td>User of Analysis Tools</td>
+  <td>Improve runtime performance</td>
+  <td>Have runtime optimizations generated by the tool</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#analysis.symbolic">analysis.symbolic</a></td>
+  <td>User of Analysis Tools</td>
+  <td>Allow symbolic analysis</td>
+  <td>Have symbolic proofs for soundness and consistency performed before compile
+time</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#analysis.compiletime">analysis.compiletime</a></td>
+  <td>User of Analysis Tools</td>
+  <td>Allow code analysis</td>
+  <td>Have code source, AST, or instruction inspection during compile time</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#analysis.binaries">analysis.binaries</a></td>
+  <td>User of Analysis Tools</td>
+  <td>Allow binary analysis</td>
+  <td>Have binary inspection after compile time</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#analysis.information">analysis.information</a></td>
+  <td>User of Analysis Tools</td>
+  <td>Improve the quality of analysis</td>
+  <td>Be able to hint to the analyzer information it may be unable to deduce from
+source code alone (eg. <i>5 / opaque(); [[ opaque() != 0]]</i>)</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#analysis.legacy">analysis.legacy</a></td>
+  <td>Provider of Analysis Tools</td>
+  <td>Extend my existing engine</td>
+  <td>Be able to map pre-existing contract features in tools to a standardized
+language syntax</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#teach.bestpractices">teach.bestpractices</a></td>
+  <td>Teacher</td>
+  <td>Demonstrate best practice</td>
+  <td>Be able to express defensive programming, programming by contract, and test
+driven development to introductory students</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#test.standardized">test.standardized</a></td>
+  <td>Teacher</td>
+  <td>Demonstrate best practice</td>
+  <td>Not rely on custom libraries or proprietary extensions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#teach.lifecycle">teach.lifecycle</a></td>
+  <td>Teacher</td>
+  <td>Demonstrate best practice</td>
+  <td>Demonstrate mock lifecycle by switching simple compiler flags to control which
+checks are enabled</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#teach.portable">teach.portable</a></td>
+  <td>Teacher</td>
+  <td>Manage many students</td>
+  <td>Have examples compilable by a standard compiler on any system</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#teach.dumbstudents">teach.dumbstudents</a></td>
+  <td>Teacher</td>
+  <td>Manage many students</td>
+  <td>Have examples that are easy to build without digression into build systems</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#teach.teachable">teach.teachable</a></td>
+  <td>Teacher</td>
+  <td>Build layers of understanding</td>
+  <td>Have simple explanation of assertions and their use to support simple
+programming tasks, including debugging erroneous programs.</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#teach.layering">teach.layering</a></td>
+  <td>Teacher</td>
+  <td>Build layers of understanding</td>
+  <td>Support the ability for advanced uses of contracts to be distributed across
+many different courses in a C++-focused computer science curriculum.</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#compiler.benice">compiler.benice</a></td>
+  <td>Compiler Developer</td>
+  <td>Deliver best experience to my customers</td>
+  <td>Maximize implementation freedom by limiting what is strictly required by the
+standard</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#compiler.best">compiler.best</a></td>
+  <td>Compiler Developer</td>
+  <td>Deliver the best implementation</td>
+  <td>Have a clear and simple specification that meets clear need</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.complex">large.complex</a></td>
+  <td>Large Codebase Developer</td>
+  <td>Debug complex issues</td>
+  <td>Have composable and fine grained control over which checks are run, without
+requiring source code changes. Specifically the checks for only one function or
+some grouping of functions</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.critical">large.critical</a></td>
+  <td>Large Codebase Developer</td>
+  <td>Enable/Disable checking on critical/hot paths</td>
+  <td>Control whether checks are run based on where they are being called from</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.modernize">large.modernize</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Modernize my code base</td>
+  <td>Introduce standardized contracts to replace my macro-based contracts</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.stillmacros">large.stillmacros</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Modernize my code base</td>
+  <td>Have my existing macro-based facilities interoperate smoothly with standardized
+contracts so I can do the migration gradually</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.observation">large.observation</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Introduce new contracts into an existing system</td>
+  <td>Have failed individual checks from existing code optionally warn instead of
+hard stop</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.introduction">large.introduction</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Introduce new contracts into an existing system</td>
+  <td>Have failed checks from a new library optionally warn instead of hard stop</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.separability">large.separability</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Introduce new parameters or invariants into a contracts based system</td>
+  <td>Be able to include distinct clauses for each parameter or invariant with their
+own individual failure or build controls</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.newenvironment">large.newenvironment</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Introduce new elements into a contracts based system</td>
+  <td>Have failed checks caused by a change in environment optionally warn instead of
+hard stop</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.newcompiler">large.newcompiler</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Introduce new elements into a contracts based system</td>
+  <td>Have failed checks caused by a change in compiler optionally warn instead of
+hard stop</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.nogoingback">large.nogoingback</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Prevent regressions</td>
+  <td>Have trusted contracts fail fast and hard stop</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.scalability">large.scalability</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Scale violation handling</td>
+  <td>Be able to log violations in my organization specific format</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.simulation.disable">large.simulation.disable</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Allow simulation or post-mortem testing of known failure modes</td>
+  <td>Optionally disable checking on a subset of individual annotations</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.simulation.enable">large.simulation.enable</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Allow simulation or post-mortem testing of known failure modes</td>
+  <td>Optionally allow checking of a subset of individual annotations to fail and
+access its recovery path</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.simulation.ignore">large.simulation.ignore</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Allow simulation or post-mortem testing of known failure modes</td>
+  <td>Optionally allow checking of a subset of individual annotations to fail and
+continue failing</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.perfcontrol.build">large.perfcontrol.build</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Manage performance cost</td>
+  <td>Constrain the set of built time checks according to their performance overhead</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.perfcontrol.runtime">large.perfcontrol.runtime</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Manage performance cost</td>
+  <td>Constrain the set of runtime checks according to their performance overhead</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#large.narrowing">large.narrowing</a></td>
+  <td>Large Codebase Owner</td>
+  <td>Tune contract width in complex system</td>
+  <td>Be able to narrow individual contract so it fails in testing not in production</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#embedded.nochecking">embedded.nochecking</a></td>
+  <td>Small Machine Developer</td>
+  <td>Minimize executable footprint</td>
+  <td>Remove all checking and diagnostic (eg. source location) overhead entirely from
+the final binary</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#embedded.nologging">embedded.nologging</a></td>
+  <td>Small Machine Developer</td>
+  <td>Minimize executable footprint</td>
+  <td>Remove all logging and diagnostic (but not checking) overhead from the final
+binary</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#embedded.minimize">embedded.minimize</a></td>
+  <td>Small Machine Developer</td>
+  <td>Minimize executable footprint</td>
+  <td>Remove all but the most important diagnostic overhead from the final binary</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#wg21.everythingelse">wg21.everythingelse</a></td>
+  <td>Language Developer</td>
+  <td>Interoperate with Contracts</td>
+  <td>Have a clear way to understand how contracts will interact with the standard
+library</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr><td colspan="2"><a href="#wg21.otherfeatures">wg21.otherfeatures</a></td>
+  <td>Language Developer</td>
+  <td>Extend contracts beyond pre/post conditions on functions</td>
+  <td>Be able to use contract-like syntax on past or present runtime checkable
+language features such as switches, pattern matching, etc. or what might happen
+on signed integer overflow, etc. This might allow configuration of trapping,
+logging, or assuming in other areas of language UB.</td>
+</tr>
+<tr>
+  <td colspan="1"> N4820 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1429 </td>
+  <td colspan="4"> </td>
+</tr>
+<tr>
+  <td colspan="1"> P1607 </td>
+  <td colspan="4"> </td>
+</tr>
+</table>
+
+<br/>
+
+<h2>Conclusion</h2>
+
+</body>
+</html>
+
