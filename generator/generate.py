@@ -53,7 +53,7 @@ def parse_orightml(f):
             
     return output
 
-def parse_data(f):
+def parse_all_data(f):
     output_categories = {}
     output_data = []
     alllabels = set()
@@ -78,6 +78,31 @@ def parse_data(f):
         output_data.append(udict)
 
     return (output_categories,output_data)
+
+def parse_data(fkey,f):
+    output_data = []
+    alllabels = set()
+
+    caseRe = re.compile("^--(?P<label>[^\n]*?)\n(?P<rest>^==.*?)?^--$",re.MULTILINE|re.DOTALL)
+    restRe = re.compile("^==([^\n]*?)$",re.MULTILINE|re.DOTALL)
+    fdata = open(f).read()
+
+    for m in caseRe.finditer(fdata):
+        gd = m.groupdict()
+        udict = { k:gd[k] for k in ["label",] }
+        if "rest" in gd and gd["rest"]:
+            rspl = restRe.split(gd["rest"])
+            for k,v in zip(rspl[1::2],rspl[2::2]):
+                udict["%s.%s" % (fkey,k)] = v.strip()
+
+        label = udict["label"]
+        if label in alllabels:
+            print("Duplicate Label: %s" % (label,))
+        alllabels.add(label)
+        
+        output_data.append(udict)
+
+    return output_data
 
 labelRe = re.compile("As an?:.(.*)In order to:.(.*)I want to:.(.*)")
 respLevels = { "" : 0,
@@ -143,7 +168,23 @@ def parse_results(all_data, f):
 
     return results
 
-all_categories,all_data = parse_data("all_data.txt")
+all_categories,all_data = parse_all_data("all_data.txt")
+keyed_data = { udict["label"] : udict for udict in all_data }
+
+for dfile in glob.glob("*_data.txt"):
+    dkey = dfile[:-len("_data.txt")]
+    if dkey == "all":
+        continue
+
+    d_data = parse_data(dkey,dfile)
+
+    for dudict in d_data:
+        dlabel = dudict["label"]
+        if dlabel not in keyed_data:
+            print(f"Unknown label: ${dkey}:${dlabel}")
+            continue
+        keyed_data[dlabel].update(dudict)
+    
 all_results = parse_results(all_data, "sg21_surverresults_20191101.csv")
 
 wsRe = re.compile("\s+")

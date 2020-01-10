@@ -394,27 +394,27 @@ Use Cases
   </tr>
 
 % for udict in all_data:
+<% anydetails = False %>
+% for P in [ "N4820", "P1429", "P1607" ]:  
+<%    anydetails = anydetails or ("%s.details" % P) in udict %>
+% endfor  
+% if anydetails:
 <tr><td colspan="2">\
-% if "description" in udict:
 <a href="#${udict["label"]}">${udict["label"]}</a>\
-% endif
 </td>
   <td>${udict["asa"]}</td>
   <td>${udict["todo"]}</td>
   <td>${udict["want"]}</td>
 </tr>
+% for P in [ "N4820", "P1429", "P1607" ]:
+% if ( "%s.details" % P ) in udict:
 <tr>
-  <td colspan="1"> N4820 </td>
-  <td colspan="4"> </td>
+  <td colspan="1"> ${P} </td>
+  <td colspan="4"> ${udict["%s.details" % P]} </td>
 </tr>
-<tr>
-  <td colspan="1"> P1429 </td>
-  <td colspan="4"> </td>
-</tr>
-<tr>
-  <td colspan="1"> P1607 </td>
-  <td colspan="4"> </td>
-</tr>
+% endif
+% endfor
+% endif
 % endfor
 </table>
 
