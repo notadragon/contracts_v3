@@ -42,7 +42,7 @@ macro, or larger nonstandard macro-based facilities
 (with no consistency in representation across different implementations).
 Typical usage would be within a function writing something like this:
 
-```
+```c++
 void sqrt(double n) {
   assert(n >= 0.0);
   BSLS_ASSERT(n >= 0.0);
@@ -57,7 +57,7 @@ fall short of being able to capture many more involved or not runtime checkable
 aspects of a function contract.  These include the ability to express this
 within a function body as assertions like this:
 
-```
+```c++
 double  sqrt(double n) {
   [[ assert : n >= 0.0 ]]
   // ..
@@ -68,7 +68,7 @@ More notably, annotations of expectations about execution could be added on
 function declarations as well -- something not possible with a solely language based
 solution -- like this:
 
-```
+```c++
 void sqrt(double n) [[ pre : n >= 0.0 ]];
 ```
 ==description
