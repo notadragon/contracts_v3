@@ -18,6 +18,9 @@ for arg in sys.argv:
     if arg == "-orig":
         useorig = True
 
+def formatmarkdown(text):
+    return markdown.markdown(text, extensions=["fenced_code","tables",])
+        
 def parse_orightml(f):
     root = bs4.BeautifulSoup(open(f),"lxml")
 
@@ -84,7 +87,7 @@ def parse_data(fkey,f):
     alllabels = set()
 
     caseRe = re.compile("^--(?P<label>[^\n]*?)\n(?P<rest>^==.*?)?^--$",re.MULTILINE|re.DOTALL)
-    restRe = re.compile("^==([^\n]*?)$",re.MULTILINE|re.DOTALL)
+    restRe = re.compile("^==([^= \n]*)",re.MULTILINE|re.DOTALL)
     fdata = open(f).read()
 
     for m in caseRe.finditer(fdata):
@@ -93,7 +96,12 @@ def parse_data(fkey,f):
         if "rest" in gd and gd["rest"]:
             rspl = restRe.split(gd["rest"])
             for k,v in zip(rspl[1::2],rspl[2::2]):
-                udict["%s.%s" % (fkey,k)] = v.strip()
+                v = v.strip()
+                if not k or v == None:
+                    continue
+                if v.startswith("="):
+                    v = v[1:].strip()
+                udict["%s.%s" % (fkey,k.strip())] = v
 
         label = udict["label"]
         if label in alllabels:
@@ -197,7 +205,7 @@ for udict in all_data:
 
     if "description" in udict:
         desc = udict["description"]
-        udict["description:md"] = markdown.markdown(desc)
+        udict["description:md"] = formatmarkdown(desc)
 
     if "categories" in udict:
         for c in re.split("\s+",udict["categories"]):
@@ -219,7 +227,7 @@ for template in glob.glob("*.mako"):
         outfile = os.path.join("generated",basename)
 
     t = mako.template.Template(open("%s" % (template,)).read(),
-                               imports=['from markdown import markdown'])
+                               imports=['from generate import formatmarkdown'])
     r = t.render(all_categories=all_categories,all_data=all_data)
 
     if os.path.exists(outfile):

@@ -1882,7 +1882,7 @@ general
 ==description
 --
 
---test.standardized
+--teach.standardized
 Teacher
 Demonstrate best practice
 Not rely on custom libraries or proprietary extensions

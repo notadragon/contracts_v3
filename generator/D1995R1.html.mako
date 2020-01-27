@@ -364,7 +364,7 @@ pre {
 </head>
 <body>
 
-<%block filter="markdown">
+<%block filter="formatmarkdown">
 Document no: D1995R1 <br/>
 Date: 2019-11-22 <br/>
 Authors:
@@ -472,7 +472,7 @@ ${udict["description:md"]}
 
 <br/>
 
-<%block filter="markdown">
+<%block filter="formatmarkdown">
 
 Acknowledgements
 ----------------

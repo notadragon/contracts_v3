@@ -364,7 +364,7 @@ pre {
 </head>
 <body>
 
-<%block filter="markdown">
+<%block filter="formatmarkdown">
 Document no: D2032R0 <br/>
 Date: 2019-11-22 <br/>
 Authors:
@@ -380,8 +380,82 @@ Contracts &mdash; What Came Before
 Introduction
 ------------
 
+Prior to the formation of SG21 there were a number of different potential
+solutions proposed for contract based programming in the language.   With the
+formation of SG21, a large number of use cases that any future contract
+solution might need to satisfy have been presented and polled on (see
+[P1995](http://wg21.link/P1995R0) for the use cases and the initial poll results).
+
+In order to better understand these use cases, a number of people expressed
+questions about how those use cases might be met with standard C++20 with no
+language based contracts, and how each of the prior language proposals might
+satisfy these use cases.  We hope this exposition helps in understanding the
+use cases better, and helps to leverage the work that has gone before into
+determining our future direction for language based contracts.
+
 Methodology
 -----------
+
+There are 4 primary language variations that we wish to evaluate for their
+merits at satisfying the SG21 use cases:
+
+* N4842 - the current C++ working draft - is the closest appropximation
+  currently available of what wil be the C++20 standard, and
+  is (barring something incredibly surprising happening) going to ship with no
+  explicit contract checking facilities in the language or standard library
+  itself.  Many groups around the world have implemented contract checking
+  libraries themselves (and come to the committee to attempt to build on those
+  experiences to get those features into the language) and those libraries are
+  still just as usable for contract checking in C++ today as they have always
+  been.  We will reference the BDE libraries (https://github.com/Bloomberg/bde/,
+  specifically bsls_assert and bsls_review, which can be found in
+  https://github.com/bloomberg/bde/tree/master/groups/bsl/bsls)
+  for examples of what can be done with no new language support.
+* N4820 - The C++ draft prior to the Summer 2019 WG21 meeting in Cologne - was
+  the last draft that had the initially accepted contract checking facility.
+  As with all of the other facilities we will discuss here, this proposal allowed
+  for annotating contracts as boolean predicates within an attribute-like syntax
+  that could be attached to functions as preconditions or postconditions, and
+  put inside functions as assertions.   Three basic contract levels were
+  allowed - `default`, `audit`, and `axiom` - with all levels either checked at
+  runtime or introducing undefined behavior if not checked and violated.
+* P1429 - This paper primarily focuses on redefining the contract behavior of
+  N4820 in terms of named semantics, and allowing for setting of the various
+  contract levels (`default`, `audit`, and `axiom`) to specific behaviors (in lieu of
+  the combination of build level and continuation mode available in N4820).
+* P1607 - This paper proposed removing the contract levels entirely and _only_
+  allowing the setting of specific semantics, with the intent to provide more
+  general build time control using macros until consensus could be reached on
+  how that control should be presented.   This option, with no build levels
+  and just four literal semantics, reached consensus in EWG on July 15th 2019,
+  prior to the removal of contracts entirely from the draft.
+  
+Rather than enumerate all possible variations that could be chosen, we will
+focus on comparing P1429 with no literal semantics and P1607 with no contract
+levels.
+
+For each of these variations, we will assign a value in the range 0-100 for
+each use case with roughly the following meanings:
+
+* 0 - Explicilty prohibitted or fundamnetally impossible.
+* 25 - Feasible with great extra effort or in a highly limitted fashion, no
+  useful support for this use case.
+* 50 - Limitted support, with possible caveats that would prevent real
+  satisfaction of this use case.
+* 75 - Supported sufficiently to be used in a realistic situation.
+* 100 - Fully supported with no major caveats.
+
+The goal of these numbers is to give a rough feeling for worth.  In the future,
+we expect to see use cases given some weight (based partly on importance to the
+community and partly on distinctness from other use cases), and then combined
+with these numbers to give each solution a total value that can be used to
+understand how effecitvely is satisfies the needs of the community.
+
+Note that the long term goal here is not to give a number to say "you must vote
+for this since it has a higher number" but rather to provide a value that
+can be used to see "this solution measurably improves support for use cases that 
+I personally might not consider important but that others do see as a
+priority".
 
 Use Cases
 ---------
@@ -390,42 +464,135 @@ Use Cases
 
 <table>
   <tr>
+    <th>#</th>
     <th colspan="2">Code</th><th>As A</th><th>In Order To</th><th>I Want To</th>
+  <th>N4842<br/>C++20</th>
+  <th>N4820<br/>Pre-Cologne Draft</th>
+  <th>P1429<br/>Semantic Level Control</th>
+  <th>P1607<br/>Literal Semantics</th>
   </tr>
 
-% for udict in all_data:
-<% anydetails = False %>
-% for P in [ "N4820", "P1429", "P1607" ]:  
-<%    anydetails = anydetails or ("%s.details" % P) in udict %>
-% endfor  
-% if anydetails:
-<tr><td colspan="2">\
+<%  
+  displaydata = []
+  keyindices = {}
+
+  for udict in all_data:
+      if "x2032.see" in udict:
+          if "x2032.details" in udict:
+              raise Exception("Both 'see' and 'details' in %s" % (udict,))
+          l = udict["x2032.see"]
+      elif "x2032.details" in udict:
+          l = udict["label"]
+      else:
+          raise Exception("No 'see' or 'details' in %s" % (udict,))
+      if l in keyindices:
+          dd = keyindices[l]
+      else:
+          dd = [ l, "", list([]) ]
+          displaydata.append(dd)
+          keyindices[l] = dd
+          
+      if "x2032.details" in udict:
+          dd[1] = udict["x2032.details"]
+      dd[2].append(udict)
+
+%>
+  
+<%
+  n = 1
+  papers = [ "N4842", "N4820", "P1429", "P1607" ]
+  ptotals = { k : 0 for k in papers + ["all"] }
+  pweightedtotals = { k : 0 for k in papers + ["all"]}
+  pweightedtotals2 = { k : 0 for k in papers + ["all"]}
+  %>
+% for dd in displaydata:
+% for udict in dd[2]:
+  <tr>
+  <td>${n}</td>
+    <td colspan="2">\
 <a href="#${udict["label"]}">${udict["label"]}</a>\
-</td>
+  </td>
   <td>${udict["asa"]}</td>
   <td>${udict["todo"]}</td>
   <td>${udict["want"]}</td>
+<%
+  pweight = (len(udict["responses:3"])*2 + len(udict["responses:2"])) / (len(udict["responses:3"]) + len(udict["responses:2"]) + len(udict["responses:1"]))
+  pweight2 = pweight if pweight >= 1.0 else 0.0
+  ptotals["all"] = ptotals["all"] + 100
+  pweightedtotals["all"] = pweightedtotals["all"] + (pweight * 100)
+  pweightedtotals2["all"] = pweightedtotals2["all"] + (pweight2 * 100)
+  %>
+%  for p in papers:
+<%
+  pkey = "x2032.%s" % (p,)
+  pval = int(udict[pkey])
+  ptotals[p] = ptotals[p] + pval
+  pweightedtotals[p] = pweightedtotals[p] + (pweight * pval)  
+  pweightedtotals2[p] = pweightedtotals2[p] + (pweight2 * pval)  
+  %>
+  <td>${pval}</td>
+% endfor
 </tr>
-% for P in [ "N4820", "P1429", "P1607" ]:
-% if ( "%s.details" % P ) in udict:
+<% n = n + 1 %>
+%endfor
+
 <tr>
-  <td colspan="1"> ${P} </td>
-  <td colspan="4"> ${udict["%s.details" % P]} </td>
+  <td colspan="10"> ${formatmarkdown(dd[1])} </td>
 </tr>
-% endif
+
 % endfor
-% endif
-% endfor
+
 </table>
 
 <br/>
 
-<%block filter="markdown">
+<%block filter="formatmarkdown">
 
 Conclusion
 ----------
 
+This is a lot of information to digest, so it might help to be able to get
+some overview numbers on how the different proposals relate to one another.
+There are endless ways to do this, and we make no attempt to be complete in
+this analysis, but we will present some approaches that might be
+useful.
 
+* Simply adding up what percentage of the total value each proposal satisfies
+produces the following results:
+
+|  Proposal   |  Score   |
+| ----------- | -------- |
+% for p in papers:
+| ${p} | ${"%0.3f" % (ptotals[p] * 100.0 / ptotals["all"],)}% |
+%endfor
+
+* An alternative is to integrate the results of the initial polls that were
+reported in [P1995R0](http://wg21.link/P1995R0), using those to weight
+the scores provided above (i.e., the values in the "Score" column in that
+paper):
+
+|  Proposal   |  Score   |
+| ----------- | -------- |
+% for p in papers:
+| ${p} | ${"%0.3f" % (pweightedtotals[p] * 100.0 / pweightedtotals["all"],)}% |
+%endfor
+
+* Similarly, we could instead only consider the scores for use cases that had a
+score in P1995R0 above a certain threshhold, such as everything with a score over
+1.0:
+
+|  Proposal   |  Score   |
+| ----------- | -------- |
+% for p in papers:
+| ${p} | ${"%0.3f" % (pweightedtotals2[p] * 100.0 / pweightedtotals2["all"],)}% |
+%endfor
+
+
+Note that these are not intended to produce a complete measure of those proposals,
+but simply as an example of how they might be compared.   These totals are not
+a good measure of which proposal is intrinsicly better, but the changes to these
+totals from any individual proposal should be considered relevant when trying
+to understand how all users might benefit from any perticular change.
 
 </%block>
 

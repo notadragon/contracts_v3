@@ -26,8 +26,51 @@ Annotate my program anywhere in the code with my current understanding of its
 structure or execution
 ==categories
 general location
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+90
+==x2032.P1429
+90
+==x2032.P1607
+90
+==x2032.details
+Without a specific contract checking facility there are still ways to annotate
+a program with information about program contracts, but those are limited to
+either comments (with no validation or normative effect), the classic C `assert`
+macro, or larger nonstandard macro-based facilities
+(with no consistency in representation across different implementations).
+Typical usage would be within a function writing something like this:
 
+```
+void sqrt(double n) {
+  assert(n >= 0.0);
+  BSLS_ASSERT(n >= 0.0);
+}
+```
+
+All of the contract proposals that were considered introduced the same syntax
+for expressing an expectation that a certain boolean predicate was true at
+specified points in a program.  These satisfy most common use cases in the wild
+for contract predicates, although being only boolean predicates makes them
+fall short of being able to capture many more involved or not runtime checkable
+aspects of a function contract.  These include the ability to express this
+within a function body as assertions like this:
+
+```
+double  sqrt(double n) {
+  [[ assert : n >= 0.0 ]]
+  // ..
+}
+```
+
+More notably, annotations of expectations about execution could be added on
+function declarations as well -- something not possible with a solely language based
+solution -- like this:
+
+```
+void sqrt(double n) [[ pre : n >= 0.0 ]];
+```
 ==description
 This general use case expresses the desire to place information about
 a program's expected execution state in many different places throughout
@@ -44,8 +87,27 @@ for validation, to "sure" and asking for some effect to be applied (eg.
 "maybe", "definitely", "assume" 'something')
 ==categories
 general metadata
-==N4820.details
+==x2032.N4842
+40
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+50
+==x2032.details
+While BDE's bsls_assert does not provide confidence as something that can be
+used to control contract behavior, it is not hard to envision that such a thing
+could be built into a macro-based solution.
 
+Build-level-only solutions do not capture this at all (where N4820 and P1429
+presented `default`, `audit`, and `axiom` as the only extra annotations that
+could be put on a contract, and those were intended to capture cost of checking
+not confidence).
+
+P1607's literal semantics do not provide this directly, but here again one
+could envision combining a macro-based solution to choose literal semantics
+that would capture confidence or importance and compute behavior based on that.
 ==description
 This high level use case expresses the need to attach information to contract
 conditions that is beyond the statement of the condition itself, and instead
@@ -60,8 +122,16 @@ Express a spectrum of importance of my annotations, from "critical" (eg. bring
 the system down) to "minor" (eg. lead to a slower fallback)
 ==categories
 general metadata
-==N4820.details
-
+==x2032.N4842
+40
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+50
+==x2032.see
+dev.reason.confidence
 ==description
 This high level use case expresses the desire to have metadata on contract
 conditions associated with what downsides violations might have, perhaps
@@ -76,8 +146,42 @@ Express a spectrum of expected cost at compile or runtime of my annotations,
 from "unrunnable" to "expensive" to "cheap"
 ==categories
 general metadata
-==N4820.details
+==x2032.N4842
+40
+==x2032.N4820
+80
+==x2032.P1429
+80
+==x2032.P1607
+50
+==x2032.details
+A macro-based solution would again be able to be built to use an expression
+of the cost of checking to determine how a contract will be treated, and BDE
+does exactly this with the following variations on how a contract can be
+checked:
 
+```c++
+void foo(int x) {
+  BSLS_ASSERT_OPT(x != 0);
+  BSLS_ASSERT(x < Utils::getMaxXValue());
+  BSLS_ASSERT_SAFE(factorial(x) < Utils::getMaxXFactorial());
+}
+```
+
+The `default`, `audit`, and `axiom` levels captured this similarly:
+
+```c++
+void foo(int x) {
+  [[ assert default : x != 0 ]];
+  [[ assert audit : x < Utils::getMaxValue() ]];
+  [[ assert axiom : is_reachable( staticranges[x].begin(),
+                                  staticranges[x].end() ) ]];
+}
+```
+
+Similar to the case for confidence and importance, any system that was built
+on top of literal semantics for P1607 with macros would be able to choose to
+capture cost as part of that control of contract behavior.
 ==description
 This use case expresses the desire to have metadata about contract conditions
 that capture at least 3 (if not more) granularities of "cost" to be used as
@@ -92,8 +196,21 @@ Have annotations affect the execution of my program in accordance with my
 expectations
 ==categories
 general behavior
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+90
+==x2032.P1607
+90
+==x2032.details
+N4820 contracts allowed for contract checks to either introduce undefined
+behavior or be checked at runtime.
 
+P1429 and P1607 provide more flexibility by exposing the choice of 4 different
+semantics for contracts, with the primary difference being the granularity of
+that control.
 ==description
 The desire to have behaviors (such as generating runtime checks or
 optimizations) and the expected behavior explicitly defined by the standard in
@@ -109,8 +226,27 @@ Ensure annotations do not substantially change the meaning of my program
 whether enabled or disabled
 ==categories
 general behavior
-==N4820.details
+==x2032.N4842
+10
+==x2032.N4820
+5
+==x2032.P1429
+10
+==x2032.P1607
+10
+==x2032.details
+A macro-based solution has no clear way to enforce this kind of requirement,
+other than the basic aspect that by making the macros disableable you can
+attempt to test that behavior has not been impacted in distinct builds.
 
+N4820 does not provide any clean way to disable contract checks (since any
+unchecked contract introduces UB) so even that form of testing is not possible.
+
+On top of that, all of the previous contract proposals made any side effect
+undefined behavior - turning any such side effects into an uncontrolled and
+dangerous thing to have in code, but not provide any real protection against it.
+Of note, [P1670R0](http://wg21.link/P1670R0) was scheduled for Cologne which had one proposal for an
+attempt to address this.
 ==description
 This high-level use case expresses a desire that any execution effective
 transformations an annotation might apply be "reasonable", ie. not surprising
@@ -136,8 +272,21 @@ Have the effect of annotations on executions be user controllable (ie. decide
 whether "cheap" checks or "critical" terminates)
 ==categories
 general control
-==N4820.details
+==x2032.N4842
+65
+==x2032.N4820
+50
+==x2032.P1429
+55
+==x2032.P1607
+70
+==x2032.details
+A macro-based solution can be built to use command line and in-code annotations
+to determine contract behavior.  P1607 and a macro-only facility would both
+be able to provide any form of behavior control that users might wish to build.
 
+N4820 and P1429 contract control is much more limited, primarily being only
+doable at the build level of granularity.
 ==description
 This encompasses some specific need to control, either when writing code or
 when building code, what behavior (if any) is associated with a contract
@@ -151,8 +300,19 @@ Be able to easily change my confidence, importance, or other properties of my
 annotations over time
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+40
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+40
+==x2032.details
+The build-level supporting options (N4820 and P1429) allow changing the one
+attribute they expose (cost).   The macro-based solutions would have to build
+support for this, but can clearly put that in the source code and thus make
+editing the attributes of an annotation easy to edit.
 ==description
 --
 
@@ -162,8 +322,21 @@ Have readable annotations
 Have annotations with a succinct and elegant syntax
 ==categories
 general syntax
-==N4820.details
+==x2032.N4842
+40
+==x2032.N4820
+80
+==x2032.P1429
+80
+==x2032.P1607
+70
+==x2032.details
+Obviously N4820 provides no explicit syntax and is limited to macros, but that
+still allows for using readable C++ in the annotations.
 
+P1607 likely requires macros to facilitate any global controls over behavior,
+so is a slightly worse syntactic option than what N4820 and P1429 provide (which
+have identical syntax).
 ==description
 --
 
@@ -174,8 +347,26 @@ Have annotation keywords or names with intuitive, clear, and unambiguous
 meanings
 ==categories
 syntax
-==N4820.details
+==x2032.N4842
+10
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+60
+==x2032.details
+Given that it provides no new keywords for contracts, readability is going to be
+entirely dependent on what macro based facility is being used with N4842.
 
+For N4820 and P1429, the clarity of 'default' is fairly opaque, and a huge
+amount of reflector discussion and contention has revolved around the meaning and
+use of axiom, so they fair poorly here.
+
+P1607 removes the contentious keywords, but introduces new bespoke keywords
+that while clear are not necessarily intuitive to all, along with needing to
+build any other controls on top of those with macros, so it seems only slightly
+better in this regard.
 ==description
 Any keywords chosen for use within the feature should be easily distinguishable
 (to avoid name churn such as expects/ensures to pre/post) and be very
@@ -190,8 +381,19 @@ Have my contract specification to be visually primary, and secondary
 information (syntax, hints, roles, levels, etc.) to not be distracting
 ==categories
 syntax metadata
-==N4820.details
-
+==x2032.N4842
+15
+==x2032.N4820
+10
+==x2032.P1429
+10
+==x2032.P1607
+10
+==x2032.details
+All of the attribute-based solutions put the meta-information first before the
+expression, counter to what this use case is asking for.  A macro-based solution
+could choose to prioritize information differently, but would also be
+restricted in how the information gets passed into the macro.
 ==description
 This use case indicates a preference to have any metadata about a contract be
 visually very minimal or come after the predicate itself.
@@ -203,8 +405,16 @@ Interoperate with tools or persons
 A syntax that can both be parsed and can be reasoned about semantically
 ==categories
 syntax
-==N4820.details
-
+==x2032.N4842
+40
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+70
+==x2032.see
+dev.readable.syntax
 ==description
 --
 
@@ -216,8 +426,19 @@ analyzer, semantic prover, compiler sanitizer, binary analyzer, code reviewer,
 etc.)
 ==categories
 syntax
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+Entirely macro-based facilities would need to be ubiquitous enough for tooling
+vendors to choose to support them explicitly, along with those tooling vendors
+needing to work around the difficulties of managing pre-preprocessor based
+analysis.
 ==description
 --
 
@@ -227,8 +448,16 @@ Get up to speed
 Have annotations use familiar syntax
 ==categories
 syntax
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+dev.readable.syntax
 ==description
 --
 
@@ -238,8 +467,16 @@ Get up to speed
 Have annotations use C++ syntax
 ==categories
 syntax
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+dev.readable.syntax
 ==description
 --
 
@@ -249,8 +486,16 @@ Reuse code
 Have annotations use my custom types or functions
 ==categories
 syntax contents
-==N4820.details
-
+==x2032.N4842
+75
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+dev.readable.syntax
 ==description
 Rather than requiring special functions or types (or some completely new
 thing), contract should be able to leverage any program logic related to their
@@ -263,8 +508,16 @@ Have a single source of truth
 Use same source file for both code and annotations
 ==categories
 location
-==N4820.details
-
+==x2032.N4842
+100
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.see
+dev.readable.syntax
 ==description
 This as a preference to needing to specify contracts in a completely separate
 metadata file of some sort.
@@ -276,8 +529,21 @@ Support modern features
 Minimize use of macros
 ==categories
 general syntax
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+60
+==x2032.P1607
+25
+==x2032.details
+Obviously not very much can be done with the base language without macros.
 
+P1607 would require macros to support any form of global controls, so it gets
+the lowest rating for this use case, while P4820 would be usable for basic
+applications without macros, and P1429 would be slightly more flexible without
+needing to resort to macros.
 ==description
 The desire is to not require use of macros in order to satisfy the majority
 of use cases.
@@ -289,8 +555,20 @@ Support modern features
 Be interoperable with modules
 ==categories
 general
-==N4820.details
+==x2032.N4842
+10
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+25
+==x2032.details
+A purely macro based solution would have the worst interaction with modules.
 
+The language-based solutions were expected to have basic support for modules,
+since all would have landed in C++20, but no specific modules-related features
+were initially planned.
 ==description
 All contract control features and behaviors should be interoperable in a
 reasonable way with any partially or fully modularized C++ program.
@@ -302,8 +580,20 @@ Support modern features
 Be interoperable with coroutines
 ==categories
 location
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+25
+==x2032.details
+All of the solutions would work perfectly fine within the body of a coroutine.
+Coroutine handling of contracts on inputs, outputs, and states when resuming
+a coroutine had not had any discussions or support planned in the proposals
+as they existed, so none of the proposals support coroutines any better than
+a purely macro-based solution.
 ==description
 Contracts on coroutines open up a number of new situations to consider because
 there might be requirements on what the state of the program is whenever a
@@ -317,8 +607,17 @@ Support modern features
 Be interoperable with concepts
 ==categories
 location
-==N4820.details
-
+==x2032.details
+Nothing about the prior facilities seems to benefit or hinder the use of
+concepts.
+==x2032.N4842
+25
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+25
 ==description
 --
 
@@ -328,8 +627,18 @@ Use the standard library in-contract
 Codify existing exposition-only standard library requirements
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+Many of the preconditions and postconditions of the standard library can be
+expressed as boolean expressions, and so are encodable using the facilities
+that were provided.
 ==description
 In some shape or form, anything documented in the contracts of the standard
 library's functions (preconditions, postconditions, other behaviors) is a
@@ -342,8 +651,24 @@ Use Debugger
 Have runtime able to launch a debugger from an annotation if necessary
 ==categories
 behavior violations
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+40
+==x2032.P1429
+40
+==x2032.P1607
+40
+==x2032.details
+As much as any C++ program is able to do something like signal that a debugger
+should be opened, a macro based solution could invoke the platform-specific
+functions that would enable that (such as `__debugbreak()` or `raise(SIGTRAP)`).
+All of the prior solutions also provided a consistent place to put such a function
+call by allowing for setting a custom violation handler, and due to that being
+globally consistent we rate them slightly higher.
 
+This is still not a standardized facility, so no solution completely satisfies
+this use case within the standard itself.
 ==description
 When handling a contract violation, the ability to trigger a debugger when
 possible is currently not standardized but should be available.
@@ -356,8 +681,20 @@ Have annotations affect executions depending on my existing build modes (eg.
 Debug or Release modes in VS)
 ==categories
 control
-==N4820.details
-
+==x2032.details
+Those solutions that would use macros to do global control (N4842 and P1607)
+would be able to reference _NDEBUG or similar macros usually associated with
+"debug" and "release" builds as input to how they configure contracts.  The
+standard, and the build levels specified in N4820 and P1429, are however
+completely disconnected from one another.
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+10
 ==description
 Note that "debug" and "release" are not standardized things, but nothing
 specified in the standard should preclude those from having some impact on
@@ -371,8 +708,23 @@ Write contracts on my functions
 Specify contracts in a way standardizable as part of the C language
 ==categories
 syntax
-==N4820.details
+==x2032.N4842
+10
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+None of the contract specifications as a language feature would have been
+palatable to the C standards committee, since they all require being able to
+attach meaning to an attribute, as well as make use of new identifiers with
+special meaning (which are unfriendly to standardize in the macro-heavy C
+world.)
 
+A pure C++ macro based contract solution would, however, possibly be
+implementable in a fashion that is equally usable from C code.
 ==description
 Important considerations for C are related to any contracts that can go on a
 normal C function.  C does have attributes, but it also explicitly calls out
@@ -388,8 +740,16 @@ Use contracts with macro-safe keywords that are reserved C names (i.e., _Pre,
 _Post, _Assert, etc.)
 ==categories
 syntax
-==N4820.details
-
+==x2032.N4842
+10
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+cdev.contracts
 ==description
 Adding new identifiers with meaning in C is generally not acceptable for
 standardization, so compatible contracts would either need to use no contracts
@@ -402,8 +762,23 @@ Write contracts on my functions
 Have a common violation handler for both violated C and C++ contracts
 ==categories
 violations
-==N4820.details
+==x2032.N4842
+50
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+25
+==x2032.details
+With no C interoperability easily possible, and the violation handler specified
+in terms of an opaque class type (`std::contract_violation`), implementing
+that violation handler i C would not have been feasible.
 
+It is, however, likely that any C-based contract solution would be able to
+bridge to and from the C++ contract violation handler, since there is no
+particularly complex functionality in the violation handler or the violation
+object itself.
 ==description
 Importantly, satisfying this requirement would mean making the the argument
 to a violation handler meaningful in both C and C++, or requiring platform
@@ -417,8 +792,22 @@ Write contracts on my functions
 Make all contract semantics optional (so as not to change WG14-N2385 6.7.11 p2)
 ==categories
 behavior
-==N4820.details
+==x2032.N4842
+50
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+0
+==x2032.details
+P1607's explicit semantics require that they behave in a specific way when
+asked for.  Similarly, there is an expectation with N4820 and P1429 that build
+levels can be set to something other than `off`, but they do allow global control
+to do that (so at least one potential program behavior would be buildable
+without needing to make contract annotations do anything).
 
+Obviously a macro-based solution would be able to provide this kind of feature.
 ==description
 Assuming contracts continue to be rendered as attributes, C standardization
 would require they be semantically optional.
@@ -442,8 +831,18 @@ Maintain mixed code base
 Not lose contracts when crossing languages
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+A pure macro-based facility exposes no contracts to callers, regardless of what
+language the callers are calling from.  The language-based facilities would not
+have readily supported standardizing by WG14.
 ==description
 --
 
@@ -454,8 +853,16 @@ Expose my contracts to C++ developers through 'extern "C"' declarations of my
 functions
 ==categories
 syntax
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+ccppdev.interop
 ==description
 --
 
@@ -465,8 +872,22 @@ Communicate my interface to users
 Document the expected inputs and expected outputs on my interface
 ==categories
 general
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+Precondition and postcondition checks within  a function do something to document
+inputs and outputs, as do comments that are readily available without a language
+feature.
 
+The language proposals all included the common feature of `[[pre]]` and
+`[[post]]` to express this information directly on function declarations, and
+have those get checked at runtime.
 ==description
 --
 
@@ -476,8 +897,16 @@ Establish a contract
 Have validation inform me which output values are unexpected or invalid
 ==categories
 general behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+api.communicate.inputsoutputs
 ==description
 --
 
@@ -487,8 +916,19 @@ Establish a contract
 Have validation inform me which class invariants are violated
 ==categories
 general location
-==N4820.details
-
+==x2032.N4842
+5
+==x2032.N4820
+5
+==x2032.P1429
+5
+==x2032.P1607
+5
+==x2032.details
+Neither a macro based facility or the language proposals allowed for specifying
+at a class level invariants that would be automatically checked (barring
+manually adding class invariants as pre and post conditions on every single
+function.)
 ==description
 Class invariants have historically been considered of general use, but the
 performance impact of checking them can be surprisingly huge.  Previously
@@ -502,8 +942,16 @@ Establish a contract
 Have validation inform user which input values are unexpected or invalid
 ==categories
 general behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+api.communicate.inputsoutputs
 ==description
 This establishes the basic requirement on preconditions in terms of input values.
 
@@ -523,8 +971,16 @@ Establish a contract
 Have contracts specify their pre-conditions as logical predicates
 ==categories
 location contents
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+api.communicate.inputsoutputs
 ==description
 This establishes the basic requirement to use predicates to evaluate input values.
 --
@@ -535,8 +991,16 @@ Establish a contract
 Have contracts specify their class invariants as logical predicates
 ==categories
 location contents
-==N4820.details
-
+==x2032.N4842
+5
+==x2032.N4820
+5
+==x2032.P1429
+5
+==x2032.P1607
+5
+==x2032.see
+api.establish.validate_invariants
 ==description
 This establishes the basic requirement for invariants in terms of predicates on class members.
 --
@@ -547,8 +1011,16 @@ Establish a contract
 Have contracts specify their post-conditions as logical predicates
 ==categories
 location contents
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+api.communicate.inputsoutputs
 ==description
 This establishes the basic requirement to use predicates to evaluate return values.
 --
@@ -559,8 +1031,24 @@ Express predicates
 Make reference to either the values of my inputs, or other in-scope identifiers
 ==categories
 contents
-==N4820.details
+==x2032.N4842
+75
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+A macro based facility can similarly expose macros to control the enablement of
+arbitrary code at arbitrary scopes, and so enables storing values between calling
+time and return time manually.
 
+The language-based facilities allow for referencing inputs and outputs, with
+the caveat that inputs were only referencable in outputs if they were not
+changed.  The language-based facilities explicitly prevented any form of making
+additional code execute if contracts were enabled, and thus removed the ability
+to store data between the start and end of a function call.
 ==description
 This establishes the basic requirement to reference in-scope variables in order capture values and compute predicates.
 --
@@ -572,8 +1060,16 @@ Make reference to the before and after values of in-out variables (ie. passed
 by pointer or reference) in post-conditions
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+40
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.express.values
 ==description
 Postconditions often need to state things about how values of output parameters
 have changed, or how the values of other global state might have changed
@@ -595,8 +1091,16 @@ Make reference to the before and after values of mutable class members (eg.
 <i>new_size = old_size+1</i> after push_back) in post-conditions
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+40
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.express.values
 ==description
 Capturing the pre-function state of member variables might also be needed
 to state the contracts on many member functions.
@@ -609,8 +1113,16 @@ Make reference to the before and after values of global state (eg., <i>global
 &gt;= old(global) + 1</i>) in post-conditions
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+40
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.express.values
 ==description
 Capturing arbitrary global state for use in a postcondition might prove useful.
 
@@ -629,8 +1141,17 @@ Extend contractual aspects
 Annotate operations as being exception safe
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+No codification of these features is baked into the language itself or added
+by the previous proposals.
 ==description
 Exception safety guarantees are often part of the English language contract of
 a function, and being able to state that (in a way that tools might be able
@@ -643,8 +1164,16 @@ Extend contractual aspects
 Annotate operations as being thread safe
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.extend.exceptionsafety
 ==description
 The proper use of a type in a multithreaded environment can benefit greatly
 from being documented in a way that can then be checked and verified.
@@ -656,8 +1185,16 @@ Extend contractual aspects
 Annotate operations as being atomic (ie. all or no changes become visible)
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.extend.exceptionsafety
 ==description
 Establishing more details about what might happen on failure, such as what
 external state might be changed in a remote database, is another useful
@@ -671,8 +1208,16 @@ Annotate operations as real-time (ie. guaranteed to complete within a time
 frame)
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.extend.exceptionsafety
 ==description
 --
 
@@ -682,8 +1227,16 @@ Extend contractual aspects
 Annotate operations as being deterministic (ie. same outputs for same inputs)
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.extend.exceptionsafety
 ==description
 --
 
@@ -693,8 +1246,16 @@ Extend contractual aspects
 Annotate operations as functionally pure (ie. no side effects)
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.extend.exceptionsafety
 ==description
 --
 
@@ -705,8 +1266,16 @@ Annotate operations as having global side effects (ie. write to singleton,
 file, network, or database)
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.extend.exceptionsafety
 ==description
 --
 
@@ -716,8 +1285,16 @@ Extend contractual aspects
 Annotate algorithmic complexity
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.extend.exceptionsafety
 ==description
 --
 
@@ -728,8 +1305,27 @@ Be able to use a predicate that is not evaluated at runtime, because it might
 be unsafe to run or have stateful side effects
 ==categories
 contents metadata
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+There is no current in-language way to express predicates that will not be
+executed at runtime.
 
+N4820 had unchecked contracts leave their evaluation as unspecified, thus making
+any predicate that has UB or has side effects potentially evaluated
+(specifically, the wording said "it is unspecified if the predicate of an
+unchecked contract is evaluated".)
+
+P1429 and P1607's assume semantic, however, attempted to capture the original
+intent of the contract proposals and make unchecked contracts not be evaluated,
+thus enabling the use of predicates that are not themselves safe to ever
+evaluate.
 ==description
 Numerous predicates that might be useful to state also might change the
 state of a program in a paradoxical way if checked.  The common example
@@ -751,8 +1347,16 @@ Be able to use a predicate that doesn't have a definition, because it hasn't
 been written yet, or is infeasible to run
 ==categories
 contents metadata
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+api.express.runnability
 ==description
 Often during development it helps to write contracts first, and that might
 even predate having enough of an implementation to fully define the conditions.
@@ -768,8 +1372,16 @@ Be able to use a predicate that is not evaluated, because it is simply a
 semantic placeholder for a tool
 ==categories
 contents metadata
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+api.express.runnability
 ==description
 Some predicates might even have no meaning within the language itself, but
 benefit other tools by being placed into the same contract framework as other
@@ -783,8 +1395,16 @@ Be able to use a predicate that cannot have a complete definition, because it
 is inexpressible in the language
 ==categories
 contents metadata
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+api.express.runnability
 ==description
 Many external static analysis tools, and even compilers, can check that
 some state is being handled properly which cannot be properly validated within
@@ -799,8 +1419,26 @@ Inform users which errors are the responsibility of the caller, and which are
 the callee
 ==categories
 violations
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+Macros within a function are unable to readily gather information about what
+called the function, thus making it infeasible to identify calling code in a
+precondition violation in a wholely macro-based facility.
 
+N4820 made it possible to change that for `[[pre]]` annotations on a function
+declaration, allowing for the reported source line to be the calling location
+if the implementation is willing and able to do so.   There was, however, still
+no facility to explicitly point at a caller being the source of a problem
+when the problem gets detected within the body of a function (or, for instance,
+when delegating to another function without duplicating that function's
+preconditions explicitly).
 ==description
 One common realization with having checked contracts in the language is that 
 they will then identify bugs that exist in programs.  Identifying the source
@@ -816,8 +1454,16 @@ Establish responsibility boundaries
 Annotate assertions inside function bodies that indirectly test preconditions
 (such as malformed data discovered while performing the algorithm) should be
 reported to the caller as precondition failures
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.establish.responsibility
 ==description
 Some function preconditions can be expressed as c++ expressions, but are
 runtime-expensive.  However, if expressed inside function body as assertions
@@ -847,8 +1493,17 @@ Have contract as part of my interface
 Declare contract when I declare the function
 ==categories
 general location
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.details
+This is not doable with macros, but was inherent in the proposed contract
+solutions.
 ==description
 Putting contracts on the first function declaration makes them easily visible
 to anyone looking at a header file for understanding an API.
@@ -861,8 +1516,17 @@ Be able to access private implementation details of the class so I don't have
 to widen public interface to declare predicates
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+100
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.details
+A macro within a function has full access to private data members of that
+function's class, as do contracts in all of the language contract proposals.
 ==description
 Often, an interface might be very narrow - consider the interface on an
 iterator, which generally just has a few operators and no other functions -
@@ -885,8 +1549,21 @@ at the bottom of the header, or on the definition in an implementation file,
 where they are less distracting).
 ==categories
 location
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+A macro-based facility obviously has no contracts on any declarations.  The
+language based proposals did not allow for contracts on any declaration except
+the first one.
 
+Note that [P1320R1](http://wg21.link/P1320R1) was going to be presented in
+cologne and sought to alter this state.
 ==description
 Many development methodologies revolve around making readable, well-documented
 header files to provide a way to understand API usage. Some contracts might
@@ -907,8 +1584,17 @@ Replace uses of error handling to express contract violation (eg.
 throwing)
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+This is a design decision when defining an API that could be readily
+accomplished with any contract facility.
 ==description
 Historically, rather than providing functions with narrow contracts, software
 might have been written to report misuse through exceptions.  Contracts should
@@ -921,8 +1607,16 @@ Write classes
 Declare class invariants that all of my public functions need to maintain
 ==categories
 location
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.establish.validate_invariants
 ==description
 --
 
@@ -933,8 +1627,21 @@ Ensure overriding methods have same or wider preconditions (see: Liskov
 substitution principle)
 ==categories
 location contents
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+40
+==x2032.P1429
+40
+==x2032.P1607
+40
+==x2032.details
+A wholely macro based facility has no way to automatically integrate with
+function overrides.
 
+The language proposals all required that virtual functions have exactly the same
+preconditions and postconditions, and so allowed for a subset of what would be
+Liskov substitutable.
 ==description
 --
 
@@ -945,8 +1652,16 @@ Ensure overriding functions meet their base class postconditions when their
 base class preconditions are met (see: Liskov substitution principle)
 ==categories
 location contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+40
+==x2032.P1429
+40
+==x2032.P1607
+40
+==x2032.see
+cppapi.class.preconditions
 ==description
 --
 
@@ -957,8 +1672,16 @@ Allow overriding functions to have narrower preconditions/wider postconditions
 if I want to
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+cppapi.class.preconditions
 ==description
 P4810 did not allow any variation in contract conditions through overrides of
 a virtual function, though this could be roughly accomplished with assertions
@@ -980,8 +1703,20 @@ type can depend upon: can mention only public members, and is checked on entry
 and exit from this type's code
 ==categories
 contents
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+A macro-based facility is not part of the declared interface to any class,
+but only part of the implementation.
 
+The language proposals were limited to functions but not types, and always had
+private access.
 ==description
 Requirements on an interface to a function should be impossible when entering
 into a type's functions, but there might be a desire to distinguish that
@@ -995,8 +1730,16 @@ Check invariants before and after every public method (when called from outside
 the type, not when one member function calls another)
 ==categories
 behavior contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.class.publicinterface
 ==description
 General class invariants should be checked for validity before and after any
 call to a public member function of a class.  Calls to friend functions need
@@ -1013,8 +1756,16 @@ Check invariants before and after calling functions that are not part of this
 type (including virtual calls)
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.class.publicinterface
 ==description
 Calling from a member function to a function of another type (or a possible
 subtype) might require verifying that the object's invariants hold prior to
@@ -1029,8 +1780,16 @@ can depend upon: can mention only protected and public members, and is checked
 on entry and exit from this type's code
 ==categories
 location
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.class.publicinterface
 ==description
 Similar to the public API of a class, the protected API is exposed to
 subclasses and invariants of that API should be checked whenever the boundary
@@ -1044,8 +1803,16 @@ Check invariants on entry and exit of every protected method (when called from
 the derived type, not when one base member function calls another)
 ==categories
 behavior contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.class.publicinterface
 ==description
 --
 
@@ -1056,8 +1823,16 @@ Check invariants before and after every call to a virtual function (when
 calling to the derived type)
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.class.publicinterface
 ==description
 --
 
@@ -1068,8 +1843,16 @@ Express an internal restriction on the private implementation of a type, can
 mention any member, and is checked on entry and exit from this type's code
 ==categories
 location
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.class.publicinterface
 ==description
 --
 
@@ -1080,8 +1863,16 @@ Check invariants on entry and exit of every public method (when called from
 outside the type, not when one member function calls another)
 ==categories
 behavior contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.class.publicinterface
 ==description
 --
 
@@ -1092,8 +1883,16 @@ Check invariants before and after calling functions that are not part of this
 type (including virtual calls)
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+api.class.publicinterface
 ==description
 --
 
@@ -1106,8 +1905,16 @@ check every postcondition at every non-exceptional exit, and test my class
 invariants on entry and exit from this type's code
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+This level of control is not providable for macros or the language proposals.
 ==description
 --
 
@@ -1118,8 +1925,18 @@ Express contracts on callbacks such as std::function, function pointers, or
 references to functions, lambdas, or function objects
 ==categories
 location
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+This would require contracts be part of a function type.   Macros are not even
+part of a function declaration, let alone its type, and the previous language
+proposals did not choose to make contracts part of a function type either.
 ==description
 In general, any callback based solution exposes functions that will be called
 that might benefit from having information about their contracts also
@@ -1136,8 +1953,16 @@ Enforce contracts in exception safe code
 Express contracts on exceptional exit
 ==categories
 location contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+cppapi.contracts.exception
 ==description
 Generally, postconditions have been assumed to hold when a function returns
 normally.  Expressing conditions that will hold if a function returns through
@@ -1150,8 +1975,16 @@ Use contracts with variadic templates
 Allow predicate (fold) expansion
 ==categories
 syntax location
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+cppapi.contracts.exception
 ==description
 Fold expressions using && might be useful for a predicate, but they then lose
 any information about which particular argument might have violated the
@@ -1165,8 +1998,16 @@ Use coroutines
 Define and check pre and post conditions as I would a regular function
 ==categories
 location
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+cppdev.coroutines
 ==description
 Like regular functions, pre and postconditions on coroutines should have
 similar semantics.
@@ -1179,8 +2020,16 @@ Define and check invariants over all entry and exit points from a coroutine (to
 its awaiter or promise)
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+cppdev.coroutines
 ==description
 Similar to a class, the state of a coroutine, or what it expects of the state
 of the world as it suspends and resumes, might be stated as expected invariants
@@ -1193,8 +2042,18 @@ Conform to a contract
 Be informed any time an interface's contract is violated
 ==categories
 behavior violations
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+This is the purpose of a checked contract facility, though the granularity of
+control to limit to or at least include a particular (or all) interface is
+not there for all proposals.
 ==description
 --
 
@@ -1204,8 +2063,16 @@ Conform to a contract
 Verify results from a call are expected output values
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.see
+int.conform.violation
 ==description
 --
 
@@ -1215,8 +2082,21 @@ Build multiple libraries
 Use contract-enabled header-only libraries
 ==categories
 general control
-==N4820.details
+==x2032.N4842
+50
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.details
+A macro based facility is likely to depend on having a supporting library exist
+to make customization and violation handling available.
 
+Nothing about the proposed solutions required this (or, as a language facility,
+a library got the supporting functionality needed for free from the compiler's
+runtime environment).
 ==description
 --
 
@@ -1226,7 +2106,15 @@ Build multiple libraries
 Use contract-enabled binary libraries
 ==categories
 control
-==N4820.details
+==x2032.N4842
+100
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.details
 
 ==description
 --
@@ -1237,8 +2125,23 @@ Build multiple libraries
 Only be required to manage a small, common set of build/link configurations
 ==categories
 control
-==N4820.details
+==x2032.N4842
+75
+==x2032.N4820
+40
+==x2032.P1429
+25
+==x2032.P1607
+75
+==x2032.details
+Policies on how many different builds are managed and deployed are entirely
+up to users when the facility's controls are all done through macros (either
+entirely in N4842 or on top of literal semantics in P1607).
 
+N4820 includes 5 distinct build configurations that might be desired by clients
+of a library, and P1429 increases that number to 32, though most are only
+interesting in special cases and it is likely that individual vendors would find
+a small set that are of actual interest to their clients.
 ==description
 --
 
@@ -1248,8 +2151,19 @@ Debug multiple libraries
 Enable checks only within a selected library
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+35
+==x2032.P1429
+35
+==x2032.P1607
+50
+==x2032.details
+The build levels are global, with conditional (and potentially no) support for
+using mixed build levels across different libraries.  Macro based solutions are
+viable as long as any individual contract always has the same meaning in different
+translation units (without ODR violations).
 ==description
 --
 
@@ -1259,8 +2173,16 @@ Debug multiple libraries
 Enable checks on multiple libraries simultaneously
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+35
+==x2032.P1429
+35
+==x2032.P1607
+50
+==x2032.see
+int.build.control
 ==description
 --
 
@@ -1270,8 +2192,17 @@ Debug multiple call sites
 Enable checks only on selected call sites
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+0
+==x2032.details
+None of the solutions allowed for a function to be called with different checking
+levels without violating the ODR.
 ==description
 Often it is helpful to limit what gets enabled to functions called from
 some subset of a program, and the rest of the program might not perform
@@ -1284,8 +2215,23 @@ Correct failed checks
 Be informed what check failed, when, where, and how
 ==categories
 violations behavior
-==N4820.details
+==x2032.N4842
+75
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.details
+All of the facilities support checking contracts at runtime and being informed
+of details of the violation.   The language proposals included a pluggable
+violation handler, although compiler vendors were allowed to not make that
+customizable.
 
+A pure macro-based facility suffers from needing to do this for all of the
+contract facilities that might be defined and used within a given fully
+assembled program.
 ==description
 --
 
@@ -1296,8 +2242,16 @@ Transmit check failure information in environment-specific ways (logs, email,
 special hardware traps, popup windows, blazing sirens, etc).
 ==categories
 violations
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+90
+==x2032.P1429
+90
+==x2032.P1607
+90
+==x2032.see
+int.violations.information
 ==description
 --
 
@@ -1307,8 +2261,16 @@ Correct failed checks
 Install custom violation handler where I can inject custom logic to trap errors
 ==categories
 violations
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+90
+==x2032.P1429
+90
+==x2032.P1607
+90
+==x2032.see
+int.violations.information
 ==description
 --
 
@@ -1319,8 +2281,16 @@ Be able to override how library violations are handled in the combined software
 to point into my handling code
 ==categories
 violations
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+90
+==x2032.P1429
+90
+==x2032.P1607
+90
+==x2032.see
+int.violations.information
 ==description
 --
 
@@ -1330,8 +2300,17 @@ Be independent of build environment
 Be able to define and override violation handler via source code
 ==categories
 violations
-==N4820.details
-
+==x2032.N4842
+15
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+This might be doable with a fair bit of complexity in a macro-based facility,
+and there was no support for this in the language proposals.
 ==description
 --
 
@@ -1343,8 +2322,20 @@ library preconditions (assuming the library is tested and stable and my code is
 not)
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.details
+Different forms of build and runtime control could be built into the macro-based
+facilities with varying levels of difficulty.   N4820 and P1429 provided only a
+global level of control, limiting greatly the ability to control contract enablement
+at finer granularities.   Implementing some of these forms of granularity in
+the preprocessor might, however, be very complicated.
 ==description
 --
 
@@ -1354,8 +2345,16 @@ Ensure the combined software is correct
 Turn checks on at build time
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1365,8 +2364,16 @@ Ensure the combined software is correct
 Turn checks on at run time
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1376,8 +2383,16 @@ Ensure the combined software is correct
 Turn on any subset of individual (call site) checks on at build time
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1387,8 +2402,16 @@ Ensure the combined software is correct
 Turn on any subset of individual (call site) checks on at run time
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1398,8 +2421,17 @@ Ensure the combined software is correct
 Verify all annotations are globally consistent when integrated
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+There is no support for this form of checking on a macro-based facility, or from
+the language proposals.
 ==description
 --
 
@@ -1410,8 +2442,16 @@ Have a way to audit (named or semantic) subsets of checks for various
 deployments
 ==categories
 control metadata
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1421,8 +2461,18 @@ Manage binary delivery
 Be able to use the same executable regardless of contract enforcement mode
 ==categories
 general control
-==N4820.details
-
+==x2032.N4842
+15
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+A C++20 based facility could determine checking based on runtime configuration
+instead of only compile-time configuration.   The language proposals did not
+allow for that.
 ==description
 --
 
@@ -1433,8 +2483,16 @@ Selectively enable checking for a set of functions which could name either an
 individual function or an overload set
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+15
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+15
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1444,8 +2502,16 @@ Define "Code Under Test"
 Selectively enable checking for a set of types and all their members
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+15
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+15
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1456,8 +2522,16 @@ Selectively enable checking for a set of types and all their transitively
 nested types and members
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+5
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+5
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1468,8 +2542,16 @@ Selectively enable checking for a translation unit or module and all (non
 transitive) types and functions within
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+5
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+5
+==x2032.see
+int.build.minimize
 ==description
 --
 
@@ -1479,8 +2561,18 @@ Test final deliverable
 Turn off build time checking to remove checking overhead
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+40
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+40
+==x2032.details
+Macros and the language proposals had minimal concepts of "build time checking",
+but they do all enable a global ability to turn off such checking.  That same
+global ability can be used to turn off runtime checking.
 ==description
 --
 
@@ -1490,8 +2582,16 @@ Test final deliverable
 Turn off run time checking to remove checking overhead
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.see
+int.build.unchecked
 ==description
 --
 
@@ -1501,8 +2601,21 @@ Test final deliverable
 Turn on run time optimization to leverage annotation assumptions
 ==categories
 behavior control
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+A macro based facility would be able to enable optimizations, but that is likely
+going to have limited direct support from most compilers.  (Generally, this would
+leverage either `__unreachable()` or `__assume()`.)
 
+N4820 made optimizations enabled for ALL unchecked contracts, while P1429 and P1607
+gave mechanisms to opt into that in varying ways.
 ==description
 --
 
@@ -1512,8 +2625,16 @@ Use templates
 Be able to ship header only library
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.see
+int.build.headeronly
 ==description
 --
 
@@ -1525,8 +2646,24 @@ definition while putting contract conditions on a redeclaration - visible to
 static analysis tools in all TUs.
 ==categories
 location
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+Macro based contract checks will always be in the function body and thus
+fully insulated from clients.
 
+The contract annotations of the language proposals could be equivalently put
+in function bodies with `[[assert]]` or on the declarations, thus giving some
+control over insulation.   The ability to have them visible to clients through
+a redeclaration but not visible on the initial declaration was not, however,
+in the initial proposals (but was proposed but not seen by EWG in
+[P1320R1](http://wg21.link/P1320R1).)
 ==description
 Contract conditions on only the first declaration (as proposed by P4810) mean
 that the condition clutters the readable interface and changes in a contract
@@ -1549,8 +2686,19 @@ Simplify maintenance
 Not require extra build steps to be documented
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+25
+==x2032.details
+Any contract facility that allows control without source code manipulation will
+require some build time control, either through compiler flags or macros, though
+all should have been usable with some default behavior if no explicit choices
+were made at build time.
 ==description
 --
 
@@ -1561,8 +2709,20 @@ Not have users complain about my product due to modifications of annotations
 resulting from their build configuration
 ==categories
 control
-==N4820.details
+==x2032.N4842
+75
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+75
+==x2032.details
+A macro based facility could provide concrete semantics similar to P1607, thus
+making contracts that cannot have their behavior changed from the command line.
 
+N4820 and P1429 contracts are always subject to build modes, leaving no way to
+enforce that a particular behavior is applied to a given contract annotation.
 ==description
 --
 
@@ -1572,8 +2732,16 @@ Support successful integration
 Not require extra build steps to be learned or performed
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+25
+==x2032.see
+lib.maintenance.noconfig
 ==description
 --
 
@@ -1583,8 +2751,16 @@ Support successful integration
 Not have my users accidentally modify my careful annotations
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+75
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+75
+==x2032.see
+lib.maintenance.nowhining
 ==description
 --
 
@@ -1597,8 +2773,20 @@ space, time, tooling, and usability/complexity reasons, compared to C's assert
 macro)
 ==categories
 syntax
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+Contract checks without a language facility are not feasibly doable without macros.
 
+All of the language proposals require macros in some form or other to satisfy
+many of the use cases in this document, but still provide a basic contract
+checking facility with no macros used at all.
 ==description
 --
 
@@ -1611,8 +2799,17 @@ compilable boolean expressions, that can be checked statically or dynamically
 (as opposed to disjointed state where these features are factored into bits)
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+Obviously the language does not have this now, and the language proposals all
+attempted to provide this.
 ==description
 --
 
@@ -1623,8 +2820,18 @@ Be able to design new hardware + optimizations, carefully dovetailed into one
 another, that depend on statically-unprovable facts being annotated in the code
 ==categories
 general behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+25
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+N4820's inability to have contracts that are never executed prevents this from
+being leveraged for many novel features.  P1429 and P1607's assume semantic
+fixed this.
 ==description
 --
 
@@ -1634,8 +2841,20 @@ Set an example
 Demonstrate best practice in defensive programming
 ==categories
 general
-==N4820.details
+==x2032.N4842
+50
+==x2032.N4820
+25
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+Any basic contract checking facility can be used to implement defensive
+programming.
 
+N4820's implicit assumption of any unchecked contract, however, is unlikely to
+ever be viewable as a best practice to use by anyone.
 ==description
 --
 
@@ -1646,8 +2865,17 @@ Discourage reliance on observable out-of-contract behavior by causing check
 failure to hard stop program or build
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+This behavior is available in any of the facilities, though not as strongly
+enforced when a user has control over the violation handler.
 ==description
 --
 
@@ -1657,8 +2885,18 @@ Enforce mature, finalized contracts
 Disable continuation on violation of stable and correct individual contracts
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+75
+==x2032.details
+The global controls of N4820 and P1429 do not allow for control over an individual
+contract's behavior (continuing or not, checked or not) based on the maturity of that
+specific contract.
 ==description
 --
 
@@ -1668,8 +2906,16 @@ Enforce mature, finalized contracts
 Disable remapping of semantics on stable and correct individual contracts
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+75
+==x2032.see
+sdev.maturity
 ==description
 --
 
@@ -1680,8 +2926,22 @@ A uniform, fluent description of expected input values, expected output values,
 side effects, and all logical pre and post conditions
 ==categories
 general
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+Without a language feature contract descriptions are library-specific and not
+uniform.  With it, the only non-uniformity comes in when libraries build
+extra infrastructure on top of the language-provided facility.
 
+A library and a language-based facility will, however, be able to provide
+a user understandable details of why a contract violation might have made a
+program abort or fail to compile.
 ==description
 --
 
@@ -1691,8 +2951,16 @@ Understand the API
 Be informed when my usage is out of contract
 ==categories
 violations
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+jdev.understand.contracts
 ==description
 --
 
@@ -1702,8 +2970,16 @@ Understand the program
 Know why my software is not building
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+jdev.understand.contracts
 ==description
 --
 
@@ -1713,8 +2989,16 @@ Understand the program
 Know why my software is aborting
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+jdev.understand.contracts
 ==description
 --
 
@@ -1724,8 +3008,16 @@ Understand the program
 Know why my software is out of contract
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+jdev.understand.contracts
 ==description
 --
 
@@ -1735,8 +3027,16 @@ Understand the program
 Know that my program or build was halted due to contract violation
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+jdev.understand.contracts
 ==description
 --
 
@@ -1746,8 +3046,17 @@ Understand the facility
 Be able to build a program with contracts after reasonably short tutorial
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+Whether with a library or any of the proposed language features, simple contract
+use remains simple.
 ==description
 --
 
@@ -1757,8 +3066,20 @@ Understand the facility
 Have keywords with precise and unambiguous meanings
 ==categories
 syntax
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+75
+==x2032.details
+Without a language feature there are no new keywords.  N4820 and P1429 include
+`axiom` which has shown to have significant disagreement over what meaning it
+has in the context of contracts (see [P1672](http://wg21.link/P1672R0)).
 
+The keywords provided by P1607 are all very precisely defined.
 ==description
 --
 
@@ -1768,8 +3089,16 @@ Improve my code
 Learn about software best practices by example
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+50
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+jdev.understand.contracts
 ==description
 --
 
@@ -1780,8 +3109,18 @@ Be able to write and modify contracts quickly without heavy boiler plate or up
 front cost
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+The general use of contracts once they are a language feature is quick to get
+started on.   Without a language feature, getting started requires acquiring or
+implementing a library to provide the feature.
 ==description
 --
 
@@ -1791,8 +3130,23 @@ Safeguard evolving code
 Assert against conditions I am aware of but not finished handling fully
 ==categories
 behavior
-==N4820.details
+==x2032.N4842
+20
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+75
+==x2032.details
+Without a language-based facility the only way to enter a not-yet-implemented
+contract is as a comment, which is of limited utility.
 
+P1607's ignore and assume semantics both allow for referencing undefined functions,
+and thus enable writing a planned contract while preserving writing the
+implementation of that check for a future sprint.   N4820 provides no way
+to get that semantic for a contract annotation, and while P1429's assume semantic
+would, there is no way in code to write such a contract.
 ==description
 --
 
@@ -1804,8 +3158,19 @@ software I deliver to clients, even when I choose to have contracts enforced in
 the software I deliver
 ==categories
 violations
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+A macro-based library could choose to forgo including this information, or
+provide flags to control that.
 
+None of the language features proposed include that ability.
 ==description
 --
 
@@ -1816,8 +3181,16 @@ Annotate my code with assumptions, likelihoods, or reachability information
 that a tool might not be able to deduce, but that I would be confident of
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+int.build.optimize
 ==description
 --
 
@@ -1829,8 +3202,16 @@ terms of semantics my program does not depend-on but optimizers can't figure
 out
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+int.build.optimize
 ==description
 --
 
@@ -1841,8 +3222,16 @@ Accept responsibility for a malformed program that might result from eventually
 false information given by my annotations
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+int.build.optimize
 ==description
 --
 
@@ -1852,8 +3241,19 @@ Have safety critical paths
 Isolate safety checks from performance annotations
 ==categories
 control metadata
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+A macro-based library could provide this distinction.  None of the language
+proposals include this, and importantly all of them allow for a contract to
+be assumed and thus subvert any future "safety checks" that attempt to handle
+out-of-contract behavior more elegantly.
 ==description
 --
 
@@ -1863,8 +3263,19 @@ Have safety critical paths
 Retain checking even when optimizing with performance annotations
 ==categories
 control metadata
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+15
+==x2032.P1607
+20
+==x2032.details
+N4820 provides no way to turn checking off locally without bringing in assumption.
+P1429 at least provides a way to build an application without assumption of checks,
+and macro-based solutions on top of P1607 or a fully-macro based solution would be
+able to allow for this kind of distinction with some effort.
 ==description
 --
 
@@ -1874,8 +3285,20 @@ Enable full checking
 Ensure all checks (pre, post, assert, invariant) are enabled
 ==categories
 control
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+75
+==x2032.details
+A disparate set of macro-based libraries makes it hard to turn on all checking.
 
+N4820 and P1429 allow for this to be done very easily with build modes.  P1607
+allows for code to subvert this kind of control by providing explicit semantics
+for a particular contract that cannot be externally altered.
 ==description
 --
 
@@ -1885,8 +3308,21 @@ Validate correctness
 Signify the predicates that should be verified by an analysis tool
 ==categories
 control
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+25
+==x2032.details
+It can be argued that the primary intention of `axiom` was to only provide information
+to static analysis tools, so both of the proposals that include that have that here, even though
+the wording itself added in undefined behavior to that level, and made no mention of this purpose.
 
+A macro-based facility could integrate with a static analysis tool for this purpose,
+but would require tools to choose to support it.
 ==description
 --
 
@@ -1897,8 +3333,16 @@ Signify subset of individual annotations to be consumed by a specific kind of
 verification tool
 ==categories
 metadata
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+25
+==x2032.see
+qdev.correctness
 ==description
 --
 
@@ -1909,8 +3353,16 @@ Signify subset of individual annotations to be consumed by a specific instance
 of verification tool
 ==categories
 metadata control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.see
+qdev.correctness
 ==description
 --
 
@@ -1920,8 +3372,17 @@ Manage multiple tools
 Use predicates that may not be understood by all instances of verification
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+25
+==x2032.P1607
+25
+==x2032.details
+Only P1429 and P1607 allow predicates to remain undefined if not referenced
+and not checked at runtime.
 ==description
 --
 
@@ -1931,8 +3392,16 @@ Manage multiple tools
 Use predicates that may not be understood by all kinds of verification
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+25
+==x2032.P1607
+25
+==x2032.see
+qdev.tooling.undefined
 ==description
 --
 
@@ -1944,8 +3413,17 @@ different ways: assume proven predicates, make unprovable predicates ill-
 formed, etc.
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.details
+P1607 or a wholely macro-based facility provide the only direct way to integrate
+the results of analysis into specific behaviors for contract checks.
 ==description
 --
 
@@ -1955,8 +3433,27 @@ Unit test predicates
 Override failure handler to trigger test failure instead of termination
 ==categories
 control violations
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+All of the proposals included a conditionally supported custom violation handler
+which could be used to test that checks are actually checked at runtime in a unit
+test (at least, for noexcept functions).   A macro-based facility can accomplish
+this as well (and this is the foundation of all negative testing in BDE, see
+[bsls_asserttest.h](https://bbgithub.dev.bloomberg.com/bde/bde/blob/master/groups/bsl/bsls/bsls_asserttest.h)
+for an example of how that might be implemented).
 
+Importantly, the lack of by-default runtime changing of violation handler behavior
+means that a custom violation handler must be written to get the full functionality
+needed - when testing that a check is violated, you want the violation handler to
+throw so you can recover to do more tests, while when testing anything else you
+want a hard error because a bug has been found by your testing.
 ==description
 --
 
@@ -1966,8 +3463,18 @@ Unit test violation handlers
 Have a way to run handler on all combinations of available build modes
 ==categories
 violations
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+The proposal in N4820 and all of its descendants prohibited any way to
+directly invoke the violation handler.  A macro-based facility can expose this
+with relative ease (and, for example, BDE does with the macro `BSLS_ASSERT_INVOKE`).
 ==description
 --
 
@@ -1977,8 +3484,16 @@ Catch unexpected failure modes
 Log all predicate failure during fuzz testing
 ==categories
 control behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+75
+==x2032.see
+qdev.checkall
 ==description
 --
 
@@ -1988,8 +3503,20 @@ Have a verifiable release system
 Be able to control the configuration of contracts from a central point
 ==categories
 general control
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+50
+==x2032.details
+A macro based facility, or macros built on top of P1607, could provide this -
+with the major limitation that there might be multiple such facilities to
+configure within a single application.
 
+N4820 and P1429 only provide global controls over how contracts behave.
 ==description
 --
 
@@ -1999,8 +3526,22 @@ Avoid undefined behavior
 Have contract violation at run-time always have well-defined behavior
 ==categories
 behavior control
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+50
+==x2032.details
+Only P1429 allows removing any use of an `assume`-like semantic from contracts.
+A macro-based facility can choose to provide that (using various forms of
+non-portable or semi-portable implementations).   N4820 provides no way to
+turn off contract checks without them introducing undefined behavior.
 
+P1607 Allows for this, but also allows for the explicit use of the `assume`
+semantic when desired, which does not allow for altering how it behaves.
 ==description
 --
 
@@ -2010,8 +3551,18 @@ Not have a faulty program lead to catastrophic failure
 Have access to a recovery path after contract violation
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+50
+==x2032.details
+With the right build or diligently avoiding the use of the `assume` semantic
+recovery paths work properly after violations, although the check itself would
+need to be duplicated.
 ==description
 --
 
@@ -2021,8 +3572,16 @@ Not have a faulty program lead to catastrophic failure
 Be able to express error handling that may be redundant with contract checking
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+50
+==x2032.see
+crit.recovery
 ==description
 --
 
@@ -2033,8 +3592,16 @@ Not have contract build or run modes possibly be able to change or disable
 related error handling in any way
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+50
+==x2032.see
+crit.recovery
 ==description
 --
 
@@ -2044,8 +3611,18 @@ Be assured a critical violation uses a critical recovery path
 Couple recovery path to a specific contract within the source
 ==categories
 contents behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+10
+==x2032.P1429
+10
+==x2032.P1607
+10
+==x2032.details
+The only viable option with the language proposals would be a custom violation
+handler that access a diligently updated thread-local recovery path when there
+is a violation.  There is no innate support for this built into the facilities.
 ==description
 --
 
@@ -2055,8 +3632,16 @@ Meet code coverage requirements
 Be able to run both success and failure branches in my test environment
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+75
+==x2032.P1607
+50
+==x2032.see
+crit.recovery
 ==description
 --
 
@@ -2067,8 +3652,18 @@ Be able to continue to run checks in a production environment (even after
 formal testing is complete)
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+P1429 gives complete flexibility about what levels are checked or not in the
+builds you choose to deploy to production.  P1607 and a macro-based facility
+allow building that same kind of functionality.
 ==description
 --
 
@@ -2079,8 +3674,18 @@ Be able to run checks in a production environment that are considered "cheap"
 compared to the expected cost of entering an invalid state
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+50
+==x2032.details
+N4820 and P1429 both explicitly consider cost as the primary metadata that can
+be put on a contract annotation (via a level of `default` or `audit`).  This
+doesn't allow for any more granularity in that expression of cost, but it is
 ==description
 --
 
@@ -2094,8 +3699,17 @@ the one I wrote; assumptions can expand the set of possible executions by
 injecting facts not otherwise knowable to the compiler)
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+50
+==x2032.P1607
+0
+==x2032.details
+Only P1429 provides the a way to configure contract annotations to never
+be assumed.
 ==description
 --
 
@@ -2106,8 +3720,22 @@ Be unable to insert code paths (eg. violation handlers) at run time (eg. build
 time only)
 ==categories
 behavior violations
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+90
+==x2032.P1429
+90
+==x2032.P1607
+90
+==x2032.details
+None of the contract facilities allow any runtime alteration of the violation
+handler.
 
+Note importantly that an application may choose to install a custom violation
+handler that delegates to something that is runtime controllable, so this
+restriction is circumventable if the compiler allows for setting a custom
+violation handler.
 ==description
 --
 
@@ -2117,8 +3745,17 @@ Deliver a certified product
 Have build tool only link to a preapproved violation handler
 ==categories
 violations
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+90
+==x2032.P1429
+90
+==x2032.P1607
+90
+==x2032.details
+The wording for N4820 and its derivatives allows for a compiler to choose to not
+allow for changing the violation handler to something user defined.
 ==description
 --
 
@@ -2128,8 +3765,19 @@ Improve runtime correctness
 Have runtime checks generated by the tool
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+50
+==x2032.details
+None of the proposals or the language itself support direct integration with a
+static analysis tool.   Explicit literal semantics, however, could be injected
+into code by such a tool to generate computed contract behavior - runtime checking,
+optimizations, or otherwise.
 ==description
 --
 
@@ -2139,8 +3787,16 @@ Improve runtime performance
 Have runtime optimizations generated by the tool
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+50
+==x2032.see
+analysis.runtime
 ==description
 --
 
@@ -2151,8 +3807,23 @@ Have symbolic proofs for soundness and consistency performed before compile
 time
 ==categories
 behavior
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+Proofs of soundness are certainly aided by stating contract annotations and
+asking for validation of those annotations.   Tooling will need to catch up
+to leverage this and do such proving.
 
+Many such proofs rely on being able to state additional facts that are not easy
+to codify as boolean checks, and those are often needed to thoroughly prove
+even much simpler predicates, so none of the proposed solutions are complete
+for this purpose.
 ==description
 --
 
@@ -2162,8 +3833,16 @@ Allow code analysis
 Have code source, AST, or instruction inspection during compile time
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.see
+analysis.symbolic
 ==description
 --
 
@@ -2173,8 +3852,18 @@ Allow binary analysis
 Have binary inspection after compile time
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+In principle contract checks could be carried forwarded and recorded in binaries
+to allow for post-compile verification.  It seems unlikely that a non-builtin
+facility would be standardized in binary files in such a way.
 ==description
 --
 
@@ -2185,8 +3874,18 @@ Be able to hint to the analyzer information it may be unable to deduce from
 source code alone (eg. <i>5 / opaque(); [[ opaque() != 0]]</i>)
 ==categories
 contents
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+75
+==x2032.details
+None of the proposals allow for hints that are exclusively for the static
+analyzer to use, but the P1607 `ignore` semantic could be used for such a
+purpose.
 ==description
 --
 
@@ -2197,8 +3896,21 @@ Be able to map pre-existing contract features in tools to a standardized
 language syntax
 ==categories
 general
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+75
+==x2032.details
+Only a very limited legacy framework (such as the C `assert` macro)
+that completely falls within the functionality
+provided by N4820 would be migratable without drastic changes in behavior.
 
+P1607 sought to provide more flexibility for reimplementing most legacy frameworks
+in terms of common semantics provided by the language.
 ==description
 --
 
@@ -2209,19 +3921,43 @@ Be able to express defensive programming, programming by contract, and test
 driven development to introductory students
 ==categories
 general
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.details
+Basic defensive programming is directly expressable through any of the proposed
+contract facilities.   Without a language feature, custom libraries must be used
+and that is not portable.
 
+Advanced features of contract lifecycle are more difficult to teach when not
+directly supported, and none of the proposals provide a complete solution for
+that behavior (see [P1332](http://wg21.link/P1332R0) for a broad discussion of
+what sorts of lifecycle considerations impact contract use), while only
+P1607 provides a way to do so at all at a non-global granularity.
 ==description
 --
 
---test.standardized
+--teach.standardized
 Teacher
 Demonstrate best practice
 Not rely on custom libraries or proprietary extensions
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+100
+==x2032.P1429
+100
+==x2032.P1607
+100
+==x2032.see
+teach.bestpractices
 ==description
 --
 
@@ -2232,8 +3968,16 @@ Demonstrate mock lifecycle by switching simple compiler flags to control which
 checks are enabled
 ==categories
 general control
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+75
+==x2032.see
+teach.bestpractices
 ==description
 --
 
@@ -2243,8 +3987,16 @@ Manage many students
 Have examples compilable by a standard compiler on any system
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+75
+==x2032.see
+teach.bestpractices
 ==description
 --
 
@@ -2254,8 +4006,22 @@ Manage many students
 Have examples that are easy to build without digression into build systems
 ==categories
 general
-==N4820.details
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+40
+==x2032.P1607
+40
+==x2032.details
+More advanced usages with P1429 or P1607 are clearly dependent on more
+complicated configuration.   N4820 provides a simple set of flags (build modes) that would
+arguably be easiest to teach and use.
 
+Note that nothing in P1429 prevented the support for the same set of build
+modes in addition to the more specific semantic per level setting that it
+required.
 ==description
 --
 
@@ -2266,8 +4032,18 @@ Have simple explanation of assertions and their use to support simple
 programming tasks, including debugging erroneous programs.
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+75
+==x2032.details
+N4820 and P1429 provide the least advanced features, but all of the proposals
+allow for basic contract use to be done (`default` level contract annotations)
+without any knowledge of the more advanced options that might be available.
 ==description
 --
 
@@ -2278,8 +4054,16 @@ Support the ability for advanced uses of contracts to be distributed across
 many different courses in a C++-focused computer science curriculum.
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+75
+==x2032.see
+teach.teachable
 ==description
 --
 
@@ -2290,8 +4074,18 @@ Maximize implementation freedom by limiting what is strictly required by the
 standard
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+40
+==x2032.P1429
+40
+==x2032.P1607
+75
+==x2032.details
+The explicit specification of build modes seems to be seen as highly restrictive
+by compiler vendors, and the less specific the standard is about that
+aspect of the facility the more this user base seems to be satisfied.
 ==description
 --
 
@@ -2301,8 +4095,19 @@ Deliver the best implementation
 Have a clear and simple specification that meets clear need
 ==categories
 general
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+15
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+N4820 had many open questions about its specification where it had diverged
+from the original contract proposals.  The semantic presentation in P1429 and
+P1607  sought to be very precise about what was expected of program behavior
+for any given contract.
 ==description
 --
 
@@ -2314,8 +4119,18 @@ requiring source code changes. Specifically the checks for only one function or
 some grouping of functions
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.details
+A macro based facility could build this form of subsetting with a great deal of
+effort, though callsite based checking does not seem feasible in any macro based
+facility.  N4820 and P1429 provide no fine grained control of checks.
 ==description
 --
 
@@ -2325,8 +4140,16 @@ Enable/Disable checking on critical/hot paths
 Control whether checks are run based on where they are being called from
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+large.complex
 ==description
 --
 
@@ -2336,8 +4159,16 @@ Modernize my code base
 Introduce standardized contracts to replace my macro-based contracts
 ==categories
 control behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+75
+==x2032.see
+analysis.legacy
 ==description
 --
 
@@ -2348,8 +4179,18 @@ Have my existing macro-based facilities interoperate smoothly with standardized
 contracts so I can do the migration gradually
 ==categories
 syntax control
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+75
+==x2032.details
+Only by mapping to literal semantics could a more advanced contract facility be
+able to maintain behaviors while still using the same underlying facility that
+the language provides.
 ==description
 --
 
@@ -2360,8 +4201,18 @@ Have failed individual checks from existing code optionally warn instead of
 hard stop
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+75
+==x2032.details
+N4820 and P1429 provide a continuation mode to be able to make this decision
+at a global (or translation unit) scope.  P1607 provides the ability to do
+this per-contract.
 ==description
 --
 
@@ -2371,8 +4222,16 @@ Introduce new contracts into an existing system
 Have failed checks from a new library optionally warn instead of hard stop
 ==categories
 behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+25
+==x2032.P1429
+50
+==x2032.P1607
+75
+==x2032.see
+large.observation
 ==description
 --
 
@@ -2383,8 +4242,17 @@ Be able to include distinct clauses for each parameter or invariant with their
 own individual failure or build controls
 ==categories
 location control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+75
+==x2032.P1429
+75
+==x2032.P1607
+75
+==x2032.details
+All of the language proposals allowed for multiple distinct annotations on a
+single function.
 ==description
 --
 
@@ -2395,8 +4263,16 @@ Have failed checks caused by a change in environment optionally warn instead of
 hard stop
 ==categories
 control behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+25
+==x2032.P1429
+50
+==x2032.P1607
+75
+==x2032.see
+large.observation
 ==description
 --
 
@@ -2407,8 +4283,16 @@ Have failed checks caused by a change in compiler optionally warn instead of
 hard stop
 ==categories
 control behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+25
+==x2032.P1429
+50
+==x2032.P1607
+75
+==x2032.see
+large.observation
 ==description
 --
 
@@ -2418,8 +4302,20 @@ Prevent regressions
 Have trusted contracts fail fast and hard stop
 ==categories
 control behavior metadata
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+10
+==x2032.P1607
+75
+==x2032.details
+The global controls of N4820 and P1429 limit the ability to enforce only those
+checks that are trusted, and provide no natural way to mix some continuing contracts with
+some non-continuing contracts.  (P1429 would allow this by assigning different
+semantics to `audit` and `default` level contracts, but that would conflict with the
+intended distinction between those levels based on cost of checking.)
 ==description
 --
 
@@ -2429,8 +4325,18 @@ Scale violation handling
 Be able to log violations in my organization specific format
 ==categories
 violations
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+90
+==x2032.P1429
+90
+==x2032.P1607
+90
+==x2032.details
+All of the proposals with a global pluggable violation handler allow this
+form of customization, though it is not required by any that a compiler actually
+allow the customization of the violation handler.
 ==description
 --
 
@@ -2440,8 +4346,17 @@ Allow simulation or post-mortem testing of known failure modes
 Optionally disable checking on a subset of individual annotations
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.details
+Subsets of annotations can be called out with macro-based solutions, but not with the
+global controls of N4820 or P1429.
 ==description
 --
 
@@ -2452,8 +4367,16 @@ Optionally allow checking of a subset of individual annotations to fail and
 access its recovery path
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.see
+large.simulation.disable
 ==description
 --
 
@@ -2464,8 +4387,16 @@ Optionally allow checking of a subset of individual annotations to fail and
 continue failing
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+25
+==x2032.see
+large.simulation.disable
 ==description
 --
 
@@ -2475,8 +4406,17 @@ Manage performance cost
 Constrain the set of built time checks according to their performance overhead
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+25
+==x2032.P1429
+25
+==x2032.P1607
+20
+==x2032.details
+The language proposals had minimal control over build-time checking, but were
+focused on doing any constraining based on the cost of the check.
 ==description
 --
 
@@ -2486,8 +4426,16 @@ Manage performance cost
 Constrain the set of runtime checks according to their performance overhead
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+40
+==x2032.see
+large.perfcontrol.build
 ==description
 --
 
@@ -2497,8 +4445,18 @@ Tune contract width in complex system
 Be able to narrow individual contract so it fails in testing not in production
 ==categories
 control behavior
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+50
+==x2032.details
+A P1607 contract can have a macro to control individual semantics and go through
+a lifecycle where it is checked or enforced in testing but left ignored in production.
+Without global control, this cannot be done with N4820 or P1429.
 ==description
 --
 
@@ -2509,8 +4467,16 @@ Remove all checking and diagnostic (eg. source location) overhead entirely from
 the final binary
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+50
+==x2032.P1429
+50
+==x2032.P1607
+50
+==x2032.details
+The language based proposals allow for the removal of checking without
 ==description
 --
 
@@ -2521,8 +4487,22 @@ Remove all logging and diagnostic (but not checking) overhead from the final
 binary
 ==categories
 control violations
-==N4820.details
+==x2032.N4842
+25
+==x2032.N4820
+10
+==x2032.P1429
+10
+==x2032.P1607
+10
+==x2032.details
+None of the proposals allow for total removal of logging information from
+the generated code, while a macro based facility could support that option.
 
+It would conceivable be possible for link time optimization to recognize that
+a violation handler made no use of source information/did no logging and then
+it would be able to remove that source information as well, but this would have
+significant compile time overhead on a system.
 ==description
 --
 
@@ -2532,8 +4512,16 @@ Minimize executable footprint
 Remove all but the most important diagnostic overhead from the final binary
 ==categories
 control
-==N4820.details
-
+==x2032.N4842
+25
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+embedded.nologging
 ==description
 --
 
@@ -2544,8 +4532,17 @@ Have a clear way to understand how contracts will interact with the standard
 library
 ==categories
 general behavior
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.details
+None of the proposed solutions began integration with the rest of the standard,
+though they would have facilitated it in various ways.
 ==description
 --
 
@@ -2558,8 +4555,16 @@ on signed integer overflow, etc. This might allow configuration of trapping,
 logging, or assuming in other areas of language UB.
 ==categories
 location
-==N4820.details
-
+==x2032.N4842
+0
+==x2032.N4820
+0
+==x2032.P1429
+0
+==x2032.P1607
+0
+==x2032.see
+wg21.everythingelse
 ==description
 --
 
