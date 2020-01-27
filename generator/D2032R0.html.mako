@@ -465,7 +465,7 @@ Use Cases
 <table>
   <tr>
     <th>#</th>
-    <th colspan="2">Code</th><th>As A</th><th>In Order To</th><th>I Want To</th>
+    <th>Code</th><th>As A</th><th>In Order To</th><th>I Want To</th>
   <th>N4842<br/>C++20</th>
   <th>N4820<br/>Pre-Cologne Draft</th>
   <th>P1429<br/>Semantic Level Control</th>
@@ -509,9 +509,7 @@ Use Cases
 % for udict in dd[2]:
   <tr>
   <td>${n}</td>
-    <td colspan="2">\
-<a href="#${udict["label"]}">${udict["label"]}</a>\
-  </td>
+  <td>${udict["label"]}</td>
   <td>${udict["asa"]}</td>
   <td>${udict["todo"]}</td>
   <td>${udict["want"]}</td>
@@ -537,7 +535,7 @@ Use Cases
 %endfor
 
 <tr>
-  <td colspan="10"> ${formatmarkdown(dd[1])} </td>
+  <td colspan="9"> ${formatmarkdown(dd[1])} </td>
 </tr>
 
 % endfor
