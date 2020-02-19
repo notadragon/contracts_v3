@@ -1,0 +1,1916 @@
+--dev.reason.knowl
+==N4842 = 25
+==N4820 = 90
+==P1429 = 90
+==P1607 = 90
+==details
+Without a specific contract checking facility there are still ways to annotate
+a program with information about program contracts, but those are limited to
+either comments (with no validation or normative effect), the classic C `assert`
+macro, or larger nonstandard macro-based facilities
+(with no consistency in representation across different implementations).
+Typical usage would be within a function writing something like this:
+
+```c++
+void sqrt(double n) {
+  assert(n >= 0.0);
+  BSLS_ASSERT(n >= 0.0);
+}
+```
+
+All of the contract proposals that were considered introduced the same syntax
+for expressing an expectation that a certain boolean predicate was true at
+specified points in a program.  These satisfy most common use cases in the wild
+for contract predicates, although being only boolean predicates makes them
+fall short of being able to capture many more involved or not runtime checkable
+aspects of a function contract.  These include the ability to express this
+within a function body as assertions like this:
+
+```c++
+double  sqrt(double n) {
+  [[ assert : n >= 0.0 ]]
+  // ..
+}
+```
+
+More notably, annotations of expectations about execution could be added on
+function declarations as well -- something not possible with a solely language based
+solution -- like this:
+
+```c++
+void sqrt(double n) [[ pre : n >= 0.0 ]];
+```
+
+--
+--dev.reason.confidence
+==N4842 = 40
+==N4820 = 0
+==P1429 = 0
+==P1607 = 50
+==details
+While BDE's bsls_assert does not provide confidence as something that can be
+used to control contract behavior, it is not hard to envision that such a thing
+could be built into a macro-based solution.
+
+Build-level-only solutions do not capture this at all (where N4820 and P1429
+presented `default`, `audit`, and `axiom` as the only extra annotations that
+could be put on a contract, and those were intended to capture cost of checking
+not confidence).
+
+P1607's literal semantics do not provide this directly, but here again one
+could envision combining a macro-based solution to choose literal semantics
+that would capture confidence or importance and compute behavior based on that.
+--
+--dev.reason.importance
+==N4842 = 40
+==N4820 = 0
+==P1429 = 0
+==P1607 = 50
+==see=dev.reason.confidence
+--
+--dev.reason.cost
+==N4842 = 40
+==N4820 = 80
+==P1429 = 80
+==P1607 = 50
+==details
+A macro-based solution would again be able to be built to use an expression
+of the cost of checking to determine how a contract will be treated, and BDE
+does exactly this with the following variations on how a contract can be
+checked:
+
+```c++
+void foo(int x) {
+  BSLS_ASSERT_OPT(x != 0);
+  BSLS_ASSERT(x < Utils::getMaxXValue());
+  BSLS_ASSERT_SAFE(factorial(x) < Utils::getMaxXFactorial());
+}
+```
+
+The `default`, `audit`, and `axiom` levels captured this similarly:
+
+```c++
+void foo(int x) {
+  [[ assert default : x != 0 ]];
+  [[ assert audit : x < Utils::getMaxValue() ]];
+  [[ assert axiom : is_reachable( staticranges[x].begin(),
+                                  staticranges[x].end() ) ]];
+}
+```
+
+Similar to the case for confidence and importance, any system that was built
+on top of literal semantics for P1607 with macros would be able to choose to
+capture cost as part of that control of contract behavior.
+--
+--dev.reason.behavior
+==N4842 = 25
+==N4820 = 75
+==P1429 = 90
+==P1607 = 90
+==details
+N4820 contracts allowed for contract checks to either introduce undefined
+behavior or be checked at runtime.
+
+P1429 and P1607 provide more flexibility by exposing the choice of 4 different
+semantics for contracts, with the primary difference being the granularity of
+that control.
+--
+--dev.reason.sideeffects
+==N4842 = 10
+==N4820 = 5
+==P1429 = 10
+==P1607 = 10
+==details
+A macro-based solution has no clear way to enforce this kind of requirement,
+other than the basic aspect that by making the macros disableable you can
+attempt to test that behavior has not been impacted in distinct builds.
+
+N4820 does not provide any clean way to disable contract checks (since any
+unchecked contract introduces UB) so even that form of testing is not possible.
+
+On top of that, all of the previous contract proposals made any side effect
+undefined behavior - turning any such side effects into an uncontrolled and
+dangerous thing to have in code, but not provide any real protection against it.
+Of note, [P1670R0](http://wg21.link/P1670R0) was scheduled for Cologne which had one proposal for an
+attempt to address this.
+--
+--dev.reason.behaviorcontrol
+==N4842 = 65
+==N4820 = 50
+==P1429 = 55
+==P1607 = 70
+==details
+A macro-based solution can be built to use command line and in-code annotations
+to determine contract behavior.  P1607 and a macro-only facility would both
+be able to provide any form of behavior control that users might wish to build.
+
+N4820 and P1429 contract control is much more limited, primarily being only
+doable at the build level of granularity.
+--
+--dev.adapt
+==N4842 = 40
+==N4820 = 50
+==P1429 = 50
+==P1607 = 40
+==details
+The build-level supporting options (N4820 and P1429) allow changing the one
+attribute they expose (cost).   The macro-based solutions would have to build
+support for this, but can clearly put that in the source code and thus make
+editing the attributes of an annotation easy to edit.
+--
+--dev.readable.syntax
+==N4842 = 40
+==N4820 = 80
+==P1429 = 80
+==P1607 = 70
+==details
+Obviously N4820 provides no explicit syntax and is limited to macros, but that
+still allows for using readable C++ in the annotations.
+
+P1607 likely requires macros to facilitate any global controls over behavior,
+so is a slightly worse syntactic option than what N4820 and P1429 provide (which
+have identical syntax).
+--
+--dev.readable.keywords
+==N4842 = 10
+==N4820 = 50
+==P1429 = 50
+==P1607 = 60
+==details
+Given that it provides no new keywords for contracts, readability is going to be
+entirely dependent on what macro based facility is being used with N4842.
+
+For N4820 and P1429, the clarity of 'default' is fairly opaque, and a huge
+amount of reflector discussion and contention has revolved around the meaning and
+use of axiom, so they fair poorly here.
+
+P1607 removes the contentious keywords, but introduces new bespoke keywords
+that while clear are not necessarily intuitive to all, along with needing to
+build any other controls on top of those with macros, so it seems only slightly
+better in this regard.
+--
+--dev.readable.priority
+==N4842 = 15
+==N4820 = 10
+==P1429 = 10
+==P1607 = 10
+==details
+All of the attribute-based solutions put the meta-information first before the
+expression, counter to what this use case is asking for.  A macro-based solution
+could choose to prioritize information differently, but would also be
+restricted in how the information gets passed into the macro.
+--
+--dev.parsable
+==N4842 = 40
+==N4820 = 75
+==P1429 = 75
+==P1607 = 70
+==see=dev.readable.syntax
+--
+--dev.tooling
+==N4842 = 0
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==details
+Entirely macro-based facilities would need to be ubiquitous enough for tooling
+vendors to choose to support them explicitly, along with those tooling vendors
+needing to work around the difficulties of managing pre-preprocessor based
+analysis.   
+--
+--cppdev.syntax.familiar
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=dev.readable.syntax
+--
+--cppdev.syntax.cpp
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=dev.readable.syntax
+--
+--cppdev.syntax.reuse
+==N4842 = 75
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=dev.readable.syntax
+--
+--cppdev.location
+==N4842 = 100
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==see=dev.readable.syntax
+--
+--cppdev.syntax.macros
+==N4842 = 0
+==N4820 = 50
+==P1429 = 60
+==P1607 = 25
+==details
+Obviously not very much can be done with the base language without macros.
+
+P1607 would require macros to support any form of global controls, so it gets
+the lowest rating for this use case, while P4820 would be usable for basic
+applications without macros, and P1429 would be slightly more flexible without
+needing to resort to macros.  
+--
+--cppdev.modules
+==N4842 = 10
+==N4820 = 25
+==P1429 = 25
+==P1607 = 25
+==details
+A purely macro based solution would have the worst interaction with modules.
+
+The language-based solutions were expected to have basic support for modules,
+since all would have landed in C++20, but no specific modules-related features
+were initially planned.
+--
+--cppdev.coroutines
+==N4842 = 25
+==N4820 = 25
+==P1429 = 25
+==P1607 = 25
+==details
+All of the solutions would work perfectly fine within the body of a coroutine.
+Coroutine handling of contracts on inputs, outputs, and states when resuming
+a coroutine had not had any discussions or support planned in the proposals
+as they existed, so none of the proposals support coroutines any better than
+a purely macro-based solution.
+--
+--cppdev.concepts
+==details
+==N4842 = 25
+==N4820 = 25
+==P1429 = 25
+==P1607 = 25
+==details
+Nothing about the prior facilities seems to benefit or hinder the use of
+concepts.
+--
+--cppdev.existing.std
+==N4842 = 50
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+Many of the preconditions and postconditions of the standard library can be
+expressed as boolean expressions, and so are encodable using the facilities
+that were provided.
+--
+--cppdev.debugger
+==N4842 = 25
+==N4820 = 40
+==P1429 = 40
+==P1607 = 40
+==details
+As much as any C++ program is able to do something like signal that a debugger
+should be opened, a macro based solution could invoke the platform-specific
+functions that would enable that (such as `__debugbreak()` or `raise(SIGTRAP)`).
+All of the prior solutions also provided a consistent place to put such a function
+call by allowing for setting a custom violation handler, and due to that being
+globally consistent we rate them slightly higher.
+
+This is still not a standardized facility, so no solution completely satisfies
+this use case within the standard itself.
+--
+--cppdev.build.legacy
+==details
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 10
+==details
+Those solutions that would use macros to do global control (N4842 and P1607)
+would be able to reference _NDEBUG or similar macros usually associated with
+"debug" and "release" builds as input to how they configure contracts.  The
+standard, and the build levels specified in N4820 and P1429, are however
+completely disconnected from one another.
+--
+--cdev.contracts
+==N4842 = 10
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+None of the contract specifications as a language feature would have been
+palatable to the C standards committee, since they all require being able to
+attach meaning to an attribute, as well as make use of new identifiers with
+special meaning (which are unfriendly to standardize in the macro-heavy C
+world.)
+
+A pure C++ macro based contract solution would, however, possibly be
+implementable in a fashion that is equally usable from C code.
+--
+--cdev.identifiers
+==N4842 = 10
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=cdev.contracts
+--
+--cdev.violationhandler
+==N4842 = 50
+==N4820 = 25
+==P1429 = 25
+==P1607 = 25
+==details
+With no C interoperability easily possible, and the violation handler specified
+in terms of an opaque class type (`std::contract_violation`), implementing
+that violation handler i C would not have been feasible.
+
+It is, however, likely that any C-based contract solution would be able to
+bridge to and from the C++ contract violation handler, since there is no
+particularly complex functionality in the violation handler or the violation
+object itself.
+--
+--cdev.ignorable
+==N4842 = 50
+==N4820 = 25
+==P1429 = 25
+==P1607 = 0
+==details
+P1607's explicit semantics require that they behave in a specific way when
+asked for.  Similarly, there is an expectation with N4820 and P1429 that build
+levels can be set to something other than `off`, but they do allow global control
+to do that (so at least one potential program behavior would be buildable
+without needing to make contract annotations do anything).
+
+Obviously a macro-based solution would be able to provide this kind of feature.
+--
+--ccppdev.interop
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+A pure macro-based facility exposes no contracts to callers, regardless of what
+language the callers are calling from.  The language-based facilities would not
+have readily supported standardizing by WG14.
+--
+--cdev.cppinterop
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see ccppdev.interop
+--
+--api.communicate.inputsoutputs
+==N4842 = 25
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==details
+Precondition and postcondition checks within  a function do something to document
+inputs and outputs, as do comments that are readily available without a language
+feature.
+
+The language proposals all included the common feature of `[[pre]]` and
+`[[post]]` to express this information directly on function declarations, and
+have those get checked at runtime.
+--
+--api.establish.check
+==N4842 = 25
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=api.communicate.inputsoutputs
+--
+--api.establish.validate_invariants
+==N4842 = 5
+==N4820 = 5
+==P1429 = 5
+==P1607 = 5
+==details
+Neither a macro based facility or the language proposals allowed for specifying
+at a class level invariants that would be automatically checked (barring
+manually adding class invariants as pre and post conditions on every single
+function.)
+--
+--api.establish.values
+==N4842 = 25
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=api.communicate.inputsoutputs
+--
+--api.establish.preconditions
+==N4842 = 25
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=api.communicate.inputsoutputs
+--
+--api.establish.invariants
+==N4842 = 5
+==N4820 = 5
+==P1429 = 5
+==P1607 = 5
+==see=api.establish.validate_invariants
+--
+--api.establish.postconditions
+==N4842 = 25
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=api.communicate.inputsoutputs
+--
+--api.express.values
+==N4842 = 75
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==details
+A macro based facility can similarly expose macros to control the enablement of
+arbitrary code at arbitrary scopes, and so enables storing values between calling
+time and return time manually.
+
+The language-based facilities allow for referencing inputs and outputs, with
+the caveat that inputs were only referencable in outputs if they were not
+changed.  The language-based facilities explicitly prevented any form of making
+additional code execute if contracts were enabled, and thus removed the ability
+to store data between the start and end of a function call.  
+--
+--api.establish.changedvalues
+==N4842 = 40
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.express.values
+--
+--api.establish.changedmembers
+==N4842 = 40
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.express.values
+--
+--api.establish.changedstate
+==N4842 = 40
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.express.values
+--
+--api.extend.exceptionsafety
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+No codification of these features is baked into the language itself or added
+by the previous proposals.
+--
+--api.extend.threadsafety
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.extend.exceptionsafety
+--
+--api.extend.atomicity
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.extend.exceptionsafety
+--
+--api.extend.realtime
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.extend.exceptionsafety
+--
+--api.extend.determinism
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.extend.exceptionsafety
+--
+--api.extend.purity
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.extend.exceptionsafety
+--
+--api.extend.sideeffects
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.extend.exceptionsafety
+--
+--api.extend.complexity
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.extend.exceptionsafety
+--
+--api.express.runnability
+==N4842 = 0
+==N4820 = 0
+==P1429 = 75
+==P1607 = 75
+==details
+There is no current in-language way to express predicates that will not be
+executed at runtime.
+
+N4820 had unchecked contracts leave their evaluation as unspecified, thus making
+any predicate that has UB or has side effects potentially evaluated
+(specifically, the wording said "it is unspecified if the predicate of an
+unchecked contract is evaluated".)
+
+P1429 and P1607's assume semantic, however, attempted to capture the original
+intent of the contract proposals and make unchecked contracts not be evaluated,
+thus enabling the use of predicates that are not themselves safe to ever
+evaluate.
+--
+--api.express.undefined
+==N4842 = 0
+==N4820 = 0
+==P1429 = 75
+==P1607 = 75
+==see=api.express.runnability
+--
+--api.express.uncheckable
+==N4842 = 0
+==N4820 = 0
+==P1429 = 75
+==P1607 = 75
+==see=api.express.runnability
+--
+--api.express.unimplementable
+==N4842 = 0
+==N4820 = 0
+==P1429 = 75
+==P1607 = 75
+==see=api.express.runnability
+--
+--api.establish.responsibility
+==N4842 = 0
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+Macros within a function are unable to readily gather information about what
+called the function, thus making it infeasible to identify calling code in a
+precondition violation in a wholely macro-based facility.
+
+N4820 made it possible to change that for `[[pre]]` annotations on a function
+declaration, allowing for the reported source line to be the calling location
+if the implementation is willing and able to do so.   There was, however, still
+no facility to explicitly point at a caller being the source of a problem
+when the problem gets detected within the body of a function (or, for instance,
+when delegating to another function without duplicating that function's
+preconditions explicitly).
+--
+--api.resp.preassert
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.establish.responsibility
+--
+--api.contract.interface
+==N4842 = 0
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==details
+This is not doable with macros, but was inherent in the proposed contract
+solutions.
+--
+--api.contract.private
+==N4842 = 100
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==details
+A macro within a function has full access to private data members of that
+function's class, as do contracts in all of the language contract proposals.
+--
+--api.contract.redeclaration
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+A macro-based facility obviously has no contracts on any declarations.  The
+language based proposals did not allow for contracts on any declaration except
+the first one.
+
+Note that [P1320R1](http://wg21.link/P1320R1) was going to be presented in
+cologne and sought to alter this state.
+--
+--api.contract.errorhandling
+==N4842 = 50
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+This is a design decision when defining an API that could be readily
+accomplished with any contract facility.
+--
+--cppapi.invariants
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.establish.validate_invariants
+--
+--cppapi.class.preconditions
+==N4842 = 0
+==N4820 = 40
+==P1429 = 40
+==P1607 = 40
+==details
+A wholely macro based facility has no way to automatically integrate with
+function overrides.
+
+The language proposals all required that virtual functions have exactly the same
+preconditions and postconditions, and so allowed for a subset of what would be
+Liskov substitutable.
+--
+--cppapi.class.postconditions
+==N4842 = 0
+==N4820 = 40
+==P1429 = 40
+==P1607 = 40
+==see=cppapi.class.preconditions
+--
+--cppapi.class.variability
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=cppapi.class.preconditions
+--
+--api.class.publicinterface
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+A macro-based facility is not part of the declared interface to any class,
+but only part of the implementation.
+
+The language proposals were limited to functions but not types, and always had
+private access.
+--
+--api.class.publicinvariants
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.class.publicinterface
+--
+--api.class.publiccalls
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.class.publicinterface
+--
+--api.class.baseinterface
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.class.publicinterface
+--
+--api.class.baseinvariants
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.class.publicinterface
+--
+--api.class.basecalls
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.class.publicinterface
+--
+--api.class.privateinterface
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.class.publicinterface
+--
+--api.class.privateinvariants
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.class.publicinterface
+--
+--api.class.privatecalls
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=api.class.publicinterface
+--
+--api.class.testing
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+This level of control is not providable for macros or the language proposals.
+--
+--cppapi.contracts.async
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+This would require contracts be part of a function type.   Macros are not even
+part of a function declaration, let alone its type, and the previous language
+proposals did not choose to make contracts part of a function type either.
+--
+--cppapi.contracts.exception
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=cppapi.contracts.exception
+--
+--cppapi.variadic
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=cppapi.contracts.exception
+--
+--api.coroutines
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=cppdev.coroutines
+--
+--api.coroutines.invariants
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=cppdev.coroutines
+--
+--int.conform.violation
+==N4842 = 25
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+This is the purpose of a checked contract facility, though the granularity of
+control to limit to or at least include a particular (or all) interface is
+not there for all proposals.
+--
+--int.conform.postconditions
+==N4842 = 25
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==see=int.conform.violation
+--
+--int.build.headeronly
+==N4842 = 50
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==details
+A macro based facility is likely to depend on having a supporting library exist
+to make customization and violation handling available.
+
+Nothing about the proposed solutions required this (or, as a language facility,
+a library got the supporting functionality needed for free from the compiler's
+runtime environment).  
+--
+--int.build.binaries
+==N4842 = 100
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==details
+
+--
+--int.build.binarycounts
+==N4842 = 75
+==N4820 = 40
+==P1429 = 25
+==P1607 = 75
+==details
+Policies on how many different builds are managed and deployed are entirely
+up to users when the facility's controls are all done through macros (either
+entirely in N4842 or on top of literal semantics in P1607).
+
+N4820 includes 5 distinct build configurations that might be desired by clients
+of a library, and P1429 increases that number to 32, though most are only
+interesting in special cases and it is likely that individual vendors would find
+a small set that are of actual interest to their clients.
+--
+--int.build.control
+==N4842 = 50
+==N4820 = 35
+==P1429 = 35
+==P1607 = 50
+==details
+The build levels are global, with conditional (and potentially no) support for
+using mixed build levels across different libraries.  Macro based solutions are
+viable as long as any individual contract always has the same meaning in different
+translation units (without ODR violations).   
+--
+--int.build.control2
+==N4842 = 50
+==N4820 = 35
+==P1429 = 35
+==P1607 = 50
+==see=int.build.control
+--
+--int.debug.callsites
+==N4842 = 0
+==N4820 = 25
+==P1429 = 25
+==P1607 = 0
+==details
+None of the solutions allowed for a function to be called with different checking
+levels without violating the ODR. 
+--
+--int.violations.information
+==N4842 = 75
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==details
+All of the facilities support checking contracts at runtime and being informed
+of details of the violation.   The language proposals included a pluggable
+violation handler, although compiler vendors were allowed to not make that
+customizable.
+
+A pure macro-based facility suffers from needing to do this for all of the
+contract facilities that might be defined and used within a given fully
+assembled program.
+--
+--int.violations.transmit
+==N4842 = 50
+==N4820 = 90
+==P1429 = 90
+==P1607 = 90
+==see=int.violations.information
+--
+--int.violations.custom
+==N4842 = 50
+==N4820 = 90
+==P1429 = 90
+==P1607 = 90
+==see=int.violations.information
+--
+--int.violations.common
+==N4842 = 50
+==N4820 = 90
+==P1429 = 90
+==P1607 = 90
+==see=int.violations.information
+--
+--int.violations.override
+==N4842 = 15
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+This might be doable with a fair bit of complexity in a macro-based facility,
+and there was no support for this in the language proposals.
+--
+--int.build.minimize
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==details
+Different forms of build and runtime control could be built into the macro-based
+facilities with varying levels of difficulty.   N4820 and P1429 provided only a
+global level of control, limiting greatly the ability to control contract enablement
+at finer granularities.   Implementing some of these forms of granularity in
+the preprocessor might, however, be very complicated.
+--
+--int.control.build
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==see=int.build.minimize
+--
+--int.control.runtime
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==see=int.build.minimize
+--
+--int.conrol.subsets.build
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==see=int.build.minimize
+--
+--int.control.subsets.runtime
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==see=int.build.minimize
+--
+--int.consistency
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+There is no support for this form of checking on a macro-based facility, or from
+the language proposals.
+--
+--int.control.subsets
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==see=int.build.minimize
+--
+--int.build.common
+==N4842 = 15
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+A C++20 based facility could determine checking based on runtime configuration
+instead of only compile-time configuration.   The language proposals did not
+allow for that.
+--
+--int.testing.control
+==N4842 = 15
+==N4820 = 0
+==P1429 = 0
+==P1607 = 15
+==see=int.build.minimize
+--
+--int.testing.controltypes
+==N4842 = 15
+==N4820 = 0
+==P1429 = 0
+==P1607 = 15
+==see=int.build.minimize
+--
+--int.testing.transitivity
+==N4842 = 5
+==N4820 = 0
+==P1429 = 0
+==P1607 = 5
+==see=int.build.minimize
+--
+--int.testing.modules
+==N4842 = 5
+==N4820 = 0
+==P1429 = 0
+==P1607 = 5
+==see=int.build.minimize
+--
+--int.build.unchecked
+==N4842 = 40
+==N4820 = 50
+==P1429 = 50
+==P1607 = 40
+==details
+Macros and the language proposals had minimal concepts of "build time checking",
+but they do all enable a global ability to turn off such checking.  That same
+global ability can be used to turn off runtime checking.
+--
+--int.runtime.unchecked
+==N4842 = 50
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==see=int.build.unchecked
+--
+--int.build.optimize
+==N4842 = 25
+==N4820 = 50
+==P1429 = 75
+==P1607 = 75
+==details
+A macro based facility would be able to enable optimizations, but that is likely
+going to have limited direct support from most compilers.  (Generally, this would
+leverage either `__unreachable()` or `__assume()`.)
+
+N4820 made optimizations enabled for ALL unchecked contracts, while P1429 and P1607
+gave mechanisms to opt into that in varying ways.
+
+--
+--cpplib.headeronly
+==N4842 = 50
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==see=int.build.headeronly
+--
+--cpplib.insulation
+==N4842 = 25
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+Macro based contract checks will always be in the function body and thus
+fully insulated from clients.
+
+The contract annotations of the language proposals could be equivalently put
+in function bodies with `[[assert]]` or on the declarations, thus giving some
+control over insulation.   The ability to have them visible to clients through
+a redeclaration but not visible on the initial declaration was not, however,
+in the initial proposals (but was proposed but not seen by EWG in
+[P1320R1](http://wg21.link/P1320R1).)
+--
+--lib.maintenance.noconfig
+==N4842 = 25
+==N4820 = 25
+==P1429 = 25
+==P1607 = 25
+==details
+Any contract facility that allows control without source code manipulation will
+require some build time control, either through compiler flags or macros, though
+all should have been usable with some default behavior if no explicit choices
+were made at build time.
+--
+--lib.maintenance.nowhining
+==N4842 = 75
+==N4820 = 0
+==P1429 = 0
+==P1607 = 75
+==details
+A macro based facility could provide concrete semantics similar to P1607, thus
+making contracts that cannot have their behavior changed from the command line.
+
+N4820 and P1429 contracts are always subject to build modes, leaving no way to
+enforce that a particular behavior is applied to a given contract annotation.
+--
+--lib.integration.noconfig
+==N4842 = 25
+==N4820 = 25
+==P1429 = 25
+==P1607 = 25
+==see=lib.maintenance.noconfig
+--
+--lib.integration.nowhining
+==N4842 = 75
+==N4820 = 0
+==P1429 = 0
+==P1607 = 75
+==see=lib.maintenance.nowhining
+--
+--arch.nomacros
+==N4842 = 0
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+Contract checks without a language facility are not feasibly doable without macros.
+
+All of the language proposals require macros in some form or other to satisfy
+many of the use cases in this document, but still provide a basic contract
+checking facility with no macros used at all.
+--
+--arch.complete
+==N4842 = 0
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==details
+Obviously the language does not have this now, and the language proposals all
+attempted to provide this.
+--
+--hardware.performance
+==N4842 = 0
+==N4820 = 25
+==P1429 = 75
+==P1607 = 75
+==details
+N4820's inability to have contracts that are never executed prevents this from
+being leveraged for many novel features.  P1429 and P1607's assume semantic
+fixed this.
+--
+--sdev.bestpractices
+==N4842 = 50
+==N4820 = 25
+==P1429 = 50
+==P1607 = 50
+==details
+Any basic contract checking facility can be used to implement defensive
+programming.
+
+N4820's implicit assumption of any unchecked contract, however, is unlikely to
+ever be viewable as a best practice to use by anyone.
+--
+--sdev.quality
+==N4842 = 50
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+This behavior is available in any of the facilities, though not as strongly
+enforced when a user has control over the violation handler.
+--
+--sdev.maturity
+==N4842 = 50
+==N4820 = 25
+==P1429 = 25
+==P1607 = 75
+==details
+The global controls of N4820 and P1429 do not allow for control over an individual
+contract's behavior (continuing or not, checked or not) based on the maturity of that
+specific contract.
+--
+--sdev.control
+==N4842 = 50
+==N4820 = 25
+==P1429 = 25
+==P1607 = 75
+==see=sdev.maturity
+--
+--jdev.understand.contracts
+==N4842 = 0
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==details
+Without a language feature contract descriptions are library-specific and not
+uniform.  With it, the only non-uniformity comes in when libraries build
+extra infrastructure on top of the language-provided facility.
+
+A library and a language-based facility will, however, be able to provide
+a user understandable details of why a contract violation might have made a
+program abort or fail to compile.
+--
+--jdev.understand.violations
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=jdev.understand.contracts
+--
+--jdev.understand.buildfailures
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=jdev.understand.contracts
+--
+--jdev.understand.aborting
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=jdev.understand.contracts
+--
+--jdev.understand.omniscience
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=jdev.understand.contracts
+--
+--jdev.understand.buildviolation
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=jdev.understand.contracts
+--
+--jdev.understand.all
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==details
+Whether with a library or any of the proposed language features, simple contract
+use remains simple.
+--
+--jdev.understand.keywords
+==N4842 = 0
+==N4820 = 25
+==P1429 = 25
+==P1607 = 75
+==details
+Without a language feature there are no new keywords.  N4820 and P1429 include
+`axiom` which has shown to have significant disagreement over what meaning it
+has in the context of contracts (see [P1672](http://wg21.link/P1672R0)).
+
+The keywords provided by P1607 are all very precisely defined.
+--
+--jdev.bestpractices
+==N4842 = 50
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==see=jdev.understand.contracts
+--
+--adev.fast
+==N4842 = 0
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==details
+The general use of contracts once they are a language feature is quick to get
+started on.   Without a language feature, getting started requires acquiring or
+implementing a library to provide the feature.
+--
+--adev.evolve
+==N4842 = 20
+==N4820 = 0
+==P1429 = 0
+==P1607 = 75
+==details
+Without a language-based facility the only way to enter a not-yet-implemented
+contract is as a comment, which is of limited utility.
+
+P1607's ignore and assume semantics both allow for referencing undefined functions,
+and thus enable writing a planned contract while preserving writing the
+implementation of that check for a future sprint.   N4820 provides no way
+to get that semantic for a contract annotation, and while P1429's assume semantic
+would, there is no way in code to write such a contract.
+--
+--bdev.confidentiality
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+A macro-based library could choose to forgo including this information, or
+provide flags to control that.
+
+None of the language features proposed include that ability.
+--
+--pdev.speed
+==N4842 = 25
+==N4820 = 50
+==P1429 = 75
+==P1607 = 75
+==see=int.build.optimize
+--
+--pdev.morespeed
+==N4842 = 25
+==N4820 = 50
+==P1429 = 75
+==P1607 = 75
+==see=int.build.optimize
+--
+--pdev.footgun
+==N4842 = 25
+==N4820 = 50
+==P1429 = 75
+==P1607 = 75
+==see=int.build.optimize
+--
+--pdev.safety.isolation
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+A macro-based library could provide this distinction.  None of the language
+proposals include this, and importantly all of them allow for a contract to
+be assumed and thus subvert any future "safety checks" that attempt to handle
+out-of-contract behavior more elegantly.
+--
+--pdev.safety.critical
+==N4842 = 25
+==N4820 = 0
+==P1429 = 15
+==P1607 = 20
+==details
+N4820 provides no way to turn checking off locally without bringing in assumption.
+P1429 at least provides a way to build an application without assumption of checks,
+and macro-based solutions on top of P1607 or a fully-macro based solution would be
+able to allow for this kind of distinction with some effort.
+--
+--qdev.checkall
+==N4842 = 25
+==N4820 = 100
+==P1429 = 100
+==P1607 = 75
+==details
+A disparate set of macro-based libraries makes it hard to turn on all checking.
+
+N4820 and P1429 allow for this to be done very easily with build modes.  P1607
+allows for code to subvert this kind of control by providing explicit semantics
+for a particular contract that cannot be externally altered.
+--
+--qdev.correctness
+==N4842 = 25
+==N4820 = 50
+==P1429 = 50
+==P1607 = 25
+==details
+It can be argued that the primary intention of `axiom` was to only provide information
+to static analysis tools, so both of the proposals that include that have that here, even though
+the wording itself added in undefined behavior to that level, and made no mention of this purpose.
+
+A macro-based facility could integrate with a static analysis tool for this purpose,
+but would require tools to choose to support it.
+--
+--qdev.tooling
+==N4842 = 25
+==N4820 = 50
+==P1429 = 50
+==P1607 = 25
+==see=qdev.correctness
+--
+--qdev.tooling.control
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==see=qdev.correctness
+--
+--qdev.tooling.undefined
+==N4842 = 0
+==N4820 = 0
+==P1429 = 25
+==P1607 = 25
+==details
+Only P1429 and P1607 allow predicates to remain undefined if not referenced
+and not checked at runtime.
+--
+--qdev.tooling.undefinedkinds
+==N4842 = 0
+==N4820 = 0
+==P1429 = 25
+==P1607 = 25
+==see=qdev.tooling.undefined
+--
+--qdev.tooling.behavior
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==details
+P1607 or a wholely macro-based facility provide the only direct way to integrate
+the results of analysis into specific behaviors for contract checks.
+--
+--qdev.testing
+==N4842 = 25
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+All of the proposals included a conditionally supported custom violation handler
+which could be used to test that checks are actually checked at runtime in a unit
+test (at least, for noexcept functions).   A macro-based facility can accomplish
+this as well (and this is the foundation of all negative testing in BDE, see
+[bsls_asserttest.h](https://bbgithub.dev.bloomberg.com/bde/bde/blob/master/groups/bsl/bsls/bsls_asserttest.h)
+for an example of how that might be implemented).
+
+Importantly, the lack of by-default runtime changing of violation handler behavior
+means that a custom violation handler must be written to get the full functionality
+needed - when testing that a check is violated, you want the violation handler to
+throw so you can recover to do more tests, while when testing anything else you
+want a hard error because a bug has been found by your testing.
+--
+--qdev.handler.testing
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+The proposal in N4820 and all of its descendants prohibited any way to
+directly invoke the violation handler.  A macro-based facility can expose this
+with relative ease (and, for example, BDE does with the macro `BSLS_ASSERT_INVOKE`).
+--
+--qdev.fuzz.testing
+==N4842 = 25
+==N4820 = 100
+==P1429 = 100
+==P1607 = 75
+==see=qdev.checkall
+--
+--crit.control
+==N4842 = 25
+==N4820 = 75
+==P1429 = 75
+==P1607 = 50
+==details
+A macro based facility, or macros built on top of P1607, could provide this -
+with the major limitation that there might be multiple such facilities to
+configure within a single application.
+
+N4820 and P1429 only provide global controls over how contracts behave.
+--
+--crit.noundef
+==N4842 = 25
+==N4820 = 0
+==P1429 = 75
+==P1607 = 50
+==details
+Only P1429 allows removing any use of an `assume`-like semantic from contracts.
+A macro-based facility can choose to provide that (using various forms of
+non-portable or semi-portable implementations).   N4820 provides no way to
+turn off contract checks without them introducing undefined behavior.
+
+P1607 Allows for this, but also allows for the explicit use of the `assume`
+semantic when desired, which does not allow for altering how it behaves.
+--
+--crit.recovery
+==N4842 = 25
+==N4820 = 0
+==P1429 = 75
+==P1607 = 50
+==details
+With the right build or diligently avoiding the use of the `assume` semantic
+recovery paths work properly after violations, although the check itself would
+need to be duplicated.  
+--
+--crit.redundancy
+==N4842 = 25
+==N4820 = 0
+==P1429 = 75
+==P1607 = 50
+==see=crit.recovery
+--
+--crit.interaction
+==N4842 = 25
+==N4820 = 0
+==P1429 = 75
+==P1607 = 50
+==see=crit.recovery
+--
+--crit.locality
+==N4842 = 25
+==N4820 = 10
+==P1429 = 10
+==P1607 = 10
+==details
+The only viable option with the language proposals would be a custom violation
+handler that access a diligently updated thread-local recovery path when there
+is a violation.  There is no innate support for this built into the facilities.
+--
+--crit.testing
+==N4842 = 25
+==N4820 = 0
+==P1429 = 75
+==P1607 = 50
+==see=crit.recovery
+--
+--crit.production.checking
+==N4842 = 25
+==N4820 = 50
+==P1429 = 75
+==P1607 = 75
+==details
+P1429 gives complete flexibility about what levels are checked or not in the
+builds you choose to deploy to production.  P1607 and a macro-based facility
+allow building that same kind of functionality.
+--
+--crit.more.coverage
+==N4842 = 25
+==N4820 = 75
+==P1429 = 75
+==P1607 = 50
+==details
+N4820 and P1429 both explicitly consider cost as the primary metadata that can
+be put on a contract annotation (via a level of `default` or `audit`).  This
+doesn't allow for any more granularity in that expression of cost, but it is
+--
+--crit.noassume
+==N4842 = 0
+==N4820 = 0
+==P1429 = 50
+==P1607 = 0
+==details
+Only P1429 provides the a way to configure contract annotations to never
+be assumed.
+--
+--sec.noattacks
+==N4842 = 0
+==N4820 = 90
+==P1429 = 90
+==P1607 = 90
+==details
+None of the contract facilities allow any runtime alteration of the violation
+handler.
+
+Note importantly that an application may choose to install a custom violation
+handler that delegates to something that is runtime controllable, so this
+restriction is circumventable if the compiler allows for setting a custom
+violation handler.
+--
+--sec.certify
+==N4842 = 0
+==N4820 = 90
+==P1429 = 90
+==P1607 = 90
+==details
+The wording for N4820 and its derivatives allows for a compiler to choose to not
+allow for changing the violation handler to something user defined.
+--
+--analysis.runtime
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 50
+==details
+None of the proposals or the language itself support direct integration with a
+static analysis tool.   Explicit literal semantics, however, could be injected
+into code by such a tool to generate computed contract behavior - runtime checking,
+optimizations, or otherwise.
+--
+--analysis.optimization
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 50
+==see=analysis.runtime
+--
+--analysis.symbolic
+==N4842 = 25
+==N4820 = 50
+==P1429 = 75
+==P1607 = 75
+==details
+Proofs of soundness are certainly aided by stating contract annotations and
+asking for validation of those annotations.   Tooling will need to catch up
+to leverage this and do such proving.
+
+Many such proofs rely on being able to state additional facts that are not easy
+to codify as boolean checks, and those are often needed to thoroughly prove
+even much simpler predicates, so none of the proposed solutions are complete
+for this purpose.
+--
+--analysis.compiletime
+==N4842 = 25
+==N4820 = 50
+==P1429 = 75
+==P1607 = 75
+==see=analysis.symbolic
+--
+--analysis.binaries
+==N4842 = 0
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+In principle contract checks could be carried forwarded and recorded in binaries
+to allow for post-compile verification.  It seems unlikely that a non-builtin
+facility would be standardized in binary files in such a way.
+--
+--analysis.information
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 75
+==details
+None of the proposals allow for hints that are exclusively for the static
+analyzer to use, but the P1607 `ignore` semantic could be used for such a
+purpose.
+--
+--analysis.legacy
+==N4842 = 0
+==N4820 = 25
+==P1429 = 25
+==P1607 = 75
+==details
+Only a very limited legacy framework (such as the C `assert` macro)
+that completely falls within the functionality
+provided by N4820 would be migratable without drastic changes in behavior.
+
+P1607 sought to provide more flexibility for reimplementing most legacy frameworks
+in terms of common semantics provided by the language.
+--
+--teach.bestpractices
+==N4842 = 25
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==details
+Basic defensive programming is directly expressable through any of the proposed
+contract facilities.   Without a language feature, custom libraries must be used
+and that is not portable.
+
+Advanced features of contract lifecycle are more difficult to teach when not
+directly supported, and none of the proposals provide a complete solution for
+that behavior (see [P1332](http://wg21.link/P1332R0) for a broad discussion of
+what sorts of lifecycle considerations impact contract use), while only
+P1607 provides a way to do so at all at a non-global granularity.
+--
+--teach.standardized
+==N4842 = 0
+==N4820 = 100
+==P1429 = 100
+==P1607 = 100
+==see=teach.bestpractices
+--
+--teach.lifecycle
+==N4842 = 0
+==N4820 = 50
+==P1429 = 50
+==P1607 = 75
+==see=teach.bestpractices
+--
+--teach.portable
+==N4842 = 0
+==N4820 = 50
+==P1429 = 50
+==P1607 = 75
+==see=teach.bestpractices
+--
+--teach.dumbstudents
+==N4842 = 0
+==N4820 = 50
+==P1429 = 40
+==P1607 = 40
+==details
+More advanced usages with P1429 or P1607 are clearly dependent on more
+complicated configuration.   N4820 provides a simple set of flags (build modes) that would
+arguably be easiest to teach and use.
+
+Note that nothing in P1429 prevented the support for the same set of build
+modes in addition to the more specific semantic per level setting that it
+required.
+--
+--teach.teachable
+==N4842 = 0
+==N4820 = 50
+==P1429 = 50
+==P1607 = 75
+==details
+N4820 and P1429 provide the least advanced features, but all of the proposals
+allow for basic contract use to be done (`default` level contract annotations)
+without any knowledge of the more advanced options that might be available.
+--
+--teach.layering
+==N4842 = 0
+==N4820 = 50
+==P1429 = 50
+==P1607 = 75
+==see=teach.teachable
+--
+--compiler.benice
+==N4842 = 0
+==N4820 = 40
+==P1429 = 40
+==P1607 = 75
+==details
+The explicit specification of build modes seems to be seen as highly restrictive
+by compiler vendors, and the less specific the standard is about that
+aspect of the facility the more this user base seems to be satisfied.
+--
+--compiler.best
+==N4842 = 0
+==N4820 = 15
+==P1429 = 75
+==P1607 = 75
+==details
+N4820 had many open questions about its specification where it had diverged
+from the original contract proposals.  The semantic presentation in P1429 and
+P1607  sought to be very precise about what was expected of program behavior
+for any given contract.
+--
+--large.complex
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==details
+A macro based facility could build this form of subsetting with a great deal of
+effort, though callsite based checking does not seem feasible in any macro based
+facility.  N4820 and P1429 provide no fine grained control of checks.
+--
+--large.critical
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=large.complex
+--
+--large.modernize
+==N4842 = 0
+==N4820 = 25
+==P1429 = 25
+==P1607 = 75
+==see=analysis.legacy
+--
+--large.stillmacros
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 75
+==details
+Only by mapping to literal semantics could a more advanced contract facility be
+able to maintain behaviors while still using the same underlying facility that
+the language provides.
+--
+--large.observation
+==N4842 = 25
+==N4820 = 25
+==P1429 = 25
+==P1607 = 75
+==details
+N4820 and P1429 provide a continuation mode to be able to make this decision
+at a global (or translation unit) scope.  P1607 provides the ability to do
+this per-contract.
+--
+--large.introduction
+==N4842 = 25
+==N4820 = 25
+==P1429 = 50
+==P1607 = 75
+==see=large.observation
+--
+--large.separability
+==N4842 = 25
+==N4820 = 75
+==P1429 = 75
+==P1607 = 75
+==details
+All of the language proposals allowed for multiple distinct annotations on a
+single function.
+--
+--large.newenvironment
+==N4842 = 25
+==N4820 = 25
+==P1429 = 50
+==P1607 = 75
+==see=large.observation
+--
+--large.newcompiler
+==N4842 = 25
+==N4820 = 25
+==P1429 = 50
+==P1607 = 75
+==see=large.observation
+--
+--large.nogoingback
+==N4842 = 25
+==N4820 = 0
+==P1429 = 10
+==P1607 = 75
+==details
+The global controls of N4820 and P1429 limit the ability to enforce only those
+checks that are trusted, and provide no natural way to mix some continuing contracts with
+some non-continuing contracts.  (P1429 would allow this by assigning different
+semantics to `audit` and `default` level contracts, but that would conflict with the
+intended distinction between those levels based on cost of checking.)
+--
+--large.scalability
+==N4842 = 25
+==N4820 = 90
+==P1429 = 90
+==P1607 = 90
+==details
+All of the proposals with a global pluggable violation handler allow this
+form of customization, though it is not required by any that a compiler actually
+allow the customization of the violation handler.
+--
+--large.simulation.disable
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==details
+Subsets of annotations can be called out with macro-based solutions, but not with the
+global controls of N4820 or P1429.
+--
+--large.simulation.enable
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==see=large.simulation.disable
+--
+--large.simulation.ignore
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 25
+==see=large.simulation.disable
+--
+--large.perfcontrol.build
+==N4842 = 0
+==N4820 = 25
+==P1429 = 25
+==P1607 = 20
+==details
+The language proposals had minimal control over build-time checking, but were
+focused on doing any constraining based on the cost of the check.  
+--
+--large.perfcontrol.runtime
+==N4842 = 0
+==N4820 = 50
+==P1429 = 50
+==P1607 = 40
+==see=large.perfcontrol.build
+--
+--large.narrowing
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 50
+==details
+A P1607 contract can have a macro to control individual semantics and go through
+a lifecycle where it is checked or enforced in testing but left ignored in production.
+Without global control, this cannot be done with N4820 or P1429.
+--
+--embedded.nochecking
+==N4842 = 25
+==N4820 = 50
+==P1429 = 50
+==P1607 = 50
+==details
+The language based proposals allow for the removal of checking without 
+--
+--embedded.nologging
+==N4842 = 25
+==N4820 = 10
+==P1429 = 10
+==P1607 = 10
+==details
+None of the proposals allow for total removal of logging information from
+the generated code, while a macro based facility could support that option.
+
+It would conceivable be possible for link time optimization to recognize that
+a violation handler made no use of source information/did no logging and then
+it would be able to remove that source information as well, but this would have
+significant compile time overhead on a system.
+--
+--embedded.minimize
+==N4842 = 25
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=embedded.nologging
+--
+--wg21.everythingelse
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==details
+None of the proposed solutions began integration with the rest of the standard,
+though they would have facilitated it in various ways.
+--
+--wg21.otherfeatures
+==N4842 = 0
+==N4820 = 0
+==P1429 = 0
+==P1607 = 0
+==see=wg21.everythingelse
+--
